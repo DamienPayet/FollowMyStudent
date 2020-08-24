@@ -19,8 +19,8 @@ class CreateUsersTable extends Migration
       $table->string('email')->unique();
       $table->string('image_profil')->nullable();
       $table->enum('statut', array ('eleve', 'admin','responsable'))->default('eleve');
-      $table->bigInteger('responsable_id')->unsigned()->nullable();
       $table->bigInteger('eleve_id')->unsigned()->nullable();
+      $table->bigInteger('responsable_id')->unsigned()->nullable();
       $table->bigInteger('administrateur_id')->unsigned()->nullable();
       $table->timestamp('email_verified_at')->nullable();
       $table->string('password');
