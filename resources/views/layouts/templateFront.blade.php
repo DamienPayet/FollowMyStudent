@@ -100,13 +100,6 @@
           <h3>Lycee Pasteur Mont Roland</h3>
           <img src="{{url('front/images/pmr.png')}}"></img>
         </div>
-        <h6 class="category category-absolute">Designed by
-          <a href="http://invisionapp.com/" target="_blank">
-            <img src="./assets/img/invision-white-slim.png" class="invision-logo" />
-          </a>. Coded by
-          <a href="https://www.creative-tim.com" target="_blank">
-            <img src="./assets/img/creative-tim-white-slim2.png" class="creative-tim-logo" />
-          </a>.</h6>
       </div>
     </div>
     <div class="main">
@@ -159,7 +152,7 @@
     <footer class="footer" data-background-color="black">
       <div class=" container ">
         <nav>
-          <ul>
+      <!--    <ul>
             <li>
               <a href="https://www.creative-tim.com">
                 Creative Tim
@@ -175,15 +168,15 @@
                 Blog
               </a>
             </li>
-          </ul>
+          </ul>-->
         </nav>
         <div class="copyright" id="copyright">
           &copy;
           <script>
             document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
           </script>, Designed by
-          <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Coded by
-          <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
+          <a href="https://www.invisionapp.com" target="_blank">Damso</a>. Coded by
+          <a href="https://www.creative-tim.com" target="_blank">Florent / Hugo / Damien</a>.
         </div>
       </div>
     </footer>
