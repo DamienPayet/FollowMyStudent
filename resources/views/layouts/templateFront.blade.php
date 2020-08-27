@@ -1,20 +1,4 @@
-<!--
 
-=========================================================
-* Now UI Kit - v1.3.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/now-ui-kit
-* Copyright 2019 Creative Tim (http://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/now-ui-kit/blob/master/LICENSE.md)
-
-* Designed by www.invisionapp.com Coded by www.creative-tim.com
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
--->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,22 +8,19 @@
   <link rel="icon" type="image/png" href="./assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Now UI Kit by Creative Tim
+    FollowMyStudent
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <!-- CSS Files -->
-  <link href="./assets/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="./assets/css/now-ui-kit.css?v=1.3.0" rel="stylesheet" />
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="./assets/demo/demo.css" rel="stylesheet" />
+  <link href="{{url('front/css/bootstrap.min.css')}}" rel="stylesheet" />
+  <link href="{{url('front/css/now-ui-kit.css?v=1.3.0')}}"rel="stylesheet" />
 </head>
-
 <body class="index-page sidebar-collapse">
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg bg-primary fixed-top navbar-transparent " color-on-scroll="400">
+  <nav class="navbar navbar-expand-lg bg-primary fixed-top navbar-transparent " id="example-navbar-success"color-on-scroll="400">
     <div class="container">
       <div class="navbar-translate">
         <a class="navbar-brand" href="https://demos.creative-tim.com/now-ui-kit/index.html" rel="tooltip" title="Designed by Invision. Coded by Creative Tim" data-placement="bottom" target="_blank">
@@ -109,8 +90,9 @@
       <div class="container">
         <div class="content-center brand">
           <img class="n-logo" src="./assets/img/now-logo.png" alt="">
-          <h1 class="h1-seo">Now UI Kit.</h1>
-          <h3>A beautiful Bootstrap 4 UI kit. Yours free.</h3>
+          <h1 class="h1-seo">FollowMyStudent</h1>
+          <h3>Lycee Pasteur Mont Roland</h3>
+          <img src="{{url('front/images/pmr.png')}}"></img>
         </div>
         <h6 class="category category-absolute">Designed by
           <a href="http://invisionapp.com/" target="_blank">
@@ -122,23 +104,6 @@
       </div>
     </div>
     <div class="main">
-      <div class="section section-images">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="hero-images-container">
-                <img src="assets/img/hero-image-1.png" alt="">
-              </div>
-              <div class="hero-images-container-1">
-                <img src="assets/img/hero-image-2.png" alt="">
-              </div>
-              <div class="hero-images-container-2">
-                <img src="assets/img/hero-image-3.png" alt="">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <div class="section section-basic" id="basic-elements">
         <div class="container">
           <h3 class="title">Basic Elements</h3>
@@ -1333,36 +1298,35 @@
         </div>
       </div>
     </footer>
-  </div>
-  <!--   Core JS Files   -->
-  <script src="./assets/js/core/jquery.min.js" type="text/javascript"></script>
-  <script src="./assets/js/core/popper.min.js" type="text/javascript"></script>
-  <script src="./assets/js/core/bootstrap.min.js" type="text/javascript"></script>
-  <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-  <script src="./assets/js/plugins/bootstrap-switch.js"></script>
-  <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-  <script src="./assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
-  <!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
-  <script src="./assets/js/plugins/bootstrap-datepicker.js" type="text/javascript"></script>
-  <!--  Google Maps Plugin    -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-  <!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
-  <script src="./assets/js/now-ui-kit.js?v=1.3.0" type="text/javascript"></script>
-  <script>
-    $(document).ready(function() {
-      // the body of this function is in assets/js/now-ui-kit.js
-      nowuiKit.initSliders();
-    });
+<!--   Core JS Files   -->
+<script src="{{url('front/js/core/jquery.min.js')}}" type="text/javascript"></script>
+<script src="{{url('front/js/core/popper.min.js')}}" type="text/javascript"></script>
+<script src="{{url('front/js/core/bootstrap.min.js')}}" type="text/javascript"></script>
+<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+<script src="{{url('front/js/plugins/bootstrap-switch.js')}}"></script>
+<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script src="{{url('front/js/plugins/nouislider.min.js')}}" type="text/javascript"></script>
+<!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
+<script src="{{url('front/js/plugins/bootstrap-datepicker.js')}}" type="text/javascript"></script>
+<!--  Google Maps Plugin    -->
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+<!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
+<script src="{{url('front/js/now-ui-kit.js?v=1.3.0')}}" type="text/javascript"></script>
+<script>
+$(document).ready(function() {
+  // the body of this function is in assets/js/now-ui-kit.js
+  nowuiKit.initSliders();
+});
 
-    function scrollToDownload() {
+function scrollToDownload() {
 
-      if ($('.section-download').length != 0) {
-        $("html, body").animate({
-          scrollTop: $('.section-download').offset().top
-        }, 1000);
-      }
-    }
-  </script>
+  if ($('.section-download').length != 0) {
+    $("html, body").animate({
+      scrollTop: $('.section-download').offset().top
+    }, 1000);
+  }
+}
+</script>
 </body>
 
 </html>
