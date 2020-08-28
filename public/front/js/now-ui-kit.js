@@ -15,6 +15,9 @@
 
  */
 
+// Verification de l'url
+ var urlcourante = document.location.href;
+ var argument = urlcourante.split('/');
 
 var transparent = true;
 var big_image;
@@ -50,7 +53,9 @@ $(document).ready(function() {
   scroll_distance = $navbar.attr('color-on-scroll') || 500;
 
   // Check if we have the class "navbar-color-on-scroll" then add the function to remove the class "navbar-transparent" so it will transform to a plain color.
-
+  if(argument[4] !== undefined){
+    $('.navbar[color-on-scroll]').removeClass('navbar-transparent');
+  }
   if ($('.navbar[color-on-scroll]').length != 0) {
     nowuiKit.checkScrollForTransparentNavbar();
     $(window).on('scroll', nowuiKit.checkScrollForTransparentNavbar)

@@ -1,0 +1,3 @@
+function startquest(){
+  alert('logobitembo');
+}
