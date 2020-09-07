@@ -3,7 +3,7 @@
 
 @section('content')
 
-  <div class="section section-notifications">
+  <div id="acceuil" class="section section-notifications">
     <!-- Si le user a deja repondue au questionnaire-->
     <div class="alert alert-success" role="alert">
       <div class="container">
