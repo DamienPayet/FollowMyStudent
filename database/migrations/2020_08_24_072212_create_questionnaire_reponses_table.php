@@ -17,6 +17,7 @@ class CreateQuestionnaireReponsesTable extends Migration
             $table->id();
             $table->string('reponse');
             $table->bigInteger('question_id')->unsigned()->nullable();
+            $table->bigInteger('user_id')->unsigned()->nullable();
             $table->timestamps();
         });
     }

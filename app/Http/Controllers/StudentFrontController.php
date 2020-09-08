@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\QuestionnaireQuestion;
 use App\QuestionnairePart;
+use App\QuestionnaireReponse;
 class StudentFrontController extends Controller
 {
   /**
@@ -27,10 +28,15 @@ class StudentFrontController extends Controller
     return response()->json(['questions' => $questions , 'parts' => $parts]);
 
   }
-  public function questions_start(){
-    $parts = QuestionnairePart::all();
-    dd($parts);
-        return view("front.questionnaire.question");
+  public function response_store (Request $request){
+    foreach($request->tab as $value){
+      $reponse = new QuestionnaireReponse;
+      $reponse->reponse = $value[1];
+      $reponse->question_id = $value[0];
+      $reponse->user_id = 1;
+      $reponse->save();
+    }
+    return response()->json(['parts' => $request->tab]);
   }
 
   public function forum()

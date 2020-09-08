@@ -28,6 +28,10 @@ class User extends Authenticatable
   {
     return $this->hasMany('App\SujetReponse');
   }
+  public function qreponses()
+  {
+    return $this->hasMany('App\QuestionnaireReponse');
+  }
 
   use Notifiable;
 

@@ -20,7 +20,7 @@
 </head>
 <body class="index-page sidebar-collapse">
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg bg-primary fixed-top navbar-transparent " id="example-navbar-success"color-on-scroll="400">
+  <nav class="navbar navbar-expand-lg bg-primary fixed-top  " id="example-navbar-success"color-on-scroll="400">
     <div class="container">
       <div class="navbar-translate">
         <a class="navbar-brand" href="https://demos.creative-tim.com/now-ui-kit/index.html" rel="tooltip" title="Designed by Invision. Coded by Creative Tim" data-placement="bottom" target="_blank">
@@ -154,11 +154,7 @@ Blog
 <script src="{{url('front/js/plugins/nouislider.min.js')}}" type="text/javascript"></script>
 <!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
 <script src="{{url('front/js/plugins/bootstrap-datepicker.js')}}" type="text/javascript"></script>
-<!--  Google Maps Plugin    -->
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 
-<!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
-<script src="{{url('front/js/now-ui-kit.js?v=1.3.0')}}" type="text/javascript"></script>
 <script>
 $(document).ready(function() {
   // the body of this function is in assets/js/now-ui-kit.js

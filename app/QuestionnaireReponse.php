@@ -10,4 +10,8 @@ class QuestionnaireReponse extends Model
   {
     return $this->belongsTo('App\QuestionnaireQuestion');
   }
+  public function user()
+  {
+    return $this->belongsTo('App\User');
+  }
 }
