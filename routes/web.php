@@ -22,6 +22,7 @@ Route::get('/login', function () {
 //Route redirection vers questionnaire
 Route::get('front/questionnaire', 'StudentFrontController@questionnaire')->name('questionnaire');
 Route::get('front/questions', 'StudentFrontController@questions')->name('questions');
+Route::get('front/end_question', 'StudentFrontController@end_question')->name('end_question');
 Route::get('front/response_store', 'StudentFrontController@response_store')->name('response_store');
 //Route redirection vers forum acceuil
 Route::get('front/forum', 'StudentFrontController@forum')->name('forum');

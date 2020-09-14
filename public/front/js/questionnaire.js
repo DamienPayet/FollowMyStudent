@@ -45,7 +45,7 @@ function affichage(){
     // Retour Haut de la page
     window.top.window.scrollTo(0,0);
   }else {
-    document.location.href="questions_start"
+    document.location.href="end_question"
   }
 
 }

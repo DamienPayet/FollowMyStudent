@@ -38,7 +38,11 @@ class StudentFrontController extends Controller
     }
     return response()->json(['parts' => $request->tab]);
   }
+  public function end_question()
+  {
 
+    return view("front.questionnaire.index");
+  }
   public function forum()
   {
     return view("front.forum.index");
