@@ -16,9 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('front.index');
 })->name('index');
-Route::get('/login', function () {
-    return view('auth/login')->middleware('auth');
-});
+
 //Route redirection vers questionnaire
 Route::get('front/questionnaire', 'StudentFrontController@questionnaire')->name('questionnaire');
 Route::get('front/questions', 'StudentFrontController@questions')->name('questions');
