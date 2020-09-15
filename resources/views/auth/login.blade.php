@@ -4,7 +4,7 @@
   <link rel="icon" type="image/png" href="../front/images/logo-glpmr.svg">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-  {{ __('Authentification') }} 
+  {{ __('Authentification') }}
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -51,11 +51,10 @@
       <div class="container">
         <div class="col-md-4 ml-auto mr-auto">
           <div class="card card-login card-plain">
-            <form class="form" method="" action="">
               <div class="card-header text-center">
                   <img src="../front/images/logo-glpmr.svg" alt="">
               </div>
-              
+
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf

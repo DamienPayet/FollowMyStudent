@@ -17,9 +17,6 @@ class Foreignekey extends Migration
       $table->foreign('eleve_id')->references('id')->on('eleves')->onDelete('cascade');
     });
     Schema::table('users', function (Blueprint $table) {
-      $table->foreign('responsable_id')->references('id')->on('responsables')->onDelete('cascade');
-    });
-    Schema::table('users', function (Blueprint $table) {
       $table->foreign('administrateur_id')->references('id')->on('admins')->onDelete('cascade');
     });
     Schema::table('questionnaire_questions', function (Blueprint $table) {

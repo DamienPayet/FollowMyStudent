@@ -29,13 +29,15 @@ class StudentFrontController extends Controller
 
   }
   public function response_store (Request $request){
-    foreach($request->tab as $value){
-      $reponse = new QuestionnaireReponse;
-      $reponse->reponse = $value[1];
-      $reponse->question_id = $value[0];
-      $reponse->user_id = 1;
-      $reponse->save();
-    }
+
+     foreach($request->tab as $value){
+        $reponse = new QuestionnaireReponse;
+          $reponse->reponse = $value[1];
+          $reponse->question_id = $value[0];
+          $reponse->user_id = 1;
+          $reponse->save();
+      }
+
     return response()->json(['parts' => $request->tab]);
   }
   public function end_question()
