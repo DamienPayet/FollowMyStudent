@@ -1,4 +1,4 @@
-@extends('layouts.templateFront')
+@extends('layouts.templateBack')
 
 
 @section('content')
