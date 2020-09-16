@@ -41,5 +41,13 @@ Route::get('/testBack', function () {
     return view('templateBack');
 });
 
+Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Route BACK
+Route::get('/testBack', function () {
+    return view('layouts.templateBack');
+});
+//Route Gestion User
+Route::resource('back/users', UserController::class);
