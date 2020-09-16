@@ -31,8 +31,11 @@ Route::get('front/mes_sujets', 'StudentFrontController@forum_mes_sujets')->name(
 //Route redirection vers les offres
 Route::get('front/offres', 'StudentFrontController@offre')->name('offre');
 
-Route::resource('offres','OffreController');
+Route::group(['middleware' => 'auth'], function () {
+    //Route::resource('front/offre','OffreController');
+    Route::resource('back/offre','OffreController');
 
+});
 Route::get('/testBack', function () {
     return view('templateBack');
 });
