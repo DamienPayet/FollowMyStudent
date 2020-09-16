@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,22 +15,41 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <!-- CSS Files -->
   <link href="{{url('front/css/bootstrap.min.css')}}" rel="stylesheet" />
-  <link href="{{url('front/css/now-ui-kit.css?v=1.3.0')}}"rel="stylesheet" />
+  <link href="{{url('front/css/now-ui-kit.css?v=1.3.0')}}" rel="stylesheet" />
 </head>
+
 <body class="index-page sidebar-collapse">
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg bg-primary fixed-top  " id="example-navbar-success"color-on-scroll="400">
+  <nav class="navbar navbar-expand-lg bg-primary fixed-top  " id="example-navbar-success" color-on-scroll="400">
     <div class="container">
       <div class="navbar-translate">
-        <a class="navbar-brand" href="https://demos.creative-tim.com/now-ui-kit/index.html" rel="tooltip" title="Designed by Invision. Coded by Creative Tim" data-placement="bottom" target="_blank">
-          <i class="fas fa-user"></i>
-          <p>Username</p>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#example-navbar-danger" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-bar bar1"></span>
-          <span class="navbar-toggler-bar bar2"></span>
-          <span class="navbar-toggler-bar bar3"></span>
-        </button>
+
+        <ul class="nav navbar-nav navbar-right">
+          <!-- Authentication Links -->
+          @if (Auth::guest())
+          <li><a href="{{ url('/login') }}">Login</a></li>
+          <!--<li><a href="{{ url('/register') }}">Register</a></li> -->
+          @else
+          <li class="dropdown">
+          <p style="color:white">Bienvenue,</p>
+          <a href="User" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+              {{Auth::user()->name }} <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+            <li>
+            <a class="dropdown-item" href="Profil">Mon profil<div class="ripple-container"></div></a>
+            </li>
+              <li>
+                <a class="dropdown-item" href="Logout" onclick="event.preventDefault();document.getElementById('logout-form').submit();"> Déconnexion </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  {{ csrf_field() }}
+                </form>
+              </li>
+            </ul>
+          </li>
+          @endif
+        </ul>
+
       </div>
       <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="./assets/img/blurred-image-1.jpg">
         <ul class="navbar-nav">
@@ -65,7 +83,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="https://twitter.com/CreativeTim" >
+            <a class="nav-link" href="https://twitter.com/CreativeTim">
               <i class="fas fa-envelope"></i>
               <p>0</p>
             </a>
@@ -99,24 +117,24 @@
 <p class="d-lg-none d-xl-none">Instagram</p>
 </a>
 </li>-->
-</ul>
-</div>
-</div>
-</nav>
-<!-- End Navbar -->
-<div class="wrapper">
-  @section('header')
-  @show
-
-  <div class="main">
-    @section("content")
-
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- End Navbar -->
+  <div class="wrapper">
+    @section('header')
     @show
-  </div>
-  <footer class="footer" data-background-color="black">
-    <div class=" container ">
-      <nav>
-        <!--    <ul>
+
+    <div class="main">
+      @section("content")
+
+      @show
+    </div>
+    <footer class="footer" data-background-color="black">
+      <div class=" container ">
+        <nav>
+          <!--    <ul>
         <li>
         <a href="https://www.creative-tim.com">
         Creative Tim
@@ -133,43 +151,43 @@ Blog
 </a>
 </li>
 </ul>-->
-</nav>
-<div class="copyright" id="copyright">
-  &copy;
-  <script>
-  document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
-  </script>, Designed by
-  <a href="https://www.invisionapp.com" target="_blank">Damso</a>. Coded by
-  <a href="https://www.creative-tim.com" target="_blank">Florent / Hugo / Damien</a>.
-</div>
-</div>
-</footer>
-<!--   Core JS Files   -->
-<script src="{{url('front/js/core/jquery.min.js')}}" type="text/javascript"></script>
-<script src="{{url('front/js/core/popper.min.js')}}" type="text/javascript"></script>
-<script src="{{url('front/js/core/bootstrap.min.js')}}" type="text/javascript"></script>
-<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-<!--<script src="{{url('front/js/plugins/bootstrap-switch.js')}}"></script>-->
-<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-<script src="{{url('front/js/plugins/nouislider.min.js')}}" type="text/javascript"></script>
-<!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
-<script src="{{url('front/js/plugins/bootstrap-datepicker.js')}}" type="text/javascript"></script>
+        </nav>
+        <div class="copyright" id="copyright">
+          &copy;
+          <script>
+            document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
+          </script>, Designed by
+          <a href="https://www.invisionapp.com" target="_blank">Damso</a>. Coded by
+          <a href="https://www.creative-tim.com" target="_blank">Florent / Hugo / Damien</a>.
+        </div>
+      </div>
+    </footer>
+    <!--   Core JS Files   -->
+    <script src="{{url('front/js/core/jquery.min.js')}}" type="text/javascript"></script>
+    <script src="{{url('front/js/core/popper.min.js')}}" type="text/javascript"></script>
+    <script src="{{url('front/js/core/bootstrap.min.js')}}" type="text/javascript"></script>
+    <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+    <!--<script src="{{url('front/js/plugins/bootstrap-switch.js')}}"></script>-->
+    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+    <script src="{{url('front/js/plugins/nouislider.min.js')}}" type="text/javascript"></script>
+    <!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
+    <script src="{{url('front/js/plugins/bootstrap-datepicker.js')}}" type="text/javascript"></script>
 
-<script>
-$(document).ready(function() {
-  // the body of this function is in assets/js/now-ui-kit.js
-  nowuiKit.initSliders();
-});
+    <script>
+      $(document).ready(function() {
+        // the body of this function is in assets/js/now-ui-kit.js
+        nowuiKit.initSliders();
+      });
 
-function scrollToDownload() {
+      function scrollToDownload() {
 
-  if ($('.section-download').length != 0) {
-    $("html, body").animate({
-      scrollTop: $('.section-download').offset().top
-    }, 1000);
-  }
-}
-</script>
+        if ($('.section-download').length != 0) {
+          $("html, body").animate({
+            scrollTop: $('.section-download').offset().top
+          }, 1000);
+        }
+      }
+    </script>
 </body>
 
 </html>

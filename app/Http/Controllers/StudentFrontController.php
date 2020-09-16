@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\QuestionnaireQuestion;
 use App\QuestionnairePart;
 use App\QuestionnaireReponse;
+use Illuminate\Support\Facades\Auth;
+
 class StudentFrontController extends Controller
 {
   /**
@@ -15,9 +17,12 @@ class StudentFrontController extends Controller
   */
   public function questionnaire()
   {
-
-
-    return view("front.questionnaire.index");
+    $user = auth::user();
+    $part = QuestionnairePart::all();
+    $question = QuestionnaireQuestion::all();
+    return view("front.questionnaire.index")->with("user" , $user)
+                                            ->with("question" , $question)
+                                            ->with("part" , $part);
   }
   public function questions()
   {
@@ -25,25 +30,31 @@ class StudentFrontController extends Controller
     $parts = QuestionnairePart::all();
     $questions = QuestionnaireQuestion::all();
 
+
     return response()->json(['questions' => $questions , 'parts' => $parts]);
 
   }
   public function response_store (Request $request){
-
+    $user = auth::user();
      foreach($request->tab as $value){
         $reponse = new QuestionnaireReponse;
           $reponse->reponse = $value[1];
           $reponse->question_id = $value[0];
-          $reponse->user_id = 1;
+          $reponse->user_id = $user->id;
           $reponse->save();
       }
-
     return response()->json(['parts' => $request->tab]);
   }
+
+
   public function end_question()
   {
-
-    return view("front.questionnaire.index");
+    $user = auth::user();
+    $part = QuestionnairePart::all();
+    $question = QuestionnaireQuestion::all();
+    return view("front.questionnaire.index")->with("user" , $user)
+                                            ->with("question" , $question)
+                                            ->with("part" , $part);
   }
   public function forum()
   {
