@@ -12,10 +12,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
 Route::get('/', function () {
     return view('front.index');
 })->name('index');
+//Route::get('front/index', 'OffreController@in')->name('front.offre');
 
 //Route redirection vers questionnaire
 Route::get('front/questionnaire', 'StudentFrontController@questionnaire')->name('questionnaire');
@@ -29,11 +31,11 @@ Route::get('front/mes_sujets', 'StudentFrontController@forum_mes_sujets')->name(
 //Route redirection vers les offres
 Route::get('front/offres', 'StudentFrontController@offre')->name('offre');
 
+Route::resource('offres','OffreController');
 
 Route::get('/testBack', function () {
     return view('templateBack');
 });
 
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -57,7 +57,7 @@
             <div class="card-body">
               <form method="POST" action="{{ route('login') }}">
                 @csrf
-                <!-- Add -->
+                <!-- Email -->
                 <div class="input-group no-border input-lg">
                   <div class="input-group-prepend">
                     <span class="input-group-text">
@@ -71,6 +71,7 @@
                   </span>
                   @enderror
                 </div>
+                <!-- Password -->
                 <div class="input-group no-border input-lg">
                   <div class="input-group-prepend">
                     <span class="input-group-text">
@@ -85,10 +86,9 @@
                   @enderror
                 </div>
             </div>
-
-            <!-- Add -->
+            <!-- Login -->
             <div class="card-footer text-center">
-              <button type="submit"  class="btn btn-primary btn-round btn-lg btn-block">{{ __('Connexion') }}</button>
+              <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">{{ __('Connexion') }}</button>
               <div class="pull-right">
                 @if (Route::has('password.request'))
                 <h6> <a class="link" href="{{ route('password.request') }}">
@@ -96,54 +96,51 @@
                   </a></h6>
                 @endif
               </div>
-
               </form>
             </div>
           </div>
-
-        
+        </div>
       </div>
     </div>
-  </div>
 
-      <footer class="footer">
-        <div class=" container ">
-          <nav>
-            <ul>
-              <li>
-                <a href="http://www.pasteurmontroland.com/">
-                  Lycée Pasteur Mont Roland Dole
-                </a>
-              </li>
-              <li>
-                <a href="">
-                  A propos
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <div class="copyright" id="copyright">
-            &copy;
-            <script>
-              document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
-            </script>
-            Coded by <a href="" target="_blank">Damien, Hugo et Florent</a>.
-          </div>
+    <footer class="footer">
+      <div class=" container ">
+        <nav>
+          <ul>
+            <li>
+              <a href="http://www.pasteurmontroland.com/">
+                Lycée Pasteur Mont Roland Dole
+              </a>
+            </li>
+            <li>
+              <a href="">
+                A propos
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="copyright" id="copyright">
+          &copy;
+          <script>
+            document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
+          </script>
+          Coded by <a href="" target="_blank">Damien, Hugo et Florent</a>.
         </div>
-      </footer>
-    </div>
-    <!--   Core JS Files   -->
-    <script src="../front/js/core/jquery.min.js" type="text/javascript"></script>
-    <script src="../front/js/core/popper.min.js" type="text/javascript"></script>
-    <script src="../front/js/core/bootstrap.min.js" type="text/javascript"></script>
-    <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-    <script src="../front/js/plugins/bootstrap-switch.js"></script>
-    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-    <script src="../front/js/plugins/nouislider.min.js" type="text/javascript"></script>
-    <!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
-    <script src="../front/js/plugins/bootstrap-datepicker.js" type="text/javascript"></script>
-    <!--  Google Maps Plugin    -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-    <!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
-    <script src="../front/js/now-ui-kit.js?v=1.3.0" type="text/javascript"></script>
+      </div>
+    </footer>
+  </div>
+  <!--   Core JS Files   -->
+  <script src="../front/js/core/jquery.min.js" type="text/javascript"></script>
+  <script src="../front/js/core/popper.min.js" type="text/javascript"></script>
+  <script src="../front/js/core/bootstrap.min.js" type="text/javascript"></script>
+  <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+  <script src="../front/js/plugins/bootstrap-switch.js"></script>
+  <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+  <script src="../front/js/plugins/nouislider.min.js" type="text/javascript"></script>
+  <!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
+  <script src="../front/js/plugins/bootstrap-datepicker.js" type="text/javascript"></script>
+  <!--  Google Maps Plugin    -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+  <!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
+  <script src="../front/js/now-ui-kit.js?v=1.3.0" type="text/javascript"></script>
 </body>
