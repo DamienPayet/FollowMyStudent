@@ -30,32 +30,7 @@
                   {{ __('PDF de l\'offre') }}
                 </h3>
                 <p><a href="{{ asset($offre->pdf) }}" target="_blank">Ouvrir</a></p>
-                <h3 class=" text-primary">
-                  {{ __('Coordonnées de l\'entreprise') }}</h3>
-              </center>
-              <div class="row">
-                <div class="col-12 text-left">
-                  <i class="fa fa-briefcase" style="font-size:24px"></i>
-                  {{ __(' :  ') }}{{ $offre->entreprise->nom }}</div>
-              </div>
-              <div class="row">
-                <div class="col-12 text-left">
-                  <i class="fa fa-location-arrow" style="font-size:24px"></i>
-                  {{ __(' :  ') }} {{ $offre->entreprise->adresse }}</div>
-              </div>
-              <div class="row">
-                <div class="col-12 text-left">
-                  <i class="fa fa-phone" style="font-size:24px"></i>
-                  <a href="tel:+{{ $offre->entreprise->telephone }}">
-                    {{ __(' :  ') }} {{$offre->entreprise->telephone }}</a></div>
-              </div>
-              <div class="row">
-                <div class="col-12 text-left">
-                  <i class="fa fa-at" style="font-size:24px"></i>
-                  <a href="mailto:{{ $offre->entreprise->contact }}">
-                    {{ __(' :  ') }} {{$offre->entreprise->contact }}</a></div>
-              </div>
-            </div>
+               </center>
           </div>
         </div>
       </div>

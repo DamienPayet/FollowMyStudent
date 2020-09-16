@@ -1,11 +1,11 @@
-@extends('layouts.app', ['activePage' => 'Création d\'une offre', 'titlePage' => __('Création d\'offres')])
+@extends('layouts.templateFront')
 
 @section('content')
 <div class="content">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
-        <form method="post" action="{{ route('offres.store') }}" autocomplete="off" class="form-horizontal" enctype="multipart/form-data" accept-charset="utf-8">
+        <form method="post" action="{{ route('offre.store') }}" autocomplete="off" class="form-horizontal" enctype="multipart/form-data" accept-charset="utf-8">
           @csrf
           @method('post')
           <div class="card ">
@@ -17,7 +17,7 @@
             <div class="card-body ">
               <div class="row">
                 <div class="col-md-12 text-right">
-                  <a href="{{ route('offres.index') }}" class="btn btn-sm btn-primary">{{ __('Retour à la liste') }}</a>
+                  <a href="{{ route('offre.index') }}" class="btn btn-sm btn-primary">{{ __('Retour à la liste') }}</a>
                 </div>
               </div>
               <!-- Titre -->
@@ -50,9 +50,25 @@
                 <label class="col-sm-2 col-form-label" for="input-niveau">{{ __(' Niveau') }}</label>
                 <div class="col-sm-7">
                   <div class="form-group{{ $errors->has('niveau') ? ' has-danger' : '' }}">
-                    <input class="form-control{{ $errors->has('niveau') ? ' is-invalid' : '' }}" input type="text" name="niveau" id="input-niveau" placeholder="{{ __('Niveau') }}" value="" required />
-                    @if ($errors->has('niveau'))
+                    <select name="niveau" id="niveau" class="form-control">
+                    <option value="" selected>Sélectionner un niveau...</option>
+                      <option value="Bac">Bac</option>
+                      <option value="BTS">BTS</option>
+                      <option value="Licence">Licence</option>
+                    </select> @if ($errors->has('niveau'))
                     <span id="niveau-error" class="error text-danger" for="input-niveau">{{ $errors->first('niveau') }}</span>
+                    @endif
+                  </div>
+                </div>
+              </div>
+               <!-- Lieu -->
+               <div class="row">
+                <label class="col-sm-2 col-form-label">{{ __('Lieu') }}</label>
+                <div class="col-sm-7">
+                  <div class="form-group{{ $errors->has('lieu') ? ' has-danger' : '' }}">
+                    <input class="form-control{{ $errors->has('lieu') ? ' is-invalid' : '' }}" name="lieu" id="input-lieu" type="text" placeholder="{{ __('Lieu') }}" value="" required="true" aria-required="true" />
+                    @if ($errors->has('lieu'))
+                    <span id="lieu-error" class="error text-danger" for="input-lieu">{{ $errors->first('lieu') }}</span>
                     @endif
                   </div>
                 </div>
@@ -61,15 +77,14 @@
               <div class="row">
                 <label class="col-sm-2 col-form-label">{{ __('Entreprise') }}</label>
                 <div class="col-sm-7">
-                  <select name="entreprise" id="entreprise" class="form-control">
-                  <option value="" selected>Séléctionner une entreprise...</option>
-                    @foreach($entreprise as $entreprises)
-                    <option value="{{ $entreprises->id }}">{{ $entreprises->nom }}</option>
-                    @endforeach
-                  </select>
+                  <div class="form-group{{ $errors->has('entreprise') ? ' has-danger' : '' }}">
+                    <input class="form-control{{ $errors->has('entreprise') ? ' is-invalid' : '' }}" name="entreprise" id="input-entreprise" type="text" placeholder="{{ __('Entreprise') }}" value="" required="true" aria-required="true" />
+                    @if ($errors->has('entreprise'))
+                    <span id="entreprise-error" class="error text-danger" for="input-entreprise">{{ $errors->first('entreprise') }}</span>
+                    @endif
+                  </div>
                 </div>
               </div>
-              <!-- Entreprise -->
               <!-- PDF -->
               <div class="row">
                 <label class="col-sm-2 col-form-label" for="input-pdf">{{ __('PDF') }}</label>
@@ -93,7 +108,7 @@
                 </label>
               </div>
               <!-- Fin pdf-->
-              
+
 
             </div>
             <div class="card-footer ml-auto mr-auto">

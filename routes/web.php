@@ -36,6 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('back/offre','OffreController');
 
 });
+
 Route::get('/testBack', function () {
     return view('templateBack');
 });

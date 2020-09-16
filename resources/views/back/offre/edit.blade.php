@@ -1,11 +1,11 @@
-@extends('layouts.app', ['activePage' => 'Modification d\'une offre', 'titlePage' => __('Modification d\'une offre')])
+@extends('layouts.templateFront')
 
 @section('content')
 <div class="content">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
-        <form method="post" action="{{ route('offres.update', $offre) }}" autocomplete="off" class="form-horizontal" enctype="multipart/form-data" accept-charset="utf-8">
+        <form method="post" action="{{ route('offre.update', $offre) }}" autocomplete="off" class="form-horizontal" enctype="multipart/form-data" accept-charset="utf-8">
           @csrf
           @method('put')
           <div class="card ">
@@ -17,7 +17,7 @@
             <div class="card-body ">
               <div class="row">
                 <div class="col-md-12 text-right">
-                  <a href="{{ route('offres.index') }}" class="btn btn-sm btn-primary">{{ __('Retour à la liste') }}</a>
+                  <a href="{{ route('offre.index') }}" class="btn btn-sm btn-primary">{{ __('Retour à la liste') }}</a>
                 </div>
               </div>
               <!-- Titre -->
@@ -58,24 +58,6 @@
                   </div>
                 </div>
               </div>
-                <!-- Entreprise -->
-                <div class="row">
-                <label class="col-sm-2 col-form-label" for="input-niveau">{{ __('Entreprise Actuelle') }}</label>
-                <div class="col-sm-7">
-                @if(!empty($offre->entreprise->id))
-                  <select name="entreprise-current" id="entreprise-current" class="form-control">
-                    <option value="{{ $offre->entreprise->id }}">{{ $offre->entreprise->nom }}</option>
-                  </select>
-                  @endif
-                  <select name="entreprise" id="entreprise" class="form-control">
-                  <option value="" selected>Sélectionner une nouvelle entreprise...</option>
-                    @foreach($entreprise as $entreprises)
-                    <option value="{{ $entreprises->id }}">{{ $entreprises->nom }}</option>
-                    @endforeach
-                  </select>
-                </div>
-              </div>
-              <!-- Entreprise -->
               <!-- PDF -->
               <div class="row">
                 <label class="col-sm-2 col-form-label" for="input-pdf">{{ __('PDF') }}</label>
