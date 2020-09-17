@@ -29,10 +29,11 @@ Route::get('front/forum', 'StudentFrontController@forum')->name('forum');
 //Route redirection vers forum mes sujet
 Route::get('front/mes_sujets', 'StudentFrontController@forum_mes_sujets')->name('forum_mesSujets');
 //Route redirection vers les offres
-Route::get('front/offres', 'StudentFrontController@offre')->name('offre');
+Route::get('front/offre', 'OffreFrontController@index')->name('offre_front_index');
+Route::get('front/offre/{offre}', 'OffreFrontController@show')->name('offre_front_show');
 
 Route::group(['middleware' => 'auth'], function () {
-    //Route::resource('front/offre','OffreController');
+    //Route::resource('front/offre','OffreFrontController');
     Route::resource('back/offre','OffreController');
 
 });

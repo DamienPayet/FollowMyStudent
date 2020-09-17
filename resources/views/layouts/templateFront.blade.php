@@ -53,9 +53,14 @@
       </div>
       <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="./assets/img/blurred-image-1.jpg">
         <ul class="navbar-nav">
-
+        <li class="nav-item">
+            <a class="nav-link" href="{{route('index')}}">
+              <i class="now-ui-icons shopping_shop"></i>
+              <p>Accueil</p>
+            </a>
+          </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('offre')}}">
+            <a class="nav-link" href="{{route('offre_front_index')}}">
               <i class="now-ui-icons business_briefcase-24"></i>
               <p>Les Offres</p>
             </a>
@@ -88,11 +93,7 @@
               <p>0</p>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('index')}}">
-              <i class="fas fa-home"></i>
-            </a>
-          </li>
+
           <!--    <li class="nav-item">
           <a class="nav-link btn btn-neutral" href="https://www.creative-tim.com/product/now-ui-kit-pro" target="_blank">
           <i class="now-ui-icons arrows-1_share-66"></i>
@@ -157,8 +158,8 @@ Blog
           <script>
             document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
           </script>, Designed by
-          <a href="https://www.invisionapp.com" target="_blank">Damso</a>. Coded by
-          <a href="https://www.creative-tim.com" target="_blank">Florent / Hugo / Damien</a>.
+          <a href="" target="_blank">Damso</a>. Coded by
+          <a href="" target="_blank">Florent / Hugo / Damien</a>.
         </div>
       </div>
     </footer>

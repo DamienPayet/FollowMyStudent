@@ -1,14 +1,16 @@
 @extends('layouts.templateFront')
 
 @section('content')
+
 <div class="content">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
-        <div class="card">
+      <div class="card-body ">
           <div class="card-header card-header-primary">
             <h4 class="card-title ">{{ __('Détails de l\'offre >') }} {{ $offre->titre }}</h4>
           </div>
+      </div>
           <!-- Retour -->
           <div class="card-body ">
             <div class="row">

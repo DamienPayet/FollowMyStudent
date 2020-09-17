@@ -16,7 +16,9 @@
               <div class="col-sm-12">
                 <div class="alert alert-success">
                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <i class="material-icons">close</i>
+                    <span aria-hidden="true">
+                      <i class="now-ui-icons ui-1_simple-remove"></i>
+                    </span>
                   </button>
                   <span>{{ session('status') }}</span>
                 </div>
@@ -34,7 +36,7 @@
               </div>
             </div>
             <div class="table-responsive">
-              <table class="table" id="table_idd">
+              <table class="table" id="table_id">
                 <thead class=" text-primary">
                   <tr>
                     <th>
@@ -98,7 +100,7 @@
                         </a>
 
                         <button type="submit" class="btn btn-danger btn-link" data-original-title="" title="" onclick="">
-                          <i >close</i>
+                          <i>close</i>
                           <div class="ripple-container"></div>
                         </button>
                       </form>
