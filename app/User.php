@@ -32,6 +32,10 @@ class User extends Authenticatable
   {
     return $this->hasMany('App\QuestionnaireReponse');
   }
+  public function conversation()
+  {
+    return $this->belongsToMany(Conversation::class);
+  }
 
   use Notifiable;
 
