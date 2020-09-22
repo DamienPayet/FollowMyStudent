@@ -1,56 +1,41 @@
 @extends('layouts.templateFront')
 
 @section('content')
-<div class="row">
-  <div class="col-md-12">
-    <div class="timeline">
-      <br>
-      @php
-      $i = 0;
-      @endphp
+<div class="section">
+<div class="container">
+<p class="category"><center>Voici les offres disponibles :</center></p>
+@foreach ($offres as $offre)
 
-      @foreach ($offres as $offre)
-      @php
-      $test = false;
-      if (!auth()->guest()) {
-      }
-      @endphp
-
-      @if ($i == 0)
-      <div class="time-label">
-        @if (date("d-m-Y" , strtotime($offre->date_inline)) == date("d-m-Y"))
-        <span class="bg-red">Aujourd'hui</span>
-        @else
-        <span class="bg-red">{{date("d-m-Y" , strtotime($offre->date_inline))}}</span>
-        @endif
+  <div class="col-md-10 ml-auto col-xl-6 mr-auto">
+    <div class="card">
+      <div class="card-header">
+        <ul class="nav nav-tabs nav-tabs-neutral justify-content-center" role="tablist" data-background-color="black">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="offre" role="tab">{{$offre->titre}}</a>
+          </li>
+        </ul>
       </div>
-      @else
-      @if (date("d-m-Y", strtotime($offres[$i-1]->date_inline)) != date("d-m-Y" , strtotime($offre->date_inline)))
-      <div class="time-label">
-        <span class="bg-red">{{date("d-m-Y" , strtotime($offre->date_inline))}}</span>
-      </div>
-      @endif
-      @endif
-      <div>
-        <div class="timeline-item">
-          <span class="time"><i class="fas fa-clock"></i>{{$offre->date_inline}}</span>
+    <div class="card-body">
+      <!-- Tab panes -->
+      <div class="tab-content text-center">
+        <div class="tab-pane active" id="offre" role="tabpanel">
 
-          <div class="timeline-body">
-            {{$offre->description}}
-          </div>
-          <div class="timeline-footer">
-            <a href="{{route('offre_front_show', $offre)}}" class="btn btn-primary btn-sm">Afficher plus</a>
-          </div>
+          <p> {{ \Illuminate\Support\Str::limit($offre->description, 150, $end='...') }}
+            <a rel="tooltip" href="{{ route('offre_front_show', $offre) }}" data-original-title="" title="">
+              {{ 'Afficher plus' }}
+            </a></p>
+          <span class="badge badge-success">{{ $offre->type }}</span>
+
+          <span class="badge badge-success">{{ $offre->niveau }}</span>
+          <span class="badge badge-success">{{ $offre->lieu }}</span>
+
         </div>
       </div>
-      @php
-      $i++;
-      @endphp
-      @endforeach
-      <div>
-        <i class="fas fa-clock bg-gray"></i>
-      </div>
     </div>
+    </div>
+
+  </div>
+  @endforeach
   </div>
 </div>
 @endsection
