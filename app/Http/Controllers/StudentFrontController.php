@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\QuestionnaireQuestion;
 use App\QuestionnairePart;
 use App\QuestionnaireReponse;
+use App\Conversation;
+use App\Message;
 use Illuminate\Support\Facades\Auth;
 
 class StudentFrontController extends Controller
@@ -68,5 +70,56 @@ class StudentFrontController extends Controller
   {
     return view("front.offre.index");
   }
+
+  // Conversation
+  public function ajaxRequest()
+  {
+      $user =  auth::user();
+      return view('front.chat.index')->with('user', $user);
+  }
+  public function ajaxRequest1()
+  {
+      $user =  auth::user();
+      return view('front.chat.index2')->with('user', $user);
+  }
+  /**
+   * Create a new controller instance.
+   *
+   * @return void
+   */
+  public function ajaxRequestPost(Request $request)
+  {
+    //Verification des champs
+    $request->validate([
+     'message'       => 'required|max:255',
+     'conversation_id' => 'required',
+   ]);
+
+   $user =  auth::user();
+
+   $msg = new message;
+   $msg->message = $request->message;
+   $msg->sender = $user->id;
+   $msg->conversation_id = $request->conversation_id;
+   $msg->save();
+
+   $conversation = conversation::find($request->conversation_id);
+
+    return response()->json(['messages' => $conversation->messages, 'conversation_user' => $conversation->users , 'conversation' => $conversation]);
+  }
+  /**
+   * Create a new controller instance.
+   *
+   * @return void
+   */
+  public function ajaxRequestSync(Request $request)
+  {
+
+    $conversation = conversation::find($request->id);
+
+
+    return response()->json( ['messages' => $conversation->messages, 'conversation_user' => $conversation->users , 'conversation' => $conversation]);
+  }
+
 
 }

@@ -43,6 +43,9 @@ class Foreignekey extends Migration
     Schema::table('audit_actions', function (Blueprint $table) {
       $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
     });
+    Schema::table('messages', function (Blueprint $table) {
+      $table->foreign('conversation_id')->references('id')->on('conversations')->onDelete('cascade');
+    });
 
   }
 
