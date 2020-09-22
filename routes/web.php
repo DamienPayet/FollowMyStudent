@@ -16,7 +16,7 @@ Auth::routes();
 
 Route::get('/', function () {
     return view('front.index');
-})->name('index');
+})->name('index')->middleware('auth');
 //Route::get('front/index', 'OffreController@in')->name('front.offre');
 
 //Route redirection vers questionnaire
@@ -38,11 +38,10 @@ Route::group(['middleware' => 'auth'], function () {
 
 });
 
-Route::get('/testBack', function () {
-    return view('templateBack');
-});
+Route::get('/back1', function () {
+    return view('layouts.templateBack');
+})->name('back');
 
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 

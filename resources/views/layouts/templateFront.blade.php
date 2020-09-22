@@ -31,14 +31,14 @@
           <!--<li><a href="{{ url('/register') }}">Register</a></li> -->
           @else
           <li class="dropdown">
-          <p style="color:white">Bienvenue,</p>
-          <a href="User" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            <p style="color:white">Bienvenue,</p>
+            <a href="User" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
               {{Auth::user()->name }} <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
-            <li>
-            <a class="dropdown-item" href="Profil">Mon profil<div class="ripple-container"></div></a>
-            </li>
+              <li>
+                <a class="dropdown-item" href="Profil">Mon profil<div class="ripple-container"></div></a>
+              </li>
               <li>
                 <a class="dropdown-item" href="Logout" onclick="event.preventDefault();document.getElementById('logout-form').submit();"> Déconnexion </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -49,11 +49,10 @@
           </li>
           @endif
         </ul>
-
       </div>
       <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="./assets/img/blurred-image-1.jpg">
         <ul class="navbar-nav">
-        <li class="nav-item">
+          <li class="nav-item">
             <a class="nav-link" href="{{route('index')}}">
               <i class="now-ui-icons shopping_shop"></i>
               <p>Accueil</p>
@@ -93,7 +92,14 @@
               <p>0</p>
             </a>
           </li>
-
+          @if(Auth::user()->administrateur_id)
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('back')}}">
+              <i class="now-ui-icons ui-2_settings-90"></i>
+              <p>Administration</p>
+            </a>
+          </li>
+          @endif
           <!--    <li class="nav-item">
           <a class="nav-link btn btn-neutral" href="https://www.creative-tim.com/product/now-ui-kit-pro" target="_blank">
           <i class="now-ui-icons arrows-1_share-66"></i>

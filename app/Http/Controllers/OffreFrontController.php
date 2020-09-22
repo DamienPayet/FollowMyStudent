@@ -9,9 +9,9 @@ class OffreFrontController extends Controller
 {
     public function index()
     {
-        $offre = Offre::all();
+        $offres = Offre::all();
        
-        return view('front/offre.index', compact('offre'));
+        return view('front/offre.index', compact('offres'));
 
     }
     public function show(Offre $offre)
