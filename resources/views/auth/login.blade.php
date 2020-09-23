@@ -17,7 +17,7 @@
 
 <body class="login-page sidebar-collapse">
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg bg-primary fixed-top navbar-transparent " color-on-scroll="400">
+  <nav class="navbar navbar-expand-lg bg-primary fixed-top " color-on-scroll="400">
     <div class="container">
       <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="../front/images/blurred-image-1.jpg">
         <ul class="navbar-nav">

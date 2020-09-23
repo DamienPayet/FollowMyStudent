@@ -4644,38 +4644,6 @@ font icons
 .navbar .button-dropdown .navbar-toggler-bar:nth-child(2) {
   width: 17px;
 }
-
-.navbar.navbar-transparent {
-  background-color: transparent !important;
-  box-shadow: none;
-  color: #FFFFFF;
-  padding-top: 20px !important;
-}
-
-.navbar.bg-white:not(.navbar-transparent) a:not(.dropdown-item):not(.btn) {
-  color: #888888;
-}
-
-.navbar.bg-white:not(.navbar-transparent) a:not(.dropdown-item):not(.btn).disabled {
-  opacity: .5;
-  color: #888888;
-}
-
-.navbar.bg-white:not(.navbar-transparent) .button-bar {
-  background: #888888;
-}
-
-.navbar.bg-white:not(.navbar-transparent) .nav-item.active .nav-link:not(.btn),
-.navbar.bg-white:not(.navbar-transparent) .nav-item .nav-link:not(.btn):focus,
-.navbar.bg-white:not(.navbar-transparent) .nav-item .nav-link:not(.btn):hover,
-.navbar.bg-white:not(.navbar-transparent) .nav-item .nav-link:not(.btn):active {
-  background-color: rgba(222, 222, 222, 0.3);
-}
-
-.navbar.bg-white:not(.navbar-transparent) .logo-container {
-  border: 1px solid #888888;
-}
-
 .bg-default {
   background-color: #888888 !important;
 }
@@ -6613,9 +6581,7 @@ img {
       width: 17px;
       transition: width .2s linear;
     }
-    .sidebar-collapse .navbar.bg-white:not(.navbar-transparent) .navbar-toggler-bar {
-      background: #888888;
-    }
+ 
     .sidebar-collapse .top-bar {
       transform: rotate(0);
     }
@@ -6811,9 +6777,7 @@ img {
       width: 17px;
       transition: width .2s linear;
     }
-    .bootstrap-collapse .navbar.bg-white:not(.navbar-transparent) .navbar-toggler-bar {
-      background: #888888;
-    }
+  
     .bootstrap-collapse .top-bar {
       transform: rotate(0);
     }
@@ -7018,9 +6982,7 @@ img {
       width: 17px;
       transition: width .2s linear;
     }
-    .burger-menu .navbar.bg-white:not(.navbar-transparent) .navbar-toggler-bar {
-      background: #888888;
-    }
+   
     .burger-menu .top-bar {
       transform: rotate(0);
     }
