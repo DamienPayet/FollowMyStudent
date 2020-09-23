@@ -56,7 +56,9 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('/back1', function () {
     return view('layouts.templateBack');
 })->name('back');
-
+Route::get('/testt', function () {
+  return view('test');
+})->name('aaa');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
