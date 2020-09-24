@@ -2,16 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
 Auth::routes();
 
 Route::get('/', function () {
@@ -25,7 +16,7 @@ Route::group(['middleware' => 'admin'], function () {
   Route::resource('back/users', UserController::class);
   //route admin gestion offre
   Route::resource('back/offre','OffreController');
-  
+
   Route::get('/back1', function () {return view('layouts.templateBack');})->name('back');
   Route::get('/testt', function () {return view('test');})->name('aaa');
 
