@@ -66,10 +66,6 @@ class StudentFrontController extends Controller
   {
     return view("front.forum.mes_sujets");
   }
-  public function offre()
-  {
-    return view("front.offre.index");
-  }
 
   // Conversation
   public function ajaxRequest()

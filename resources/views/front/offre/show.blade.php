@@ -34,10 +34,8 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
-</div>
-</div>
+ 
+
 <!-- Fin Container descriptiion -->
 <!-- Container autre -->
 <div class="container">
@@ -90,8 +88,6 @@
   </center>
 </div>
 <!-- Fin Container autre -->
-</div>
-</div>
 </div>
 </div>
 @endsection

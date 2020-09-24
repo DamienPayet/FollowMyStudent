@@ -19,6 +19,7 @@ class CreateOffresTable extends Migration
             $table->string('description');
             $table->enum('niveau', array ('Bac', 'BTS','Licence'));
             $table->enum('type', array ('CDD', 'CDI','Alternance'));
+            $table->string('pdf')->nullable();
             $table->string('lieu');
             $table->string('entreprise');
             $table->string('nb_vue');

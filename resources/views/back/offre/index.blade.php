@@ -2,122 +2,108 @@
 
 
 @section('content')
-<div class="content">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-header card-header-primary">
-            <h4 class="card-title ">Toutes les offres</h4>
-          </div>
-          <div class="card-body">
-            @if (session('status'))
-            <div class="row">
-              <div class="col-sm-12">
-                <div class="alert alert-success">
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">
-                      <i class="now-ui-icons ui-1_simple-remove"></i>
-                    </span>
-                  </button>
-                  <span>{{ session('status') }}</span>
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header card-header-primary">
+              <h4 class="card-title ">Toutes les offres</h4>
+            </div>
+            <div class="card-body">
+              @if (session('status'))
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="alert alert-success">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">
+                          <i class="now-ui-icons ui-1_simple-remove"></i>
+                        </span>
+                      </button>
+                      <span>{{ session('status') }}</span>
+                    </div>
+                  </div>
                 </div>
+              @endif
+              <div>
+                <a href="{{route('offre.create')}}">
+                  <button style='margin-left:10px;' type="submit" class="btn btn-primary">
+                    Ajouter une offre
+                  </button>
+                </a>
+                <a href="{{route('offre.create')}}">
+                  <button style='margin-right: :10px; float : right ;'  type="submit" class="btn btn-danger">
+                    Supprimer la séléction
+                  </button>
+                </a>
               </div>
-            </div>
-            @endif
-            <div class="row">
-              <div class="col-12 text-right">
-                <a href="{{ route('offre.create') }}" class="btn btn-sm btn-primary">{{ __('Ajouter une offre') }}</a>
+
+              <br/>  <br/>
+              <div class="table-responsive">
+                <table class="table" id="table_id">
+                  <thead>
+                    <tr class="td-actions text-center">
+                      <th>Titre</th>
+                      <th>Description</th>
+                      <th>Niveau</th>
+                      <th>PDF</th>
+                      <th>vue</th>
+                      <th>Date de création</th>
+                      <th>Actions</th>
+                      <th><input type="checkbox" id="master"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach($offre as $offres)
+                      <tr class="text-center" >
+                        <td>{{ $offres->titre }}</td>
+                        <td>{{substr($offres->description, -10)}}</td>
+                        <td>{{ $offres->niveau }}</td>
+                        <td>
+                          @if (isset($offres->pdf))
+                            <a href = "{{url($offres->pdf)}}">
+                              <img style="width : 30px"src="{{url('back/images/pdf.png')}}">
+                            </a>
+                          @else
+                            <a>
+                              <img style="width : 30px" src="{{url('back/images/no-pdf.jpg')}}">
+                            </a>
+                          @endif
+                        </td>
+                        <td>{{$offres->nb_vue}}</td>
+                        <td>{{ $offres->created_at }}</td>
+                        <td>
+                          <div style="display: inline-flex;">
+                            <a rel="tooltip" class="btn btn-linght" href="{{ route('offre.edit', $offres) }}" data-original-title="" title="">
+                              <i class="fas fa-eye"></i>
+                              <div class="ripple-container"></div>
+                            </a>
+                            <a rel="tooltip" class="btn btn-linght" href="{{ route('offre.edit', $offres) }}" data-original-title="" title="">
+                              <i class="fas fa-edit"></i>
+                              <div class="ripple-container"></div>
+                            </a>
+                            <form action="{{ route('offre.destroy', $offres) }}" method="post">
+                              @csrf
+                              @method('DELETE')
+                              <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" onclick="return confirm('Est tu sur de vouloir supprimer cette offre ?')">
+                                <i class="fas fa-times"></i>
+                              </button>
+                            </form>
+                          </div>
+                        </td>
+                        <td>
+                          <input type="checkbox" class="sub_chk" data-id="{{$offres->id}}">
+                        </td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+                </table>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-12 text-right">
-                <button style="margin-bottom: 10px" class="btn btn-sm btn-primary delete_all" data-url="{{ url('offres-deleteselection') }}">Supprimer la séléction</button>
-              </div>
-            </div>
-            <div class="table-responsive">
-              <table class="table" id="table_id">
-                <thead class=" text-primary">
-                  <tr>
-                    <th>
-                      {{ __('Titre') }}
-                    </th>
-                    <th>
-                      {{ __('Description') }}
-                    </th>
-                    <th>
-                      {{ __('Niveau') }}
-                    </th>
-                    <th>
-                      {{ __('PDF') }}
-                    </th>
-                    <th>
-                      {{ __('Date de création') }}
-                    </th>
-                    <th class="text-right">
-                      {{ __('Actions') }}
-                    </th>
-                    <th width="50px"><input type="checkbox" id="master">
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach($offre as $offres)
-                  <tr>
-                    <td>
-                      {{ $offres->titre }}
-                    </td>
-                    <td>
-
-                      {{ \Illuminate\Support\Str::limit($offres->description, 150, $end='...') }}
-                      <a rel="tooltip" href="{{ route('offre.show', $offres) }}" data-original-title="" title="">
-                        {{ 'Afficher plus' }}
-                      </a>
-
-                    </td>
-                    <td>
-                      {{ $offres->niveau }}
-                    </td>
-                    <td>
-                      <!-- Création d'un lien vers le pdf -->
-                      <div class="card shadow">
-                        <div class="card-body">
-                          <a href="{{ asset($offres->pdf) }}" target="_blank">PDF</a>
-                        </div>
-                      </div>
-                      <!-- -->
-                    </td>
-                    <td>
-                      {{ $offres->created_at }}
-                    </td>
-                    <td class="td-actions text-right">
-                      <form action="{{ route('offre.destroy', $offres) }}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('offre.edit', $offres) }}" data-original-title="" title="">
-                          <i class="material-icons">edit</i>
-                          <div class="ripple-container"></div>
-                        </a>
-
-                        <button type="submit" class="btn btn-danger btn-link" data-original-title="" title="" onclick="">
-                          <i>close</i>
-                          <div class="ripple-container"></div>
-                        </button>
-                      </form>
-                    </td>
-                    <td>
-                      <input type="checkbox" class="sub_chk" data-id="{{$offres->id}}">
-                    </td>
-                  </tr>
-                  @endforeach
-                </tbody>
-              </table>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 </div>
 @endsection

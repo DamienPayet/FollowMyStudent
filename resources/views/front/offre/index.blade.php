@@ -16,6 +16,7 @@
                 <li class="nav-item">
                   <a class="nav-link active" data-toggle="tab" href="offre" role="tab">{{$offre->titre}}</a>
                 </li>
+
               </ul>
             </div>
             <div class="card-body">
