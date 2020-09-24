@@ -93,7 +93,12 @@
             </div>
           </li>
           @endif
-
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('ajaxRequest.index')}}">
+              <i class="fas fa-envelope"></i>
+              <p>0</p>
+            </a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" rel="tooltip" title="Suivez nous sur Twitter" data-placement="bottom" href="https://twitter.com/pmr_dole" target="_blank">
               <i class="fab fa-twitter"></i>

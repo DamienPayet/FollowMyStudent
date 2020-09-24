@@ -33,7 +33,10 @@
                 </div>
               </div>
             </div>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <p class="card-text"><small class="text-muted">
+                <center>Mise en ligne le {{ \Carbon\Carbon::parse($offre->created_at)->format('d/m/Y')}}
+                </center>
+              </small></p>
           </div>
         </div>
       </div>
