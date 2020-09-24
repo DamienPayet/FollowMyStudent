@@ -34,8 +34,8 @@
                           <span class="info-box-icon timeline-logoentreprise"><img src="{{url('/images/admin.png')}}"> </span>
                         @endif
                         <div class="info-box-content">
-                          <span class="info-box-number">{{$otheru->name}}</span>
-                          <span class="info-box-text ">{{$otheru->statut}}</span>
+                          <span class="info-box-name">{{$otheru->name}}</span>
+                          <span class="info-box-statut  ">{{$otheru->statut}}</span>
                           <!--  <span title="3 New Messages" class="badge bg-warning">3 Nouveau message</span>-->
                         </div>
                       @endif
@@ -44,6 +44,14 @@
 
                 </div>
               @endforeach
+              <div class="info-box ">
+                                                                                                                          <span class="info-box-icon timeline-logoentreprise"><img src="http://project1/seed/images/lacoste.png"> </span>
+                                            <div class="info-box-content">
+                        <span class="info-box-number">entreprise</span>
+                        <span class="info-box-text ">entreprise</span>
+                        <!--  <span title="3 New Messages" class="badge bg-warning">3 Nouveau message</span>-->
+                      </div>
+                                                      </div>
             </div>
           </div>
         </div>

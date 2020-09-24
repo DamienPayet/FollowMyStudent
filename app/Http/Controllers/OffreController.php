@@ -28,7 +28,7 @@ class OffreController extends Controller
 
         return view('back/offre.create',  compact('offre'));
     }
-    
+
     /**
      * Création d'une offre
      *
@@ -56,7 +56,7 @@ class OffreController extends Controller
        // $pdf_nommage = date('Y-m-d') . ' - ' . $pdf_upload->getClientOriginalName();
         // On indique le chemin du fichier pour la base de donnée
        // $pdf_get = '\uploads\\' . $pdf_nommage;
-        // Si il y a bien un fichier, on le déplace dans le répertoire et on stock le chemin dans la base de donnée        
+        // Si il y a bien un fichier, on le déplace dans le répertoire et on stock le chemin dans la base de donnée
       /*  if ($pdf_upload) {
             if ($pdf_upload->move($pdf_destination, $pdf_nommage)) {
                 $offre->pdf = $pdf_get;
@@ -70,6 +70,7 @@ class OffreController extends Controller
         $offre->lieu = $request->get('lieu');
         $offre->entreprise = $request->get('entreprise');
         $offre->created_at = now();
+        $offre->nb_vue = 0;
         $offre->save();
         $offre_id = $offre->id;
 
@@ -85,7 +86,7 @@ class OffreController extends Controller
     }
     public function update(Request $request, Offre $offre)
     {
-        // On stock le fichier sélectionné 
+        // On stock le fichier sélectionné
         $pdf_upload = $request->file('fileUpload');
         // On oblige à respecter certains critères avant de valider la requête
         $validator = Validator::make($request->all(), [
@@ -107,7 +108,7 @@ class OffreController extends Controller
             $pdf_nommage = date('Y-m-d') . ' - ' . $pdf_upload->getClientOriginalName();
             // On indique le chemin du fichier pour la base de donnée
             $pdf_get = '\uploads\\' . $pdf_nommage;
-            // Récupération du chemin de l'ancien fichier 
+            // Récupération du chemin de l'ancien fichier
 
             $pdf_path_remplace = public_path() . $offre->pdf;
 
@@ -138,9 +139,9 @@ class OffreController extends Controller
     }
     public function destroy(Offre $offre)
     {
-      
+
         $offre->delete();
-       
+
         return redirect()->route('offre.index')->withStatus(__('Offre supprimée avec succès'));    }
-   
+
 }

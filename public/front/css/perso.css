@@ -1,208 +1,82 @@
-// Video tutorial/codealong here: https://youtu.be/fCpw5i_2IYU
-$blue: #74b9ff;
-
-body {
-  //background-image: url('https://images.unsplash.com/photo-1560568082-c15188aa6510?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3300&q=80');
-  background-color: #3498db;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-}
-
-.container {
-  margin: 60px auto;
-  background: #fff;
-  padding: 0;
-  border-radius: 7px;
-}
-
-.profile-image {
-  width: 50px;
-  height: 50px;
-  border-radius: 40px;
-}
-
-.settings-tray {
-  background: #eee;
-  padding: 10px 15px;
-  border-radius: 7px;
-
-  .no-gutters {
-    padding: 0;
-  }
-
-  &--right {
-    float: right;
-
-    i {
-      margin-top: 10px;
-      font-size: 25px;
-      color: grey;
-      margin-left: 14px;
-      transition: .3s;
-
-      &:hover {
-        color: $blue;
-        cursor: pointer;
-      }
-    }
-  }
-}
-
-.search-box {
-  background: #fafafa;
-  padding: 10px 13px;
-
-  .input-wrapper {
-    background: #fff;
-    border-radius: 40px;
-
-    i {
-      color: grey;
-      margin-left: 7px;
-      vertical-align: middle;
-    }
-  }
-}
-
-input {
-  border: none;
-  border-radius: 30px;
-  width: 80%;
-
-  &::placeholder {
-    color: #e3e3e3;
-    font-weight: 300;
-    margin-left: 20px;
-  }
-
-  &:focus {
-    outline: none;
-  }
-}
-
-.friend-drawer {
-  padding: 10px 15px;
-  display: flex;
-  vertical-align: baseline;
-  background: #fff;
-  transition: .3s ease;
-
-  &--grey {
-    background: #eee;
-  }
-
-  .text {
-    margin-left: 12px;
-    width: 70%;
-
-    h6 {
-      margin-top: 6px;
-      margin-bottom: 0;
-    }
-
-    p {
-      margin: 0;
-    }
-  }
-
-  .time {
-    color: grey;
-  }
-
-  &--onhover:hover {
-    background: $blue;
-    cursor: pointer;
-
-    p,
-    h6,
-    .time {
-      color: #fff !important;
-    }
-  }
-}
-
-hr {
-  margin: 5px auto;
-  width: 60%;
-}
-
-.chat-bubble {
-  padding: 10px 14px;
-  background: #eee;
-  margin: 10px 30px;
-  border-radius: 9px;
+.speech-bubble-send {
   position: relative;
-  animation: fadeIn 1s ease-in;
-
-  &:after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    width: 0;
-    height: 0;
-    border: 20px solid transparent;
-    border-bottom: 0;
-    margin-top: -10px;
-  }
-
-  &--left {
-     &:after {
-      left: 0;
-      border-right-color: #eee;
-	    border-left: 0;
-      margin-left: -20px;
-    }
-  }
-
-  &--right {
-    &:after {
-      right: 0;
-      border-left-color: $blue;
-	    border-right: 0;
-      margin-right: -20px;
-    }
-  }
+  background: #77bb41;
+  border-radius: .4em;
+  margin-top : 20px;
+  padding: 10px;
+  margin-left : 10px;
+  float: right;
 }
 
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+.speech-bubble-send:after {
+
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 7px solid transparent;
+  border-left-color: #77bb41;
+  border-right: 0;
+  margin-top: -7px;
+  margin-right: -7px;
+}
+.speech-bubble-receipt {
+  position: relative;
+  background: #77bb41;
+  border-radius: .4em;
+  margin-top : 20px;
+  padding: 10px;
+  margin-left : 10px;
 }
 
-
-.offset-md-9 {
-  .chat-bubble {
-    background: $blue;
-    color: #fff;
-  }
+.speech-bubble-receipt:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 7px solid transparent;
+  border-right-color: #77bb41;
+  border-left: 0;
+  margin-top: -7px;
+  margin-left: -7px;
 }
+.imgchat{
+  overflow:hidden;
+  -webkit-border-radius:50px;
+  -moz-border-radius:50px;
+  border-radius:50px;
+  width:50px;
+  height:50px;
+}
+.chatheader{
+  border-bottom: 1px solid rgba(167, 161, 161, 0.42) !important;
+}
+.message-item{
+  position: relative;
+  display: block;
+  padding: .75rem 1.25rem;
+  margin-bottom: -1px;
+  background-color: #fff;
 
-.chat-box-tray {
-  background: #eee;
-  display: flex;
-  align-items: baseline;
-  padding: 10px 15px;
-  align-items: center;
-  margin-top: 19px;
-  bottom: 0;
+}
+.messageplace {
+  height: 500px;
+  overflow:auto;
+}
+.box-message {
+  border-radius: 5px;
+}
+.pic_card_msg{
+  text-align: center;
+  width: 100%;
+  border-radius: 5px;
+  padding-top : 10px;
 
-  input {
-    margin: 0 10px;
-    padding: 6px 2px;
-  }
-
-  i {
-    color: grey;
-    font-size: 30px;
-    vertical-align: middle;
-
-    &:last-of-type {
-      margin-left: 25px;
-    }
-  }
+}
+.box-content{
+  padding-left : 30px ;
 }
