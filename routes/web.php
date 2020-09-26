@@ -45,3 +45,20 @@ Route::group(['middleware' => 'auth'], function () {
   Route::get('front/end_question', 'StudentFrontController@end_question')->name('end_question');
   Route::get('front/response_store', 'StudentFrontController@response_store')->name('response_store');
 });
+
+Route::get('/back1', function () {
+    return view('layouts.templateBack');
+})->name('back');
+Route::get('/testt', function () {
+  return view('test');
+})->name('aaa');
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+//Route BACK
+Route::get('/testBack', function () {
+  return view('layouts.templateBack');
+});
+//Route Gestion User
+Route::resource('back/users', UserController::class);
+//

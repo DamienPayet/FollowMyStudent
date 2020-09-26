@@ -31,7 +31,7 @@ Gestion Utilisateurs
       <td>{{ $u->id }}</td>
       <td>{{ $u->name }}</td>
       <td>{{ $u->email }}</td>
-      <td>{{ $u->image_profil }}</td>
+      <td><img src="/uploads/avatars/{{$u->image_profil}}"></td>
       <td>{{ $u->statut }}</td>
       <td>.</td>
     </tr>

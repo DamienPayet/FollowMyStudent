@@ -18,11 +18,15 @@
   </div>
 @endif
 
-<form style='margin-left:10px;' method="POST" action="{{route('users.store')}}">
+<form style='margin-left:10px;' method="POST" action="{{route('users.store')}}" enctype="multipart/form-data">
 @csrf
   <div class="form-group">
     <label for="nom">Nom *</label>
     <input type="text" class="form-control" id="name" name="name" placeholder="Entrer le nom">
+  </div>
+  <div class="form-group">
+    <label for="nom">Prénom *</label>
+    <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Entrer le prénom">
   </div>
   <div class="form-group">
     <label for="email">Email *</label>
@@ -35,18 +39,31 @@
   <div class="form-group">
     <label for="statut">Statut *</label>
     <select class="form-control" id="statut" name="statut">
-      <option>Utilisateur</option>
-      <option>Administrateur</option>
+      <option value="eleve">Élève</option>
+      <option value="admin">Administrateur</option>
     </select>
   </div>
   <div class="form-group">
-    <label for="mdp">Image du profil </label>
-    <input type="text" class="form-control" id="image" name="image" >
-  </div>
+    <label for="statut">Photo</label>
+    <div class="custom-file">
+      <input type="file" class="custom-file-input" id="selector" name="image_profil">
 
+      <label class="custom-file-label" id="filename" for="validatedCustomFile">Choisir une photo</label>
+    </div>
+  </div>
     <button style='margin-bottom:10px;' type="submit" class="btn btn-primary">
         Créer
     </button>
+
+
   </form>
+
+  <script>
+  const fileSelector = document.getElementById('selector');
+fileSelector.addEventListener('change', (event) => {
+  const fileList = event.target.files;
+  document.getElementById('filename').innerHTML = fileList[0].name;
+});
+</script>
 
 @endsection
