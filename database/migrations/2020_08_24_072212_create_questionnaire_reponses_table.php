@@ -16,7 +16,7 @@ class CreateQuestionnaireReponsesTable extends Migration
         Schema::create('questionnaire_reponses', function (Blueprint $table) {
             $table->id();
             $table->string('reponse');
-            $table->bigInteger('question_id')->unsigned()->nullable();
+            $table->bigInteger('questionnaire_question_id')->unsigned()->nullable();
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->timestamps();
         });

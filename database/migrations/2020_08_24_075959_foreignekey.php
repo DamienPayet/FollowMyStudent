@@ -20,10 +20,13 @@ class Foreignekey extends Migration
       $table->foreign('administrateur_id')->references('id')->on('admins')->onDelete('cascade');
     });
     Schema::table('questionnaire_questions', function (Blueprint $table) {
-      $table->foreign('part_id')->references('id')->on('questionnaire_parts')->onDelete('cascade');
+      $table->foreign('questionnaire_part_id')->references('id')->on('questionnaire_parts')->onDelete('cascade');
     });
+      Schema::table('questionnaire_questions', function (Blueprint $table) {
+          $table->foreign('questionnaire_question_id')->references('id')->on('questionnaire_questions')->onDelete('cascade');
+      });
     Schema::table('questionnaire_reponses', function (Blueprint $table) {
-      $table->foreign('question_id')->references('id')->on('questionnaire_questions')->onDelete('cascade');
+      $table->foreign('questionnaire_question_id')->references('id')->on('questionnaire_questions')->onDelete('cascade');
     });
     Schema::table('questionnaire_reponses', function (Blueprint $table) {
       $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
