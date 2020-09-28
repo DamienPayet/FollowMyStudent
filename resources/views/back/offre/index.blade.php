@@ -32,7 +32,7 @@
                   </button>
                 </a>
                 <a href="{{route('offre.create')}}">
-                  <button style='margin-right: :10px; float : right ;'  type="submit" class="btn btn-danger">
+                  <button style='margin-right:10px; float : right ;'  type="submit" class="btn btn-danger">
                     Supprimer la séléction
                   </button>
                 </a>
