@@ -16,7 +16,7 @@ class CreateOffresTable extends Migration
         Schema::create('offres', function (Blueprint $table) {
             $table->id();
             $table->string('titre');
-            $table->string('description');
+            $table->longText('description');
             $table->enum('niveau', array ('Bac', 'BTS','Licence'));
             $table->enum('type', array ('CDD', 'CDI','Alternance'));
             $table->string('pdf')->nullable();
