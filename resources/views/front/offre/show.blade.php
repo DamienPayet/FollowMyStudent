@@ -1,14 +1,13 @@
 @extends('layouts.templateFront')
 
 @section('content')
+
 <div class="section">
   <div class="content">
     <div class="container-fluid">
       <div class="row">
-        <div class="card-body">
-          <div class="col-md-12 text-right">
+          <div class="col-md-12 text-left">
             <a href="{{ route('offre_front_index') }}" class="btn btn-primary btn-round">{{ __('Retour à la liste') }}</a>
-          </div>
         </div>
         <!-- Container descriptiion -->
         <div class="container">
@@ -24,13 +23,12 @@
                     </ul>
                   </div>
           </center>
-          <center>
             <div class="card-body">
               <!-- Tab panes -->
-              <div class="tab-content text-center">
-                <div class="tab-pane active" id="offre" role="tabpanel">
-          </center>
-          <pre>{{$offre->description }}</pre>
+              
+              <div class="tab-content">
+                <div class="tab-pane active" id="offre" role="tabpanel" style="display: inline-block" >
+          <p style="word-break: break-all;display: inline-block">{{$offre->description }}</p>
         </div>
       </div>
     </div>

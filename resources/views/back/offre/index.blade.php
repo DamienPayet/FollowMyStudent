@@ -57,11 +57,11 @@
                     @foreach($offre as $offres)
                       <tr class="text-center" >
                         <td>{{ $offres->titre }}</td>
-                        <td>{{substr($offres->description, -10)}}</td>
+                        <td>{{substr($offres->description, -50)}}</td>
                         <td>{{ $offres->niveau }}</td>
                         <td>
                           @if (isset($offres->pdf))
-                            <a href = "{{url($offres->pdf)}}">
+                            <a href = "{{url($offres->pdf)}}" target="_blank">
                               <img style="width : 30px"src="{{url('back/images/pdf.png')}}">
                             </a>
                           @else

@@ -1680,7 +1680,7 @@ fieldset[disabled] .navbar .navbar-nav>a.btn.active {
 }
 
 .btn-primary {
-  background-color: #f96332;
+  background-color: #8fc742;
   color: #FFFFFF;
 }
 
@@ -3500,7 +3500,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 400;
+  font-weight: 600;
 }
 
 small {
@@ -5407,7 +5407,12 @@ img {
 }
 
 .footer {
-  padding: 24px 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    position:fixed;
+    bottom:0;
+    width:100%;
+
 }
 
 .footer.footer-default {
