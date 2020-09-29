@@ -26,6 +26,7 @@ class StudentFrontController extends Controller
                                             ->with("question" , $question)
                                             ->with("part" , $part);
   }
+
   public function questions()
   {
     //Verification des champs
@@ -41,7 +42,7 @@ class StudentFrontController extends Controller
      foreach($request->tab as $value){
         $reponse = new QuestionnaireReponse;
           $reponse->reponse = $value[1];
-          $reponse->question_id = $value[0];
+          $reponse->questionnaire_question_id = $value[0];
           $reponse->user_id = $user->id;
           $reponse->save();
       }

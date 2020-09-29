@@ -67,7 +67,7 @@
           </li>
           @if(Auth::user()->statut == 'admin')
           <li class="nav-item">
-            <a class="nav-link" href="{{route('back')}}">
+            <a class="nav-link" href="{{route('indexback')}}">
               <i class="now-ui-icons ui-2_settings-90"></i>
               <p>Administration</p>
             </a>
