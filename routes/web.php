@@ -47,4 +47,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('front/questions', 'StudentFrontController@questions')->name('questions');
     Route::get('front/end_question', 'StudentFrontController@end_question')->name('end_question');
     Route::get('front/response_store', 'StudentFrontController@response_store')->name('response_store');
+    //Route edition de profil utilisateur
+    //Route::get('front/user/{user}', 'StudentFrontController@show')->name('profil_show');
+    Route::get('front/user/{user}',  ['as' => 'users.edit', 'uses' => 'StudentFrontController@edit']);
+    Route::patch('front/user/{user}/update',  ['as' => 'users.update', 'uses' => 'StudentFrontController@update']);
+
 });
