@@ -16,7 +16,8 @@ class CreateSujetsTable extends Migration
         Schema::create('sujets', function (Blueprint $table) {
             $table->id();
             $table->string('titre');
-            $table->string('description');
+            $table->longText('description');
+            $table->longText('section');
             $table->integer('nbVue');
             $table->enum('type', array('Discusion', 'Question'));
             $table->bigInteger('categorie_id')->unsigned()->nullable();

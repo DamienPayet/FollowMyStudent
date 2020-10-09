@@ -3,10 +3,7 @@
 
 @section('content')
 <link rel="stylesheet" href="{{url('back/plugins/fontawesome-free/css/all.min.css')}}">
-<!-- Theme style -->
-<link rel="stylesheet" href="{{url('back/dist/css/adminlte.min.css')}}">
-<link rel="stylesheet" href="{{url('front/css/perso.css')}}">
-<link rel="stylesheet" href="{{url('front/scss/perso.scss')}}">
+
 <!-- Google Font: Source Sans Pro -->
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,8 +11,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 <br>
+
 <div class="section">
-  <div class="col-md-12">
+  <div class="col-md-12 col-lg-12">
     <div class="row">
       <div class="col-md-3">
         <div class="row  overlay-600">

@@ -2,160 +2,197 @@
 
 
 @section('content')
-  <div class="section section-pagination">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <h4>Progress Bars</h4>
-          <div class="progress-container">
-            <span class="progress-badge">Default</span>
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">
-                <span class="progress-value">25%</span>
-              </div>
-            </div>
-          </div>
-          <div class="progress-container progress-primary">
-            <span class="progress-badge">Primary</span>
-            <div class="progress">
-              <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                <span class="progress-value">60%</span>
-              </div>
-            </div>
-          </div>
-          <br>
-          <h4>Navigation Pills</h4>
-          <ul class="nav nav-pills nav-pills-primary nav-pills-just-icons" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#active" role="tablist">
-                <i class="far fa-gem"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" data-toggle="tab" href="#link" role="tablist">
-                <i class="fa fa-thermometer-full"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#link" role="tablist">
-                <i class="fa fa-suitcase"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" data-toggle="tab" href="#disabled" role="tablist">
-                <i class="fa fa-exclamation"></i>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div class="col-sm-6">
-          <h4>Pagination</h4>
-          <ul class="pagination pagination-primary">
-            <li class="page-item active">
-              <a class="page-link" href="#">1</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#link">2</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#link">3</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#link">4</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#link">5</a>
-            </li>
-          </ul>
-          <ul class="pagination">
-            <li class="page-item">
-              <a class="page-link" href="#link" aria-label="Previous">
-                <span aria-hidden="true"><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
-              </a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#link">1</a>
-            </li>
-            <li class="page-item active">
-              <a class="page-link" href="#link">2</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#link">3</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#link" aria-label="Next">
-                <span aria-hidden="true"><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
-              </a>
-            </li>
-          </ul>
-          <br>
-          <h4>Labels</h4>
-          <span class="badge badge-default">Default</span>
-          <span class="badge badge-primary">Primary</span>
-          <span class="badge badge-success">Success</span>
-          <span class="badge badge-info">Info</span>
-          <span class="badge badge-warning">Warning</span>
-          <span class="badge badge-danger">Danger</span>
-          <span class="badge badge-neutral">Neutral</span>
-        </div>
-      </div>
-      <br>
-      <div class="space"></div>
-      <h4>Notifications</h4>
-    </div>
-  </div>
-  <div class="section section-notifications">
-    <div class="alert alert-success" role="alert">
+<div class="wrapper">
+  <div class="page-header page-header-small">
+    <center>
+      <img src="{{url('front/images/bg4.jpg')}}"></img>
+    </center>
+    <div class="content-center">
       <div class="container">
-        <div class="alert-icon">
-          <i class="now-ui-icons ui-2_like"></i>
+        <h1 class="title">Bienvenue sur le forum !</h1>
+        <div class="text-center">
+          {{ __('Besoin d\'aide? Une question? Ce forum est fait pour toi.') }}
         </div>
-        <strong>Well done!</strong> You successfully read this important alert message.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">
-            <i class="now-ui-icons ui-1_simple-remove"></i>
-          </span>
-        </button>
-      </div>
-    </div>
-    <div class="alert alert-info" role="alert">
-      <div class="container">
-        <div class="alert-icon">
-          <i class="now-ui-icons travel_info"></i>
+        <div class="text-center">
+          {{ __('Avant toute chose, merci de lire, les ')}}
+          <a href="#rules" data-toggle="tab">règles.</a>
         </div>
-        <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">
-            <i class="now-ui-icons ui-1_simple-remove"></i>
-          </span>
-        </button>
-      </div>
-    </div>
-    <div class="alert alert-warning" role="alert">
-      <div class="container">
-        <div class="alert-icon">
-          <i class="now-ui-icons ui-1_bell-53"></i>
-        </div>
-        <strong>Warning!</strong> Better check yourself, you're not looking too good.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">
-            <i class="now-ui-icons ui-1_simple-remove"></i>
-          </span>
-        </button>
-      </div>
-    </div>
-    <div class="alert alert-danger" role="alert">
-      <div class="container">
-        <div class="alert-icon">
-          <i class="now-ui-icons objects_support-17"></i>
-        </div>
-        <strong>Oh snap!</strong> Change a few things up and try submitting again.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">
-            <i class="now-ui-icons ui-1_simple-remove"></i>
-          </span>
-        </button>
       </div>
     </div>
   </div>
-@endsection
+</div>
+<div class="cd-section" id="features">
+  <div class="container">
+    <div class="features-8 section-image" style="background-image: url('front/images/bg6.jpg')">
+
+      <div class="col-md-8 ml-auto mr-auto text-center">
+        <h2 class="title">
+          <i class="now-ui-icons now-ui-icons files_paper" style="width : 30px">
+          </i>
+          Général</h2>
+        <h4 class="description">Pose tes questions sur la poursuite d'études...</h4>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="card">
+              <div class="card-image">
+                <img src="front/images/bg7.jpg" class="rounded" alt="">
+              </div>
+              <div class="info text-center">
+                <div class="icon">
+                  <i class="now-ui-icons ui-1_email-85"></i>
+                </div>
+                <h4 class="info-title">Orientation</h4>
+                <p class="description">If you get a reply, further follow-ups are automatically stopped.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="card">
+              <div class="card-image">
+                <img src="assets/img/bg26.jpg" class="rounded" alt="">
+              </div>
+              <div class="info text-center">
+                <div class="icon">
+                  <i class="now-ui-icons ui-1_calendar-60"></i>
+                </div>
+                <h4 class="info-title">Mes expériences</h4>
+                <p class="description">Just set a number of days that you want send a follow-up. </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--     *********    END FEATURES 8      *********      -->
+    <div class="features-8 section-image" style="background-image: url('assets/img/bg30.jpg')">
+      <div class="col-md-8 ml-auto mr-auto text-center">
+        <h2 class="title">
+          <i class="now-ui-icons buisness_globe" style="width : 30px">
+          </i>
+          Réseau</h2>
+        <h4 class="description">Pose tes questions sur la poursuite d'études...</h4>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="card">
+              <div class="card-image">
+                <img src="front/images/bg7.jpg" class="rounded" alt="">
+              </div>
+              <div class="info text-center">
+                <div class="icon">
+                  <i class="now-ui-icons ui-1_email-85"></i>
+                </div>
+                <h4 class="info-title">Orientation</h4>
+                <p class="description">If you get a reply, further follow-ups are automatically stopped.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="card">
+              <div class="card-image">
+                <img src="assets/img/bg26.jpg" class="rounded" alt="">
+              </div>
+              <div class="info text-center">
+                <div class="icon">
+                  <i class="now-ui-icons ui-1_calendar-60"></i>
+                </div>
+                <h4 class="info-title">Mes expériences</h4>
+                <p class="description">Just set a number of days that you want send a follow-up. </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--     *********    END FEATURES 8      *********      -->
+
+    <!--     *********    END FEATURES 8      *********      -->
+    <div class="features-8 section-image" style="background-image: url('assets/img/bg30.jpg')">
+      <div class="col-md-8 ml-auto mr-auto text-center">
+        <h2 class="title">
+          <i class="now-ui-icons now-ui-icons tech_laptop" style="width : 30px">
+          </i>
+          Développment</h2>
+        <h4 class="description">Pose tes questions sur la poursuite d'études...</h4>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="card">
+              <div class="card-image">
+                <img src="front/images/bg7.jpg" class="rounded" alt="">
+              </div>
+              <div class="info text-center">
+                <div class="icon">
+                  <i class="now-ui-icons ui-1_email-85"></i>
+                </div>
+                <h4 class="info-title">Orientation</h4>
+                <p class="description">If you get a reply, further follow-ups are automatically stopped.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="card">
+              <div class="card-image">
+                <img src="assets/img/bg26.jpg" class="rounded" alt="">
+              </div>
+              <div class="info text-center">
+                <div class="icon">
+                  <i class="now-ui-icons ui-1_calendar-60"></i>
+                </div>
+                <h4 class="info-title">Mes expériences</h4>
+                <p class="description">Just set a number of days that you want send a follow-up. </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="wrapper">
+      <div class="section-space"></div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 ml-auto mr-auto text-center">
+
+            <!-- -->
+            <h3>Dernières catégories</h3>
+            <div class="blocktxt">
+              <a href="#" class="btn btn-link">Java</a>
+            </div>
+            <div class="blocktxt">
+              <a href="#" class="btn btn-link">AD</a>
+            </div>
+            <div class="blocktxt">
+              <a href="#" class="btn btn-link">Laravel</a>
+            </div>
+            <!-- -->
+          </div>
+          <div class="col-md-3 ml-auto mr-auto text-center">
+            <h3>Sujets récents</h3>
+            <div class="divline"></div>
+            <div class="blocktxt">
+              <a href="#" class="btn btn-link">This Dock Turns Your iPhone Into a Bedside Lamp</a>
+            </div>
+            <div class="blocktxt">
+              <a href="#" class="btn btn-link">Who Wins in the Battle for Power on the Internet?</a>
+            </div>
+            <div class="blocktxt">
+              <a href="#" class="btn btn-link">Sony QX10: A Funky, Overpriced Lens Camera for Your Smartphone</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wrapper">
+    <div class="section-space"></div>
+
+    @endsection
