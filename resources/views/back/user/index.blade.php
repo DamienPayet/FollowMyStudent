@@ -17,7 +17,8 @@ Gestion Utilisateurs
   <table id="table_id" class="table">
     <thead>
       <tr>
-        <th>idATTENTION</th>
+        <th>id</th>
+        <th>Prénom</th>
         <th>Nom</th>
         <th>Email</th>
         <th>Photo de profil</th>
@@ -29,9 +30,17 @@ Gestion Utilisateurs
   @foreach ($user as $u)
     <tr>
       <td>{{ $u->id }}</td>
-      <td>{{ $u->name }}</td>
+      <td>.
+        {{-- @if ($u->statut == "eleve")
+{{ dd($u->eleve()->prenom) }}
+      @elseif ($u->statut == "admin")
+      @endif --}}
+    </td>
+    <td>
+      .
+  </td>
       <td>{{ $u->email }}</td>
-      <td><img src="/uploads/avatars/{{$u->image_profil}}"></td>
+      <td><img src="uploads/avatars/{{$u->image_profil}}" class="img-size-50 img-circle mr-3"></td>
       <td>{{ $u->statut }}</td>
       <td>.</td>
     </tr>
