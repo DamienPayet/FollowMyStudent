@@ -17,7 +17,7 @@ Gestion Utilisateurs
   <table id="table_id" class="table">
     <thead>
       <tr>
-        <th>id</th>
+        <th>idATTENTION</th>
         <th>Nom</th>
         <th>Email</th>
         <th>Photo de profil</th>
