@@ -37,7 +37,7 @@ function affichage(){
     var page = '   <br><br> <div class="col-md-10 ml-auto col-xl-6 mr-auto"> <div class="card"> <div class="card-header"> <ul class="nav nav-tabs justify-content-center" role="tablist"> <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#home" role="tab"> '+arr[0].parts[arr[1]-1].titre+' '+arr[1]+'/'+arr[0].parts.length +' </a> </li> </ul> </div> <div class="card-body"> <!-- Tab panes --> <div class="tab-content text-center"> <div class="tab-pane active" id="home" role="tabpanel"> <form name="saisie" >';
     for (var i = 0; i < arr[0].questions.length; i++)
     {
-      if (arr[0].questions[i].part_id === arr[1]){
+      if (arr[0].questions[i].questionnaire_part_id === arr[1]){
         page += '<p>'+ arr[0].questions[i].question +'</p>' ;
         page += '<input type="text" id='+arr[0].questions[i].id+'>' ;
       }
@@ -84,7 +84,7 @@ function verif()
   var counter = 0;
   for (var i = 0; i < arr[0].questions.length; i++)
   {
-    if (arr[0].questions[i].part_id === arr[1]){
+    if (arr[0].questions[i].questionnaire_part_id === arr[1]){
       counter++;
     }
   }
@@ -100,7 +100,7 @@ function stockage(){
   var tab = new Array();
   for (var i = 0; i < arr[0].questions.length; i++)
   {
-    if (arr[0].questions[i].part_id === arr[1]){
+    if (arr[0].questions[i].questionnaire_part_id === arr[1]){
       var reponse = new Array();
       reponse.push(arr[0].questions[i].id);
       reponse.push(document.getElementById(arr[0].questions[i].id).value);

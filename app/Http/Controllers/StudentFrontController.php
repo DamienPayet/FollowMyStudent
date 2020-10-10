@@ -9,23 +9,56 @@ use App\QuestionnaireReponse;
 use App\Conversation;
 use App\Message;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class StudentFrontController extends Controller
 {
   /**
-  * Display a listing of the resource.
-  *
-  * @return \Illuminate\Http\Response
-  */
+   * Display a listing of the resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function __construct()
+  {
+    $this->middleware('auth');
+  }
+
+  public function edit(User $user)
+  {
+    $user = Auth::user();
+    return view('front.user.edit', compact('user'));
+  }
+  public function show(User $user)
+  {
+    $user = Auth::user();
+    return view('front.user.show', compact('user'));
+  }
+  public function update(User $user)
+  {
+    $this->validate(request(), [
+      'name' => 'required',
+      'email' => 'required|email',
+      'password' => 'required|min:6|confirmed'
+    ]);
+
+    $user->name = request('name');
+    $user->email = request('email');
+    $user->password = bcrypt(request('password'));
+
+    $user->save();
+
+    return redirect()->back()->with('message', 'Profil modifié avec succès!');
+  }
   public function questionnaire()
   {
     $user = auth::user();
     $part = QuestionnairePart::all();
     $question = QuestionnaireQuestion::all();
-    return view("front.questionnaire.index")->with("user" , $user)
-                                            ->with("question" , $question)
-                                            ->with("part" , $part);
+    return view("front.questionnaire.index")->with("user", $user)
+      ->with("question", $question)
+      ->with("part", $part);
   }
+
   public function questions()
   {
     //Verification des champs
@@ -33,18 +66,18 @@ class StudentFrontController extends Controller
     $questions = QuestionnaireQuestion::all();
 
 
-    return response()->json(['questions' => $questions , 'parts' => $parts]);
-
+    return response()->json(['questions' => $questions, 'parts' => $parts]);
   }
-  public function response_store (Request $request){
+  public function response_store(Request $request)
+  {
     $user = auth::user();
-     foreach($request->tab as $value){
-        $reponse = new QuestionnaireReponse;
-          $reponse->reponse = $value[1];
-          $reponse->question_id = $value[0];
-          $reponse->user_id = $user->id;
-          $reponse->save();
-      }
+    foreach ($request->tab as $value) {
+      $reponse = new QuestionnaireReponse;
+      $reponse->reponse = $value[1];
+      $reponse->questionnaire_question_id = $value[0];
+      $reponse->user_id = $user->id;
+      $reponse->save();
+    }
     return response()->json(['parts' => $request->tab]);
   }
 
@@ -54,9 +87,9 @@ class StudentFrontController extends Controller
     $user = auth::user();
     $part = QuestionnairePart::all();
     $question = QuestionnaireQuestion::all();
-    return view("front.questionnaire.index")->with("user" , $user)
-                                            ->with("question" , $question)
-                                            ->with("part" , $part);
+    return view("front.questionnaire.index")->with("user", $user)
+      ->with("question", $question)
+      ->with("part", $part);
   }
   public function forum()
   {
@@ -70,13 +103,13 @@ class StudentFrontController extends Controller
   // Conversation
   public function ajaxRequest()
   {
-      $user =  auth::user();
-      return view('front.chat.index')->with('user', $user);
+    $user =  auth::user();
+    return view('front.chat.index')->with('user', $user);
   }
   public function ajaxRequest1()
   {
-      $user =  auth::user();
-      return view('front.chat.index2')->with('user', $user);
+    $user =  auth::user();
+    return view('front.chat.index2')->with('user', $user);
   }
   /**
    * Create a new controller instance.
@@ -87,21 +120,21 @@ class StudentFrontController extends Controller
   {
     //Verification des champs
     $request->validate([
-     'message'       => 'required|max:255',
-     'conversation_id' => 'required',
-   ]);
+      'message'       => 'required|max:255',
+      'conversation_id' => 'required',
+    ]);
 
-   $user =  auth::user();
+    $user =  auth::user();
 
-   $msg = new message;
-   $msg->message = $request->message;
-   $msg->sender = $user->id;
-   $msg->conversation_id = $request->conversation_id;
-   $msg->save();
+    $msg = new message;
+    $msg->message = $request->message;
+    $msg->sender = $user->id;
+    $msg->conversation_id = $request->conversation_id;
+    $msg->save();
 
-   $conversation = conversation::find($request->conversation_id);
+    $conversation = conversation::find($request->conversation_id);
 
-    return response()->json(['messages' => $conversation->messages, 'conversation_user' => $conversation->users , 'conversation' => $conversation]);
+    return response()->json(['messages' => $conversation->messages, 'conversation_user' => $conversation->users, 'conversation' => $conversation]);
   }
   /**
    * Create a new controller instance.
@@ -114,8 +147,6 @@ class StudentFrontController extends Controller
     $conversation = conversation::find($request->id);
 
 
-    return response()->json( ['messages' => $conversation->messages, 'conversation_user' => $conversation->users , 'conversation' => $conversation]);
+    return response()->json(['messages' => $conversation->messages, 'conversation_user' => $conversation->users, 'conversation' => $conversation]);
   }
-
-
 }

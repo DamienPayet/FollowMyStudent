@@ -67,7 +67,7 @@
           </li>
           @if(Auth::user()->statut == 'admin')
           <li class="nav-item">
-            <a class="nav-link" href="{{route('back')}}">
+            <a class="nav-link" href="{{route('indexback')}}">
               <i class="now-ui-icons ui-2_settings-90"></i>
               <p>Administration</p>
             </a>
@@ -155,7 +155,6 @@
     <script src="{{url('front/js/plugins/bootstrap-datepicker.js')}}" type="text/javascript"></script>
     <script src="{{url('front/js/now-ui-kit.js?v=1.3.0')}}" type="text/javascript"></script>
 
-    <link rel="stylesheet" href="{{url('front/css/chat.css')}}">
 
     <script>
       $(document).ready(function() {
@@ -163,7 +162,11 @@
         nowuiKit.initSliders();
       });
 
-
+      $( '.friend-drawer--onhover' ).on( 'click',  function() {
+  
+  $( '.chat-bubble' ).hide('slow').show('slow');
+  
+});
     </script>
 </body>
 
