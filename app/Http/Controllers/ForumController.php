@@ -10,8 +10,8 @@ class ForumController extends Controller
     public function index()
     {
         $section = Section::all();
-       
-        return view('front/forum.index', compact('section'));
+       $sujet = Sujet::all();
+        return view('front/forum.index', compact('section', 'sujet'));
 
     }
     public function show(Sujet $sujet)

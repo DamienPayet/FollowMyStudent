@@ -20,7 +20,6 @@ class CreateSujetsTable extends Migration
             $table->integer('nbVue');
             $table->enum('type', array('Discusion', 'Question'));
             $table->bigInteger('categorie_id')->unsigned()->nullable();
-            $table->bigInteger('section_id')->unsigned()->nullable();
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->boolean('resolue')->default(false);
             $table->timestamps();

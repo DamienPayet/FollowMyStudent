@@ -49,7 +49,7 @@ class Foreignekey extends Migration
     Schema::table('messages', function (Blueprint $table) {
       $table->foreign('conversation_id')->references('id')->on('conversations')->onDelete('cascade');
     });
-    Schema::table('sujets', function (Blueprint $table) {
+    Schema::table('sujet_categories', function (Blueprint $table) {
       $table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade');
     });
   }
