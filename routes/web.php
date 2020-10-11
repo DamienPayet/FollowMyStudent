@@ -55,3 +55,20 @@ Route::group(['middleware' => 'auth'], function () {
     Route::patch('front/user/{user}/update',  ['as' => 'users.update', 'uses' => 'StudentFrontController@update']);
 
 });
+
+Route::get('/back1', function () {
+    return view('layouts.templateBack');
+})->name('back');
+Route::get('/testt', function () {
+  return view('test');
+})->name('aaa');
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+//Route BACK
+Route::get('/testBack', function () {
+  return view('layouts.templateBack');
+});
+//Route Gestion User
+Route::resource('back/users', UserController::class);
+//
