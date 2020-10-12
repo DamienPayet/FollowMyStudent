@@ -23,138 +23,35 @@
 </div>
 <div class="cd-section" id="features">
   <div class="container">
+    @foreach ($section as $sections)
     <div class="features-8 section-image" style="background-image: url('front/images/bg6.jpg')">
-
       <div class="col-md-8 ml-auto mr-auto text-center">
         <h2 class="title">
           <i class="now-ui-icons now-ui-icons files_paper" style="width : 30px">
           </i>
-          Général</h2>
-        <h4 class="description">Pose tes questions sur la poursuite d'études...</h4>
+          {{$sections->titre}}</h2>
+        <h4 class="description"> {{$sections->description}}</h4>
       </div>
       <div class="container">
         <div class="row">
-          <div class="col-md-3">
-            <div class="card">
-              <div class="card-image">
-                <img src="front/images/bg7.jpg" class="rounded" alt="">
-              </div>
-              <div class="info text-center">
-                <div class="icon">
-                  <i class="now-ui-icons ui-1_email-85"></i>
-                </div>
-                <h4 class="info-title">Orientation</h4>
-                <p class="description">If you get a reply, further follow-ups are automatically stopped.</p>
-              </div>
-            </div>
-          </div>
+          @foreach ($sections->categories as $categorie)
 
           <div class="col-md-3">
-            <div class="card">
-              <div class="card-image">
-                <img src="assets/img/bg26.jpg" class="rounded" alt="">
-              </div>
+            <div class="card" data-background-color="red">
               <div class="info text-center">
-                <div class="icon">
-                  <i class="now-ui-icons ui-1_calendar-60"></i>
-                </div>
-                <h4 class="info-title">Mes expériences</h4>
-                <p class="description">Just set a number of days that you want send a follow-up. </p>
+                <h4 class="category text-danger">
+              <a href="#nuk">{{$categorie->nom}}</a>
+                </h4>
               </div>
             </div>
           </div>
+          @endforeach
+
         </div>
       </div>
     </div>
+    @endforeach
 
-    <!--     *********    END FEATURES 8      *********      -->
-    <div class="features-8 section-image" style="background-image: url('assets/img/bg30.jpg')">
-      <div class="col-md-8 ml-auto mr-auto text-center">
-        <h2 class="title">
-          <i class="now-ui-icons buisness_globe" style="width : 30px">
-          </i>
-          Réseau</h2>
-        <h4 class="description">Pose tes questions sur la poursuite d'études...</h4>
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-3">
-            <div class="card">
-              <div class="card-image">
-                <img src="front/images/bg7.jpg" class="rounded" alt="">
-              </div>
-              <div class="info text-center">
-                <div class="icon">
-                  <i class="now-ui-icons ui-1_email-85"></i>
-                </div>
-                <h4 class="info-title">Orientation</h4>
-                <p class="description">If you get a reply, further follow-ups are automatically stopped.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-3">
-            <div class="card">
-              <div class="card-image">
-                <img src="assets/img/bg26.jpg" class="rounded" alt="">
-              </div>
-              <div class="info text-center">
-                <div class="icon">
-                  <i class="now-ui-icons ui-1_calendar-60"></i>
-                </div>
-                <h4 class="info-title">Mes expériences</h4>
-                <p class="description">Just set a number of days that you want send a follow-up. </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--     *********    END FEATURES 8      *********      -->
-
-    <!--     *********    END FEATURES 8      *********      -->
-    <div class="features-8 section-image" style="background-image: url('assets/img/bg30.jpg')">
-      <div class="col-md-8 ml-auto mr-auto text-center">
-        <h2 class="title">
-          <i class="now-ui-icons now-ui-icons tech_laptop" style="width : 30px">
-          </i>
-          Développment</h2>
-        <h4 class="description">Pose tes questions sur la poursuite d'études...</h4>
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-3">
-            <div class="card">
-              <div class="card-image">
-                <img src="front/images/bg7.jpg" class="rounded" alt="">
-              </div>
-              <div class="info text-center">
-                <div class="icon">
-                  <i class="now-ui-icons ui-1_email-85"></i>
-                </div>
-                <h4 class="info-title">Orientation</h4>
-                <p class="description">If you get a reply, further follow-ups are automatically stopped.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-3">
-            <div class="card">
-              <div class="card-image">
-                <img src="assets/img/bg26.jpg" class="rounded" alt="">
-              </div>
-              <div class="info text-center">
-                <div class="icon">
-                  <i class="now-ui-icons ui-1_calendar-60"></i>
-                </div>
-                <h4 class="info-title">Mes expériences</h4>
-                <p class="description">Just set a number of days that you want send a follow-up. </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="wrapper">
       <div class="section-space"></div>
 

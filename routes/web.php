@@ -31,7 +31,9 @@ Route::group(['middleware' => 'admin'], function () {
 
 Route::group(['middleware' => 'auth'], function () {
     //Route redirection vers forum acceuil
-    Route::get('front/forum', 'StudentFrontController@forum')->name('forum');
+    //Route::get('front/forum', 'StudentFrontController@forum')->name('forum');
+    Route::get('front/forum', 'ForumController@index')->name('forum');
+
     //Route redirection vers forum mes sujet
     Route::get('front/mes_sujets', 'StudentFrontController@forum_mes_sujets')->name('forum_mesSujets');
     //Route  chat direct

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSujetsTable extends Migration
+class CreateSectionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,12 @@ class CreateSujetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sujets', function (Blueprint $table) {
+        Schema::create('sections', function (Blueprint $table) {
             $table->id();
             $table->string('titre');
             $table->longText('description');
-            $table->integer('nbVue');
-            $table->enum('type', array('Discusion', 'Question'));
-            $table->bigInteger('categorie_id')->unsigned()->nullable();
-            $table->bigInteger('user_id')->unsigned()->nullable();
-            $table->boolean('resolue')->default(false);
             $table->timestamps();
+
         });
     }
 
@@ -33,6 +29,6 @@ class CreateSujetsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sujets');
+        Schema::dropIfExists('sections');
     }
 }
