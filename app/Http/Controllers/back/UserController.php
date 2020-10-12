@@ -76,10 +76,15 @@ class UserController extends Controller
         $user->password = bcrypt($request->input('mdp'));
         $user->statut = $request->input('statut');
         //Insertion IMAGE
-        $avatar = $request->file('image_profil');
-    		$filename = date('Y-m-d') . '_' . $avatar->getClientOriginalName();
-    		Image::make($avatar)->resize(300,300)->save( public_path('back/uploads/avatars/' . $filename ) );
-    		$user->image_profil = $filename;
+        if ($request->input('image_profil') == null) {
+          $user->image_profil = "default.png";
+        }else {
+          $avatar = $request->file('image_profil');
+          $filename = date('Y-m-d') . '_' . $avatar->getClientOriginalName();
+          Image::make($avatar)->resize(300,300)->save( public_path('back/uploads/avatars/' . $filename ) );
+          $user->image_profil = $filename;
+        }
+
         //
         $user->save();
 

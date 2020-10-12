@@ -27,24 +27,37 @@ Gestion Utilisateurs
       </tr>
     </thead>
     <tbody>
-  @foreach ($user as $u)
-    <tr>
-      <td>{{ $u->id }}</td>
-      <td>.
-        {{-- @if ($u->statut == "eleve")
-{{ dd($u->eleve()->prenom) }}
-      @elseif ($u->statut == "admin")
-      @endif --}}
-    </td>
-    <td>
-      .
-  </td>
-      <td>{{ $u->email }}</td>
-      <td><img src="uploads/avatars/{{$u->image_profil}}" class="img-size-50 img-circle mr-3"></td>
-      <td>{{ $u->statut }}</td>
-      <td>.</td>
-    </tr>
-  @endforeach
+      @foreach ($user as $u)
+        <tr>
+          <td>{{ $u->id }}</td>
+          <td>
+            @if ($u->statut == "eleve")
+              {{ $u->eleve->prenom }}
+            @elseif ($u->statut == "admin")
+              {{ $u->admin->prenom }}
+            @endif
+          </td>
+          <td>
+            @if ($u->statut == "eleve")
+              {{ $u->eleve->nom }}
+            @elseif ($u->statut == "admin")
+              {{ $u->admin->nom }}
+            @endif
+          </td>
+          <td>{{ $u->email }}</td>
+          <td><img src="uploads/avatars/{{$u->image_profil}}" class="img-size-50 img-circle mr-3"></td>
+          <td>{{ $u->statut }}</td>
+          <td>
+            <form action="{{route('users.edit', $u->id)}}" method="POST">
+                @csrf
+                @method('GET')
+              <button type="submit" rel="tooltip" class="btn btn-success btn-round">
+                  <i class="material-icons">Modifier</i>
+              </button>
+            </form>
+          </td>
+        </tr>
+      @endforeach
     </tbody>
   </table>
 @endsection
