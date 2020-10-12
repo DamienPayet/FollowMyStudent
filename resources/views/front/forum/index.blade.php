@@ -39,13 +39,15 @@
               <div class="card-image">
                 <img src="front/images/bg7.jpg" class="rounded" alt="">
               </div>
+              @foreach ($sections->categories as $categorie)
               <div class="info text-center">
                 <div class="icon">
                   <i class="now-ui-icons ui-1_email-85"></i>
                 </div>
-                <h4 class="info-title">Orientation</h4>
+                <h4 class="info-title">{{$categorie->nom}}</h4>
                 <p class="description">If you get a reply, further follow-ups are automatically stopped.</p>
               </div>
+              @endforeach
             </div>
           </div>
 

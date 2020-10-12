@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Section extends Model
 {
-    public function section()
+    public function categories()
     {
-        return $this->belongsTo('App\Section');
+        return $this->hasMany('App\SujetCategorie','section_id');
     }
     protected $fillable = [
         'titre', 'description',
