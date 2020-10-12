@@ -8,13 +8,18 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title ">Gestion Questionnaire </h4>
+                        <h4 class="card-title ">Gestion du forum </h4>
                     </div>
                     <br>
                     <div style="margin : 20px">
-                        <a href="{{route('questionnaire.create')}}">
+                        <a href="{{route('forum.create')}}">
                             <button type="submit" class="btn btn-success">
-                                Ajouter une Section
+                                Ajouter une Section pour le forum
+                            </button>
+                        </a>
+                        <a href="{{route('forum.create')}}">
+                            <button type="submit" class="btn btn-success">
+                                Ajouter une catégorie
                             </button>
                         </a>
                     </div>
@@ -32,33 +37,35 @@
                         </div>
                     </div>
                     @endif
-                    @foreach($parts as $parti)
+                    @foreach ($sections as $section)
                     <div class="card-body">
                         <div class="card">
                             <div class="card-header card-header-primary">
-                                <h4 class="card-title ">{{$parti->titre}}</h4>
+                                <h4 class="card-title">{{$section->titre}}</h4><br />
+                                <p>{{ \Illuminate\Support\Str::limit($section->description, 50, $end='...') }}</p>
+
                                 <!--Bouton deroulement de la section -->
-                                <div id="btn_more_{{$parti->id}}">
-                                    <button onclick="down({{$parti->id}})" style='margin-right:10px; float : right ;' class="btn btn-secondary">
+                                <div id="btn_more_{{$section->id}}">
+                                    <button onclick="down({{$section->id}})" style='margin-right:10px; float : right ;' class="btn btn-secondary">
                                         <i class="fas fa-caret-square-down"></i>
                                     </button>
                                 </div>
                                 <!--Bouton enroulement de la section -->
-                                <div style="display: none" id="btn_less_{{$parti->id}}">
-                                    <button onclick="up({{$parti->id}})" style='margin-right:10px; float : right ;' class="btn btn-secondary">
+                                <div style="display: none" id="btn_less_{{$section->id}}">
+                                    <button onclick="up({{$section->id}})" style='margin-right:10px; float : right ;' class="btn btn-secondary">
                                         <i class="fas fa-caret-square-up"></i>
                                     </button>
                                 </div>
                                 <!--Bouton supression de la section -->
-                                <form action="{{ route('destroy.part', $parti->id) }}" method="post">
+                                <form action="{{ route('forum.destroy', $section->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button onclick="return confirm(' ❌ Est tu sur de vouloir supprimer cette section ?❌ \n ⭕Cela entrainera la supression de toutes les questions contenues dans celle-ci⭕ \n ⛔Continuer ❓')" style='margin-right:10px; float : right ;' class="btn btn-danger">
+                                    <button onclick="return confirm(' ❌ Est tu sur de vouloir supprimer cette section ? Continuer ❓')" style='margin-right:10px; float : right ;' class="btn btn-danger">
                                         <i class="fas fa-times-circle"></i>
                                     </button>
                                 </form>
                                 <!--Bouton edit de la section -->
-                                <a href="{{ route('edit.part',  $parti->id) }}">
+                                <a href="{{ route('forum.edit',  $section->id) }}">
                                     <button style='margin-right:10px; float : right ;' class="btn btn-info">
                                         <i class="fas fa-edit"></i>
                                     </button>
@@ -66,19 +73,20 @@
                                 </a>
 
                             </div>
-                            <div id="menu_{{$parti->id}}" style="display : none" class="card-body">
+                            <!-- -->
+                            <div id="menu_{{$section->id}}" style="display : none" class="card-body">
 
                                 <div>
-                                    <a href="{{route('create.question',$parti)}}">
+                                    <a href="{{route('create.question',$sujet)}}">
                                         <button style='margin-left:10px;' type="submit" class="btn btn-primary">
-                                            Ajouter une question
+                                            Ajouter une Catégorie
                                         </button>
                                     </a>
                                 </div>
                                 <div>
                                     <a href="{{route('questionnaire.create')}}">
                                         <button style='margin-right:10px; float : right ;' type="submit" class="btn btn-danger">
-                                            Supprimer la séction
+                                            Supprimer la Catégorie
                                         </button>
                                     </a>
                                 </div>
@@ -95,18 +103,18 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach($parti->questions as $question)
+                                            @foreach($section->categories as $categorie)
                                             <tr class="text-center">
-                                                <td>{{ $question->id }}</td>
-                                                <td>{{$question->question}}</td>
-                                                <td>{{ $question->created_at }}</td>
+                                                <td>{{ $categorie->id }}</td>
+                                                <td>{{$categorie->nom}}</td>
+                                                <td>{{ $categorie->created_at }}</td>
                                                 <td>
                                                     <div style="display: inline-flex;">
-                                                        <a rel="tooltip" class="btn btn-linght" href="{{ route('questionnaire.edit', $question->id) }}" data-original-title="" title="">
+                                                        <a rel="tooltip" class="btn btn-linght" href="{{ route('categorie.edit', $categorie->id) }}" data-original-title="" title="">
                                                             <i class="fas fa-edit"></i>
                                                             <div class="ripple-container"></div>
                                                         </a>
-                                                        <form action="{{ route('questionnaire.destroy', $question) }}" method="post">
+                                                        <form action="{{ route('categorie.destroy', $categorie) }}" method="post">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" onclick="return confirm('Est tu sur de vouloir supprimer cette offre ?')">
@@ -116,7 +124,7 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <input type="checkbox" class="sub_chk" data-id="{{$question->id}}">
+                                                    <input type="checkbox" class="sub_chk" data-id="{{$categorie->id}}">
                                                 </td>
                                             </tr>
                                             @endforeach

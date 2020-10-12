@@ -16,6 +16,11 @@ Route::group(['middleware' => 'admin'], function () {
     Route::resource('back/users', UserController::class);
     //route admin gestion offre
     Route::resource('back/offre', 'OffreController');
+        //route admin gestion forum
+    Route::resource('back/forum', 'ForumBackController');
+    Route::get('/back/forum/{id}', 'ForumBackController@edit_sujet')->name('categorie.edit');
+    Route::delete('/back/forum/{id}', 'ForumBackController@destroy_sujet')->name('categorie.destroy');
+
     //route admin gestion questionnaire
     Route::resource('back/questionnaire', 'QuestionnaireBackController');
     Route::get('/back/question/{id}', 'QuestionnaireBackController@create_question')->name('create.question');
