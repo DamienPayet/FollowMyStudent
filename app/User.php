@@ -10,11 +10,11 @@ class User extends Authenticatable
 {
   public function admin()
   {
-    return $this->hasOne('App\Admin');
+    return $this->belongsTo('App\Admin','administrateur_id');
   }
   public function eleve()
   {
-    return $this->hasOne('App\Eleve');
+    return $this->belongsTo('App\Eleve');
   }
   public function responsable()
   {
