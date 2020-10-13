@@ -11,8 +11,16 @@ class DashboardController extends Controller
 {
   public function index()
   {
-/*
     $user =  auth::user();
+    if ($user->id == auth::user()->id ) {
+      if($user->statut == "eleve"){
+        $destinataire= $user->eleve;
+      }else{
+        $destinataire = $user->admin;
+      }
+    }
+/*
+
     $id = 1;
     $ok = false;
     foreach ($user->conversation as $conversation) {

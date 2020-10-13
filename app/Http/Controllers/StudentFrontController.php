@@ -121,24 +121,19 @@ class StudentFrontController extends Controller
   public function ajaxRequestConvt(Request $request)
   {
     $user =  auth::user();
-    $id = $request->message;
-    $ok = false;
+    $id = $request->id;
     foreach ($user->conversation as $conversation) {
       foreach ($conversation->users as $utilisateur) {
-              $ok = true ;
         if($utilisateur->id == $id){
-          $ok = true;
+          return response()->json(['conv' => $conversation]);
         }
       }
     }
-    if($ok == false){
-      $conv = new Conversation;
-      $conv->save();
-      $conv->users()->attach($user);
-      $conv->users()->attach(User::find($id));
-    }
-
-    return response()->json(['response' => $request]);
+    $conv = new Conversation;
+    $conv->save();
+    $conv->users()->attach($user);
+    $conv->users()->attach(User::find($id));
+    return response()->json(['conv' => $conv]);
   }
 
 
@@ -175,8 +170,18 @@ class StudentFrontController extends Controller
   {
 
     $conversation = conversation::find($request->id);
+    $destinataire = "dd";
+    foreach ($conversation->users as $user) {
+      if ($user->id != auth::user()->id ) {
+        if($user->statut == "eleve"){
+          $destinataire= $user->eleve;
+        }else{
+          $destinataire = $user->admin;
+        }
+      }
+    }
 
 
-    return response()->json(['messages' => $conversation->messages, 'conversation_user' => $conversation->users, 'conversation' => $conversation]);
+    return response()->json(['messages' => $conversation->messages, 'conversation_user' => $conversation->users, 'conversation' => $conversation , 'destinataire' => $destinataire]);
   }
 }
