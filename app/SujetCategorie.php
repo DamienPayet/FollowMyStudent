@@ -14,8 +14,4 @@ class SujetCategorie extends Model
   {
     return $this->hasMany('App\Sujet','categorie_id');
   }
-  public function section()
-  {
-    return $this->belongsTo('App\Section','section_id');
-  }
 }
