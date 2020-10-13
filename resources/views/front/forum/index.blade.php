@@ -31,7 +31,6 @@
           <i class="now-ui-icons now-ui-icons files_paper" style="width : 30px">
           </i>
           {{$sections->titre}}</h2>
-          {{dd($sections->categorie)}}
         <h4 class="description"> {{$sections->description}}</h4>
       </div>
       <div class="container">
