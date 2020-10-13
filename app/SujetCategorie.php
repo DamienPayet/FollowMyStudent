@@ -8,7 +8,7 @@ class SujetCategorie extends Model
 {
   public function sujets()
   {
-    return $this->hasMany('App\Sujet');
+    return $this->hasMany('App\Sujet','categorie_id');
   }
   public function section()
   {

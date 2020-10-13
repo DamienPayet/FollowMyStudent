@@ -18,4 +18,9 @@ class ForumController extends Controller
     {
         return view('front/forum.show', compact('sujet'));
     }
+    public function create()
+    {
+        return view('front.forum.create_sujet');
+    }
+
 }

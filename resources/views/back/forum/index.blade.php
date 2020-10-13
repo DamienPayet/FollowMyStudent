@@ -11,18 +11,15 @@
                         <h4 class="card-title ">Gestion du forum </h4>
                     </div>
                     <br>
-                    <div style="margin : 20px">
-                        <a href="{{route('forum.create')}}">
-                            <button type="submit" class="btn btn-success">
-                                Ajouter une Section pour le forum
-                            </button>
-                        </a>
-                        <a href="{{route('forum.create')}}">
-                            <button type="submit" class="btn btn-success">
-                                Ajouter une catégorie
-                            </button>
-                        </a>
-                    </div>
+                    <center>
+                        <div style="margin : 20px">
+                            <a href="{{route('forum.create')}}">
+                                <button type="submit" class="btn btn-success">
+                                    Ajouter une Section
+                                </button>
+                            </a>
+                        </div>
+                    </center>
                     @if (session('status'))
                     <div class="row">
                         <div class="col-sm-12">
@@ -37,6 +34,7 @@
                         </div>
                     </div>
                     @endif
+                    <!-- Section -->
                     @foreach ($sections as $section)
                     <div class="card-body">
                         <div class="card">
@@ -69,45 +67,103 @@
                                     <button style='margin-right:10px; float : right ;' class="btn btn-info">
                                         <i class="fas fa-edit"></i>
                                     </button>
-
                                 </a>
-
                             </div>
-                            <!-- -->
+                            <!-- Catégorie -->
                             <div id="menu_{{$section->id}}" style="display : none" class="card-body">
+                                <center>
+                                    <div class="card-header card-header-primary ">
+                                        <a href="{{route('categorie.create',$section->id)}}">
+                                            <button style='margin-left:10px;' type="submit" class="btn btn-primary">
+                                                Ajouter une Catégorie
+                                            </button>
+                                        </a>
+                                    </div>
+                                </center>
+                                @foreach($section->categories as $categorie)
+                                <center>
+                                    <div class="info-box mb-2 bg-info">
+                                        <span class="info-box-icon"><i class="fas fa-tag"></i></span>
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">Catégories</span>
+                                        </div>
+                                        <!-- /.info-box-content -->
+                                    </div>
+                                </center>
+                                <div class="card-header card-header-primary">
+                                    <h4 class="card-title">
+                                        {{$categorie->nom}}
+                                    </h4>
+                                    <br />
+                                    <!--Bouton deroulement de la section -->
+                                    <div id="btn_more_{{$categorie->id}}">
+                                        <button onclick="down({{$categorie->id}})" style='margin-right:10px; float : right ;' class="btn btn-secondary">
+                                            <i class="fas fa-caret-square-down"></i>
+                                        </button>
+                                    </div>
+                                    <!--Bouton enroulement de la section -->
+                                    <div style="display: none" id="btn_less_{{$categorie->id}}">
+                                        <button onclick="up({{$categorie->id}})" style='margin-right:10px; float : right ;' class="btn btn-secondary">
+                                            <i class="fas fa-caret-square-up"></i>
+                                        </button>
+                                    </div>
+                                    <!--Bouton supression de la section -->
+                                    <form action="{{ route('categorie.destroy', $categorie->id) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button onclick="return confirm(' ❌ Est tu sur de vouloir supprimer cette categorie ? Continuer ❓')" style='margin-right:10px; float : right ;' class="btn btn-danger">
+                                            <i class="fas fa-times-circle"></i>
+                                        </button>
+                                    </form>
+                                    <!--Bouton edit de la section -->
+                                    <a href="{{ route('categorie.edit',  $categorie->id) }}">
+                                        <button style='margin-right:10px; float : right ;' class="btn btn-info">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
 
-                                <div>
-                                    <a href="{{route('create.question',$sujet)}}">
-                                        <button style='margin-left:10px;' type="submit" class="btn btn-primary">
-                                            Ajouter une Catégorie
-                                        </button>
                                     </a>
                                 </div>
-                                <div>
-                                    <a href="{{route('questionnaire.create')}}">
-                                        <button style='margin-right:10px; float : right ;' type="submit" class="btn btn-danger">
-                                            Supprimer la Catégorie
-                                        </button>
-                                    </a>
-                                </div>
-                                <br /> <br />
+                                @endforeach
+                            </div>
+                            <!-- /Catégorie -->
+                            <!-- Sujet -->
+                            <div id="menu_{{$categorie->id}}" style="display : none" class="card-body">
+                                <br />
+                                @if($categorie->sujets->isEmpty())
+                                <center>
+                                    <div class="info-box mb-3 bg-danger">
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">Pas de sujet</span>
+                                        </div>
+                                        <!-- /.info-box-content -->
+                                    </div>
+                                    <div class="card-header card-header-primary ">
+                                        <a href="{{route('sujet.create')}}">
+                                            <button style='margin-left:10px;' type="submit" class="btn btn-primary">
+                                                Créer un sujet
+                                            </button>
+                                        </a>
+                                    </div>
+                                </center>
+                                @else
                                 <div class="table-responsive">
+
                                     <table class="table" id="table_id">
                                         <thead>
                                             <tr class="td-actions text-center">
                                                 <th>id</th>
-                                                <th>Question</th>
+                                                <th>Sujet</th>
                                                 <th>Date de création</th>
                                                 <th>Actions</th>
                                                 <th><input type="checkbox" id="master"></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach($section->categories as $categorie)
+                                            @foreach($categorie->sujets as $sujet)
                                             <tr class="text-center">
-                                                <td>{{ $categorie->id }}</td>
-                                                <td>{{$categorie->nom}}</td>
-                                                <td>{{ $categorie->created_at }}</td>
+                                                <td>{{ $sujet->id }}</td>
+                                                <td>{{$sujet->titre}}</td>
+                                                <td>{{ $sujet->created_at }}</td>
                                                 <td>
                                                     <div style="display: inline-flex;">
                                                         <a rel="tooltip" class="btn btn-linght" href="{{ route('categorie.edit', $categorie->id) }}" data-original-title="" title="">
@@ -117,7 +173,7 @@
                                                         <form action="{{ route('categorie.destroy', $categorie) }}" method="post">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" onclick="return confirm('Est tu sur de vouloir supprimer cette offre ?')">
+                                                            <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" onclick="return confirm('Est tu sur de vouloir supprimer cette catégorie ?')">
                                                                 <i class="fas fa-times"></i>
                                                             </button>
                                                         </form>
@@ -131,10 +187,13 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                @endif
                             </div>
+                            <!-- /Sujet -->
                         </div>
                     </div>
                     @endforeach
+                    <!-- /Section -->
                 </div>
             </div>
         </div>

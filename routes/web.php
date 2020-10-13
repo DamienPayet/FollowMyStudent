@@ -16,10 +16,13 @@ Route::group(['middleware' => 'admin'], function () {
     Route::resource('back/users', UserController::class);
     //route admin gestion offre
     Route::resource('back/offre', 'OffreController');
-        //route admin gestion forum
+    //route admin gestion forum
     Route::resource('back/forum', 'ForumBackController');
-    Route::get('/back/forum/{id}', 'ForumBackController@edit_sujet')->name('categorie.edit');
-    Route::delete('/back/forum/{id}', 'ForumBackController@destroy_sujet')->name('categorie.destroy');
+    Route::get('/back/cforum/{id}', 'ForumBackController@create_categorie')->name('categorie.create');
+    Route::post('/back/categorie', 'ForumBackController@store_categorie')->name('categorie.store');
+    Route::get('/back/eforum/{id}', 'ForumBackController@edit_categorie')->name('categorie.edit');
+    Route::post('/back/uforum/{id}', 'ForumBackController@update_categorie')->name('categorie.update');
+    Route::delete('/back/dforum/{id}', 'ForumBackController@destroy_categorie')->name('categorie.destroy');
 
     //route admin gestion questionnaire
     Route::resource('back/questionnaire', 'QuestionnaireBackController');
@@ -38,6 +41,7 @@ Route::group(['middleware' => 'auth'], function () {
     //Route redirection vers forum acceuil
     //Route::get('front/forum', 'StudentFrontController@forum')->name('forum');
     Route::get('front/forum', 'ForumController@index')->name('forum');
+    Route::get('front/forum/create', 'ForumController@create')->name('sujet.create');
 
     //Route redirection vers forum mes sujet
     Route::get('front/mes_sujets', 'StudentFrontController@forum_mes_sujets')->name('forum_mesSujets');

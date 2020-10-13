@@ -47,7 +47,7 @@
                                 </div>
                             </div>
                             <div class="card-footer ml-auto mr-auto text-center )">
-                                <button type="submit" class="btn btn-success">Ajouter la section</button>
+                                <button  type="submit" class="btn btn-success">Ajouter la section</button>
                             </div>
                         </div>
                     </div>
