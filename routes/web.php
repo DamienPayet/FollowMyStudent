@@ -49,6 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('ajaxRequest', 'StudentFrontController@ajaxRequest')->name('ajaxRequest.index');
     Route::get('tata', 'StudentFrontController@ajaxRequest1')->name('ajaxRequest.index');
     Route::post('ajaxRequest/conv', 'StudentFrontController@ajaxRequestSync')->name('ajaxRequest.sync');
+    Route::post('ajaxRequest/testconv', 'StudentFrontController@ajaxRequestConvt')->name('ajaxRequest.testconv');
     Route::post('ajaxRequest', 'StudentFrontController@ajaxRequestPost')->name('ajaxRequest.post');
     //Route redirection vers front offre
     Route::get('front/offres', 'OffreFrontController@index')->name('offre_front_index');

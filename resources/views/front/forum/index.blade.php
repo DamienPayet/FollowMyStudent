@@ -23,13 +23,15 @@
 </div>
 <div class="cd-section" id="features">
   <div class="container">
-    @foreach ($section as $sections)
+  @foreach ($section as $sections)
+
     <div class="features-8 section-image" style="background-image: url('front/images/bg6.jpg')">
       <div class="col-md-8 ml-auto mr-auto text-center">
         <h2 class="title">
           <i class="now-ui-icons now-ui-icons files_paper" style="width : 30px">
           </i>
           {{$sections->titre}}</h2>
+          {{dd($sections->categorie)}}
         <h4 class="description"> {{$sections->description}}</h4>
       </div>
       <div class="container">
