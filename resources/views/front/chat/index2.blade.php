@@ -180,7 +180,7 @@ function viewmessage(response) {
 			div += '</li>';
 		} else {
 			div += '<li class="message-item ">';
-			div += '<img class="imgchat" src='+image+'></img>';
+			div += '<img class="imgchat" src='+{{url(image)}}+'></img>';
 			div += '	<span class="speech-bubble-receipt">' + messages[i].message + '</span>';
 			div += '	</li>';
 		}
