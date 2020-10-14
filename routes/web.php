@@ -40,7 +40,9 @@ Route::group(['middleware' => 'admin'], function () {
 Route::group(['middleware' => 'auth'], function () {
     //Route redirection vers forum acceuil
     //Route::get('front/forum', 'StudentFrontController@forum')->name('forum');
+    Route::resource('front/forum', 'ForumController');
     Route::get('front/forum', 'ForumController@index')->name('forum');
+    Route::get('front/forum/categorie/{id}', 'ForumController@index_sujet')->name('sujetindex');
     Route::get('front/forum/create', 'ForumController@create')->name('sujet.create');
 
     //Route redirection vers forum mes sujet
