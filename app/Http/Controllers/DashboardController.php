@@ -7,12 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Conversation;
+use App\Sujet;
 class DashboardController extends Controller
 {
-  public function index()
-  {
-    $user =  auth::user();
-    if ($user->id == auth::user()->id ) {
+
+/*    if ($user->id == auth::user()->id ) {
       if($user->statut == "eleve"){
         $destinataire= $user->eleve;
       }else{
