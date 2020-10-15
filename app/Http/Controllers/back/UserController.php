@@ -76,7 +76,7 @@ class UserController extends Controller
         $user->password = bcrypt($request->input('mdp'));
         $user->statut = $request->input('statut');
         //Insertion IMAGE
-        if ($request->input('image_profil') == null) {
+        if ($request->file('image_profil') == null) {
           $user->image_profil = "default.png";
         }else {
           $avatar = $request->file('image_profil');
@@ -84,7 +84,6 @@ class UserController extends Controller
           Image::make($avatar)->resize(300,300)->save( public_path('back/uploads/avatars/' . $filename ) );
           $user->image_profil = $filename;
         }
-
         //
         $user->save();
 
@@ -111,6 +110,8 @@ class UserController extends Controller
     public function edit($id)
     {
         //
+        $user = User::find($id);
+        return view('back.user.edit')->with('user',$user);
     }
 
     /**
@@ -123,6 +124,68 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validator = Validator::make($request->all(), [
+          'nom' => 'required',
+          'prenom' => 'required',
+          'email' => 'required|email',
+          'statut' => 'required',
+        ]);
+        if ($validator->fails()){
+          return redirect()->route("users.edit", $id)->withErrors($validator)->withInput();
+        }
+
+        $user = User::find($id);
+
+        if ($user->statut == "eleve") {
+          $user->eleve->nom = $request->input('nom');
+          $user->eleve->prenom = $request->input('prenom');
+          $user->eleve->save();
+        }elseif ($user->statut == "admin") {
+          $user->admin->nom = $request->input('nom');
+          $user->admin->prenom = $request->input('prenom');
+          $user->admin->save();
+        }
+
+        $user->email = $request->input('email');
+        $user->statut = $request->input('statut');
+
+        //Insertion IMAGE
+        if ($request->file('image_profil') == null) {
+          $user->image_profil = "default.png";
+        }else {
+          $avatar = $request->file('image_profil');
+          $filename = date('Y-m-d') . '_' . $avatar->getClientOriginalName();
+          Image::make($avatar)->resize(300,300)->save( public_path('back/uploads/avatars/' . $filename ) );
+          $user->image_profil = $filename;
+        }
+        //
+        $user->save();
+
+        return redirect()->route("users.index")->with('success','Modification réussite !');
+    }
+
+    public function editMdp($id)
+    {
+        //
+        $user = User::find($id);
+        return view('back.user.editMdp')->with('user',$user);
+    }
+
+    public function updateMdp(Request $request, $id)
+    {
+        //
+        $validator = Validator::make($request->all(), [
+          'mdp' => 'required',
+        ]);
+        if ($validator->fails()){
+          return redirect()->route("users.editMdp", $id)->withErrors($validator)->withInput();
+        }
+        $user = User::find($id);
+        $user->password = bcrypt($request->input('mdp'));
+        $user->save();
+
+        return redirect()->route("users.index")->with('success','Modification réussite !');
+
     }
 
     /**
@@ -134,5 +197,16 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+        $user = User::find($id);
+
+        if ($user->statut == "eleve") {
+          $user->eleve->delete();
+        }elseif ($user->statut == "admin") {
+          $user->admin->delete();
+        }
+
+        $user->delete();
+
+        return redirect()->route("users.index")->with('error','Suppression réussite !');
     }
 }

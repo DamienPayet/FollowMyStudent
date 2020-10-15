@@ -12,8 +12,6 @@ Route::get('/', function () {
 
 //Route pour les admin :
 Route::group(['middleware' => 'admin'], function () {
-    //route admin gestion user
-    Route::resource('back/users', UserController::class);
     //route admin gestion offre
     Route::resource('back/offre', 'OffreController');
     //route admin gestion questionnaire
@@ -71,4 +69,6 @@ Route::get('/testBack', function () {
 });
 //Route Gestion User
 Route::resource('back/users', UserController::class);
+Route::get('back/users/mdp/{users}', 'UserController@editMdp')->name('users.editMdp');
+Route::put('back/users/mdp/{users}', 'UserController@updateMdp')->name('users.updateMdp');
 //
