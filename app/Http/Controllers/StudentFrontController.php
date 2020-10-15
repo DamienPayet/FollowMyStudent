@@ -14,10 +14,10 @@ use App\User;
 class StudentFrontController extends Controller
 {
   /**
-   * Display a listing of the resource.
-   *
-   * @return \Illuminate\Http\Response
-   */
+  * Display a listing of the resource.
+  *
+  * @return \Illuminate\Http\Response
+  */
   public function __construct()
   {
     $this->middleware('auth');
@@ -55,8 +55,8 @@ class StudentFrontController extends Controller
     $part = QuestionnairePart::all();
     $question = QuestionnaireQuestion::all();
     return view("front.questionnaire.index")->with("user", $user)
-      ->with("question", $question)
-      ->with("part", $part);
+    ->with("question", $question)
+    ->with("part", $part);
   }
 
   public function questions()
@@ -88,8 +88,8 @@ class StudentFrontController extends Controller
     $part = QuestionnairePart::all();
     $question = QuestionnaireQuestion::all();
     return view("front.questionnaire.index")->with("user", $user)
-      ->with("question", $question)
-      ->with("part", $part);
+    ->with("question", $question)
+    ->with("part", $part);
   }
   public function forum()
   {
@@ -109,13 +109,36 @@ class StudentFrontController extends Controller
   public function ajaxRequest1()
   {
     $user =  auth::user();
-    return view('front.chat.index2')->with('user', $user);
+    $users = user::all();
+    return view('front.chat.index2')->with('user', $user)
+    ->with('users' , $users);
   }
   /**
-   * Create a new controller instance.
-   *
-   * @return void
-   */
+  * Create a new controller instance.
+  *
+  * @return void
+  */
+  public function ajaxRequestConvt(Request $request)
+  {
+    $user =  auth::user();
+    $id = $request->id;
+    foreach ($user->conversation as $conversation) {
+      foreach ($conversation->users as $utilisateur) {
+        if($utilisateur->id == $id){
+          return response()->json(['conv' => $conversation]);
+        }
+      }
+    }
+    $conv = new Conversation;
+    $conv->save();
+    $conv->users()->attach($user);
+    $conv->users()->attach(User::find($id));
+    return response()->json(['conv' => $conv]);
+  }
+
+
+
+
   public function ajaxRequestPost(Request $request)
   {
     //Verification des champs
@@ -132,21 +155,33 @@ class StudentFrontController extends Controller
     $msg->conversation_id = $request->conversation_id;
     $msg->save();
 
+
+
     $conversation = conversation::find($request->conversation_id);
 
     return response()->json(['messages' => $conversation->messages, 'conversation_user' => $conversation->users, 'conversation' => $conversation]);
   }
   /**
-   * Create a new controller instance.
-   *
-   * @return void
-   */
+  * Create a new controller instance.
+  *
+  * @return void
+  */
   public function ajaxRequestSync(Request $request)
   {
 
     $conversation = conversation::find($request->id);
+    $destinataire = "dd";
+    foreach ($conversation->users as $user) {
+      if ($user->id != auth::user()->id ) {
+        if($user->statut == "eleve"){
+          $destinataire= $user->eleve;
+        }else{
+          $destinataire = $user->admin;
+        }
+      }
+    }
 
 
-    return response()->json(['messages' => $conversation->messages, 'conversation_user' => $conversation->users, 'conversation' => $conversation]);
+    return response()->json(['messages' => $conversation->messages, 'conversation_user' => $conversation->users, 'conversation' => $conversation , 'destinataire' => $destinataire]);
   }
 }

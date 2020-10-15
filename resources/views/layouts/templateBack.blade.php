@@ -200,6 +200,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{route('forum.index')}}" class="nav-link">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>
+                                Forum
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{route('questionnaire.index')}}" class="nav-link">
                             <i class="far fa-question-circle"></i>
                             <p>

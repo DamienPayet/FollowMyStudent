@@ -14,6 +14,8 @@ class DatabaseSeeder extends Seeder
     $this->call([
       QuestionnairePartSeeder::class,
       QuestionnaireQuestionSeeder::class,
+      AdminSeeder::class,
+      EleveSeeder::class,
       UserSeeder::class,
     ]);
   }

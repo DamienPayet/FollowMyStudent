@@ -14,6 +14,14 @@ Route::get('/', function () {
 Route::group(['middleware' => 'admin'], function () {
     //route admin gestion offre
     Route::resource('back/offre', 'OffreController');
+    //route admin gestion forum
+    Route::resource('back/forum', 'ForumBackController');
+    Route::get('/back/cforum/{id}', 'ForumBackController@create_categorie')->name('categorie.create');
+    Route::post('/back/categorie', 'ForumBackController@store_categorie')->name('categorie.store');
+    Route::get('/back/eforum/{id}', 'ForumBackController@edit_categorie')->name('categorie.edit');
+    Route::post('/back/uforum/{id}', 'ForumBackController@update_categorie')->name('categorie.update');
+    Route::delete('/back/dforum/{id}', 'ForumBackController@destroy_categorie')->name('categorie.destroy');
+
     //route admin gestion questionnaire
     Route::resource('back/questionnaire', 'QuestionnaireBackController');
     Route::get('/back/question/{id}', 'QuestionnaireBackController@create_question')->name('create.question');
@@ -30,7 +38,10 @@ Route::group(['middleware' => 'admin'], function () {
 Route::group(['middleware' => 'auth'], function () {
     //Route redirection vers forum acceuil
     //Route::get('front/forum', 'StudentFrontController@forum')->name('forum');
+    Route::resource('front/forum', 'ForumController');
     Route::get('front/forum', 'ForumController@index')->name('forum');
+    Route::get('front/forum/categorie/{id}', 'ForumController@index_sujet')->name('sujetindex');
+    Route::get('front/forum/create', 'ForumController@create')->name('sujet.create');
 
     //Route redirection vers forum mes sujet
     Route::get('front/mes_sujets', 'StudentFrontController@forum_mes_sujets')->name('forum_mesSujets');
@@ -38,6 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('ajaxRequest', 'StudentFrontController@ajaxRequest')->name('ajaxRequest.index');
     Route::get('tata', 'StudentFrontController@ajaxRequest1')->name('ajaxRequest.index');
     Route::post('ajaxRequest/conv', 'StudentFrontController@ajaxRequestSync')->name('ajaxRequest.sync');
+    Route::post('ajaxRequest/testconv', 'StudentFrontController@ajaxRequestConvt')->name('ajaxRequest.testconv');
     Route::post('ajaxRequest', 'StudentFrontController@ajaxRequestPost')->name('ajaxRequest.post');
     //Route redirection vers front offre
     Route::get('front/offres', 'OffreFrontController@index')->name('offre_front_index');

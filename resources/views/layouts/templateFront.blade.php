@@ -26,10 +26,10 @@
   <nav class="navbar navbar-expand-lg bg-primary fixed-top" color-on-scroll="400">
     <div class="container">
       <div class="navbar-translate">
-            <a class="nav-link" href="{{route('index')}}">
-              <i class="now-ui-icons shopping_shop"></i>
-              <p>Accueil</p>
-            </a>
+        <a class="nav-link" href="{{route('index')}}">
+          <i class="now-ui-icons shopping_shop"></i>
+          <p>Accueil</p>
+        </a>
         <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-bar top-bar"></span>
           <span class="navbar-toggler-bar middle-bar"></span>
@@ -66,102 +66,106 @@
             </div>
           </li>
           @if(Auth::user()->statut == 'admin')
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('indexback')}}">
-              <i class="now-ui-icons ui-2_settings-90"></i>
-              <p>Administration</p>
-            </a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{route('indexback')}}">
+                <i class="now-ui-icons ui-2_settings-90"></i>
+                <p>Administration</p>
+              </a>
+            </li>
           @endif
           @if (Auth::guest())
-          <li class="nav-item"><a href="{{ url('/login') }}">Login</a>
-          </li>
+            <li class="nav-item"><a href="{{ url('/login') }}">Login</a>
+            </li>
           @else
-          <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown">
-              <i class="now-ui-icons design_app"></i>
-              <p>{{Auth::user()->name }} </p>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink1">
-              <a class="dropdown-item" href="{{ route('users.edit', Auth::user()->id) }}">
-                <i class="now-ui-icons business_chart-pie-36"></i> Mon profil
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown">
+                <i class="now-ui-icons design_app"></i>
+                <p>{{Auth::user()->name }} </p>
               </a>
-              <a class="dropdown-item" href="Logout" onclick="event.preventDefault();document.getElementById('logout-form').submit();"> Déconnexion </a>
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                {{ csrf_field() }}
-              </form>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink1">
+                <a class="dropdown-item" href="{{ route('users.edit', Auth::user()->id) }}">
+                  <i class="now-ui-icons business_chart-pie-36"></i> Mon profil
+                </a>
+                <a class="dropdown-item" href="Logout" onclick="event.preventDefault();document.getElementById('logout-form').submit();"> Déconnexion </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  {{ csrf_field() }}
+                </form>
               </a>
             </div>
           </li>
-          @endif
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('ajaxRequest.index')}}">
-              <i class="fas fa-envelope"></i>
-              <p>0</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" rel="tooltip" title="Suivez nous sur Twitter" data-placement="bottom" href="https://twitter.com/pmr_dole" target="_blank">
-              <i class="fab fa-twitter"></i>
-              <p class="d-lg-none d-xl-none">Twitter</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" rel="tooltip" title="Venez sur Facebook" data-placement="bottom" href="https://www.facebook.com/lycee.pasteurmontroland" target="_blank">
-              <i class="fab fa-facebook-square"></i>
-              <p class="d-lg-none d-xl-none">Facebook</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" rel="tooltip" title="Rendez vous sur Instagram" data-placement="bottom" href="https://www.instagram.com/mont.roland/" target="_blank">
-              <i class="fab fa-instagram"></i>
-              <p class="d-lg-none d-xl-none">Instagram</p>
-            </a>
-          </li>
-        </ul>
-      </div>
+        @endif
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('ajaxRequest.index')}}">
+            <i class="fas fa-envelope"></i>
+            <p>0</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" rel="tooltip" title="Suivez nous sur Twitter" data-placement="bottom" href="https://twitter.com/pmr_dole" target="_blank">
+            <i class="fab fa-twitter"></i>
+            <p class="d-lg-none d-xl-none">Twitter</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" rel="tooltip" title="Venez sur Facebook" data-placement="bottom" href="https://www.facebook.com/lycee.pasteurmontroland" target="_blank">
+            <i class="fab fa-facebook-square"></i>
+            <p class="d-lg-none d-xl-none">Facebook</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" rel="tooltip" title="Rendez vous sur Instagram" data-placement="bottom" href="https://www.instagram.com/mont.roland/" target="_blank">
+            <i class="fab fa-instagram"></i>
+            <p class="d-lg-none d-xl-none">Instagram</p>
+          </a>
+        </li>
+      </ul>
     </div>
-  </nav>
-  <!-- End Navbar -->
-  <div class="wrapper">
-    @section('header')
-    @show
   </div>
-    <div class="main">
-      @section("content")
+</nav>
+<!-- End Navbar -->
+<div class="wrapper">
+  @section('header')
+  @show
+</div>
+<div class="main">
+  @section("content")
 
-      @show
+  @show
 
-    </div>
-    <footer @section("footerstyle")@show class="footer" data-background-color="black">
-      <div class="copyright" id="copyright">
-        &copy;
-        <script>
-          document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
-        </script>, Designed by
-        <a href="" target="_blank">Damso</a>. Coded by
-        <a href="" target="_blank">Florent / Hugo / Damien</a>.
-      </div>
-    </footer>
-    <!--   Core JS Files   -->
-    <script src="{{url('front/js/core/jquery.min.js')}}" type="text/javascript"></script>
-    <script src="{{url('front/js/core/popper.min.js')}}" type="text/javascript"></script>
-    <script src="{{url('front/js/core/bootstrap.min.js')}}" type="text/javascript"></script>
-    <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-    <script src="{{url('front/js/plugins/bootstrap-switch.js')}}"></script>
-    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-    <script src="{{url('front/js/plugins/nouislider.min.js')}}" type="text/javascript"></script>
-    <!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
-    <script src="{{url('front/js/plugins/bootstrap-datepicker.js')}}" type="text/javascript"></script>
-    <script src="{{url('front/js/now-ui-kit.js?v=1.3.0')}}" type="text/javascript"></script>
+</div>
+<div class="section-space"></div>
+<div>
 
+<footer @section("footerstyle")@show class="footer" data-background-color="black">
+  <div class="copyright" id="copyright">
+    &copy;
     <script>
-      $(document).ready(function() {
-        // the body of this function is in assets/js/now-ui-kit.js
-        nowuiKit.initSliders();
-      });
+    document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
+    </script>, Designed by
+    <a href="" target="_blank">Damso</a>. Coded by
+    <a href="" target="_blank">Florent / Hugo / Damien</a>.
+  </div>
+</footer>
+</div>
+<!--   Core JS Files   -->
+<script src="{{url('front/js/core/jquery.min.js')}}" type="text/javascript"></script>
+<script src="{{url('front/js/core/popper.min.js')}}" type="text/javascript"></script>
+<script src="{{url('front/js/core/bootstrap.min.js')}}" type="text/javascript"></script>
+<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+<script src="{{url('front/js/plugins/bootstrap-switch.js')}}"></script>
+<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script src="{{url('front/js/plugins/nouislider.min.js')}}" type="text/javascript"></script>
+<!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
+<script src="{{url('front/js/plugins/bootstrap-datepicker.js')}}" type="text/javascript"></script>
+<script src="{{url('front/js/now-ui-kit.js?v=1.3.0')}}" type="text/javascript"></script>
 
-    </script>
+<script>
+$(document).ready(function() {
+  // the body of this function is in assets/js/now-ui-kit.js
+  nowuiKit.initSliders();
+});
+
+</script>
 </body>
 
 </html>

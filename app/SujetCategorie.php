@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class SujetCategorie extends Model
 {
-  public function sujets()
-  {
-    return $this->hasMany('App\Sujet');
-  }
   public function section()
   {
-    return $this->belongsTo('App\Section','section_id');
+    return $this->belongTo(Section::class, 'section_id');
+  }
+  public function sujets()
+  {
+    return $this->hasMany('App\Sujet','categorie_id');
   }
 }

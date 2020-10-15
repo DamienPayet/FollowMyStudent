@@ -22,8 +22,16 @@
   </div>
 </div>
 <div class="cd-section" id="features">
+  <div style="margin : 20px">
+    <a href="{{route('sujet.create')}}">
+      <button type="submit" class="btn btn-success">
+        Ajouter un sujet
+      </button>
+    </a>
+  </div>
   <div class="container">
     @foreach ($section as $sections)
+
     <div class="features-8 section-image" style="background-image: url('front/images/bg6.jpg')">
       <div class="col-md-8 ml-auto mr-auto text-center">
         <h2 class="title">
@@ -40,7 +48,7 @@
             <div class="card" data-background-color="red">
               <div class="info text-center">
                 <h4 class="category text-danger">
-              <a href="#nuk">{{$categorie->nom}}</a>
+                  <a href="{{route('sujetindex', $categorie->id, $sujet)}}">{{$categorie->nom}}</a>
                 </h4>
               </div>
             </div>
@@ -53,6 +61,7 @@
     @endforeach
 
     <div class="wrapper">
+
       <div class="section-space"></div>
 
       <div class="container">
