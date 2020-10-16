@@ -8,7 +8,7 @@ class Sujet extends Model
 {
   public function user()
   {
-    return $this->belongto('App\User');
+    return $this->belongsto('App\User');
   }
   public function categorie()
   {

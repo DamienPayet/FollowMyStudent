@@ -6,9 +6,9 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <form method="post" action="{{ route('forum.update',$section->id) }}" autocomplete="off" class="form-horizontal" enctype="multipart/form-data" accept-charset="utf-8">
+                <form method="post" action="{{ route('section.update',$section->id) }}" autocomplete="off" class="form-horizontal" enctype="multipart/form-data" accept-charset="utf-8">
                     @csrf
-                    @method('put')
+                    @method('post')
                     <div class="card ">
                         <div class="card-header card-header-primary">
                             <h4 class="card-title">Modification de section</h4>

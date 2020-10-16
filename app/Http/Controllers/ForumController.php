@@ -14,17 +14,19 @@ class ForumController extends Controller
   public function index()
   {
     $section = Section::all();
-    $sujet = Sujet::all();
-    return view('front/forum.index', compact('section', 'sujet'));
+    $sujets = Sujet::latest()->take(3)->get();
+    $categories = SujetCategorie::latest()->take(3)->get();
+    return view('front/forum.index', compact('section', 'sujets','categories'));
   }
   public function index_sujet($id)
   {
     $sujets = Sujet::all();
     $categorie = SujetCategorie::find($id);
     $user = User::all();
-    return view('front/forum.index_sujet', compact('sujets','categorie','user'));
+
+    return view('front/forum.index_sujet', compact('sujets','categorie','users'));
   }
-  public function show(Sujet $sujet)
+  public function show_sujet(Sujet $sujet)
   {
     return view('front/forum.show', compact('sujet'));
   }

@@ -93,4 +93,11 @@ class ForumBackController extends Controller
         $categorie->delete();
         return redirect()->route('forum.index')->withStatus(__('Catégorie supprimée avec succès'));
     }
+    public function destroy_sujet($id)
+    {
+        $sujet = Sujet::find($id);
+
+        $sujet->delete();
+        return redirect()->route('forum.index')->withStatus(__('Sujet supprimé avec succès'));
+    }
 }

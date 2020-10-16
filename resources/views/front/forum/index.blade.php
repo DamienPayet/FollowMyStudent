@@ -22,9 +22,9 @@
   </div>
 </div>
 <div class="cd-section" id="features">
-  <div style="margin : 20px">
+  <div class="text-center" style="margin : 20px">
     <a href="{{route('sujet.create')}}">
-      <button type="submit" class="btn btn-success">
+      <button type="submit" class="btn btn-primary btn-round btn-lg">
         Ajouter un sujet
       </button>
     </a>
@@ -33,24 +33,22 @@
     @foreach ($section as $sections)
 
     <div class="features-8 section-image" style="background-image: url('front/images/bg6.jpg')">
-      <div class="col-md-8 ml-auto mr-auto text-center">
-        <h2 class="title">
+      <div class="col-md-7 ml-auto mr-auto text-center">
+        <h3 class="title">
           <i class="now-ui-icons now-ui-icons files_paper" style="width : 30px">
           </i>
-          {{$sections->titre}}</h2>
-        <h4 class="description"> {{$sections->description}}</h4>
+          {{$sections->titre}}</h3>
+        <h5 class="description"> {{$sections->description}}</h5>
       </div>
       <div class="container">
         <div class="row">
           @foreach ($sections->categories as $categorie)
 
           <div class="col-md-3">
-            <div class="card" data-background-color="red">
-              <div class="info text-center">
-                <h4 class="category text-danger">
-                  <a href="{{route('sujetindex', $categorie->id, $sujet)}}">{{$categorie->nom}}</a>
-                </h4>
-              </div>
+            <div class="info text-center">
+              <h5 class="btn btn-outline-primary btn-round btn-lg">
+                <a href="{{route('sujet.index', $categorie->id, $sujets)}}">{{$categorie->nom}}</a>
+              </h5>
             </div>
           </div>
           @endforeach
@@ -70,35 +68,26 @@
 
             <!-- -->
             <h3>Dernières catégories</h3>
+            @foreach($categories as $categorie)
             <div class="blocktxt">
-              <a href="#" class="btn btn-link">Java</a>
+              <a href="{{route('sujet.index',$categorie->id, $sujets)}}" class="btn btn-link">{{$categorie->nom}}</a>
             </div>
-            <div class="blocktxt">
-              <a href="#" class="btn btn-link">AD</a>
-            </div>
-            <div class="blocktxt">
-              <a href="#" class="btn btn-link">Laravel</a>
-            </div>
+            @endforeach
             <!-- -->
           </div>
           <div class="col-md-3 ml-auto mr-auto text-center">
             <h3>Sujets récents</h3>
             <div class="divline"></div>
+            @foreach($sujets as $sujet)
             <div class="blocktxt">
-              <a href="#" class="btn btn-link">This Dock Turns Your iPhone Into a Bedside Lamp</a>
+              <a href="{{route('sujet.show', $sujet)}}" class="btn btn-link">{{$sujet->titre}}</a>
             </div>
-            <div class="blocktxt">
-              <a href="#" class="btn btn-link">Who Wins in the Battle for Power on the Internet?</a>
-            </div>
-            <div class="blocktxt">
-              <a href="#" class="btn btn-link">Sony QX10: A Funky, Overpriced Lens Camera for Your Smartphone</a>
-            </div>
+            @endforeach
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="wrapper">
-    <div class="section-space"></div>
-
-    @endsection
+</div>
+<div class="section-space"></div>
+@endsection

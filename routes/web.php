@@ -18,11 +18,16 @@ Route::group(['middleware' => 'admin'], function () {
     Route::resource('back/offre', 'OffreController');
     //route admin gestion forum
     Route::resource('back/forum', 'ForumBackController');
+    Route::get('/back/esection/{id}', 'ForumBackController@edit')->name('section.edit');
+    Route::post('/back/ssection', 'ForumBackController@store')->name('section.store');
+    Route::post('/back/usection/{id}', 'ForumBackController@update')->name('section.update');
+    Route::delete('/back/dsection/{id}', 'ForumBackController@destroy')->name('section.destroy');
     Route::get('/back/cforum/{id}', 'ForumBackController@create_categorie')->name('categorie.create');
     Route::post('/back/categorie', 'ForumBackController@store_categorie')->name('categorie.store');
     Route::get('/back/eforum/{id}', 'ForumBackController@edit_categorie')->name('categorie.edit');
     Route::post('/back/uforum/{id}', 'ForumBackController@update_categorie')->name('categorie.update');
     Route::delete('/back/dforum/{id}', 'ForumBackController@destroy_categorie')->name('categorie.destroy');
+    Route::delete('/back/dsujet/{id}', 'ForumBackController@destroy_sujet')->name('sujet.destroy');
 
     //route admin gestion questionnaire
     Route::resource('back/questionnaire', 'QuestionnaireBackController');
@@ -42,8 +47,9 @@ Route::group(['middleware' => 'auth'], function () {
     //Route::get('front/forum', 'StudentFrontController@forum')->name('forum');
     Route::resource('front/forum', 'ForumController');
     Route::get('front/forum', 'ForumController@index')->name('forum');
-    Route::get('front/forum/categorie/{id}', 'ForumController@index_sujet')->name('sujetindex');
+    Route::get('front/forum/categorie/{id}', 'ForumController@index_sujet')->name('sujet.index');
     Route::get('front/forum/create', 'ForumController@create')->name('sujet.create');
+    Route::get('front/forum/sujet/{sujet}', 'ForumController@show_sujet')->name('sujet.show');
 
     //Route redirection vers forum mes sujet
     Route::get('front/mes_sujets', 'StudentFrontController@forum_mes_sujets')->name('forum_mesSujets');

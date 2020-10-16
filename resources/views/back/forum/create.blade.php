@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <form method="post" action="{{ route('forum.store') }}" autocomplete="off" class="form-horizontal" enctype="multipart/form-data" accept-charset="utf-8">
+                <form method="post" action="{{ route('section.store') }}" autocomplete="off" class="form-horizontal" enctype="multipart/form-data" accept-charset="utf-8">
                     @csrf
                     @method('post')
                     <div class="card ">
@@ -18,7 +18,7 @@
                         <div class="card-body ">
                             <div class="row">
                                 <div class="col-md-12 ">
-                                    <a href="{{ route('forum.index') }}" class="btn btn-sm btn-secondary "><i class="fas fa-arrow-left"></i> Retour</a>
+                                    <a href="{{ url()->previous() }}" class="btn btn-sm btn-secondary "><i class="fas fa-arrow-left"></i> Retour</a>
                                 </div>
                             </div>
                             <br>

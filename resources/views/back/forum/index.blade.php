@@ -53,7 +53,7 @@
                                     </button>
                                 </div>
                                 <!--Bouton supression de la section -->
-                                <form action="{{ route('forum.destroy', $section->id) }}" method="post">
+                                <form action="{{ route('section.destroy', $section->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <button onclick="return confirm(' ❌ Est tu sur de vouloir supprimer cette section ? Continuer ❓')" style='margin-right:10px; float : right ;' class="btn btn-danger">
@@ -61,7 +61,7 @@
                                     </button>
                                 </form>
                                 <!--Bouton edit de la section -->
-                                <a href="{{ route('forum.edit',  $section->id) }}">
+                                <a href="{{ route('section.edit',  $section->id) }}">
                                     <button style='margin-right:10px; float : right ;' class="btn btn-info">
                                         <i class="fas fa-edit"></i>
                                     </button>
@@ -164,10 +164,10 @@
                                                                     <i class="fas fa-edit"></i>
                                                                     <div class="ripple-container"></div>
                                                                 </a>
-                                                                <form action="{{ route('categorie.destroy', $categorie) }}" method="post">
+                                                                <form action="{{ route('sujet.destroy', $sujet) }}" method="post">
                                                                     @csrf
                                                                     @method('DELETE')
-                                                                    <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" onclick="return confirm('Est tu sur de vouloir supprimer cette catégorie ?')">
+                                                                    <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" onclick="return confirm('Est tu sur de vouloir supprimer ce sujet ?')">
                                                                         <i class="fas fa-times"></i>
                                                                     </button>
                                                                 </form>
