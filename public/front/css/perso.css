@@ -1,3 +1,15 @@
+.avatar{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.card-chat{
+  max-height: 70vh;
+  overflow: auto;
+}
+.text-small{
+  font-size: 15px;
+}
 .speech-bubble-send {
   position: relative;
   background: #77bb41;
@@ -12,7 +24,7 @@
 }
 .user_conv{
   border-radius: 5px;
-  
+
 }
 .speech-bubble-send:after {
 

@@ -6,6 +6,8 @@ Gestion Utilisateurs
 
 @section('content')
 
+@include('back.alert')
+
   <a href="{{route('users.create')}}">
       <button style='margin-left:10px;' type="submit" class="btn btn-primary">
       Ajouter un Utilisateur
@@ -53,6 +55,13 @@ Gestion Utilisateurs
                 @method('GET')
               <button type="submit" rel="tooltip" class="btn btn-success btn-round">
                   <i class="material-icons">Modifier</i>
+              </button>
+            </form>
+            <form action="{{route('users.destroy', $u->id)}}" method="POST">
+                @csrf
+                @method('DELETE')
+              <button type="submit" rel="tooltip" class="btn btn-danger btn-round">
+                  <i class="material-icons">Supprimer</i>
               </button>
             </form>
           </td>

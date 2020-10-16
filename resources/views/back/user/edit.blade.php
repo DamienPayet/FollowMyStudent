@@ -1,6 +1,6 @@
 @extends('layouts.templateBack')
 @section('title')
-   Ajouter un utilisateur
+   Modifier un utilisateur
 @stop
 
 @section('content')
@@ -18,30 +18,27 @@
   </div>
 @endif
 
-<form style='margin-left:10px;' method="POST" action="{{route('users.store')}}" enctype="multipart/form-data">
+<form style='margin-left:10px;' method="POST" action="{{route('users.update', $user->id)}}" enctype="multipart/form-data">
 @csrf
+@method('PUT')
   <div class="form-group">
     <label for="nom">Nom *</label>
-    <input type="text" class="form-control" id="nom" name="nom" placeholder="Entrer le nom" value="{{ old('nom') }}">
+    <input type="text" class="form-control" id="nom" name="nom" placeholder="Entrer le nom" value="@if ($user->statut == "eleve"){{ $user->eleve->nom }}@elseif ($user->statut == "admin"){{ $user->admin->nom }}@endif">
   </div>
   <div class="form-group">
     <label for="nom">Prénom *</label>
-    <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Entrer le prénom" value="{{ old('prenom') }}">
+    <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Entrer le prénom" value="@if ($user->statut == "eleve"){{ $user->eleve->prenom }}@elseif ($user->statut == "admin"){{ $user->admin->prenom }}@endif">
   </div>
   <div class="form-group">
     <label for="email">Email *</label>
-    <input type="text" class="form-control" id="email" name="email" placeholder="Entrer l'email" value="{{ old('email') }}">
-  </div>
-  <div class="form-group">
-    <label for="mdp">Mot de Passe *</label>
-    <input type="password" class="form-control" id="mdp" name="mdp" placeholder="Entrer le mot de passe" value="{{ old('mdp') }}">
+    <input type="text" class="form-control" id="email" name="email" placeholder="Entrer l'email" value="{{$user->email}}">
   </div>
   <div class="form-group">
     <label for="statut">Statut *</label>
     <select class="form-control" id="statut" name="statut">
-      @if (old('statut') == "eleve")
+      @if ($user->statut == "eleve")
         <option value="eleve">Élève</option>
-      @elseif (old('statut') == "admin")
+      @elseif ($user->statut == "admin")
         <option value="admin">Administrateur</option>
       @endif
       <option value="eleve">Élève</option>
@@ -56,10 +53,16 @@
     </div>
   </div>
     <button style='margin-bottom:10px;' type="submit" class="btn btn-primary">
-        Créer
+        Modifier
     </button>
+  </form>
 
-
+  <form style='margin-left:10px;' action="{{route('users.editMdp', $user->id)}}" method="POST">
+      @csrf
+      @method('GET')
+    <button type="submit" rel="tooltip" class="btn btn-success btn-round">
+        Mettre un nouveau MDP
+    </button>
   </form>
 
   <script>
