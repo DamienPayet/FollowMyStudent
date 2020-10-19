@@ -7,6 +7,11 @@
   max-height: 70vh;
   overflow: auto;
 }
+.leftbar{
+    overflow: auto;
+    max-height: 50vh;
+
+}
 .text-small{
   font-size: 15px;
 }

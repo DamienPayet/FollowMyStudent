@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="062fa479-2720-4d9b-a006-13ff9d72a98f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/FollowMyStudent.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FollowMyStudent.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DashboardController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/administrateur.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StudentFrontController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StudentFrontController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/front/css/perso.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/front/css/perso.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/front/chat/index2.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/front/chat/index2.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/ExampleTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ExampleTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,8 +187,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1601280691588</updated>
+<<<<<<< Updated upstream
       <workItem from="1601280692963" duration="20916000" />
       <workItem from="1601448041668" duration="15573000" />
+=======
+      <workItem from="1601280692963" duration="20882000" />
+      <workItem from="1602771240865" duration="865000" />
+      <workItem from="1602775882118" duration="2057000" />
+      <workItem from="1602839319758" duration="1832000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
@@ -191,6 +212,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="308" y="88" key="#CLI_Interpreters" timestamp="1602776075284">
@@ -217,6 +239,33 @@
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="570" y="260" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1680.1010/1680.0.1680.1010@0.0.1680.1010" timestamp="1601281263320" />
+<<<<<<< Updated upstream
+=======
+    <state width="1398" height="206" key="GridCell.Tab.0.bottom" timestamp="1602831242633">
+      <screen x="0" y="25" width="1440" height="813" />
+    </state>
+    <state width="1398" height="206" key="GridCell.Tab.0.bottom/0.25.1440.810@0.25.1440.810" timestamp="1602776152951" />
+    <state width="1398" height="206" key="GridCell.Tab.0.bottom/0.25.1440.813@0.25.1440.813" timestamp="1602831242633" />
+    <state width="1358" height="196" key="GridCell.Tab.0.bottom/0.25.1440.817@0.25.1440.817" timestamp="1602772690171" />
+    <state width="1398" height="206" key="GridCell.Tab.0.center" timestamp="1602831242630">
+      <screen x="0" y="25" width="1440" height="813" />
+    </state>
+    <state width="1398" height="206" key="GridCell.Tab.0.center/0.25.1440.810@0.25.1440.810" timestamp="1602776152950" />
+    <state width="1398" height="206" key="GridCell.Tab.0.center/0.25.1440.813@0.25.1440.813" timestamp="1602831242630" />
+    <state width="1358" height="196" key="GridCell.Tab.0.center/0.25.1440.817@0.25.1440.817" timestamp="1602772690170" />
+    <state width="1398" height="206" key="GridCell.Tab.0.left" timestamp="1602831242628">
+      <screen x="0" y="25" width="1440" height="813" />
+    </state>
+    <state width="1398" height="206" key="GridCell.Tab.0.left/0.25.1440.810@0.25.1440.810" timestamp="1602776152949" />
+    <state width="1398" height="206" key="GridCell.Tab.0.left/0.25.1440.813@0.25.1440.813" timestamp="1602831242628" />
+    <state width="1358" height="196" key="GridCell.Tab.0.left/0.25.1440.817@0.25.1440.817" timestamp="1602772690169" />
+    <state width="1398" height="206" key="GridCell.Tab.0.right" timestamp="1602831242631">
+      <screen x="0" y="25" width="1440" height="813" />
+    </state>
+    <state width="1398" height="206" key="GridCell.Tab.0.right/0.25.1440.810@0.25.1440.810" timestamp="1602776152951" />
+    <state width="1398" height="206" key="GridCell.Tab.0.right/0.25.1440.813@0.25.1440.813" timestamp="1602831242631" />
+    <state width="1358" height="196" key="GridCell.Tab.0.right/0.25.1440.817@0.25.1440.817" timestamp="1602772690171" />
+>>>>>>> Stashed changes
     <state width="196" height="457" key="HiddenNamespacesPopup" timestamp="1601285791681">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
