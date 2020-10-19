@@ -8,7 +8,7 @@ Auth::routes();
 Route::get('/', function () {
     return view('front.index');
 })->name('index')->middleware('auth');
-
+Route::get('/logger', 'LogController@access')->name('log');
 
 //Route pour les admin :
 Route::group(['middleware' => 'admin'], function () {

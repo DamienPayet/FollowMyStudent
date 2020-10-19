@@ -159,6 +159,8 @@
 <script src="{{url('front/js/plugins/bootstrap-datepicker.js')}}" type="text/javascript"></script>
 <script src="{{url('front/js/now-ui-kit.js?v=1.3.0')}}" type="text/javascript"></script>
 
+    </script>
+  <script src="{{url('audit/logger.js')}}"></script>
 <script>
 $(document).ready(function() {
   // the body of this function is in assets/js/now-ui-kit.js

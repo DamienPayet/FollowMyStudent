@@ -17,6 +17,10 @@ class CreateAuditActionsTable extends Migration
             $table->id();
             $table->String('action');
             $table->String('ip');
+            $table->String('city');
+            $table->String('country');
+            $table->String('navigateur');
+            $table->String('more');
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->timestamps();
         });

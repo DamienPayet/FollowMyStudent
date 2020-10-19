@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Offre;
+use App\QuestionnaireReponse;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
@@ -10,15 +12,13 @@ use App\Conversation;
 use App\Sujet;
 class DashboardController extends Controller
 {
+    public function index()
+    {
+        $offres = Offre::all();
+        $questionnaire = QuestionnaireReponse::all();
+        $utilisateurs = User::all();
 
-/*    if ($user->id == auth::user()->id ) {
-      if($user->statut == "eleve"){
-        $destinataire= $user->eleve;
-      }else{
-        $destinataire = $user->admin;
-      }
-    }
-/*
+        return view('back.dashboard.index', compact('offres','questionnaire','utilisateurs'));
 
     $id = 1;
     $ok = false;

@@ -8,7 +8,7 @@ class QuestionnaireQuestion extends Model
 {
   public function part()
   {
-    return $this->belongsTo('App\QuestionnairePart');
+    return $this->belongsTo('App\QuestionnairePart','questionnaire_part_id');
   }
   public function reponses()
   {
@@ -16,7 +16,7 @@ class QuestionnaireQuestion extends Model
   }
     public function master_question()
     {
-        return $this->belongsTo('App\QuestionnaireQuestion');
+        return $this->belongsTo('App\QuestionnaireQuestion','questionnaire_question_id');
     }
     public function sous_question()
     {
