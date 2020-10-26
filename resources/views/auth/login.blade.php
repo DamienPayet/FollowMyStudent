@@ -17,24 +17,43 @@
 
 <body class="login-page sidebar-collapse">
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg bg-primary fixed-top " color-on-scroll="400">
-    <div class="container">
-      <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="../front/images/blurred-image-1.jpg">
+  <nav class="navbar navbar-expand-lg bg-primary fixed-top navbar-transparent" color-on-scroll="200" style="background-color:transparent!important;">
+    <div class="container" style="height: 70%;">
+
+      <div class="dropdown button-dropdown">
+        <a href="#pablo" class="dropdown-toggle" id="navbarDropdown" data-toggle="dropdown">
+          <span class="button-bar"></span>
+          <span class="button-bar"></span>
+          <span class="button-bar"></span>
+        </a>
+
+      </div>
+      <div class="navbar-translate">
+        <a class="navbar-brand" href="" rel="tooltip" title="Bienvenue sur Follow My Student !" data-placement="bottom" target="_blank">
+          Follow My Student
+        </a>
+        <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" >
+          <span class="navbar-toggler-bar top-bar"></span>
+          <span class="navbar-toggler-bar middle-bar"></span>
+          <span class="navbar-toggler-bar bottom-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="../assets/img/blurred-image-1.jpg" style="background: linear-gradient(#38422b 0%, #000 80%);">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" rel="tooltip" title="Suivez nous sur Twitter" data-placement="bottom" href="https://twitter.com/pmr_dole" target="_blank">
+            <a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="https://twitter.com/pmr_dole" target="_blank">
               <i class="fab fa-twitter"></i>
               <p class="d-lg-none d-xl-none">Twitter</p>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" rel="tooltip" title="Venez sur Facebook" data-placement="bottom" href="https://www.facebook.com/lycee.pasteurmontroland" target="_blank">
+            <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="https://www.facebook.com/lycee.pasteurmontroland" target="_blank">
               <i class="fab fa-facebook-square"></i>
               <p class="d-lg-none d-xl-none">Facebook</p>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" rel="tooltip" title="Rendez vous sur Instagram" data-placement="bottom" href="https://www.instagram.com/mont.roland/" target="_blank">
+            <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom" href="https://www.instagram.com/mont.roland/" target="_blank">
               <i class="fab fa-instagram"></i>
               <p class="d-lg-none d-xl-none">Instagram</p>
             </a>
@@ -45,7 +64,7 @@
   </nav>
   <!-- End Navbar -->
 
-  <div class="page-header clear-filter" filter-color="orange">
+  <div class="page-header clear-filter" filter-color="yellow">
     <div class="page-header-image" style="background-image:url(../front/images/login.jpg)"></div>
     <div class="content">
       <div class="container">
@@ -109,12 +128,7 @@
           <ul>
             <li>
               <a href="http://www.pasteurmontroland.com/">
-                Lycée Pasteur Mont Roland Dole
-              </a>
-            </li>
-            <li>
-              <a href="">
-                A propos
+                GLPMR Dole
               </a>
             </li>
           </ul>

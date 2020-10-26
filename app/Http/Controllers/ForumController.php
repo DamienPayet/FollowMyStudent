@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use \Validator;
 use App\Sujet;
 use App\Section;
@@ -51,6 +52,7 @@ class ForumController extends Controller
     $sujet->titre = $request->get('titre');
     $sujet->description = $request->get('description');
     $sujet->categorie_id = $request->get('categorie');
+    $sujet->user_id = Auth::user()->id;
     $sujet->type = $request->get('type');
     $sujet->created_at = now();
     $sujet->nbVue = 0;

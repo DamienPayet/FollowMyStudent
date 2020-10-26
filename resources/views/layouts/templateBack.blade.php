@@ -8,8 +8,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="icon" type="image/png" href="{{url('front/images/favicon.ico')}}">
 
-    <title>Administration</title>
+    <title>Administration FMS</title>
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{url('back/plugins/fontawesome-free/css/all.min.css')}}">

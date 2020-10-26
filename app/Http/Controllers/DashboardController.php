@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Conversation;
 use App\Sujet;
+
 class DashboardController extends Controller
 {
     public function index()
@@ -40,6 +41,5 @@ class DashboardController extends Controller
     $offres = Offre::all();
 
     return view('back.dashboard.index', compact('offres'));
-
   }
 }

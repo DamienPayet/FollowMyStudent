@@ -31,7 +31,7 @@
   </div>
   <div class="container">
     @foreach ($section as $sections)
-
+    @if ($sections->categories->count() != 0)
     <div class="features-8 section-image" style="background-image: url('front/images/bg6.jpg')">
       <div class="col-md-7 ml-auto mr-auto text-center">
         <h3 class="title">
@@ -43,7 +43,6 @@
       <div class="container">
         <div class="row">
           @foreach ($sections->categories as $categorie)
-
           <div class="col-md-3">
             <div class="info text-center">
               <h5 class="btn btn-outline-primary btn-round btn-lg">
@@ -52,7 +51,7 @@
             </div>
           </div>
           @endforeach
-
+          @endif
         </div>
       </div>
     </div>

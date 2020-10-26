@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
       AdminSeeder::class,
       EleveSeeder::class,
       UserSeeder::class,
+      ForumSeeder::class,
+      OffreSeeder::class
     ]);
   }
 }
