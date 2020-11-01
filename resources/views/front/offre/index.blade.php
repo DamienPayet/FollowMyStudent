@@ -1,7 +1,6 @@
 @extends('layouts.templateFront')
 
 @section('content')
-<link rel="stylesheet" href="{{url('front/css/test.css')}}">
 <div class="section">
   <div class="container">
     <div id="offers">

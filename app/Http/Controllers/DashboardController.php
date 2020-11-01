@@ -7,7 +7,6 @@ use App\QuestionnaireReponse;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\User;
 use App\Conversation;
 use App\Sujet;
 
@@ -37,7 +36,7 @@ class DashboardController extends Controller
       $conv->users()->attach($user);
       $conv->users()->attach(User::find($id));
     }
-*/
+
     $offres = Offre::all();
 
     return view('back.dashboard.index', compact('offres'));

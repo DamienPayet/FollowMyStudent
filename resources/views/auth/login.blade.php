@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <!-- CSS Files -->
   <link href="../front/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="../front/css/now-ui-kit.css?v=1.3.0" rel="stylesheet" />
+  <link href="../front/css/login.css" rel="stylesheet" />
 </head>
 
 <body class="login-page sidebar-collapse">
@@ -41,19 +41,19 @@
       <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="../assets/img/blurred-image-1.jpg" style="background: linear-gradient(#38422b 0%, #000 80%);">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="https://twitter.com/pmr_dole" target="_blank">
+            <a class="nav-link" rel="tooltip" title="Suis nous Twitter" data-placement="bottom" href="https://twitter.com/pmr_dole" target="_blank">
               <i class="fab fa-twitter"></i>
               <p class="d-lg-none d-xl-none">Twitter</p>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="https://www.facebook.com/lycee.pasteurmontroland" target="_blank">
+            <a class="nav-link" rel="tooltip" title="Rejoins nous sur Facebook" data-placement="bottom" href="https://www.facebook.com/lycee.pasteurmontroland" target="_blank">
               <i class="fab fa-facebook-square"></i>
               <p class="d-lg-none d-xl-none">Facebook</p>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom" href="https://www.instagram.com/mont.roland/" target="_blank">
+            <a class="nav-link" rel="tooltip" title="Rendez vous sur Instagram" data-placement="bottom" href="https://www.instagram.com/mont.roland/" target="_blank">
               <i class="fab fa-instagram"></i>
               <p class="d-lg-none d-xl-none">Instagram</p>
             </a>

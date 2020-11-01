@@ -133,6 +133,36 @@
       @show
 
     </div>
+    <footer class="footer footer-default"  data-background-color="black">
+    
+    <div class=" container ">
+        <nav>
+            <ul>
+                <li>
+                    <a href="https://www.creative-tim.com">
+                        Creative Tim
+                    </a>
+                </li>
+                <li>
+                    <a href="http://presentation.creative-tim.com">
+                       About Us
+                    </a>
+                </li>
+                <li>
+                    <a href="http://blog.creative-tim.com">
+                       Blog
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="copyright" id="copyright">
+            © <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>2020, Designed by <a href="a" target="_blank">Damso</a>. Coded by <a href="b" target="_blank">Florent / Hugo / Damien</a>.
+        </div>
+    </div>
+    
+
+
+</footer>
     <footer @section("footerstyle")@show class="footer" data-background-color="black">
       <div class="copyright" id="copyright">
         &copy;

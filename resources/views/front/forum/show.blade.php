@@ -2,7 +2,7 @@
 
 
 @section('content')
-<div class="section">
+<div class="section card">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -12,15 +12,14 @@
                     </a>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 ml-auto mr-auto">
-                    <h3 class="title">{{$sujet->titre}}</h3>
-                    <p>{{$sujet->description}}</p>
-                </div>
+
+            <div class="col-md-8 ml-auto mr-auto">
+                <h3 class="title" style="font-size: 2.2em;">{{$sujet->titre}}</h3>
+                <br>
+                <p>{{$sujet->description}}</p>
+                <br> <br>
+                <br>
+
             </div>
         </div>
     </div>
@@ -56,22 +55,22 @@
         <div class="row">
             <div class="col-md-8 ml-auto mr-auto">
                 <div class="media-area">
-                    <h3 class="title text-center">3 Commentaires</h3>
+                    <h3 class="title text-center">3 Commentaires</h3><br>
                     <div class="media">
                         <a class="pull-left" href="#pablo">
                             <div class="avatar">
-                                <img class="media-object img-raised" src="../assets/img/james.jpg" alt="...">
+                                <img class="rounded-circle img-raised" src="{{url('front/images/logo.png')}}" alt="...">
                             </div>
                         </a>
-                        <div class="media-body">
-                            <h5 class="media-heading">Tina Andrew <small class="text-muted">· 7 minutes ago</small></h5>
+                        <div class="media-body card">
+                            <h5 class="media-heading"> Tina Andrew <small class="text-muted">· 7 minutes ago</small></h5>
 
                             <p>Chance too good. God level bars. I'm so proud of @LifeOfDesiigner #1 song in the country. Panda! Don't be scared of the truth because we need to restart the human foundation in truth I stand with the most humility. We are so blessed!</p>
                             <p>All praises and blessings to the families of people who never gave up on dreams. Don't forget, You're Awesome!</p>
 
                             <div class="media-footer">
                                 <a href="#pablo" class="btn btn-primary btn-neutral pull-right" rel="tooltip" title="" data-original-title="Reply to Comment">
-                                    <i class="now-ui-icons ui-1_send"></i> Reply
+                                    <i class="now-ui-icons ui-1_send"></i> Répondre
                                 </a>
                                 <a href="#pablo" class="btn btn-danger btn-neutral pull-right">
                                     <i class="now-ui-icons ui-2_favourite-28"></i> 243
@@ -83,10 +82,10 @@
                     <div class="media">
                         <a class="pull-left" href="#pablo">
                             <div class="avatar">
-                                <img class="media-object img-raised" alt="Tim Picture" src="../assets/img/michael.jpg">
+                                <img class="rounded-circle img-raised" alt="Tim Picture" src="{{url('front/images/logo.png')}}">
                             </div>
                         </a>
-                        <div class="media-body">
+                        <div class="media-body card">
                             <h5 class="media-heading">John Camber <small class="text-muted">· Yesterday</small></h5>
 
                             <p>Hello guys, nice to have you on the platform! There will be a lot of great stuff coming soon. We will keep you posted for the latest news.</p>
@@ -94,34 +93,12 @@
 
                             <div class="media-footer">
                                 <a href="#pablo" class="btn btn-primary btn-neutral pull-right" rel="tooltip" title="" data-original-title="Reply to Comment">
-                                    <i class="now-ui-icons ui-1_send"></i> Reply
+                                    <i class="now-ui-icons ui-1_send"></i> Répondre
                                 </a>
                                 <a href="#pablo" class="btn btn-danger btn-neutral pull-right">
                                     <i class="now-ui-icons ui-2_favourite-28"></i> 25
                                 </a>
-                            </div>
-                            <div class="media">
-                                <a class="pull-left" href="#pablo">
-                                    <div class="avatar">
-                                        <img class="media-object img-raised" alt="64x64" src="../assets/img/julie.jpg">
-                                    </div>
-                                </a>
-                                <div class="media-body">
-                                    <h5 class="media-heading">Tina Andrew <small class="text-muted">· 2 Days Ago</small></h5>
-
-                                    <p>Hello guys, nice to have you on the platform! There will be a lot of great stuff coming soon. We will keep you posted for the latest news.</p>
-                                    <p> Don't forget, You're Awesome!</p>
-
-                                    <div class="media-footer">
-                                        <a href="#pablo" class="btn btn-primary btn-neutral pull-right" rel="tooltip" title="" data-original-title="Reply to Comment">
-                                            <i class="now-ui-icons ui-1_send"></i> Reply
-                                        </a>
-                                        <a href="#pablo" class="btn btn-danger btn-neutral pull-right">
-                                            <i class="now-ui-icons ui-2_favourite-28"></i> 2
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                        
                         </div>
                     </div>
                 </div>
@@ -132,7 +109,7 @@
                             <img class="rounded-circle img-raised" alt="64x64" src="{{url('front/images/logo.png')}}">
                         </div>
                     </a>
-                    <div class="media-body">
+                    <div class="media-body card">
                         <lt-mirror style="display: none;">
                             <lt-highlighter contenteditable="false" style="display: none;">
                                 <lt-div spellcheck="false" class="lt-highlighter__wrapper" style="width: 401px !important; height: 79px !important; transform: none !important; transform-origin: 200.5px 40px !important; zoom: 1 !important; margin-top: 0px !important; margin-left: 0px !important;">

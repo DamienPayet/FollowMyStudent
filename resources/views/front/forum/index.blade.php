@@ -9,11 +9,15 @@
     </center>
     <div class="content-center">
       <div class="container">
-        <h1 class="title">Bienvenue sur le forum !</h1>
-        <div class="text-center">
+        <h1 class="title" style="font-size: 4.2em;">Bienvenue sur le forum !</h1>
+        <br>
+        <div class="text-center" style="font-size: 1.2em;">
           {{ __('Besoin d\'aide? Une question? Ce forum est fait pour toi.') }}
         </div>
-        <div class="text-center">
+        <br> <br>
+
+
+        <div class="text-center" style="font-size: 1.5em;">
           {{ __('Avant toute chose, merci de lire, les ')}}
           <a href="#rules" data-toggle="tab">règles.</a>
         </div>
@@ -34,25 +38,23 @@
     @if ($sections->categories->count() != 0)
     <div class="features-8 section-image" style="background-image: url('front/images/bg6.jpg')">
       <div class="col-md-7 ml-auto mr-auto text-center">
-        <h3 class="title">
+        <h3 class="title" style="font-size: 2.2em;">
           <i class="now-ui-icons now-ui-icons files_paper" style="width : 30px">
           </i>
-          {{$sections->titre}}</h3>
+          {{$sections->titre}}</h3><br>
         <h5 class="description"> {{$sections->description}}</h5>
-      </div>
+      </div><br>
       <div class="container">
-        <div class="row">
+        <div class="categories-container tab">
+
           @foreach ($sections->categories as $categorie)
-          <div class="col-md-3">
-            <div class="info text-center">
-              <h5 class="btn btn-outline-primary btn-round btn-lg">
-                <a href="{{route('sujet.index', $categorie->id, $sujets)}}">{{$categorie->nom}}</a>
-              </h5>
-            </div>
-          </div>
+          <a href="{{ route('sujet.index', $categorie->id, $sujets) }}" class="card" style=" width: 130px;height: 50px; text-align: center;align-items: center;
+    justify-content: center;">
+{{$categorie->nom}}
+          </a>
           @endforeach
-          @endif
         </div>
+        @endif
       </div>
     </div>
     @endforeach
@@ -64,22 +66,21 @@
       <div class="container">
         <div class="row">
           <div class="col-md-3 ml-auto mr-auto text-center">
-
             <!-- -->
-            <h3>Dernières catégories</h3>
+            <h3>Dernières catégories</h3><br>
             @foreach($categories as $categorie)
-            <div class="blocktxt">
-              <a href="{{route('sujet.index',$categorie->id, $sujets)}}" class="btn btn-link">{{$categorie->nom}}</a>
+            <div class="categories-container tab">
+              <a href="{{route('sujet.index',$categorie->id, $sujets)}}" class="card" style=" width: 130px;height: 50px;    align-items: center;
+    justify-content: center;">{{$categorie->nom}}</a>
             </div>
             @endforeach
             <!-- -->
           </div>
           <div class="col-md-3 ml-auto mr-auto text-center">
-            <h3>Sujets récents</h3>
-            <div class="divline"></div>
+            <h3>Sujets récents</h3><br>
             @foreach($sujets as $sujet)
-            <div class="blocktxt">
-              <a href="{{route('sujet.show', $sujet)}}" class="btn btn-link">{{$sujet->titre}}</a>
+            <div class="categories-container tab">
+              <a href="{{route('sujet.show', $sujet)}}" class="card" style=" width: 200px;height: 50px;">{{$sujet->titre}}</a>
             </div>
             @endforeach
           </div>
