@@ -80,8 +80,8 @@ class UserController extends Controller
           $user->image_profil = "default.png";
         }else {
           $avatar = $request->file('image_profil');
-          $filename = date('Y-m-d') . '_' . $avatar->getClientOriginalName();
-          Image::make($avatar)->resize(300,300)->save( public_path('back/uploads/avatars/' . $filename ) );
+          $filename = 'back/uploads/avatars/' . date('Y-m-d') . '_' . $avatar->getClientOriginalName();
+          Image::make($avatar)->resize(300,300)->save( public_path( $filename ) );
           $user->image_profil = $filename;
         }
         //
@@ -154,11 +154,10 @@ class UserController extends Controller
           $user->image_profil = "default.png";
         }else {
           $avatar = $request->file('image_profil');
-          $filename = date('Y-m-d') . '_' . $avatar->getClientOriginalName();
-          Image::make($avatar)->resize(300,300)->save( public_path('back/uploads/avatars/' . $filename ) );
+          $filename = 'back/uploads/avatars/' . date('Y-m-d') . '_' . $avatar->getClientOriginalName();
+          Image::make($avatar)->resize(300,300)->save( public_path($filename ) );
           $user->image_profil = $filename;
         }
-        //
         $user->save();
 
         return redirect()->route("users.index")->with('success','Modification réussite !');
