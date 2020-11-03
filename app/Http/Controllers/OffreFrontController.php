@@ -9,7 +9,7 @@ class OffreFrontController extends Controller
 {
     public function index()
     {
-        $offres = Offre::all();
+        $offres = Offre::paginate(6);
        
         return view('front/offre.index', compact('offres'));
 

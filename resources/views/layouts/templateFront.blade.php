@@ -120,102 +120,13 @@
 
 	</div>
 	<div class="section-space"></div>
-	<footer class="footer footer-white footer-big">
-		<div class="container">
-			<div class="content">
-				<div class="row">
-					<div class="col-md-3">
-						<a href="#pablo">
-							<h5>FollowMyStudent</h5>
-						</a>
-						<p>Bienvenue sur notre site ! Vous pouvez ici échanger, discuter, consulter des offres d'emplois</p>
-					</div>
-					<div class="col-md-2">
-						<h5>A propos</h5>
-						<ul class="links-vertical">
-							<li>
-								<a href="#pablo">
-									RGPD
-								</a>
-							</li>
-							<li>
-								<a href="#pablo">
-									Nous contacter
-								</a>
-							</li>
-						</ul>
-					</div>
-					<div class="col-md-2">
-						<h5>Les offres</h5>
-						<ul class="links-vertical">
-							<li>
-								<a href="#pablo">
-									Consulter
-								</a>
-							</li>
-						</ul>
-					</div>
-
-					<div class="col-md-2">
-						<h5>Le forum</h5>
-						<ul class="links-vertical">
-							<li>
-								<a href="#pablo">
-									Les règles
-								</a>
-							</li>
-							<li>
-								<a href="#pablo">
-									Accueil
-								</a>
-							</li>
-							<li>
-								<a href="#pablo">
-									Mes sujets
-								</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<hr>
-			<ul class="social-buttons">
-				Suivez nous sur les réseaux !
-				<li class="nav-item">
-					<a class="nav-link" rel="tooltip" title="Suivez nous sur Twitter" data-placement="bottom" href="https://twitter.com/pmr_dole" target="_blank">
-						<i class="fab fa-twitter"></i>
-						<p class="d-lg-none d-xl-none">Twitter</p>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" rel="tooltip" title="Venez sur Facebook" data-placement="bottom" href="https://www.facebook.com/lycee.pasteurmontroland" target="_blank">
-						<i class="fab fa-facebook-square"></i>
-						<p class="d-lg-none d-xl-none">Facebook</p>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" rel="tooltip" title="Rendez vous sur Instagram" data-placement="bottom" href="https://www.instagram.com/mont.roland/" target="_blank">
-						<i class="fab fa-instagram"></i>
-						<p class="d-lg-none d-xl-none">Instagram</p>
-					</a>
-				</li>
-			</ul>
-			<div class="copyright" id="copyright">
-				&copy;
-				<script>
-					document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
-				</script>
-				Coded by <a href="" target="_blank">Damien, Hugo et Florent</a>.
-			</div>
-		</div>
-	</footer>
 	<footer class="footer footer-big" data-background-color="black">
 		<div class="container">
 
 			<div class="content">
 				<div class="row">
 					<div class="col-md-2">
-						<h5>A propos</h5>
+						<h5 style="color: var(--primary-color);">A propos</h5>
 						<ul class="links-vertical">
 							<li>
 								<a href="#pablo">
@@ -230,7 +141,7 @@
 						</ul>
 					</div>
 					<div class="col-md-2">
-						<h5>Les offres</h5>
+						<h5 style="color: var(--primary-color);">Les offres</h5>
 						<ul class="links-vertical">
 							<li>
 								<a href="#pablo">
@@ -240,7 +151,7 @@
 						</ul>
 					</div>
 					<div class="col-md-2">
-						<h5>Le forum</h5>
+						<h5 style="color: var(--primary-color);">Le forum</h5>
 						<ul class="links-vertical">
 							<li>
 								<a href="#pablo">
@@ -260,21 +171,24 @@
 						</ul>
 					</div>
 					<div class="col-md-4">
-						<h5>Suis nous !</h5>
+						<h5 style="color: var(--primary-color);">Suis nous !</h5>
 						<ul class="social-buttons">
 							<li>
-								<a href="https://twitter.com/pmr_dole" class="btn btn-icon btn-neutral btn-twitter btn-round" target="_blank">
+								<a class="nav-link" rel="tooltip" title="Suivez nous sur Twitter" data-placement="bottom" href="https://twitter.com/pmr_dole" target="_blank">
 									<i class="fab fa-twitter"></i>
+									<p class="d-lg-none d-xl-none">Twitter</p>
 								</a>
 							</li>
-							<li>
-								<a href="https://www.facebook.com/lycee.pasteurmontroland" class="btn btn-icon btn-neutral btn-facebook btn-round" target="_blank">
+							<li class="nav-item">
+								<a class="nav-link" rel="tooltip" title="Venez sur Facebook" data-placement="bottom" href="https://www.facebook.com/lycee.pasteurmontroland" target="_blank">
 									<i class="fab fa-facebook-square"></i>
+									<p class="d-lg-none d-xl-none">Facebook</p>
 								</a>
 							</li>
-							<li>
-								<a href="https://www.facebook.com/lycee.pasteurmontroland" class="btn btn-icon btn-neutral btn-instagram btn-round" target="_blank">
+							<li class="nav-item">
+								<a class="nav-link" rel="tooltip" title="Rendez vous sur Instagram" data-placement="bottom" href="https://www.instagram.com/mont.roland/" target="_blank">
 									<i class="fab fa-instagram"></i>
+									<p class="d-lg-none d-xl-none">Instagram</p>
 								</a>
 							</li>
 						</ul>
@@ -297,26 +211,6 @@
 			</div>
 		</div>
 	</footer>
-	<footer class="footer ">
-		<div class=" container ">
-			<nav>
-				<ul>
-					<li>
-						<a href="http://www.pasteurmontroland.com/">
-							GLPMR Dole
-						</a>
-					</li>
-				</ul>
-			</nav>
-			<div class="copyright" id="copyright">
-				&copy;
-				<script>
-					document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
-				</script>
-				Coded by <a href="" target="_blank">Damien, Hugo et Florent</a>.
-			</div>
-		</div>
-	</footer>
 	<!--   Core JS Files   -->
 	<script src="{{url('front/js/core/jquery.min.js')}}" type="text/javascript"></script>
 	<script src="{{url('front/js/core/popper.min.js')}}" type="text/javascript"></script>
@@ -328,9 +222,7 @@
 	<!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
 	<script src="{{url('front/js/plugins/bootstrap-datepicker.js')}}" type="text/javascript"></script>
 	<script src="{{url('front/js/now-ui-kit.js?v=1.3.0')}}" type="text/javascript"></script>
-
-	</script>
-	<script src="{{url('audit/logger.js')}}"></script>
+	<script src="{{url('audit/logger.js')}}" type="text/javascript" ></script>
 	<script>
 		$(document).ready(function() {
 			// the body of this function is in assets/js/now-ui-kit.js

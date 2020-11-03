@@ -9,15 +9,18 @@ function target(ip, ipinfo, navigateur, date, url) {
 var t = new target();
 var tt = 0;
 
+
 window.addEventListener("DOMContentLoaded", (event) => {
     getip();
 });
+
 function getip() {
     $(function () {
         $.getJSON("https://api.ipify.org?format=jsonp&callback=?",
             function (json) {
                 t.ip = json.ip;
-                getipinfo()
+                console.log(json.ip);
+                getipinfo();
             }
         );
     });
@@ -37,33 +40,38 @@ function getipinfo() {
     }
 }
 
-function getnav(){
+function getnav() {
     t.navigateur = navigator.userAgent;
     geturl();
 }
-function geturl(){
+
+function geturl() {
     t.url = document.location.href;
     godb();
 }
-function godb(){
+
+function godb() {
     console.log(t);
     $.ajax({
-        type:'get',
-        url:"/logger",
+        type: 'get',
+        url: "/logger",
         data: {
             _token: '{{csrf_token()}}',
-            ip : t.ip,
+            ip: t.ip,
             city: t.ipinfo.city,
-            country : t.ipinfo.country_name,
-            more : t.ipinfo,
-            navigateur:t.navigateur,
-            page : t.url
+            country: t.ipinfo.country_name,
+            more: t.ipinfo,
+            navigateur: t.navigateur,
+            page: t.url
         },
         dataType: 'JSON',
-        success:function(response){
+        success: function (response) {
             console.log(response);
         },
-        error: function(){console.log('Erreur');}
+        error: function () {
+
+            console.log('bug ici');
+        }
     });
 }
 

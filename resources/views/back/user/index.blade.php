@@ -47,7 +47,7 @@ Gestion Utilisateurs
             @endif
           </td>
           <td>{{ $u->email }}</td>
-          <td><img src="uploads/avatars/{{$u->image_profil}}" class="img-size-50 img-circle mr-3"></td>
+          <td><img src="{{url($u->image_profil)}}" class="img-size-50 img-circle mr-3"></td>
           <td>{{ $u->statut }}</td>
           <td>
             <form action="{{route('users.edit', $u->id)}}" method="POST">
