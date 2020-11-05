@@ -17,6 +17,7 @@ class CreateSectionsTable extends Migration
             $table->id();
             $table->string('titre');
             $table->longText('description');
+            $table->string('nb_vue');
             $table->timestamps();
 
         });
