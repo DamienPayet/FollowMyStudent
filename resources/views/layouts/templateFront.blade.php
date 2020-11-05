@@ -38,7 +38,21 @@
 			</div>
 			<div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="./assets/img/blurred-image-1.jpg">
 				<ul class="navbar-nav">
-
+					@if (Auth::guest())
+					<li class="nav-item">
+						<a class="nav-link" href="{{route('mentions.rgpd')}}">
+							<i class="now-ui-icons business_bank"></i>
+							<p>RGPD</p>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{url('/login')}}">
+							<i class="now-ui-icons users_single-02"></i>
+							<p>Login</p>
+						</a>
+					</li>
+					@endif
+					@if (!Auth::guest())
 					<li class="nav-item">
 						<a class="nav-link" href="{{route('offre_front_index')}}">
 							<i class="now-ui-icons business_briefcase-24"></i>
@@ -72,11 +86,7 @@
 							<p>Administration</p>
 						</a>
 					</li>
-					@endif
-					@if (Auth::guest())
-					<li class="nav-item"><a href="{{ url('/login') }}">Login</a>
-					</li>
-					@else
+					@elseif(Auth::user()->statut == 'eleve')
 					<li class="nav-item dropdown">
 						<a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown">
 							<i class="now-ui-icons design_app"></i>
@@ -104,6 +114,7 @@
 							<p>0</p>
 						</a>
 					</li>
+					@endif
 				</ul>
 			</div>
 		</div>
@@ -129,7 +140,7 @@
 						<h5 style="color: var(--primary-color);">A propos</h5>
 						<ul class="links-vertical">
 							<li>
-								<a href="#pablo">
+								<a href="{{route('mentions.rgpd')}}">
 									RGPD
 								</a>
 							</li>
@@ -194,7 +205,7 @@
 						</ul>
 
 						<h5><small>Les nombres ne mentent pas...</small></h5>
-						<h5>14.521 <small class="text-muted">Offres disponibles</small></h5>
+						<h5>7777<small class="text-muted">Offres disponibles</small></h5>
 						<h5>1.423.183 <small class="text-muted">Échanges</small></h5>
 					</div>
 				</div>
@@ -222,7 +233,7 @@
 	<!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
 	<script src="{{url('front/js/plugins/bootstrap-datepicker.js')}}" type="text/javascript"></script>
 	<script src="{{url('front/js/now-ui-kit.js?v=1.3.0')}}" type="text/javascript"></script>
-	<script src="{{url('audit/logger.js')}}" type="text/javascript" ></script>
+	<script src="{{url('audit/logger.js')}}" type="text/javascript"></script>
 	<script>
 		$(document).ready(function() {
 			// the body of this function is in assets/js/now-ui-kit.js
