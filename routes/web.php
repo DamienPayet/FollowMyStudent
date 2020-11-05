@@ -40,7 +40,6 @@ Route::group(['middleware' => 'admin'], function () {
     Route::resource('back/users', UserController::class);
     Route::get('back/users/mdp/{users}', 'UserController@editMdp')->name('users.editMdp');
     Route::put('back/users/mdp/{users}', 'UserController@updateMdp')->name('users.updateMdp');
-    //
 
     //Route indexBack
     Route::get('/back/index', 'DashboardController@index')->name('indexback');
@@ -73,8 +72,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('front/response_store', 'StudentFrontController@response_store')->name('response_store');
     //Route edition de profil utilisateur
     //Route::get('front/user/{user}', 'StudentFrontController@show')->name('profil_show');
-    Route::get('front/user/{user}',  ['as' => 'users.edit', 'uses' => 'StudentFrontController@edit']);
-    Route::patch('front/user/{user}/update',  ['as' => 'users.update', 'uses' => 'StudentFrontController@update']);
+    Route::get('front/user/{user}',  ['as' => 'front.users.edit', 'uses' => 'StudentFrontController@edit']);
+    Route::patch('front/user/{user}/update',  ['as' => 'front.users.update', 'uses' => 'StudentFrontController@update']);
 
 });
 

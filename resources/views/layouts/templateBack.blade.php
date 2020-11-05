@@ -173,7 +173,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
-                    <img src="uploads/avatars/{{$user->image_profil}}" class="img-size-50 img-circle mr-3">
+                    <img src="{{url($user->image_profil)}}" class="img-size-50 img-circle mr-3">
                 </div>
                 <div class="info">
                     <a href="#" class="d-block">

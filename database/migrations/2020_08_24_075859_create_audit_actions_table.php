@@ -15,12 +15,12 @@ class CreateAuditActionsTable extends Migration
     {
         Schema::create('audit_actions', function (Blueprint $table) {
             $table->id();
-            $table->String('action');
-            $table->String('ip');
-            $table->String('city');
-            $table->String('country');
-            $table->String('navigateur');
-            $table->String('more');
+            $table->String('action')->nullable();
+            $table->String('ip')->nullable();
+            $table->String('city')->nullable();
+            $table->String('country')->nullable();
+            $table->String('navigateur')->nullable();
+            $table->String('more')->nullable();
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->timestamps();
         });

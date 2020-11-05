@@ -87,7 +87,7 @@
 							@endif
 						</a>
 						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink1">
-							<a class="dropdown-item" href="{{ route('users.edit', Auth::user()->id) }}">
+							<a class="dropdown-item" href="{{ route('front.users.edit', Auth::user()->id) }}">
 								<i class="now-ui-icons business_chart-pie-36"></i> Mon profil
 							</a>
 							<a class="dropdown-item" href="Logout" onclick="event.preventDefault();document.getElementById('logout-form').submit();"> Déconnexion </a>
