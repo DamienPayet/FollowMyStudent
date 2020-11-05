@@ -7,10 +7,13 @@
 
 
     @include('back.alert')
+    <a href="/download">
+        <button style='margin-left:10px;' type="submit" class="btn btn-primary">
+            Exporter les logs
+        </button>
+    </a>
 
-
-
-    <br/>  <br/>
+    <br/><br/>
 
     <table id="table_id" class="table">
         <thead>

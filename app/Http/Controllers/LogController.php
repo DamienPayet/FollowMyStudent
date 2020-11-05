@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\AuditAction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Response;
 
 class LogController extends Controller
 {
@@ -27,5 +28,16 @@ class LogController extends Controller
     public function index(){
         $logs = AuditAction::all();
         return view('back/log.index' ,compact('logs'));
+    }
+    public function export(){
+        $fp = fopen('log.csv', 'w');
+        $log = AuditAction::all();
+
+        foreach ($log as $fields) {
+            fputcsv($fp, $fields->attributesToArray());
+        }
+        fclose($fp);
+        $file="log.csv";
+        return Response::download($file);
     }
 }
