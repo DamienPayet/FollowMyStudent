@@ -66,11 +66,10 @@
       <div class="container">
         <div class="row">
           <div class="col-md-3 ml-auto mr-auto text-center">
-            <!-- -->
             <h3>Dernières catégories</h3><br>
             @foreach($categories as $categorie)
             <div class="categories-container tab">
-              <a href="{{route('sujet.index',$categorie->id, $sujets)}}" class="card" style=" width: 130px;height: 50px;    align-items: center;
+              <a href="{{route('sujet.index',$categorie->id, $sujets)}}" class="card" style=" width: 130px;height: 50px;align-items: center;
     justify-content: center;">{{$categorie->nom}}</a>
             </div>
             @endforeach
@@ -80,7 +79,8 @@
             <h3>Sujets récents</h3><br>
             @foreach($sujets as $sujet)
             <div class="categories-container tab">
-              <a href="{{route('sujet.show', $sujet)}}" class="card" style=" width: 200px;height: 50px;">{{$sujet->titre}}</a>
+              <a href="{{route('sujet.show', $sujet)}}" class="card" style=" width: 200px;height: 50px;align-items: center;
+    justify-content: center;">{{$sujet->titre}}</a>
             </div>
             @endforeach
           </div>

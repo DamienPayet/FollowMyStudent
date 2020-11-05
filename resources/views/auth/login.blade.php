@@ -1,6 +1,6 @@
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="../front/images/logo-glpmr.svg">
+  <link rel="apple-touch-icon" sizes="76x76" href="../front/images/pmr.png">
   <link rel="icon" type="image/png" href="../front/images/logo-glpmr.svg">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
@@ -71,7 +71,7 @@
         <div class="col-md-4 ml-auto mr-auto">
           <div class="card card-login card-plain">
             <div class="card-header text-center">
-              <img src="../front/images/logo-glpmr.svg" alt="">
+              <img src="../front/images/pmr.png" alt="">
             </div>
             <div class="card-body">
               <form method="POST" action="{{ route('login') }}">
