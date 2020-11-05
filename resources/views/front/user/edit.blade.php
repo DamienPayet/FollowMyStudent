@@ -10,7 +10,7 @@
       <div class="col-md-12">
         <div class="card ">
           <div class="card-body ">
-            <form method="post" action="{{ route('users.update', $user) }}" autocomplete="off" class="form-horizontal" enctype="multipart/form-data" accept-charset="utf-8">
+            <form method="post" action="{{ route('front.users.update', $user) }}" autocomplete="off" class="form-horizontal" enctype="multipart/form-data" accept-charset="utf-8">
               {{ csrf_field() }}
               {{ method_field('patch') }}
               <div class="row">

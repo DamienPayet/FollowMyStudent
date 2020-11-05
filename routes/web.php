@@ -74,7 +74,7 @@ Route::group(['middleware' => 'auth'], function () {
     //Route edition de profil utilisateur
     //Route::get('front/user/{user}', 'StudentFrontController@show')->name('profil_show');
     Route::get('front/user/{user}',  ['as' => 'front.users.edit', 'uses' => 'StudentFrontController@edit']);
-    Route::patch('front/user/{user}/update',  ['as' => 'users.update', 'uses' => 'StudentFrontController@update']);
+    Route::patch('front/user/{user}/update',  ['as' => 'front.users.update', 'uses' => 'StudentFrontController@update']);
 
 });
 
