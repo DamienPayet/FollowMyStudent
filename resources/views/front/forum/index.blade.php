@@ -38,7 +38,7 @@
     @if ($sections->categories->count() != 0)
     <div class="features-8 section-image" style="background-image: url('front/images/bg6.jpg')">
       <div class="col-md-7 ml-auto mr-auto text-center">
-        <h3 class="title" style="font-size: 2.2em;">
+        <h3 class="title" style="font-size: 2.2em; color: var(--primary-color);">
           <i class="now-ui-icons now-ui-icons files_paper" style="width : 30px">
           </i>
           {{$sections->titre}}</h3><br>
@@ -50,7 +50,7 @@
           @foreach ($sections->categories as $categorie)
           <a href="{{ route('sujet.index', $categorie->id, $sujets) }}" class="card" style=" width: 130px;height: 50px; text-align: center;align-items: center;
     justify-content: center;">
-{{$categorie->nom}}
+            {{$categorie->nom}}
           </a>
           @endforeach
         </div>
@@ -60,23 +60,21 @@
     @endforeach
 
     <div class="wrapper">
-
       <div class="section-space"></div>
-
       <div class="container">
         <div class="row">
           <div class="col-md-3 ml-auto mr-auto text-center">
-            <h3>Dernières catégories</h3><br>
+            <h3 style="font-size: 1.8em;">Dernières catégories</h3><br>
             @foreach($categories as $categorie)
             <div class="categories-container tab">
-              <a href="{{route('sujet.index',$categorie->id, $sujets)}}" class="card" style=" width: 130px;height: 50px;align-items: center;
+              <a href="{{route('sujet.index',$categorie->id, $sujets)}}" class="card" style=" width: 200px;height: 50px;align-items: center;
     justify-content: center;">{{$categorie->nom}}</a>
             </div>
             @endforeach
             <!-- -->
           </div>
           <div class="col-md-3 ml-auto mr-auto text-center">
-            <h3>Sujets récents</h3><br>
+            <h3 style="font-size: 1.8em;">Sujets les plus récents</h3><br>
             @foreach($sujets as $sujet)
             <div class="categories-container tab">
               <a href="{{route('sujet.show', $sujet)}}" class="card" style=" width: 200px;height: 50px;align-items: center;
