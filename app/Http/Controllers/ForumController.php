@@ -20,7 +20,7 @@ class ForumController extends Controller
     //$a = $section->categories()->paginate();
     //$pg_categories = SujetCategorie::paginate(8);
     //dd($pg_categories);
-    return view('front/forum.index', compact('section', 'sujets', 'categories', 'test_cat'));
+    return view('front/forum.index', compact('section', 'sujets', 'categories'));
   }
   public function index_sujet($id)
   {
