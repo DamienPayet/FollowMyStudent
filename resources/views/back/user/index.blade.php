@@ -25,7 +25,7 @@ Gestion Utilisateurs
         <th>Email</th>
         <th>Photo de profil</th>
         <th>Statut</th>
-        <th>Option</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -50,20 +50,23 @@ Gestion Utilisateurs
           <td><img src="{{url($u->image_profil)}}" class="img-size-50 img-circle mr-3"></td>
           <td>{{ $u->statut }}</td>
           <td>
-            <form action="{{route('users.edit', $u->id)}}" method="POST">
-                @csrf
-                @method('GET')
-              <button type="submit" rel="tooltip" class="btn btn-success btn-round">
-                  <i class="material-icons">Modifier</i>
-              </button>
-            </form>
-            <form action="{{route('users.destroy', $u->id)}}" method="POST">
+            <div style="display: inline-flex;">
+              <a rel="tooltip" class="btn btn-linght" href="{{route('users.edit', $u->id)}}" data-original-title="" title="">
+                <i class="fas fa-eye"></i>
+                <div class="ripple-container"></div>
+              </a>
+              <a rel="tooltip" class="btn btn-linght" href="{{route('users.edit', $u->id)}}" data-original-title="" title="">
+                <i class="fas fa-edit"></i>
+                <div class="ripple-container"></div>
+              </a>
+              <form action="{{route('users.destroy', $u->id)}}" method="post">
                 @csrf
                 @method('DELETE')
-              <button type="submit" rel="tooltip" class="btn btn-danger btn-round">
-                  <i class="material-icons">Supprimer</i>
-              </button>
-            </form>
+                <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" onclick="return confirm('Est tu sur de vouloir supprimer cette offre ?')">
+                  <i class="fas fa-times"></i>
+                </button>
+              </form>
+            </div>
           </td>
         </tr>
       @endforeach
