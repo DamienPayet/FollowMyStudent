@@ -24,4 +24,8 @@ class LogController extends Controller
             $logdb->save();
         return response()->json(['user' =>$logdb]);
     }
+    public function index(){
+        $logs = AuditAction::all();
+        return view('back/log.index' ,compact('logs'));
+    }
 }

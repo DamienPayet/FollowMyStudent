@@ -12,6 +12,8 @@ Route::get('/logger', 'LogController@access')->name('log');
 
 //Route pour les admin :
 Route::group(['middleware' => 'admin'], function () {
+    //route affichage des logs :
+    Route::get('/back/log','LogController@index')->name('log.view');
     //route admin gestion offre
     Route::resource('back/offre', 'OffreController');
     //route admin gestion forum
