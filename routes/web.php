@@ -40,7 +40,6 @@ Route::group(['middleware' => 'admin'], function () {
     Route::resource('back/users', UserController::class);
     Route::get('back/users/mdp/{users}', 'UserController@editMdp')->name('users.editMdp');
     Route::put('back/users/mdp/{users}', 'UserController@updateMdp')->name('users.updateMdp');
-    //
 
     //Route indexBack
     Route::get('/back/index', 'DashboardController@index')->name('indexback');
