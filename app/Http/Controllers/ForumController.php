@@ -26,12 +26,17 @@ class ForumController extends Controller
   {
     $sujets = Sujet::all();
     $categorie = SujetCategorie::find($id);
+    $categorie->nb_vue += 1;
+    $categorie->update();
     $user = User::all();
+    
 
     return view('front/forum.index_sujet', compact('sujets', 'categorie', 'users'));
   }
   public function show_sujet(Sujet $sujet)
   {
+    $sujet->nb_vue += 1;
+    $sujet->update();
     return view('front/forum.show', compact('sujet'));
   }
   public function create()

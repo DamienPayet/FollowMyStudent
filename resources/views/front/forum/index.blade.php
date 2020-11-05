@@ -64,7 +64,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-3 ml-auto mr-auto text-center">
-            <h3 style="font-size: 1.8em;">Dernières catégories</h3><br>
+            <h3 style="font-size: 1.8em; color: var(--primary-color);">Dernières catégories</h3><br>
             @foreach($categories as $categorie)
             <div class="categories-container tab">
               <a href="{{route('sujet.index',$categorie->id, $sujets)}}" class="card" style=" width: 200px;height: 50px;align-items: center;
@@ -74,7 +74,7 @@
             <!-- -->
           </div>
           <div class="col-md-3 ml-auto mr-auto text-center">
-            <h3 style="font-size: 1.8em;">Sujets les plus récents</h3><br>
+            <h3 style="font-size: 1.8em; color: var(--primary-color);">Sujets les plus récents</h3><br>
             @foreach($sujets as $sujet)
             <div class="categories-container tab">
               <a href="{{route('sujet.show', $sujet)}}" class="card" style=" width: 200px;height: 50px;align-items: center;
