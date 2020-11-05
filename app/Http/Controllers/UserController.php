@@ -151,7 +151,6 @@ class UserController extends Controller
 
         //Insertion IMAGE
         if ($request->file('image_profil') == null) {
-          $user->image_profil = "default.png";
         }else {
           $avatar = $request->file('image_profil');
           $filename = 'back/uploads/avatars/' . date('Y-m-d') . '_' . $avatar->getClientOriginalName();
