@@ -36,6 +36,12 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('/back/upart/{id}', 'QuestionnaireBackController@update_part')->name('update.part');
     Route::post('/back/uquest/{id}', 'QuestionnaireBackController@update_quest')->name('update.quest');
 
+    //Route Gestion User
+    Route::resource('back/users', UserController::class);
+    Route::get('back/users/mdp/{users}', 'UserController@editMdp')->name('users.editMdp');
+    Route::put('back/users/mdp/{users}', 'UserController@updateMdp')->name('users.updateMdp');
+    //
+
     //Route indexBack
     Route::get('/back/index', 'DashboardController@index')->name('indexback');
 });
@@ -85,8 +91,3 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/testBack', function () {
   return view('layouts.templateBack');
 });
-//Route Gestion User
-Route::resource('back/users', UserController::class);
-Route::get('back/users/mdp/{users}', 'UserController@editMdp')->name('users.editMdp');
-Route::put('back/users/mdp/{users}', 'UserController@updateMdp')->name('users.updateMdp');
-//

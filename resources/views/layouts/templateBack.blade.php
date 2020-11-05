@@ -78,13 +78,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </a>
                     <div class="dropdown-divider"></div>
                     <a href="#" class="dropdown-item">
+                      <?php $user = auth()->user();?>
                         <!-- Message Start -->
                         <div class="media">
-                            <img src="{{url('back/dist/img/user8-128x128.jpg')}}" alt="User Avatar"
-                                 class="img-size-50 img-circle mr-3">
+                            <img src="uploads/avatars/{{$user->image_profil}}" class="img-size-50 img-circle mr-3">
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
-                                    John Pierce
+                                  @if ($user->statut == "eleve")
+                                    {{ $user->eleve->prenom }}
+                                  @elseif ($user->statut == "admin")
+                                    {{ $user->admin->prenom }}
+                                  @endif
+
+                                  @if ($user->statut == "eleve")
+                                    {{ $user->eleve->nom }}
+                                  @elseif ($user->statut == "admin")
+                                    {{ $user->admin->nom }}
+                                  @endif
                                     <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
                                 </h3>
                                 <p class="text-sm">I got your message bro</p>
@@ -152,23 +162,33 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="index3.html" class="brand-link">
+        <a href="{{route('indexback')}}" class="brand-link">
             <img src="{{url('front/images/favicon.ico')}}" alt="FollowMyStudent"
                  class="brand-image img-circle elevation-3"
                  style="opacity: .8">
             <span class="brand-text font-weight-light">Administration FMS</span>
         </a>
-
         <!-- Sidebar -->
         <div class="sidebar">
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
-                    <img src="{{url('back/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2"
-                         alt="User Image">
+                    <img src="uploads/avatars/{{$user->image_profil}}" class="img-size-50 img-circle mr-3">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">Alexander Pierce</a>
+                    <a href="#" class="d-block">
+                      @if ($user->statut == "eleve")
+                      {{ $user->eleve->prenom }}
+                    @elseif ($user->statut == "admin")
+                      {{ $user->admin->prenom }}
+                    @endif
+
+                    @if ($user->statut == "eleve")
+                      {{ $user->eleve->nom }}
+                    @elseif ($user->statut == "admin")
+                      {{ $user->admin->nom }}
+                    @endif
+                  </a>
                 </div>
             </div>
 
