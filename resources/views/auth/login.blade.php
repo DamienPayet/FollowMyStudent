@@ -32,7 +32,7 @@
         <a class="navbar-brand" href="" rel="tooltip" title="Bienvenue sur Follow My Student !" data-placement="bottom" target="_blank">
           Follow My Student
         </a>
-        <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" >
+        <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-bar top-bar"></span>
           <span class="navbar-toggler-bar middle-bar"></span>
           <span class="navbar-toggler-bar bottom-bar"></span>
@@ -129,6 +129,11 @@
             <li>
               <a href="http://www.pasteurmontroland.com/">
                 GLPMR Dole
+              </a>
+            </li>
+            <li>
+              <a href="{{route('mentions.rgpd')}}">
+                RGPD
               </a>
             </li>
           </ul>
