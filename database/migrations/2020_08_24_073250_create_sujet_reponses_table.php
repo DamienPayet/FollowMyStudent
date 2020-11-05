@@ -18,6 +18,7 @@ class CreateSujetReponsesTable extends Migration
             $table->string('reponse');
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->bigInteger('sujet_id')->unsigned()->nullable();
+            $table->string('nb_vue');
             $table->timestamps();
         });
     }

@@ -22,6 +22,7 @@ class CreateSujetsTable extends Migration
             $table->bigInteger('categorie_id')->unsigned()->nullable();
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->boolean('resolue')->default(false);
+            $table->string('nb_vue');
             $table->timestamps();
         });
     }

@@ -17,7 +17,10 @@ class ForumController extends Controller
     $section = Section::all();
     $sujets = Sujet::latest()->take(3)->get();
     $categories = SujetCategorie::latest()->take(3)->get();
-    return view('front/forum.index', compact('section', 'sujets','categories'));
+    //$a = $section->categories()->paginate();
+    //$pg_categories = SujetCategorie::paginate(8);
+    //dd($pg_categories);
+    return view('front/forum.index', compact('section', 'sujets', 'categories', 'test_cat'));
   }
   public function index_sujet($id)
   {
@@ -25,7 +28,7 @@ class ForumController extends Controller
     $categorie = SujetCategorie::find($id);
     $user = User::all();
 
-    return view('front/forum.index_sujet', compact('sujets','categorie','users'));
+    return view('front/forum.index_sujet', compact('sujets', 'categorie', 'users'));
   }
   public function show_sujet(Sujet $sujet)
   {

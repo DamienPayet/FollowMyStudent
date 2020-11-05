@@ -17,6 +17,7 @@ class CreateSujetCategoriesTable extends Migration
             $table->id();
             $table->string('nom');
             $table->bigInteger('section_id')->unsigned()->nullable();
+            $table->string('nb_vue');
             $table->timestamps();
         });
     }
