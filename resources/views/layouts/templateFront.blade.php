@@ -46,6 +46,12 @@
 						</a>
 					</li>
 					<li class="nav-item">
+						<a class="nav-link" href="{{route('contact.create')}}">
+							<i class="now-ui-icons files_paper"></i>
+							<p>Contact</p>
+						</a>
+					</li>
+					<li class="nav-item">
 						<a class="nav-link" href="{{url('/login')}}">
 							<i class="now-ui-icons users_single-02"></i>
 							<p>Login</p>
@@ -66,7 +72,7 @@
 						</a>
 					</li>
 					<li class="nav-item dropdown">
-						<a href="" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown">
+						<a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown">
 							<i class="now-ui-icons design_bullet-list-67"></i>
 							<p>Forum</p>
 						</a>
@@ -79,11 +85,24 @@
 							</a>
 						</div>
 					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{route('ajaxRequest.index')}}">
+							<i class="fas fa-envelope"></i>
+							<p>0</p>
+						</a>
+					</li>
 					@if(Auth::user()->statut == 'admin')
 					<li class="nav-item">
 						<a class="nav-link" target="_blank" href="{{route('indexback')}}">
 							<i class="now-ui-icons ui-2_settings-90"></i>
 							<p>Administration</p>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="Logout" onclick="event.preventDefault();document.getElementById('logout-form').submit();"> Déconnexion </a>
+						<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+							{{ csrf_field() }}
+						</form>
 						</a>
 					</li>
 					@elseif(Auth::user()->statut == 'eleve')
@@ -108,12 +127,7 @@
 						</div>
 					</li>
 					@endif
-					<li class="nav-item">
-						<a class="nav-link" href="{{route('ajaxRequest.index')}}">
-							<i class="fas fa-envelope"></i>
-							<p>0</p>
-						</a>
-					</li>
+
 					@endif
 				</ul>
 			</div>
@@ -130,7 +144,6 @@
 		@show
 
 	</div>
-	<div class="section-space"></div>
 	<footer class="footer footer-big" data-background-color="black">
 		<div class="container">
 
@@ -145,7 +158,7 @@
 								</a>
 							</li>
 							<li>
-								<a href="#pablo">
+								<a href="{{route('contact.create')}}">
 									Nous contacter
 								</a>
 							</li>
@@ -222,6 +235,7 @@
 			</div>
 		</div>
 	</footer>
+
 	<!--   Core JS Files   -->
 	<script src="{{url('front/js/core/jquery.min.js')}}" type="text/javascript"></script>
 	<script src="{{url('front/js/core/popper.min.js')}}" type="text/javascript"></script>
@@ -239,8 +253,45 @@
 			// the body of this function is in assets/js/now-ui-kit.js
 			nowuiKit.initSliders();
 		});
-		
+
+		function readURL(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+
+				reader.onload = function(e) {
+					$('#preview-img').attr('src', e.target.result);
+				}
+
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+
+		$("#av_image").change(function() {
+			readURL(this);
+		});
+		$('#modal_button').click(function() {
+			console.log("click");
+			var value = document.querySelector('input[name="new_avatar"]:checked').value;
+			$('#imagechoisie').val(value);
+			console.log("imagechoisie: " + value);
+
+
+			$('#myModal').modal('hide');
+
+		});
+
+		function GetUserDetailsContact() {
+			var getNom = document.getElementById('user_name').getAttribute('data-user_name');
+			var getPrenom = document.getElementById('user_surname').getAttribute('data-user_surname');
+			var getEmail = document.getElementById('user_email').getAttribute('data-user_email');
+			$('#nom').val(getNom);
+			$('#prenom').val(getPrenom);
+			$('#email').val(getEmail);
+			console.log("nom: " +getNom);
+			console.log("prenom: " + getPrenom);
+			console.log("email: " + getEmail);
+		}
 	</script>
 </body>
 
-</html>
+</html>"

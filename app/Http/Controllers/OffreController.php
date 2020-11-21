@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Offre;
 use Illuminate\Http\Request;
 use \Validator;
@@ -17,7 +18,6 @@ class OffreController extends Controller
   {
     $offre = Offre::all();
     return view('back/offre.index', compact('offre'));
-
   }
   public function create(Offre $offre)
   {
@@ -25,11 +25,11 @@ class OffreController extends Controller
   }
 
   /**
-  * Création d'une offre
-  *
-  * @param  \App\Offre  $offre
-  * @return \Illuminate\View\View
-  */
+   * Création d'une offre
+   *
+   * @param  \App\Offre  $offre
+   * @return \Illuminate\View\View
+   */
   public function store(Request $request)
   {
     // On oblige à respecter certains critères avant de valider la requête
@@ -44,8 +44,8 @@ class OffreController extends Controller
     $offre = new Offre;
     $pdf_upload = $request->file('fileUpload');
     $rand = Str::random(10);
-    if(($pdf_upload != NULL) ){
-      $pdf_nommage = date('Y-m-d') . '-' . $rand .'-'. $pdf_upload->getClientOriginalName();
+    if (($pdf_upload != NULL)) {
+      $pdf_nommage = date('Y-m-d') . '-' . $rand . '-' . $pdf_upload->getClientOriginalName();
       $pdf_get = 'pdf/' . $pdf_nommage;
       if (($pdf_upload->move('pdf', $pdf_nommage))) {
         $offre->pdf = $pdf_get;
@@ -64,11 +64,6 @@ class OffreController extends Controller
     return redirect()->route('offre.index')->withStatus(__('Offre créée avec succès.'));
   }
 
-  public function show(Offre $offre)
-  {
-    return view('back/offre.show', compact('offre'));
-  }
-
   public function edit(Offre $offre)
   {
     return view('back/offre.edit', compact('offre'));
@@ -78,8 +73,8 @@ class OffreController extends Controller
   {
     $pdf_upload = $request->file('fileUpload');
     $rand = Str::random(10);
-    if(($pdf_upload != NULL) ){
-      $pdf_nommage = date('Y-m-d') . '-' . $rand .'-'. $pdf_upload->getClientOriginalName();
+    if (($pdf_upload != NULL)) {
+      $pdf_nommage = date('Y-m-d') . '-' . $rand . '-' . $pdf_upload->getClientOriginalName();
       $pdf_get = 'pdf/' . $pdf_nommage;
       if (($pdf_upload->move('pdf', $pdf_nommage))) {
         $offre->pdf = $pdf_get;
@@ -92,12 +87,12 @@ class OffreController extends Controller
     $offre->entreprise = $request->get('entreprise');
     $offre->type = $request->get('type');
     $offre->update();
-    return redirect()->route("offre.index")->with('success','Mise à jour réussite !');
+    return redirect()->route("offre.index")->with('success', 'Mise à jour réussite !');
   }
 
   public function destroy(Offre $offre)
   {
-    if(isset($offre->pdf)){
+    if (isset($offre->pdf)) {
       unlink(public_path($offre->pdf));
     }
     $offre->delete();
@@ -113,3 +108,4 @@ class OffreController extends Controller
         //return redirect()->route('offres.index')->withStatus(__('Offres supprimées avec succès'));
     }
   }
+}

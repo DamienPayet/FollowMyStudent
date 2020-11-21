@@ -10,6 +10,10 @@ use App\Conversation;
 use App\Message;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use Validator;
+use Image;
+use Illuminate\Support\Facades\Storage;
+use Redirect;
 
 class StudentFrontController extends Controller
 {
@@ -23,10 +27,23 @@ class StudentFrontController extends Controller
         $this->middleware('auth');
     }
 
-    public function edit(User $user)
+    public function edit(User $user, Request $request)
     {
         $user = Auth::user();
-        return view('front.user.edit', compact('user'));
+        //$page = (int) $request->input('page') ?: 2;
+        //$images = \File::allFiles(public_path('front\images\avatars'));
+        //$images = collect(\File::allFiles(public_path('/front/images/avatars/')));
+        //dd($images);
+        //$onPage = 15;
+
+        //$slice = $images->slice(($page-1)* $onPage, $onPage);
+
+        // $paginator = new \Illuminate\Pagination\LengthAwarePaginator($slice, $images->count(), $onPage);
+
+        // return view('front.user.edit', compact('user'))->with('images', $paginator);
+
+        $images = \File::allFiles(public_path('front\images\avatars'));
+        return view('front.user.edit', compact('user', 'images'));
     }
 
     public function show(User $user)
@@ -35,20 +52,46 @@ class StudentFrontController extends Controller
         return view('front.user.show', compact('user'));
     }
 
-    public function update(User $user)
+    public function update(Request $request, $id)
     {
-        $this->validate(request(), [
-            'name' => 'required',
+        $validator = Validator::make($request->all(), [
             'email' => 'required|email',
-            'password' => 'required|min:6|confirmed'
+            'password' => 'nullable|min:6|required_with:password_confirmation|same:password_confirmation',
+            'password_confirmation' => 'nullable|min:6'
         ]);
+        if ($validator->fails()) {
 
-        $user->name = request('name');
-        $user->email = request('email');
-        $user->password = bcrypt(request('password'));
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+        $user = User::find($id);
+
+        $user->email = $request->input('email');
+
+        if ($request->input('password') != null && $request->input('password_confirmation') != null ) {
+            $user->password = bcrypt($request->input('password'));
+        }
+        //Insertion IMAGE
+        if ($request->file('av_image') != null) {
+            $avatar = $request->file('av_image');
+            $filename = 'front/images/uploads/' . date('Y-m-d-m-s') .  '_userID_' . $user->id . '_' . $avatar->getClientOriginalName();
+            Image::make($avatar)->resize(300, 300)->save(public_path($filename));
+            $user->image_profil = $filename;
+        } elseif (request('imagechoisie') != null) {
+            $avatar = request('imagechoisie');
+
+            $source = public_path('front/images/avatars/' . $avatar);
+            $filename = date('Y-m-d-m-s') .  '_userID_' . $user->id . '_' . $avatar;
+            $destination = 'front/images/uploads/' . $filename;
+
+            if (\File::copy($source, $destination)) {
+                $user->image_profil = $destination;
+            }
+        }
+        //
+        //dd($user);
+        $user->updated_at = now();
 
         $user->save();
-
         return redirect()->back()->with('message', 'Profil modifié avec succès!');
     }
 
@@ -173,7 +216,7 @@ class StudentFrontController extends Controller
             }
         }
 
-        return response()->json(['messages' => $conversation->messages, 'conversation_user' => $conversation->users, 'conversation' => $conversation , 'destinataire' => $destinataire]);
+        return response()->json(['messages' => $conversation->messages, 'conversation_user' => $conversation->users, 'conversation' => $conversation, 'destinataire' => $destinataire]);
     }
 
     /**

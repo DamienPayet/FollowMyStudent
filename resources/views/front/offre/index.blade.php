@@ -9,7 +9,7 @@
       </h1>
       <div class="offers-container tab">
         @foreach ($offres as $offre)
-        <a href="{{ route('offre_front_show', $offre) }}" class="card" data-statuts="no_started" data-oscore="1" data-message="">
+        <a href="{{ route('offre_front_show', $offre) }}" class="card">
           <div class="card-header">
             <div class="card-info">
               <h2 class="title">{{$offre->titre}}</h2>
@@ -40,7 +40,7 @@
       </h1>
       <div class="offers-container tab">
         @foreach ($pop_offres as $offre)
-        <a href="{{ route('offre_front_show', $offre) }}" class="card" data-statuts="no_started" data-oscore="1" data-message="">
+        <a href="{{ route('offre_front_show', $offre) }}" class="card">
           <div class="card-header">
             <div class="card-info">
               <h2 class="title">{{$offre->titre}}</h2>

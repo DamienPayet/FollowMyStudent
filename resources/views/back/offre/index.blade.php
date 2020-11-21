@@ -70,7 +70,7 @@
                         <td>{{ $offres->created_at }}</td>
                         <td>
                           <div style="display: inline-flex;">
-                            <a rel="tooltip" class="btn btn-linght" href="{{ route('offre.edit', $offres) }}" data-original-title="" title="">
+                            <a rel="tooltip" class="btn btn-linght" href="{{ route('offre_front_show', $offres) }}" data-original-title="" title="">
                               <i class="fas fa-eye"></i>
                               <div class="ripple-container"></div>
                             </a>

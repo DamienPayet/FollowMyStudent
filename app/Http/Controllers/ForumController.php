@@ -41,15 +41,18 @@ class ForumController extends Controller
   }
   public function create()
   {
+    $section = Section::all();
     $categorie = SujetCategorie::all();
-    return view('front.forum.create_sujet', compact('categorie'));
+    return view('front.forum.create_sujet', compact('categorie','section'));
   }
 
   public function store(Request $request)
   {
     // On oblige à respecter certains critères avant de valider la requête
     $validator = Validator::make($request->all(), [
-      'titre' => 'required|max:255',
+      'titre' => 'required|min:10|max:255',
+      'description' => 'required|min:20',
+
     ]);
     // Si la validation échoue
     if ($validator->fails()) {
@@ -61,6 +64,7 @@ class ForumController extends Controller
     $sujet->description = $request->get('description');
     $sujet->categorie_id = $request->get('categorie');
     $sujet->user_id = Auth::user()->id;
+    $sujet->nb_vue += 1;
     $sujet->type = $request->get('type');
     $sujet->created_at = now();
     $sujet->nbVue = 0;

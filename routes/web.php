@@ -50,6 +50,11 @@ Route::group(['middleware' => 'admin'], function () {
 
   //Route indexBack
   Route::get('/back/index', 'DashboardController@index')->name('indexback');
+
+    //Route gestions demandes Contact
+    Route::get('/back/contact', 'NousContacterController@index')->name('contact.index');
+    Route::get('/back/contact/{id}', 'NousContacterController@show')->name('contact.show');
+    Route::delete('/back/dcontact/{id}', 'NousContacterController@destroy')->name('contact.destroy');
 });
 
 Route::group(['middleware' => 'auth'], function () {
@@ -97,3 +102,13 @@ Route::get('/testBack', function () {
 });
 //Route Mentions légales
 Route::get('front/mentions', 'MentionsLegController@index')->name('mentions.rgpd');
+// Render in view
+Route::get('front/contact', [
+  'uses' => 'NousContacterController@create'
+])->name('contact.create');
+
+// Post form data
+Route::post('front/contact', [
+  'uses' => 'NousContacterController@contact',
+  'as' => 'contact.store'
+]);

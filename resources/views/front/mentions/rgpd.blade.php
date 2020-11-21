@@ -4,9 +4,13 @@
 @section('content')
 <div class="section">
     <div class="container card">
-        <h3 class="title card-header" style="font-size: 2.2em; color: var(--primary-color); text-align: center;align-items: center;justify-content: center;"">Définitions</h3><br>
+        <h3 class="title card-header" style="font-size: 2.2em; color: var(--primary-color); text-align: center;align-items: center;justify-content: center;">Définitions</h3><br>
+        <div ng-bind-html="rgpdHTML"><br></div>
+
         <p><b style=" font-size: 1.2em; color: var(--primary-color);">Client :</b> tout professionnel ou personne physique capable au sens des articles 1123 et suivants du Code civil, ou personne morale, qui visite le Site objet des présentes conditions générales.<br>
-            <br><b style="font-size: 1.2em; color: var(--primary-color);">Prestations et Services :</b> <a href="http://followmystudent.test/">http://followmystudent.test/</a> met à disposition des Clients :</p><br>
+            <br><b style="font-size: 1.2em; color: var(--primary-color);">Prestations et Services :</b> <a href="http://followmystudent.test/">http://followmystudent.test/</a> met à disposition des Clients :</p>
+        <div ng-bind-html="rgpdHTML"><br>
+
 
             <p><b style="font-size: 1.2em; color: var(--primary-color);">Contenu :</b> Ensemble des éléments constituants l’information présente sur le Site, notamment textes – images – vidéos.</p><br>
 
@@ -246,6 +250,6 @@
                 Tout litige en relation avec l’utilisation du site <a href="http://followmystudent.test/">http://followmystudent.test/</a> est soumis au droit français.
                 En dehors des cas où la loi ne le permet pas, il est fait attribution exclusive de juridiction aux tribunaux compétents.</p>
             <br>
+        </div>
     </div>
-</div>
-@endsection
+    @endsection

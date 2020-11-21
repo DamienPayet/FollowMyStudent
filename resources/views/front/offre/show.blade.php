@@ -18,7 +18,7 @@
           </pre>
         </div>
       </div>
-    <div class="text-center">
+      <div class="text-center">
         <h2 class="title" style="font-size: 1.9em;">Informations</h2><br>
         <div class="team">
           <div class="row col-md-11 ml-auto mr-auto">
@@ -26,30 +26,44 @@
               <div class="team-player"><br>
                 <i class="now-ui-icons education_hat" style="width: 30px"></i>
                 <p class="description">{{ __('Niveau requis') }}</p><br>
-                <p class="description btn">{{ $offre->niveau }}</p><br>
+                <p class="description btn badge badge-default">{{ $offre->niveau }}</p><br>
               </div>
             </div>
             <div class="col-md-2 card">
               <div class="team-player"><br>
                 <i class="now-ui-icons location_pin" style="width: 30px"></i>
                 <p class="description ">{{ __('Secteur') }}</p><br>
-                <p class="description  btn">{{ $offre->lieu }}</p><br>
+                <p class="description  btn badge badge-default">{{ $offre->lieu }}</p><br>
               </div>
             </div>
             <div class="col-md-2 card">
               <div class="team-player"><br>
                 <i class="now-ui-icons files_box" style="width: 30px"></i>
                 <p class="description">{{ __('Fiche PDF') }}</p><br>
+                @if($offre->pdf != null)
                 <p class="description">
-                  <a href="{{ asset($offre->pdf) }}" class="btn" target="_blank">Ouvrir</a></p><br>
+                  <a href="{{ asset($offre->pdf) }}" class="btn badge badge-default" target="_blank">Ouvrir</a>
+                </p>
+                <br>
+                @elseif($offre->pdf == null)
+                <p class="description btn badge badge-default" style="background-color:#d0d2cd">Pas de pdf</p><br>
+                @endif
+                <br>
               </div>
             </div>
             <div class="col-md-2 card">
               <div class="team-player"><br>
                 <i class="now-ui-icons education_paper" style="width: 30px"></i>
                 <p class="description">{{ __('Accéder à l\'offre') }}</p><br>
+                @if($offre->pdf != null)
                 <p class="description">
-                  <a href="{{ asset($offre->pdf) }}" class="btn" target="_blank">Ouvrir</a></p><br>
+                  <a href="{{ asset($offre->pdf) }}" class="btn badge badge-default" target="_blank">Ouvrir</a>
+                </p>
+                <br>
+                @elseif($offre->pdf == null)
+                <p class="description btn badge badge-default" style="background-color:#d0d2cd">Pas de pdf</p>
+                @endif
+                <br>
               </div>
             </div>
           </div>

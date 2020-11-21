@@ -136,6 +136,12 @@
                 RGPD
               </a>
             </li>
+            <li>
+              <a href="{{route('contact.create')}}">
+                Nous contacter
+              </a>
+            </li>
+
           </ul>
         </nav>
         <div class="copyright" id="copyright">
