@@ -155,7 +155,7 @@
 						<h5 style="color: var(--primary-color);">Les offres</h5>
 						<ul class="links-vertical">
 							<li>
-								<a href="#pablo">
+								<a href="{{route('offre_front_index')}}">
 									Consulter
 								</a>
 							</li>
@@ -170,7 +170,7 @@
 								</a>
 							</li>
 							<li>
-								<a href="#pablo">
+								<a href="{{route('forum')}}">
 									Accueil
 								</a>
 							</li>
@@ -239,6 +239,7 @@
 			// the body of this function is in assets/js/now-ui-kit.js
 			nowuiKit.initSliders();
 		});
+		
 	</script>
 </body>
 

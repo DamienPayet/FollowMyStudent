@@ -31,15 +31,11 @@
                     Ajouter une offre
                   </button>
                 </a>
-                <a href="{{route('offre.create')}}">
-                  <button style='margin-right:10px; float : right ;'  type="submit" class="btn btn-danger">
+                  <button style='margin-right:10px; float : right ;'  type="submit" class="btn btn-danger delete_all" data-url="{{ url('offres-deleteselection') }}">
                     Supprimer la séléction
                   </button>
-                </a>
               </div>
-
               <br/>  <br/>
-              <div class="table-responsive">
                 <table class="table" id="table_id">
                   <thead>
                     <tr class="td-actions text-center">

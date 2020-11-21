@@ -11,7 +11,7 @@
                     <span class="info-box-icon bg-info elevation-1"><i class="fas fa-globe-europe"></i></span>
 
                     <div class="info-box-content">
-                        <span class="info-box-text">Offre en ligne</span>
+                        <span class="info-box-text">Offres en ligne</span>
                         <span class="info-box-number">
                   {{$offres->count()}}
                 </span>
@@ -56,8 +56,8 @@
                     <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-ethernet"></i></span>
 
                     <div class="info-box-content">
-                        <span class="info-box-text">utilisateur en ligne</span>
-                        <span class="info-box-number">2,000</span>
+                        <span class="info-box-text">Nombre d'utilisateurs</span>
+                        <span class="info-box-number"> {{$utilisateurs->count()}}</span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>

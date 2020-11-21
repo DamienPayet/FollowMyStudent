@@ -18,6 +18,7 @@ Route::group(['middleware' => 'admin'], function () {
 
   //route admin gestion offre
   Route::resource('back/offre', 'OffreController');
+  Route::delete('offres-deleteselection', 'offreController@deleteAll');
   //route admin gestion forum
   Route::resource('back/forum', 'ForumBackController');
   Route::get('/back/esection/{id}', 'ForumBackController@edit')->name('section.edit');
@@ -44,6 +45,8 @@ Route::group(['middleware' => 'admin'], function () {
   Route::resource('back/users', UserController::class);
   Route::get('back/users/mdp/{users}', 'UserController@editMdp')->name('users.editMdp');
   Route::put('back/users/mdp/{users}', 'UserController@updateMdp')->name('users.updateMdp');
+  Route::delete('users-deleteselection', 'UserController@deleteAll');
+
 
   //Route indexBack
   Route::get('/back/index', 'DashboardController@index')->name('indexback');

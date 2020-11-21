@@ -9,6 +9,7 @@ use App\Admin;
 use App\Traits\UploadTrait;
 use Validator;
 use Image;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -206,5 +207,13 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route("users.index")->with('error','Suppression réussite !');
+    }
+    public function deleteAll(Request $request)
+    {
+        $ids = $request->ids;
+        DB::table("users")->whereIn('id', explode(",", $ids))->delete();
+        return response()->json(['success' => "Utilisateur(s) supprimé(s) avec succès."]);
+
+        //return redirect()->route('offres.index')->withStatus(__('Offres supprimées avec succès'));
     }
 }
