@@ -54,7 +54,9 @@ Route::group(['middleware' => 'admin'], function () {
     //Route gestions demandes Contact
     Route::get('/back/contact', 'NousContacterController@index')->name('contact.index');
     Route::get('/back/contact/{id}', 'NousContacterController@show')->name('contact.show');
-    Route::delete('/back/dcontact/{id}', 'NousContacterController@destroy')->name('contact.destroy');
+    Route::post('/back/ucontact/{id}', 'NousContacterController@update')->name('contact.update');
+    Route::delete('/back/contact/{id}', 'NousContacterController@destroy')->name('contact.destroy');
+    Route::delete('contact-deleteselection', 'NousContacterController@deleteAll');
 });
 
 Route::group(['middleware' => 'auth'], function () {

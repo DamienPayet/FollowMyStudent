@@ -96,16 +96,15 @@ class OffreController extends Controller
       unlink(public_path($offre->pdf));
     }
     $offre->delete();
-    return redirect()->route('offre.index')->withStatus(__('Offre supprimée avec succès'));    }
+    return redirect()->route('offre.index')->withStatus(__('Offre supprimée avec succès'));
+  }
 
+  public function deleteAll(Request $request)
+  {
+    $ids = $request->ids;
+    DB::table("offres")->whereIn('id', explode(",", $ids))->delete();
+    return response()->json(['success' => "Les offres ont été supprimées avec succès."]);
 
-    public function deleteAll(Request $request)
-    {
-        $ids = $request->ids;
-        DB::table("offres")->whereIn('id', explode(",", $ids))->delete();
-        return response()->json(['success' => "Les offres ont été supprimées avec succès."]);
-
-        //return redirect()->route('offres.index')->withStatus(__('Offres supprimées avec succès'));
-    }
+    //return redirect()->route('offres.index')->withStatus(__('Offres supprimées avec succès'));
   }
 }

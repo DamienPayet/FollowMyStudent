@@ -7,6 +7,7 @@ use App\Contact;
 use Mail;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use Illuminate\Support\Facades\DB;
 
 class NousContacterController extends Controller
 {
@@ -22,9 +23,18 @@ class NousContacterController extends Controller
 
         return view('front.mentions.contact', compact('user'));
     }
-    public function show(Request $request)
+    public function show(Request $request, $id)
     {
-        return view('back.contact.show');
+        $contact = Contact::find($id);
+        return view('back.contact.show', compact('contact'));
+    }
+    public function update(Request $request, $id)
+    {
+        $contact = Contact::find($id);
+        $contact->traite = !$contact->traite;
+        $contact->update();
+        //dd($contact);
+        return redirect()->route('contact.index')->withStatus(__('Demande traitée !'));
     }
     // Store Contact Form data
     public function contact(Request $request)
@@ -58,10 +68,19 @@ class NousContacterController extends Controller
         // 
         return back()->with('success', 'Nous avons bien reçu votre message ! Merci de nous écrire, nous reviendrons prochainement vers vous.');
     }
-    public function destroy(Contact $contact)
+    public function destroy($id)
     {
-     
-      $contact->delete();
-      return redirect()->route('contact.index')->withStatus(__('Demande supprimée avec succès'));
+        $contact = Contact::find($id);
+
+        $contact->delete();
+        return redirect()->route('contact.index')->withStatus(__('Demande supprimée avec succès'));
+    }
+    public function deleteAll(Request $request)
+    {
+        $ids = $request->ids;
+        DB::table("contacts")->whereIn('id', explode(",", $ids))->delete();
+        return response()->json(['success' => "Les demandes ont été supprimées avec succès."]);
+
+        //return redirect()->route('contact.index')->withStatus(__('Offres supprimées avec succès'));
     }
 }

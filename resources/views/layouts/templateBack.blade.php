@@ -234,6 +234,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{route('contact.index')}}" class="nav-link">
+                                <i class="far fa-question-circle"></i>
+                                <p>
+                                    Demandes de contact
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{route('log.view')}}" class="nav-link">
                                 <i class="fas fa-eye"></i>
                                 <p>
