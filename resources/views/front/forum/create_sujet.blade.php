@@ -55,7 +55,7 @@
                                             <select name="categorie" id="categorie->id" class="selectpicker form-control edit" data-live-search="true" style="width:100%" required="true" aria-required="true">
                                                 <option value="" selected>Sélectionner une catégorie</option>
                                                 @foreach($categorie as $cat)
-                                                <option value="{{$cat->id}}"> {{$cat->section}} - {{$cat->nom}} </option>
+                                                <option value="{{$cat->id}}"> {{$cat->section->titre}} - {{$cat->nom}} </option>
                                                 @endforeach
                                             </select>
                                         </div>
