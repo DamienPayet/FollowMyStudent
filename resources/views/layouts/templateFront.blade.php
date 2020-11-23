@@ -248,50 +248,7 @@
 	<script src="{{url('front/js/plugins/bootstrap-datepicker.js')}}" type="text/javascript"></script>
 	<script src="{{url('front/js/now-ui-kit.js?v=1.3.0')}}" type="text/javascript"></script>
 	<script src="{{url('audit/logger.js')}}" type="text/javascript"></script>
-	<script>
-		$(document).ready(function() {
-			// the body of this function is in assets/js/now-ui-kit.js
-			nowuiKit.initSliders();
-		});
-
-		function readURL(input) {
-			if (input.files && input.files[0]) {
-				var reader = new FileReader();
-
-				reader.onload = function(e) {
-					$('#preview-img').attr('src', e.target.result);
-				}
-
-				reader.readAsDataURL(input.files[0]);
-			}
-		}
-
-		$("#av_image").change(function() {
-			readURL(this);
-		});
-		$('#modal_button').click(function() {
-			console.log("click");
-			var value = document.querySelector('input[name="new_avatar"]:checked').value;
-			$('#imagechoisie').val(value);
-			console.log("imagechoisie: " + value);
-
-
-			$('#myModal').modal('hide');
-
-		});
-
-		function GetUserDetailsContact() {
-			var getNom = document.getElementById('user_name').getAttribute('data-user_name');
-			var getPrenom = document.getElementById('user_surname').getAttribute('data-user_surname');
-			var getEmail = document.getElementById('user_email').getAttribute('data-user_email');
-			$('#nom').val(getNom);
-			$('#prenom').val(getPrenom);
-			$('#email').val(getEmail);
-			console.log("nom: " +getNom);
-			console.log("prenom: " + getPrenom);
-			console.log("email: " + getEmail);
-		}
-	</script>
+	<script src="{{url('front/js/avatar_selector.js')}}" type="text/javascript"></script>
 </body>
 
 </html>"
