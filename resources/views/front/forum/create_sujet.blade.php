@@ -54,8 +54,8 @@
                                         <div class="form-group{{ $errors->has('categorie') ? ' has-danger' : '' }}">
                                             <select name="categorie" id="categorie->id" class="selectpicker form-control edit" data-live-search="true" style="width:100%" required="true" aria-required="true">
                                                 <option value="" selected>Sélectionner une catégorie</option>
-                                                @foreach($categorie as $categorie)
-                                                <option value="{{$categorie->id}}"> {{$categorie->section_id}} - {{$categorie->nom}} </option>
+                                                @foreach($categorie as $cat)
+                                                <option value="{{$cat->id}}"> {{$cat->section}} - {{$cat->nom}} </option>
                                                 @endforeach
                                             </select>
                                         </div>
