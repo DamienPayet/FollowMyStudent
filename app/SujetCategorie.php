@@ -8,7 +8,7 @@ class SujetCategorie extends Model
 {
   public function section()
   {
-    return $this->belongTo(Section::class, 'section_id');
+      return  $this->belongsTo("App\Section","section_id");
   }
   public function sujets()
   {

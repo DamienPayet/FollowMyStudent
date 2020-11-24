@@ -28,8 +28,8 @@ class ForumController extends Controller
     $categorie = SujetCategorie::find($id);
     $categorie->nb_vue += 1;
     $categorie->update();
-    $user = User::all();
-    
+    $users = User::all();
+
 
     return view('front/forum.index_sujet', compact('sujets', 'categorie', 'users'));
   }
@@ -43,6 +43,7 @@ class ForumController extends Controller
   {
     $section = Section::all();
     $categorie = SujetCategorie::all();
+
     return view('front.forum.create_sujet', compact('categorie','section'));
   }
 
