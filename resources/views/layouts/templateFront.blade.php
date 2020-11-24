@@ -248,34 +248,18 @@
 	<script src="{{url('front/js/plugins/bootstrap-datepicker.js')}}" type="text/javascript"></script>
 	<script src="{{url('front/js/now-ui-kit.js?v=1.3.0')}}" type="text/javascript"></script>
 	<script src="{{url('audit/logger.js')}}" type="text/javascript"></script>
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+
 	<script>
 		$(document).ready(function() {
 			// the body of this function is in assets/js/now-ui-kit.js
 			nowuiKit.initSliders();
 		});
 
-		function readURL(input) {
-			if (input.files && input.files[0]) {
-				var reader = new FileReader();
 
-				reader.onload = function(e) {
-					$('#preview-img').attr('src', e.target.result);
-				}
-
-				reader.readAsDataURL(input.files[0]);
-			}
-		}
-
-		$("#av_image").change(function() {
-			readURL(this);
-		});
 		$('#modal_button').click(function() {
-			console.log("click");
 			var value = document.querySelector('input[name="new_avatar"]:checked').value;
 			$('#imagechoisie').val(value);
-			console.log("imagechoisie: " + value);
-
-
 			$('#myModal').modal('hide');
 
 		});
@@ -287,11 +271,23 @@
 			$('#nom').val(getNom);
 			$('#prenom').val(getPrenom);
 			$('#email').val(getEmail);
-			console.log("nom: " +getNom);
+			console.log("nom: " + getNom);
 			console.log("prenom: " + getPrenom);
 			console.log("email: " + getEmail);
 		}
 	</script>
-</body>
 
+</body>
+<script type="text/javascript">
+    $('#reload').click(function () {
+        $.ajax({
+            type: 'GET',
+            url: '/front/contact/reload-captcha',
+            success: function (data) {
+                $(".captcha span").html(data.captcha);
+            }
+        });
+    });
+
+</script>
 </html>"

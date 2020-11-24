@@ -47,7 +47,8 @@ class NousContacterController extends Controller
             'email' => 'required|email',
             'telephone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'sujet' => 'required|min:8',
-            'message' => 'required|min:15'
+            'message' => 'required|min:15',
+            'captcha' => 'required|captcha',
         ]);
 
         //  Store data in database
@@ -82,5 +83,9 @@ class NousContacterController extends Controller
         return response()->json(['success' => "Les demandes ont été supprimées avec succès."]);
 
         //return redirect()->route('contact.index')->withStatus(__('Offres supprimées avec succès'));
+    }
+    public function reloadCaptcha()
+    {
+        return response()->json(['captcha' => captcha_img()]);
     }
 }

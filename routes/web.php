@@ -51,12 +51,12 @@ Route::group(['middleware' => 'admin'], function () {
   //Route indexBack
   Route::get('/back/index', 'DashboardController@index')->name('indexback');
 
-    //Route gestions demandes Contact
-    Route::get('/back/contact', 'NousContacterController@index')->name('contact.index');
-    Route::get('/back/contact/{id}', 'NousContacterController@show')->name('contact.show');
-    Route::post('/back/ucontact/{id}', 'NousContacterController@update')->name('contact.update');
-    Route::delete('/back/contact/{id}', 'NousContacterController@destroy')->name('contact.destroy');
-    Route::delete('contact-deleteselection', 'NousContacterController@deleteAll');
+  //Route gestions demandes Contact
+  Route::get('/back/contact', 'NousContacterController@index')->name('contact.index');
+  Route::get('/back/contact/{id}', 'NousContacterController@show')->name('contact.show');
+  Route::post('/back/ucontact/{id}', 'NousContacterController@update')->name('contact.update');
+  Route::delete('/back/contact/{id}', 'NousContacterController@destroy')->name('contact.destroy');
+  Route::delete('contact-deleteselection', 'NousContacterController@deleteAll');
 });
 
 Route::group(['middleware' => 'auth'], function () {
@@ -88,6 +88,9 @@ Route::group(['middleware' => 'auth'], function () {
   //Route::get('front/user/{user}', 'StudentFrontController@show')->name('profil_show');
   Route::get('front/user/{user}',  ['as' => 'front.users.edit', 'uses' => 'StudentFrontController@edit']);
   Route::patch('front/user/{user}/update',  ['as' => 'front.users.update', 'uses' => 'StudentFrontController@update']);
+
+  Route::post('captcha-validation', 'NousContacterController@Contact');
+  Route::get('/front/contact/reload-captcha', 'NousContacterController@reloadCaptcha');
 });
 Route::get('/back1', function () {
   return view('layouts.templateBack');

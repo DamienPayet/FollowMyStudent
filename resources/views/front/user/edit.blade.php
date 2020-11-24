@@ -131,7 +131,6 @@
                   <button type="submit" class="btn btn-primary btn-round">Modifier mon profil</button>
                 </div>
                 <!-- Fin Validation -->
-                <p class="category text-center"><small>Dernière mise à jour {{ $user->updated_at->diffForHumans() }}</small></p>
               </form>
             </div>
           </div>

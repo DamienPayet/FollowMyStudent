@@ -27,7 +27,7 @@
                                 @endforeach
                             </div>
                             @endif
-                            <form action="" method="post" action="{{ route('contact.store') }}">
+                            <form method="post" action="{{url('captcha-validation')}}">
                                 {{ csrf_field() }}
                                 <!-- Nom - Prénom -->
                                 <div class="row">
@@ -128,6 +128,32 @@
                                     </div>
                                 </div>
                                 <!-- Fin Message -->
+                                <div class="row">
+                                    <label class="col-sm-2 col-form-label">{{ __('Captcha') }}</label>
+                                    <div class="col-sm-7">
+                                            <div class="captcha text-center">
+                                                <span>{!! captcha_img() !!}</span>
+                                                <button type="button" class="btn btn-danger" class="reload" id="reload">
+                                                    &#x21bb;
+                                                </button>
+                                            </div>
+                                            <div class="form-group">
+                                                <input id="captcha" type="text" class="form-control" placeholder="Enter les caractères" name="captcha">
+                                            </div>
+                                    </div>
+                                </div>
+
+                                <script type="text/javascript">
+                                    $('#reload').click(function() {
+                                        $.ajax({
+                                            type: 'GET',
+                                            url: 'reload-captcha',
+                                            success: function(data) {
+                                                $(".captcha span").html(data.captcha);
+                                            }
+                                        });
+                                    });
+                                </script>
                                 <div class="card-footer ml-auto mr-auto text-center">
                                     <button type="submit" onclick="GetUserDetailsContact()" name="send" class="btn btn-primary btn-round">Envoyer</button>
                                 </div>

@@ -71,7 +71,7 @@
         <div class="col-md-4 ml-auto mr-auto">
           <div class="card card-login card-plain">
             <div class="card-header text-center">
-              <img src="../front/images/pmr.png" alt="">
+              <img src="../front/images/pmr.png" alt="" width="150" height="100" style="transform: scale(2);">
             </div>
             <div class="card-body">
               <form method="POST" action="{{ route('login') }}">
@@ -120,40 +120,40 @@
           </div>
         </div>
       </div>
-    </div>
+      <footer class="footer">
+        <div class=" container ">
+          <nav>
+            <ul>
+              <li>
+                <a href="http://www.pasteurmontroland.com/">
+                  GLPMR Dole
+                </a>
+              </li>
+              <li>
+                <a href="{{route('mentions.rgpd')}}">
+                  RGPD
+                </a>
+              </li>
+              <li>
+                <a href="{{route('contact.create')}}">
+                  Nous contacter
+                </a>
+              </li>
 
-    <footer class="footer">
-      <div class=" container ">
-        <nav>
-          <ul>
-            <li>
-              <a href="http://www.pasteurmontroland.com/">
-                GLPMR Dole
-              </a>
-            </li>
-            <li>
-              <a href="{{route('mentions.rgpd')}}">
-                RGPD
-              </a>
-            </li>
-            <li>
-              <a href="{{route('contact.create')}}">
-                Nous contacter
-              </a>
-            </li>
-
-          </ul>
-        </nav>
-        <div class="copyright" id="copyright">
-          &copy;
-          <script>
-            document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
-          </script>
-          Coded by <a href="" target="_blank">Damien, Hugo et Florent</a>.
+            </ul>
+          </nav>
+          <div class="copyright" id="copyright">
+            &copy;
+            <script>
+              document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
+            </script>
+            Coded by <a href="" target="_blank">Damien, Hugo et Florent</a>.
+          </div>
         </div>
-      </div>
-    </footer>
+      </footer>
+    </div>
   </div>
+
   <!--   Core JS Files   -->
   <script src="../front/js/core/jquery.min.js" type="text/javascript"></script>
   <script src="../front/js/core/popper.min.js" type="text/javascript"></script>
