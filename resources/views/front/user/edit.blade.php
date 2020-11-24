@@ -93,6 +93,7 @@
                                                     Avatars disponibles
                                                 </button>
                                             </div>
+                                            <input hidden id="imagechoisie" name="imagechoisie" type="text">
                                             <br>
                                             <!--for preview purpose -->
                                         <!--
