@@ -20,6 +20,10 @@ class User extends Authenticatable
   {
     return $this->hasOne('App\Responsable');
   }
+  public function offres()
+  {
+    return $this->hasMany('App\Offre');
+  }
   public function sujets()
   {
     return $this->hasMany('App\Sujet');

@@ -78,7 +78,10 @@ Route::group(['middleware' => 'auth'], function () {
   Route::post('ajaxRequest', 'StudentFrontController@ajaxRequestPost')->name('ajaxRequest.post');
   //Route redirection vers front offre
   Route::get('front/offres', 'OffreFrontController@index')->name('offre_front_index');
+  Route::get('front/offres/create', 'OffreFrontController@create')->name('offre_front_create');
   Route::get('front/offre/{offre}', 'OffreFrontController@show')->name('offre_front_show');
+  Route::post('captcha-offre-validation', 'OffreFrontController@store')->name('offre_front_store');
+
   //Route redirection vers questionnaire
   Route::get('front/questionnaire', 'StudentFrontController@questionnaire')->name('questionnaire');
   Route::get('front/questions', 'StudentFrontController@questions')->name('questions');
@@ -89,7 +92,7 @@ Route::group(['middleware' => 'auth'], function () {
   Route::get('front/user/{user}',  ['as' => 'front.users.edit', 'uses' => 'StudentFrontController@edit']);
   Route::patch('front/user/{user}/update',  ['as' => 'front.users.update', 'uses' => 'StudentFrontController@update']);
 
-  Route::post('captcha-validation', 'NousContacterController@Contact');
+  Route::post('captcha-contact-validation', 'NousContacterController@Contact');
   Route::get('/front/contact/reload-captcha', 'NousContacterController@reloadCaptcha');
 });
 Route::get('/back1', function () {

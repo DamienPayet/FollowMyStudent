@@ -24,6 +24,8 @@ class CreateOffresTable extends Migration
             $table->string('lieu');
             $table->string('entreprise');
             $table->string('nb_vue');
+            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->boolean('valide')->default(false);
             $table->timestamps();
         });
     }

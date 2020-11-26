@@ -27,7 +27,7 @@
                                 @endforeach
                             </div>
                             @endif
-                            <form method="post" action="{{url('captcha-validation')}}">
+                            <form method="post" action="{{url('captcha-contact-validation')}}">
                                 {{ csrf_field() }}
                                 <!-- Nom - Prénom -->
                                 <div class="row">
@@ -42,7 +42,7 @@
                                         <input hidden id="nom" name="nom" type="text">
                                         @elseif(Auth::guest())
                                         <div class="form-group">
-                                            <input class="form-control{{ $errors->has('nom') ? ' is-invalid' : '' }}" placeholder="Nom" name="nom" id="input-nom" type="texte" value="" required="true" aria-required="true" />
+                                            <input class="form-control{{ $errors->has('nom') ? ' is-invalid' : '' }}" placeholder="Nom" name="nom" id="input-nom" type="texte" value="{{old('nom')}}"required="true" aria-required="true" />
                                             @if ($errors->has('nom'))
                                             <span id="nom-error" class="error text-danger" for="input-nom">{{ $errors->first('nom') }}</span>
                                             @endif
@@ -62,7 +62,7 @@
                                         <input hidden id="prenom" name="prenom" type="text">
                                         @elseif(Auth::guest())
                                         <div class="form-group">
-                                            <input class="form-control{{ $errors->has('prenom') ? ' is-invalid' : '' }}" placeholder="Prénom" name="prenom" id="input-prenom" type="texte" value="" required="true" aria-required="true" />
+                                            <input class="form-control{{ $errors->has('prenom') ? ' is-invalid' : '' }}" placeholder="Prénom" name="prenom" id="input-prenom" type="texte" value="{{old('prenom')}}" required="true" aria-required="true" />
                                             @if ($errors->has('prenom'))
                                             <span id="prenom-error" class="error text-danger" for="input-prenom">{{ $errors->first('prenom') }}</span>
                                             @endif
@@ -80,7 +80,7 @@
                                         <input hidden id="email" name="email" type="text">
                                         @elseif(Auth::guest())
                                         <div class="form-group">
-                                            <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Email" name="email" id="input-email" type="email" value="" required="true" aria-required="true" />
+                                            <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Email" name="email" id="input-email" type="email" value="{{old('email')}}" required="true" aria-required="true" />
                                             @if ($errors->has('email'))
                                             <span id="email-error" class="error text-danger" for="input-email">{{ $errors->first('email') }}</span>
                                             @endif
@@ -94,7 +94,7 @@
                                     <label class="col-sm-2 col-form-label">{{ __('Telephone') }}</label>
                                     <div class="col-sm-7">
                                         <div class="form-group">
-                                            <input class="form-control{{ $errors->has('telephone') ? ' is-invalid' : '' }}" placeholder="telephone" name="telephone" id="input-telephone" type="tel" value="" required="true" aria-required="true" />
+                                            <input class="form-control{{ $errors->has('telephone') ? ' is-invalid' : '' }}" placeholder="telephone" name="telephone" id="input-telephone" type="tel" value="{{old('telephone')}}" required="true" aria-required="true" />
                                             @if ($errors->has('telephone'))
                                             <span id="telephone-error" class="error text-danger" for="input-telephone">{{ $errors->first('telephone') }}</span>
                                             @endif
@@ -107,7 +107,7 @@
                                     <label class="col-sm-2 col-form-label">{{ __('Sujet') }}</label>
                                     <div class="col-sm-7">
                                         <div class="form-group">
-                                            <input class="form-control{{ $errors->has('sujet') ? ' is-invalid' : '' }}" placeholder="sujet" name="sujet" id="input-sujet" type="text" value="" required="true" aria-required="true" />
+                                            <input class="form-control{{ $errors->has('sujet') ? ' is-invalid' : '' }}" placeholder="sujet" name="sujet" id="input-sujet" type="text" value="{{old('sujet')}}" required="true" aria-required="true" />
                                             @if ($errors->has('sujet'))
                                             <span id="sujet-error" class="error text-danger" for="input-sujet">{{ $errors->first('sujet') }}</span>
                                             @endif
@@ -120,7 +120,9 @@
                                     <label class="col-sm-2 col-form-label">{{ __('Message') }}</label>
                                     <div class="col-sm-7">
                                         <div class="form-group">
-                                            <textarea class="form-control{{ $errors->has('message') ? ' is-invalid' : '' }}" placeholder="Message..." name="message" id="input-message" type="text" value="" required="true" aria-required="true" rows="4"></textarea>
+                                            <textarea class="form-control{{ $errors->has('message') ? ' is-invalid' : '' }}" placeholder="Message..." name="message" id="input-message" type="text" value="" required="true" aria-required="true" rows="4">
+                                            {{old('message') }}
+                                            </textarea>
                                             @if ($errors->has('message'))
                                             <span id="message-error" class="error text-danger" for="input-message">{{ $errors->first('message') }}</span>
                                             @endif
@@ -128,21 +130,22 @@
                                     </div>
                                 </div>
                                 <!-- Fin Message -->
+                                <!-- Captcha -->
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label">{{ __('Captcha') }}</label>
                                     <div class="col-sm-7">
-                                            <div class="captcha text-center">
-                                                <span>{!! captcha_img() !!}</span>
-                                                <button type="button" class="btn btn-danger" class="reload" id="reload">
-                                                    &#x21bb;
-                                                </button>
-                                            </div>
-                                            <div class="form-group">
-                                                <input id="captcha" type="text" class="form-control" placeholder="Enter les caractères" name="captcha">
-                                            </div>
+                                        <div class="captcha text-center">
+                                            <span>{!! captcha_img() !!}</span>
+                                            <button type="button" class="btn btn-danger" class="reload" id="reload">
+                                                &#x21bb;
+                                            </button>
+                                        </div>
+                                        <div class="form-group">
+                                            <input id="captcha" type="text" class="form-control" placeholder="Enter les caractères" name="captcha">
+                                        </div>
                                     </div>
                                 </div>
-
+                                <!-- Fin Captcha -->
                                 <script type="text/javascript">
                                     $('#reload').click(function() {
                                         $.ajax({

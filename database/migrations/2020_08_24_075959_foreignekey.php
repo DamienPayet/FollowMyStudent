@@ -52,6 +52,9 @@ class Foreignekey extends Migration
     Schema::table('sujet_categories', function (Blueprint $table) {
       $table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade');
     });
+    Schema::table('offres', function (Blueprint $table) {
+      $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+    });
   }
 
   /**

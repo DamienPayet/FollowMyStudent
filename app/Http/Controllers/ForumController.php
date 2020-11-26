@@ -52,7 +52,8 @@ class ForumController extends Controller
     // On oblige à respecter certains critères avant de valider la requête
     $validator = Validator::make($request->all(), [
       'titre' => 'required|min:10|max:255',
-      'description' => 'required|min:20',
+      'description' => 'required|min:15',
+      'captcha' => 'required|captcha',
 
     ]);
     // Si la validation échoue
