@@ -12,25 +12,32 @@ class QuestionnairePartSeeder extends Seeder
   public function run()
   {
     DB::table('questionnaire_parts')->insert([
-      'titre'=> 'Votre employeur'
+      'titre'=> 'Votre employeur',
+        'position' => 1
     ]);
     DB::table('questionnaire_parts')->insert([
-      'titre'=> 'Votre premier emploi'
+      'titre'=> 'Votre premier emploi',
+        'position' => 2
     ]);
     DB::table('questionnaire_parts')->insert([
-      'titre'=> 'Votre emploi actuel'
+      'titre'=> 'Votre emploi actuel',
+        'position' => 3
     ]);
     DB::table('questionnaire_parts')->insert([
-      'titre'=> 'La formation ASI'
+      'titre'=> 'La formation ASI',
+        'position' => 4
     ]);
     DB::table('questionnaire_parts')->insert([
-      'titre'=> 'Vos compétences'
+      'titre'=> 'Vos compétences',
+        'position' => 5
     ]);
     DB::table('questionnaire_parts')->insert([
-      'titre'=> 'Votre ressenti'
+      'titre'=> 'Votre ressenti',
+        'position' => 6
     ]);
     DB::table('questionnaire_parts')->insert([
-      'titre'=> 'Votre avis'
+      'titre'=> 'Votre avis',
+        'position' => 7
     ]);
   }
 }

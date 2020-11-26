@@ -18,6 +18,7 @@ class CreateQuestionnaireQuestionsTable extends Migration
             $table->string('question');
             $table->bigInteger('questionnaire_part_id')->unsigned()->nullable();
             $table->bigInteger('questionnaire_question_id')->unsigned()->nullable();
+            $table->integer('position');
             $table->timestamps();
         });
     }

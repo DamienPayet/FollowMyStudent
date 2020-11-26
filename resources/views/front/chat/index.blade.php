@@ -85,7 +85,7 @@
 </div>
 <script type="text/javascript">
   actualisation()
-  
+
 
 
   //fonction ajax actualisation automatique
@@ -155,7 +155,6 @@
       var datetimes = messages[i].created_at.split("T");
       var date = datetimes[0];
       var heure = datetimes[1].split('.')[0];
-
 
       if (messages[i].sender == usr.id) {
         div += '<div class="direct-chat-msg right">';

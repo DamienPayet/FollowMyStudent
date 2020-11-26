@@ -16,6 +16,7 @@ class CreateQuestionnairePartsTable extends Migration
         Schema::create('questionnaire_parts', function (Blueprint $table) {
             $table->id();
             $table->string('titre');
+            $table->integer('position');
             $table->timestamps();
         });
     }

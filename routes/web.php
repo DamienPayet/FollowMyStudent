@@ -60,6 +60,8 @@ Route::group(['middleware' => 'admin'], function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::post('/back/order_up','QuestionnaireBackController@update_order')->name('updateorder');
+    Route::post('/back/order_up/quest','QuestionnaireBackController@update_orderQuest')->name('updateorderquest');
   //Route redirection vers forum acceuil
   //Route::get('front/forum', 'StudentFrontController@forum')->name('forum');
   Route::resource('front/forum', 'ForumController');
