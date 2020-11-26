@@ -55,53 +55,40 @@
         <div class="row">
             <div class="col-md-8 ml-auto mr-auto">
                 <div class="media-area">
-                    <h3 class="title text-center">3 Commentaires</h3><br>
-                    <div class="media">
-                        <a class="pull-left" href="#pablo">
-                            <div class="avatar">
-                                <img class="rounded-circle img-raised" src="{{url('front/images/logo.png')}}" alt="...">
-                            </div>
-                        </a>
-                        <div class="media-body card">
-                            <h5 class="media-heading"> Tina Andrew <small class="text-muted">· 7 minutes ago</small></h5>
+                    <h3 class="title text-center">{{$nbReponse}} Commentaires</h3><br>
 
-                            <p>Chance too good. God level bars. I'm so proud of @LifeOfDesiigner #1 song in the country. Panda! Don't be scared of the truth because we need to restart the human foundation in truth I stand with the most humility. We are so blessed!</p>
-                            <p>All praises and blessings to the families of people who never gave up on dreams. Don't forget, You're Awesome!</p>
+                    @foreach ($reponses as $r)
+                      <div class="media">
+                          <a class="pull-left" href="#pablo">
+                              <div class="avatar">
+                                  <img class="rounded-circle img-raised" src="{{url($r->user->image_profil)}}" alt="..." style="width: 80px; height: 80px;">
+                              </div>
+                          </a>
+                          <div class="media-body card">
+                            <h5 class="media-heading"><b>
+                              @if ($r->user->statut == "eleve")
+                                {{ $r->user->eleve->prenom }}
+                              @elseif ($r->user->statut == "admin")
+                                {{ $r->user->admin->prenom }}
+                              @endif
 
-                            <div class="media-footer">
-                                <a href="#pablo" class="btn btn-primary btn-neutral pull-right" rel="tooltip" title="" data-original-title="Reply to Comment">
-                                    <i class="now-ui-icons ui-1_send"></i> Répondre
-                                </a>
-                                <a href="#pablo" class="btn btn-danger btn-neutral pull-right">
-                                    <i class="now-ui-icons ui-2_favourite-28"></i> 243
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                              @if ($r->user->statut == "eleve")
+                                {{ $r->user->eleve->nom }}
+                              @elseif ($r->user->statut == "admin")
+                                {{ $r->user->admin->nom }}
+                              @endif
+</b>
+                              <p> {{ $r->reponse }} </p>
 
-                    <div class="media">
-                        <a class="pull-left" href="#pablo">
-                            <div class="avatar">
-                                <img class="rounded-circle img-raised" alt="Tim Picture" src="{{url('front/images/logo.png')}}">
-                            </div>
-                        </a>
-                        <div class="media-body card">
-                            <h5 class="media-heading">John Camber <small class="text-muted">· Yesterday</small></h5>
+                              <div class="media-footer">
+                                  <a href="#pablo" class="btn btn-danger btn-neutral pull-right">
+                                      <i class="now-ui-icons ui-2_favourite-28"></i> {{ $r->like }}
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                    @endforeach
 
-                            <p>Hello guys, nice to have you on the platform! There will be a lot of great stuff coming soon. We will keep you posted for the latest news.</p>
-                            <p> Don't forget, You're Awesome!</p>
-
-                            <div class="media-footer">
-                                <a href="#pablo" class="btn btn-primary btn-neutral pull-right" rel="tooltip" title="" data-original-title="Reply to Comment">
-                                    <i class="now-ui-icons ui-1_send"></i> Répondre
-                                </a>
-                                <a href="#pablo" class="btn btn-danger btn-neutral pull-right">
-                                    <i class="now-ui-icons ui-2_favourite-28"></i> 25
-                                </a>
-                        
-                        </div>
-                    </div>
-                </div>
                 <h3 class="title text-center">Poster un commentaire</h3>
                 <div class="media media-post">
                     <a class="pull-left author" href="#pablo">

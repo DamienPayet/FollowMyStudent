@@ -18,7 +18,7 @@ class CreateSujetsTable extends Migration
             $table->string('titre');
             $table->longText('description');
             $table->integer('nbVue');
-            $table->enum('type', array('Discusion', 'Question'));
+            $table->enum('type', array('Discussion', 'Question'));
             $table->bigInteger('categorie_id')->unsigned()->nullable();
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->boolean('resolue')->default(false);

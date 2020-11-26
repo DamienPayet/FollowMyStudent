@@ -74,7 +74,7 @@
                                     <a href="{{ route('sujet.show', $sujet) }}" class="card">
                                         <div class="card-header">
                                             <div class="card-info">
-                                                <h2 class="title">{{$sujet->titre}}</h2>
+                                                <h2><b>{{$sujet->titre}}</b></h2>
                                             </div>
                                             <div class="localisation">
                                             </div>

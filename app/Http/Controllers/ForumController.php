@@ -9,6 +9,7 @@ use App\Sujet;
 use App\Section;
 use App\SujetCategorie;
 use App\User;
+use App\SujetReponse;
 
 class ForumController extends Controller
 {
@@ -29,15 +30,15 @@ class ForumController extends Controller
     $categorie->nb_vue += 1;
     $categorie->update();
     $users = User::all();
-
-
     return view('front/forum.index_sujet', compact('sujets', 'categorie', 'users'));
   }
   public function show_sujet(Sujet $sujet)
   {
+    $reponses = SujetReponse::where('sujet_id', $sujet->id)->get();
+    $nbReponse = SujetReponse::count('sujet_id', $sujet->id);
     $sujet->nb_vue += 1;
     $sujet->update();
-    return view('front/forum.show', compact('sujet'));
+    return view('front/forum.show', compact('sujet','reponses','nbReponse'));
   }
   public function create()
   {

@@ -15,10 +15,11 @@ class CreateSujetReponsesTable extends Migration
     {
         Schema::create('sujet_reponses', function (Blueprint $table) {
             $table->id();
-            $table->string('reponse');
+            $table->longText('reponse');
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->bigInteger('sujet_id')->unsigned()->nullable();
-            $table->string('nb_vue');
+            $table->integer('like');
+            $table->integer('nb_vue');
             $table->timestamps();
         });
     }

@@ -16,7 +16,7 @@ class Sujet extends Model
   }
   public function reponses()
   {
-    return $this->belongto('App\SujetReponse');
+    return $this->hasMany('App\SujetReponse');
   }
 
 }
