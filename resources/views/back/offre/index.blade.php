@@ -43,7 +43,8 @@
                       <th>Description</th>
                       <th>Niveau</th>
                       <th>PDF</th>
-                      <th>vue</th>
+                      <th>Vues</th>
+                      <th>Validée</th>
                       <th>Date de création</th>
                       <th>Actions</th>
                       <th><input type="checkbox" id="master"></th>
@@ -67,6 +68,7 @@
                           @endif
                         </td>
                         <td>{{$offres->nb_vue}}</td>
+                        <td>{{$offres->valide}}</td>
                         <td>{{ $offres->created_at }}</td>
                         <td>
                           <div style="display: inline-flex;">

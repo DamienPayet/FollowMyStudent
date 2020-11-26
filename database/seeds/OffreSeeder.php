@@ -27,6 +27,8 @@ class OffreSeeder extends Seeder
             'lieu' => 'Besançon',
             'entreprise' => 'Groupe Chopard Automobile',
             'nb_vue' => 0,
+            'valide' => true,
+            'user_id' => 1,
             'created_at' => now()
         ]);
         DB::table('offres')->insert([
@@ -40,6 +42,8 @@ class OffreSeeder extends Seeder
             'lieu' => 'Dole',
             'entreprise' => 'XEFI',
             'nb_vue' => 0,
+            'valide' => true,
+            'user_id' => 1,
             'created_at' => now()
         ]);
         DB::table('offres')->insert([
@@ -58,6 +62,8 @@ class OffreSeeder extends Seeder
             'lieu' => 'Besançon',
             'entreprise' => 'CFI',
             'nb_vue' => 0,
+            'valide' => true,
+            'user_id' => 1,
             'created_at' => now()
         ]);
         DB::table('offres')->insert([
@@ -71,6 +77,8 @@ class OffreSeeder extends Seeder
             'lieu' => 'Paris',
             'entreprise' => 'Leffe',
             'nb_vue' => 0,
+            'valide' => true,
+            'user_id' => 1,
             'created_at' => now()
         ]);
     }

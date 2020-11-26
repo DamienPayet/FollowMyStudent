@@ -57,6 +57,7 @@ class OffreController extends Controller
     $offre->lieu = $request->get('lieu');
     $offre->entreprise = $request->get('entreprise');
     $offre->type = $request->get('type');
+    $offre->lien = $request->get('lien');
     $offre->created_at = now();
     $offre->nb_vue = 0;
     $offre->save();
@@ -86,6 +87,7 @@ class OffreController extends Controller
     $offre->lieu = $request->get('lieu');
     $offre->entreprise = $request->get('entreprise');
     $offre->type = $request->get('type');
+    $offre->lien = $request->get('lien');
     $offre->update();
     return redirect()->route("offre.index")->with('success', 'Mise à jour réussite !');
   }

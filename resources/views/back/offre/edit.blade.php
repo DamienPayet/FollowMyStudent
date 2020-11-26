@@ -97,6 +97,18 @@
                     </div>
                   </div>
                 </div>
+                  <!-- Lien -->
+              <div class="row">
+                <label class="col-sm-2 col-form-label">{{ __('Lien') }}</label>
+                <div class="col-sm-7">
+                  <div class="form-group{{ $errors->has('lien') ? ' has-danger' : '' }}">
+                    <input class="form-control{{ $errors->has('lien') ? ' is-invalid' : '' }}" name="lien" id="input-lien" type="text" placeholder="{{ __('Lien de l\'offre') }}" value="{{ $offre->lien }}" />
+                    @if ($errors->has('lien'))
+                    <span id="entreprise-error" class="error text-danger" for="input-lien">{{ $errors->first('lien') }}</span>
+                    @endif
+                  </div>
+                </div>
+              </div>
                 <!-- PDF -->
                 @if (isset($offre->pdf))
                   <div class="row">

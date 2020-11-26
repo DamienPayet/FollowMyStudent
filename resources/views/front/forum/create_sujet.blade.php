@@ -8,6 +8,14 @@
                 <div class="col-md-12">
                     <div class="card ">
                         <div class="card-body ">
+                        @if(session()->has('errors'))
+                            <div class="alert alert-danger" role="alert">
+                                @foreach($errors->all() as $error)
+                                {{$error}}
+                                <br>
+                                @endforeach
+                            </div>
+                            @endif
                             <form method="post" action="{{ route('forum.store') }}" autocomplete="off" class="form-horizontal" enctype="multipart/form-data" accept-charset="utf-8">
                                 {{ csrf_field() }}
                                 {{ method_field('post') }}
@@ -76,7 +84,22 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- username -->
+                                <!-- Captcha -->
+                                <div class="row">
+                                    <label class="col-sm-2 col-form-label">{{ __('Captcha') }}</label>
+                                    <div class="col-sm-7">
+                                        <div class="captcha text-center">
+                                            <span>{!! captcha_img() !!}</span>
+                                            <button type="button" class="btn btn-danger" class="reload" id="reload">
+                                                &#x21bb;
+                                            </button>
+                                        </div>
+                                        <div class="form-group">
+                                            <input id="captcha" type="text" class="form-control" placeholder="Enter les caractères" name="captcha">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Fin Captcha -->
                                 <div class="card-footer ml-auto mr-auto text-center )">
                                     <button type="submit" class="btn btn-info">Ajouter</button>
                                 </div>

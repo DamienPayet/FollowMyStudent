@@ -216,6 +216,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     Offres
                                 </p>
                             </a>
+                            <li><a href="#">Link in level 2</a></li>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('forum.index')}}" class="nav-link">
@@ -224,6 +225,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     Forum
                                 </p>
                             </a>
+                            
                         </li>
                         <li class="nav-item">
                             <a href="{{route('questionnaire.index')}}" class="nav-link">

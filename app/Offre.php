@@ -10,6 +10,10 @@ class Offre extends Model
     {
         return $this->belongsTo('App\Offre');
     }
+    public function user()
+    {
+      return $this->belongTo('App\User');
+    }
     protected $fillable = [
         'titre', 'description', 'niveau',
     ];
