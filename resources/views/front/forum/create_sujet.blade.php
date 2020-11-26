@@ -70,7 +70,7 @@
 
                                             <select name="type" id="type" class="selectpicker form-control edit" data-live-search="true" style="width:100%" required="true" aria-required="true">
                                                 <option value="" selected>Sélectionner le type</option>
-                                                <option value="Discusion">Discusion</option>
+                                                <option value="Discussion">Discussion</option>
                                                 <option value="Question">Question</option>
                                             </select>
                                         </div>

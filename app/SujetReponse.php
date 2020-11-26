@@ -8,10 +8,10 @@ class SujetReponse extends Model
 {
   public function user()
   {
-    return $this->belongto('App\User');
+    return $this->belongsTo('App\User');
   }
   public function sujet()
   {
-    return $this->belongto('App\Sujet');
+    return $this->belongTo('App\Sujet');
   }
 }
