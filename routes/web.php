@@ -18,6 +18,7 @@ Route::group(['middleware' => 'admin'], function () {
 
   //route admin gestion offre
   Route::resource('back/offre', 'OffreController');
+  Route::post('/back/uoffre/{id}', 'OffreController@validation')->name('offre.validation');
   Route::delete('offres-deleteselection', 'offreController@deleteAll');
   //route admin gestion forum
   Route::resource('back/forum', 'ForumBackController');

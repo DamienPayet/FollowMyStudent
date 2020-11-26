@@ -91,7 +91,13 @@ class OffreController extends Controller
     $offre->update();
     return redirect()->route("offre.index")->with('success', 'Mise à jour réussite !');
   }
-
+  public function validation(Request $request, $id)
+    {
+        $offre = Offre::find($id);
+        $offre->valide = !$offre->valide;
+        $offre->update();
+        return redirect()->route('offre.index')->withStatus(__('Offre publiée !'));
+    }
   public function destroy(Offre $offre)
   {
     if (isset($offre->pdf)) {

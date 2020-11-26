@@ -5,29 +5,42 @@
   <div class="container">
     <div id="offers">
       <div class="text-center" style="margin : 20px">
-      @if(session()->has('success'))
-      <div class="alert alert-success">
-        {{ session()->get('success') }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">
-            <i class="now-ui-icons ui-1_simple-remove"></i>
-          </span>
-        </button>
-      </div>
-      @endif
-      @if(session()->has('errors'))
-      <div class="alert alert-danger" role="alert">
-        @foreach($errors->all() as $error)
-        {{$error}}
-        <br>
-        @endforeach
-      </div>
-      @endif
+        @if(session()->has('success'))
+        <div class="alert alert-success">
+          {{ session()->get('success') }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">
+              <i class="now-ui-icons ui-1_simple-remove"></i>
+            </span>
+          </button>
+        </div>
+        @endif
+        @if(session()->has('errors'))
+        <div class="alert alert-danger" role="alert">
+          @foreach($errors->all() as $error)
+          {{$error}}
+          <br>
+          @endforeach
+        </div>
+        @endif
+        @if(Auth::user()->statut == "admin" && $nonval_offres > 1)
+        <div class="alert alert-info" role="alert">
+          <div class="container">
+            <div class="alert-icon">
+              <i class="now-ui-icons travel_info"></i>
+            </div> Il y a des offres en attente de validation :
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            </button>
+            <a href="{{route('offre.index')}}">Consulter</a>
+          </div>
+        </div>
+        @endif
         <a href="{{route('offre_front_create')}}">
           <button type="submit" class="btn btn-primary btn-round btn-lg">
             Ajouter une offre
           </button>
         </a>
+        
       </div>
       <h1 class="nb-offer"><br>
         Les <b>offres</b> disponibles
@@ -67,6 +80,7 @@
       </h1>
       <div class="offers-container tab">
         @foreach ($pop_offres as $offre)
+        @if($offre->valide == 1)
         <a href="{{ route('offre_front_show', $offre) }}" class="card">
           <div class="card-header">
             <div class="card-info">
@@ -86,6 +100,7 @@
             <p>{{ \Illuminate\Support\Str::limit($offre->description, 250, $end='...') }}</p>
           </div>
         </a>
+        @endif
         @endforeach
       </div>
     </div>

@@ -10,6 +10,7 @@ use File;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Redirect;
 
 class OffreFrontController extends Controller
 {
@@ -17,7 +18,8 @@ class OffreFrontController extends Controller
     {
         $offres = Offre::paginate(6);
         $pop_offres = Offre::orderBy('nb_vue', 'desc')->take(3)->get();
-        return view('front/offre.index', compact('offres','pop_offres'));
+        $nonval_offres = DB::table('offres')->where('valide', '=', 0)->count();
+        return view('front/offre.index', compact('offres','pop_offres','nonval_offres'));
     }
     public function create(Offre $offre)
     {
@@ -26,6 +28,11 @@ class OffreFrontController extends Controller
 
     public function show(Request $request,Offre $offre)
     {
+      if(Auth::user()->statut == "eleve" && $offre->valide == 0){
+        //return redirect()->route('offre_front_index')->with('error', 'Accès refusé');
+        return redirect()->route('offre_front_index')->withErrors(['Erreur', 'Accès refusé']);
+
+      }
         $offre->nb_vue += 1;
         $offre->update();
         return view('front/offre.show', compact('offre'));
@@ -71,4 +78,6 @@ class OffreFrontController extends Controller
 
      // return redirect()->route('offre_front_index')->withStatus(__('Offre soumise à modération. Elle sera validée prochainement'));
     }
+
+  
 }
