@@ -23,7 +23,7 @@
           @endforeach
         </div>
         @endif
-        @if(Auth::user()->statut == "admin" && $nonval_offres > 1)
+        @if(Auth::user()->statut == "admin" && $nonval_offres >= 1)
         <div class="alert alert-info" role="alert">
           <div class="container">
             <div class="alert-icon">

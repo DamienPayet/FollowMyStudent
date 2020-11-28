@@ -4,8 +4,25 @@
 <div class="content">
   <div class="section section-about-us">
     <div class="container">
+      <div class="col-md-12 text-center ">
+      @if(Auth::user()->statut == "admin" && $offre->valide =0)
+        <form action="{{route('offre.destroy', $offre)}}" method="post">
+          @csrf
+          @method('DELETE')
+          <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" style="background-color: #FF3636;" onclick="return confirm('Est tu sur de vouloir supprimer cette offre ?')">
+            <i class="fas fa-times"></i> {{ __('Refuser l\'offre') }}
+          </button>
+        </form>
+        <form action="{{ route('offre.validation', $offre) }}" method="post">
+          @csrf
+          @method('POST')
+          <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" onclick="return confirm('Est tu sur de vouloir valider cette demande ?')">
+            <i class="fas fa-check"></i> {{ __('Valider l\'offre') }}
+          </button>
+        </form>
+        @endif
+      </div>
       <div class="col-md-12 text-center">
-        <a href="{{ route('offre_front_index') }}" class="btn btn-primary btn-round">{{ __('Retour à la liste') }}</a>
       </div>
       <div class="card">
         <div class="col-md-8 ml-auto mr-auto">
