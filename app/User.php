@@ -6,8 +6,19 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
+  protected static function boot()
+    {
+        parent::boot();
+
+        static::updating(function (User $user) {
+            if (in_array('email', $user->getChanges())) {
+                $user->email_verified_at = null;
+                $user->sendEmailVerificationNotification();
+            }
+        });
+    }
   public function admin()
   {
     return $this->belongsTo('App\Admin','administrateur_id');

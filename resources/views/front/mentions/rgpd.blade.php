@@ -4,6 +4,7 @@
 @section('content')
 <div class="section">
     <div class="container card">
+    <h3 class="title card-header" style="font-size: 2.2em; color: var(--primary-color); text-align: center;align-items: center;justify-content: center;">EN COURS DE REDACTION</h3><br>
         <h3 class="title card-header" style="font-size: 2.2em; color: var(--primary-color); text-align: center;align-items: center;justify-content: center;">Définitions</h3><br>
         <div ng-bind-html="rgpdHTML"><br></div>
 

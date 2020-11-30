@@ -30,17 +30,6 @@ class StudentFrontController extends Controller
     public function edit(User $user, Request $request)
     {
         $user = Auth::user();
-        //$page = (int) $request->input('page') ?: 2;
-        //$images = \File::allFiles(public_path('front\images\avatars'));
-        //$images = collect(\File::allFiles(public_path('/front/images/avatars/')));
-        //dd($images);
-        //$onPage = 15;
-
-        //$slice = $images->slice(($page-1)* $onPage, $onPage);
-
-        // $paginator = new \Illuminate\Pagination\LengthAwarePaginator($slice, $images->count(), $onPage);
-
-        // return view('front.user.edit', compact('user'))->with('images', $paginator);
 
         $images = \File::allFiles(public_path('front\images\avatars'));
         return view('front.user.edit', compact('user', 'images'));
@@ -57,42 +46,66 @@ class StudentFrontController extends Controller
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'nullable|min:6|required_with:password_confirmation|same:password_confirmation',
-            'password_confirmation' => 'nullable|min:6'
+            'password_confirmation' => 'nullable|min:6',
+            'captcha' => 'required|captcha',
         ]);
         if ($validator->fails()) {
-
             return Redirect::back()->withErrors($validator)->withInput();
         }
+        //Récupération de l'id de l'utilisateur
         $user = User::find($id);
+        //$user->email_verified_at == null;
+        //$user->save();
 
-        $user->email = $request->input('email');
+        if ($user->email_verified_at == null) {
 
-        if ($request->input('password') != null && $request->input('password_confirmation') != null ) {
+            $getmail = $request->input('email');
+
+            if ($user->email != $getmail) {
+                $user->email = $request->input('email');
+                $user->sendEmailVerificationNotification();
+                $user->updated_at = now();
+                $user->save();
+                return redirect()->route('front.users.edit', $user)->with('message', 'Nouvelle adresse enregistrée! Un email de validation viens de t\'etre envoyé.');
+            } elseif ($user->email == $getmail) {
+                $user->sendEmailVerificationNotification();
+                $user->updated_at = now();
+                $user->save();
+                return redirect()->route('front.users.edit', $user)->with('message', 'Un email de validation viens de t\'etre envoyé.');
+            }
+        } elseif ($user->email_verified_at != null) {
+
+            $getmail = $request->input('email');
             $user->password = bcrypt($request->input('password'));
-        }
-        //Insertion IMAGE
-        if ($request->file('av_image') != null) {
-            $avatar = $request->file('av_image');
-            $filename = 'front/images/uploads/' . date('Y-m-d-m-s') .  '_userID_' . $user->id . '_' . $avatar->getClientOriginalName();
-            Image::make($avatar)->resize(300, 300)->save(public_path($filename));
-            $user->image_profil = $filename;
-        } elseif (request('imagechoisie') != null) {
-            $avatar = request('imagechoisie');
 
-            $source = public_path('front/images/avatars/' . $avatar);
-            $filename = date('Y-m-d-m-s') .  '_userID_' . $user->id . '_' . $avatar;
-            $destination = 'front/images/uploads/' . $filename;
+            if ($user->email != $getmail) {
+                $user->email = $request->input('email');
+                $user->email_verified_at = null;
+                $user->sendEmailVerificationNotification();
+                $user->updated_at = now();
+                $user->save();
+                return redirect()->route('front.users.edit', $user)->with('message', 'Profil modifié avec succès! Vérifies tes emails.');
+            } elseif ($user->isDirty()) {
+                //Insertion IMAGE
+                if (request('imagechoisie') != null) {
+                    $avatar = request('imagechoisie');
 
-            if (\File::copy($source, $destination)) {
-                $user->image_profil = $destination;
+                    $source = public_path('front/images/avatars/' . $avatar);
+                    $filename = date('Y-m-d-m-s') .  '_userID_' . $user->id . '_' . $avatar;
+                    $destination = 'front/images/uploads/' . $filename;
+
+                    if (\File::copy($source, $destination)) {
+                        $user->image_profil = $destination;
+                    }
+                }
+                $user->updated_at = now();
+                $user->save();
+
+                return redirect()->route('front.users.edit', $user)->with('message', 'Profil mis à jour !');
+            } elseif (!$user->isDirty()) {
+                return redirect()->route('front.users.edit', $user)->with('unchange', 'Aucune information changée...');
             }
         }
-        //
-        //dd($user);
-        $user->updated_at = now();
-
-        $user->save();
-        return redirect()->back()->with('message', 'Profil modifié avec succès!');
     }
 
     public function questionnaire()

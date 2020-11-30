@@ -13,6 +13,20 @@
   <!-- CSS Files -->
   <link href="../front/css/bootstrap.min.css" rel="stylesheet" />
   <link href="../front/css/login.css" rel="stylesheet" />
+  <!--   Core JS Files   -->
+  <script src="../front/js/core/jquery.min.js" type="text/javascript"></script>
+  <script src="../front/js/core/popper.min.js" type="text/javascript"></script>
+  <script src="../front/js/core/bootstrap.min.js" type="text/javascript"></script>
+  <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+  <script src="../front/js/plugins/bootstrap-switch.js"></script>
+  <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+  <script src="../front/js/plugins/nouislider.min.js" type="text/javascript"></script>
+  <!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
+  <script src="../front/js/plugins/bootstrap-datepicker.js" type="text/javascript"></script>
+  <!--  Google Maps Plugin    
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>-->
+  <!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
+  <script src="../front/js/now-ui-kit.js?v=1.3.0" type="text/javascript"></script>
 </head>
 
 <body class="login-page sidebar-collapse">
@@ -65,14 +79,25 @@
   <!-- End Navbar -->
 
   <div class="page-header clear-filter" filter-color="yellow">
-    <div class="page-header-image" style="background-image:url(../front/images/login.jpg)"></div>
+    <div class="page-header-image" style="background-image:url(../front/images/software-engineer.png)"></div>
+   <!-- <a href="https://iconscout.com/illustrations/developer-team" target="_blank">Developer Team Illustration</a> by <a href="https://iconscout.com/contributors/delesign" target="_blank">Delesign Graphics</a>-->
     <div class="content">
       <div class="container">
         <div class="col-md-4 ml-auto mr-auto">
           <div class="card card-login card-plain">
             <div class="card-header text-center">
-              <img src="../front/images/pmr.png" alt="" width="150" height="100" style="transform: scale(2);">
+              <div class="logo-container">
+                <img src="../front/images/favicon.ico" alt>
+              </div>
             </div>
+            @if(session()->has('errors'))
+            <div class="alert alert-danger" role="alert">
+              @foreach($errors->all() as $error)
+              {{$error}}
+              <br>
+              @endforeach
+            </div>
+            @endif
             <div class="card-body">
               <form method="POST" action="{{ route('login') }}">
                 @csrf
@@ -83,7 +108,7 @@
                       <i class="now-ui-icons users_circle-08"></i>
                     </span>
                   </div>
-                  <input type="text" placeholder="E-mail" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                  <input type="text" placeholder="E-mail" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" >
                   @error('email')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -97,75 +122,98 @@
                       <i class="now-ui-icons text_caps-small"></i>
                     </span>
                   </div>
-                  <input type="password" placeholder="Mot de passe" class="form-control" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                  <input type="password" placeholder="Mot de passe" class="form-control" class="form-control @error('password') is-invalid @enderror" name="password" required>
                   @error('password')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                   </span>
                   @enderror
                 </div>
+                <!-- Captcha -->
+                <div class="captcha text-center">
+                  <span >{!! captcha_img() !!}</span>
+                  <button type="button" class="btn btn-danger btn-round" class="reload" id="reload">
+                    &#x21bb;
+                  </button>
+                </div>
+                <script>
+                  $('#reload').click(function() {
+                    console.log("ici");
+                    $.ajax({
+                      type: 'GET',
+                      url: '/reload-captcha',
+                      success: function(data) {
+                        console.log(data.captcha);
+                        $(".captcha span").html(data.captcha);
+                      }
+                    });
+                  });
+                </script>
+                <div class="input-group no-border input-lg">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="now-ui-icons text_caps-small"></i>
+                    </span>
+                  </div>
+                  <input type="captcha" placeholder="Captcha" class="form-control" class="form-control @error('captcha') is-invalid @enderror" name="captcha" required>
+                  @error('password')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
+                </div>
+                <!-- -->
             </div>
             <!-- Login -->
             <div class="card-footer text-center">
               <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">{{ __('Connexion') }}</button>
               <div class="pull-right">
                 @if (Route::has('password.request'))
-                <h6> <a class="link" href="{{ route('password.request') }}">
+                <h6> <a class="link">
+                    <!-- href="{{ route('password.request') }}" -->
                     {{ __('Mot de passe oublié?') }}
                   </a></h6>
                 @endif
               </div>
-              </form>
             </div>
+            </form>
           </div>
         </div>
       </div>
-      <footer class="footer">
-        <div class=" container ">
-          <nav>
-            <ul>
-              <li>
-                <a href="http://www.pasteurmontroland.com/">
-                  GLPMR Dole
-                </a>
-              </li>
-              <li>
-                <a href="{{route('mentions.rgpd')}}">
-                  RGPD
-                </a>
-              </li>
-              <li>
-                <a href="{{route('contact.create')}}">
-                  Nous contacter
-                </a>
-              </li>
-
-            </ul>
-          </nav>
-          <div class="copyright" id="copyright">
-            &copy;
-            <script>
-              document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
-            </script>
-            Coded by <a href="" target="_blank">Damien, Hugo et Florent</a>.
-          </div>
-        </div>
-      </footer>
     </div>
+    <footer class="footer">
+      <div class=" container ">
+        <nav>
+          <ul>
+            <li>
+              <a href="http://www.pasteurmontroland.com/">
+                GLPMR Dole
+              </a>
+            </li>
+            <li>
+              <a href="{{route('mentions.rgpd')}}">
+                RGPD
+              </a>
+            </li>
+            <li>
+              <a href="{{route('contact.create')}}">
+                Nous contacter
+              </a>
+            </li>
+
+          </ul>
+        </nav>
+        <div class="copyright" id="copyright">
+          &copy;
+          <script>
+            document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
+          </script>
+        </div>
+      </div>
+    </footer>
   </div>
 
-  <!--   Core JS Files   -->
-  <script src="../front/js/core/jquery.min.js" type="text/javascript"></script>
-  <script src="../front/js/core/popper.min.js" type="text/javascript"></script>
-  <script src="../front/js/core/bootstrap.min.js" type="text/javascript"></script>
-  <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-  <script src="../front/js/plugins/bootstrap-switch.js"></script>
-  <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-  <script src="../front/js/plugins/nouislider.min.js" type="text/javascript"></script>
-  <!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
-  <script src="../front/js/plugins/bootstrap-datepicker.js" type="text/javascript"></script>
-  <!--  Google Maps Plugin    -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-  <!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
-  <script src="../front/js/now-ui-kit.js?v=1.3.0" type="text/javascript"></script>
+
+
+
 </body>

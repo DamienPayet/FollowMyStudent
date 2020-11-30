@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/', function () {
   return view('front.index');
@@ -91,12 +92,10 @@ Route::group(['middleware' => 'auth'], function () {
   Route::get('front/end_question', 'StudentFrontController@end_question')->name('end_question');
   Route::get('front/response_store', 'StudentFrontController@response_store')->name('response_store');
   //Route edition de profil utilisateur
-  //Route::get('front/user/{user}', 'StudentFrontController@show')->name('profil_show');
   Route::get('front/user/{user}',  ['as' => 'front.users.edit', 'uses' => 'StudentFrontController@edit']);
-  Route::patch('front/user/{user}/update',  ['as' => 'front.users.update', 'uses' => 'StudentFrontController@update']);
+  Route::patch('captcha-user-validation/{user}', 'StudentFrontController@update')->name('user_front_store');
 
   Route::post('captcha-contact-validation', 'NousContacterController@Contact');
-  Route::get('/front/contact/reload-captcha', 'NousContacterController@reloadCaptcha');
 });
 Route::get('/back1', function () {
   return view('layouts.templateBack');
@@ -111,8 +110,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/testBack', function () {
   return view('layouts.templateBack');
 });
+
 //Route Mentions légales
 Route::get('front/mentions', 'MentionsLegController@index')->name('mentions.rgpd');
+//Route pour recharger le captcha
+Route::get('/reload-captcha', 'NousContacterController@reloadCaptcha');
+
 // Render in view
 Route::get('front/contact', [
   'uses' => 'NousContacterController@create'

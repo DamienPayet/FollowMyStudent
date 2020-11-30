@@ -7,7 +7,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body ">
-                            <form method="post" action="{{ route('front.users.update', $user) }}" autocomplete="off" class="form-horizontal" enctype="multipart/form-data" accept-charset="utf-8">
+                            <form method="post" action="{{ url('captcha-user-validation', $user) }}" autocomplete="off" class="form-horizontal" enctype="multipart/form-data" accept-charset="utf-8">
                                 {{ csrf_field() }}
                                 {{ method_field('patch') }}
                                 <div class="row">
@@ -15,6 +15,16 @@
                                         <a href="{{ route('index') }}" class="btn btn-sm btn-secondary "><i class="fas fa-arrow-left"></i> Retour</a>
                                     </div>
                                 </div>
+                                @if ( $user->email_verified_at == null && $user->statut == "eleve" || $user->email_verified_at == null && $user->statut == "admin")
+                                <div class="alert alert-warning" role="alert">
+                                    <div class="container">
+                                        <div class="alert-icon">
+                                            <i class="now-ui-icons travel_info"></i>
+                                        </div> Tu dois valider ton email pour accéder à toutes les fonctionnalités.
+                                    </div>
+                                </div>
+                                @endif
+                                <br>
                                 @if(session()->has('message'))
                                 <div class="alert alert-success">
                                     {{ session()->get('message') }}
@@ -24,13 +34,21 @@
                                         </span>
                                     </button>
                                 </div>
-                                @endif
-                                @if(session()->has('errors'))
+                                @elseif(session()->has('errors'))
                                 <div class="alert alert-danger" role="alert">
                                     @foreach($errors->all() as $error)
                                     {{$error}}
                                     <br>
                                     @endforeach
+                                </div>
+                                @elseif(session()->has('unchange'))
+                                <div class="alert alert-warning" role="alert">
+                                    {{ session()->get('unchange') }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">
+                                            <i class="now-ui-icons ui-1_simple-remove"></i>
+                                        </span>
+                                    </button>
                                 </div>
                                 @endif
                                 <br>
@@ -38,13 +56,23 @@
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label">{{ __('Nom') }}</label>
                                     <div class="col-md-7 ">
-                                        <div class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" style="  background-color : #ececec;">{{Auth::user()->eleve->nom}}</div>
+                                        @if ($user->statut == "eleve")
+                                        <div class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" readonly="readonly" style="background-color : #ececec;">{{Auth::user()->eleve->nom}}</div>
+                                        @elseif ($user->statut == "admin")
+                                        <div class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" readonly="readonly" style="background-color : #ececec;">{{Auth::user()->admin->nom}}</div>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label">{{ __('Prénom') }}</label>
                                     <div class="col-md-7 ">
-                                        <div class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" style="  background-color : #ececec;">{{Auth::user()->eleve->prenom}}</div>
+                                        @if ($user->statut == "eleve")
+                                        <div class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" readonly="readonly" style="background-color : #ececec;">{{Auth::user()->eleve->prenom}}</div>
+                                        @elseif ($user->statut == "admin")
+                                        <div class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" readonly="readonly" style="background-color : #ececec;">{{Auth::user()->admin->prenom}}</div>
+
+                                        @endif
+
                                     </div>
                                 </div>
                                 <!-- Fin Nom - Prénom -->
@@ -58,6 +86,11 @@
                                             <span id="email-error" class="error text-danger" for="input-email">{{ $errors->first('email') }}</span>
                                             @endif
                                         </div>
+                                        @if ( $user->email_verified_at != null && $user->statut == "eleve" || $user->email_verified_at != null && $user->statut == "admin")
+                                        <div class="card-footer ml-auto mr-auto text-center">
+                                            <p class="btn btn-sm btn-secondary "><i class="fas fa-check"></i> Email vérifié</p>
+                                        </div>
+                                        @endif
                                     </div>
                                 </div>
                                 <!-- Fin Adresse email -->
@@ -77,21 +110,18 @@
                                     <label class="col-sm-2 col-form-label">Changement d'avatar</label>
                                     <div class="col-sm-7 text-center">
                                         <div class="card-footer ml-auto mr-auto text-center">
+                                            @if ( $user->email_verified_at == null && $user->statut == "eleve" || $user->email_verified_at == null && $user->statut == "admin")
+                                            <button class="btn btn-primary" type="button" disabled>
+                                                Avatars disponibles
+                                            </button>
+                                            @elseif ( $user->email_verified_at != null && $user->statut == "eleve" || $user->email_verified_at != null && $user->statut == "admin" )
                                             <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#myModal">
                                                 Avatars disponibles
                                             </button>
+                                            @endif
                                         </div>
                                         <input hidden id="imagechoisie" name="imagechoisie" type="text">
                                         <br>
-                                        <!--for preview purpose -->
-                                        <!--
-                    <div class="form-group{{ $errors->has('preview-img') ? ' has-danger' : '' }}" style="width: 100px; height: 100px;">
-                      <img class="text-center form-control{{ $errors->has('preview-img') ? ' is-invalid' : '' }}" name="preview-img" id="preview-img" src="#" value="" aria-required="true">
-                      @if ($errors->has('preview-img'))
-                                            <span id="preview-img-error" class="error text-danger" for="input-preview-img">{{ $errors->first('preview-img') }}</span>
-                      @endif
-                                            </div>-->
-                                        <!--for preview purpose -->
                                     </div>
                                 </div>
                                 <!-- Fin Changement Avatar -->
@@ -100,7 +130,11 @@
                                     <label class="col-sm-2 col-form-label">{{ __('Mot de passe') }}</label>
                                     <div class="col-sm-7">
                                         <div class="form-group">
+                                            @if ( $user->email_verified_at == null && $user->statut == "eleve" || $user->email_verified_at == null && $user->statut == "admin")
+                                            <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" readonly="readonly" placeholder="Mot de passe" name="password" id="input-password" type="password" requierd="true" value="" aria-required="true" />
+                                            @elseif ( $user->email_verified_at != null && $user->statut == "eleve" || $user->email_verified_at != null && $user->statut == "admin")
                                             <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="Mot de passe" name="password" id="input-password" type="password" requierd="true" value="" aria-required="true" />
+                                            @endif
                                             @if ($errors->has('password'))
                                             <!-- <span id="password-error" class="error text-danger" for="input-password">{{ $errors->first('password') }}</span>-->
                                             @endif
@@ -113,7 +147,11 @@
                                     <label class="col-sm-2 col-form-label">{{ __('Confirmation mot de passe') }}</label>
                                     <div class="col-sm-7">
                                         <div class="form-group">
+                                            @if ( $user->email_verified_at == null && $user->statut == "eleve" || $user->email_verified_at == null && $user->statut == "admin")
+                                            <input class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" readonly="readonly" placeholder="Confirmation mot de passe" name="password_confirmation" id="input-password_confirmation" type="password" value="" aria-required="true" />
+                                            @elseif ( $user->email_verified_at != null && $user->statut == "eleve" || $user->email_verified_at != null && $user->statut == "admin")
                                             <input class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" placeholder="Confirmation mot de passe" name="password_confirmation" id="input-password_confirmation" type="password" value="" aria-required="true" />
+                                            @endif
                                             @if ($errors->has('password_confirmation'))
                                             <!--<span id="password_confirmation-error" class="error text-danger" for="input-password_confirmation">{{ $errors->first('password_confirmation') }}</span>-->
                                             @endif
@@ -121,11 +159,34 @@
                                     </div>
                                 </div>
                                 <!-- Fin Confirmation Mot de passe -->
+                                <!-- Captcha -->
+                                <div class="row">
+                                    <label class="col-sm-2 col-form-label">{{ __('Captcha') }}</label>
+                                    <div class="col-sm-7">
+                                        <div class="captcha text-center">
+                                            <span>{!! captcha_img() !!}</span>
+                                            <button type="button" class="btn btn-danger" class="reload" id="reload">
+                                                &#x21bb;
+                                            </button>
+                                        </div>
+                                        <div class="form-group">
+                                            <input id="captcha" type="text" class="form-control" placeholder="Enter les caractères" name="captcha">
+                                        </div>
+                                    </div>
+                                </div>
                                 <!-- Validation -->
+                                @if ( $user->email_verified_at == null && $user->statut == "eleve" || $user->email_verified_at == null && $user->statut == "admin")
+                                <div class="card-footer ml-auto mr-auto text-center">
+                                    <button type="submit" class="btn btn-primary btn-round" style="background-color: #FF3636;"><i class="fas fa-times"></i>
+                                        {{ __('Vérifier mon email') }}
+                                    </button>
+                                </div>
+                                @elseif ($user->email_verified_at != null && $user->statut == "eleve" || $user->statut == "admin" && $user->email_verified_at != null)
                                 <div class="card-footer ml-auto mr-auto text-center">
                                     <button type="submit" class="btn btn-primary btn-round">Modifier mon profil
                                     </button>
                                 </div>
+                                @endif
                                 <!-- Fin Validation -->
                             </form>
                         </div>

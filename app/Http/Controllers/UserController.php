@@ -14,206 +14,209 @@ use Illuminate\Support\Facades\DB;
 class UserController extends Controller
 {
   use UploadTrait;
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-        $user = User::all();
-        return view('back.user.index')->with('user',$user);
+  /**
+   * Display a listing of the resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function index()
+  {
+    //
+    $user = User::all();
+    return view('back.user.index')->with('user', $user);
+  }
+
+  /**
+   * Show the form for creating a new resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function create()
+  {
+    //
+    return view('back.user.create');
+  }
+
+  /**
+   * Store a newly created resource in storage.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @return \Illuminate\Http\Response
+   */
+  public function store(Request $request)
+  {
+    //
+    $validator = Validator::make($request->all(), [
+      'nom' => 'required',
+      'prenom' => 'required',
+      'email' => 'required|email',
+      'mdp' => 'required',
+      'statut' => 'required',
+    ]);
+    if ($validator->fails()) {
+      return redirect()->route("users.create")->withErrors($validator)->withInput();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-        return view('back.user.create');
+    $user = new User;
+
+    if ($request->input('statut') == "eleve") {
+      $eleve = new Eleve;
+      $eleve->nom = $request->input('nom');
+      $eleve->prenom = $request->input('prenom');
+      $eleve->save();
+      $user->eleve_id = $eleve->id;
+    } elseif ($request->input('statut') == "admin") {
+      $admin = new Admin;
+      $admin->nom = $request->input('nom');
+      $admin->prenom = $request->input('prenom');
+      $admin->save();
+      $user->administrateur_id = $admin->id;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-        $validator = Validator::make($request->all(), [
-          'nom' => 'required',
-          'prenom' => 'required',
-          'email' => 'required|email',
-          'mdp' => 'required',
-          'statut' => 'required',
-        ]);
-        if ($validator->fails()){
-          return redirect()->route("users.create")->withErrors($validator)->withInput();
-        }
+    $user->email = $request->input('email');
+    $user->password = bcrypt($request->input('mdp'));
+    $user->statut = $request->input('statut');
+    //Insertion IMAGE
+    if ($request->file('image_profil') == null) {
+      $user->image_profil = "back/uploads/avatars/default.png";
+    } else {
+      $avatar = $request->file('image_profil');
+      $filename = 'back/uploads/avatars/' . date('Y-m-d') . '_' . $avatar->getClientOriginalName();
+      Image::make($avatar)->resize(300, 300)->save(public_path($filename));
+      $user->image_profil = $filename;
+    }
+    //
+    $user->save();
 
-        $user = new User;
+    return redirect()->route("users.index")->with('success', 'Création réussie !');
+  }
 
-        if ($request->input('statut') == "eleve") {
-          $eleve = new Eleve;
-          $eleve->nom = $request->input('nom');
-          $eleve->prenom = $request->input('prenom');
-          $eleve->save();
-          $user->eleve_id = $eleve->id;
-        }elseif ($request->input('statut') == "admin") {
-          $admin = new Admin;
-          $admin->nom = $request->input('nom');
-          $admin->prenom = $request->input('prenom');
-          $admin->save();
-          $user->administrateur_id = $admin->id;
-        }
+  /**
+   * Display the specified resource.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function show($id)
+  {
+    //
+  }
 
-        $user->email = $request->input('email');
-        $user->password = bcrypt($request->input('mdp'));
-        $user->statut = $request->input('statut');
-        //Insertion IMAGE
-        if ($request->file('image_profil') == null) {
-          $user->image_profil = "back/uploads/avatars/default.png";
-        }else {
-          $avatar = $request->file('image_profil');
-          $filename = 'back/uploads/avatars/' . date('Y-m-d') . '_' . $avatar->getClientOriginalName();
-          Image::make($avatar)->resize(300,300)->save( public_path( $filename ) );
-          $user->image_profil = $filename;
-        }
-        //
-        $user->save();
+  /**
+   * Show the form for editing the specified resource.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function edit($id)
+  {
+    //
+    $user = User::find($id);
+    return view('back.user.edit')->with('user', $user);
+  }
 
-        return redirect()->route("users.index")->with('success','Création réussite !');
+  /**
+   * Update the specified resource in storage.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function update(Request $request, $id)
+  {
+    //
+    $validator = Validator::make($request->all(), [
+      'nom' => 'required',
+      'prenom' => 'required',
+      'email' => 'required|email',
+      'statut' => 'required',
+    ]);
+    if ($validator->fails()) {
+      return redirect()->route("users.edit", $id)->withErrors($validator)->withInput();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+    $user = User::find($id);
+
+    if ($user->statut == "eleve") {
+      $user->eleve->nom = $request->input('nom');
+      $user->eleve->prenom = $request->input('prenom');
+      $user->eleve->save();
+    } elseif ($user->statut == "admin") {
+      $user->admin->nom = $request->input('nom');
+      $user->admin->prenom = $request->input('prenom');
+      $user->admin->save();
+    }
+    $getmail = $request->input('email');
+    $user->email = $request->input('email');
+    if ($user->email != $getmail) {
+      $user->email = $request->input('email');
+      $user->email_verified_at = null;
+    }
+    $user->statut = $request->input('statut');
+
+    //Insertion IMAGE
+    if ($request->file('image_profil') == null) {
+    } else {
+      $avatar = $request->file('image_profil');
+      $filename = 'back/uploads/avatars/' . date('Y-m-d') . '_' . $avatar->getClientOriginalName();
+      Image::make($avatar)->resize(300, 300)->save(public_path($filename));
+      $user->image_profil = $filename;
+    }
+    $user->save();
+
+    return redirect()->route("users.index")->with('success', 'Modification réussie !');
+  }
+
+  public function editMdp($id)
+  {
+    //
+    $user = User::find($id);
+    return view('back.user.editMdp')->with('user', $user);
+  }
+
+  public function updateMdp(Request $request, $id)
+  {
+    //
+    $validator = Validator::make($request->all(), [
+      'mdp' => 'required',
+    ]);
+    if ($validator->fails()) {
+      return redirect()->route("users.editMdp", $id)->withErrors($validator)->withInput();
+    }
+    $user = User::find($id);
+    $user->password = bcrypt($request->input('mdp'));
+    $user->save();
+
+    return redirect()->route("users.index")->with('success', 'Modification réussie !');
+  }
+
+  /**
+   * Remove the specified resource from storage.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function destroy($id)
+  {
+    //
+    $user = User::find($id);
+
+    if ($user->statut == "eleve") {
+      $user->eleve->delete();
+    } elseif ($user->statut == "admin") {
+      $user->admin->delete();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-        $user = User::find($id);
-        return view('back.user.edit')->with('user',$user);
-    }
+    $user->delete();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-        $validator = Validator::make($request->all(), [
-          'nom' => 'required',
-          'prenom' => 'required',
-          'email' => 'required|email',
-          'statut' => 'required',
-        ]);
-        if ($validator->fails()){
-          return redirect()->route("users.edit", $id)->withErrors($validator)->withInput();
-        }
+    return redirect()->route("users.index")->with('error', 'Suppression réussie !');
+  }
+  public function deleteAll(Request $request)
+  {
+    $ids = $request->ids;
+    DB::table("users")->whereIn('id', explode(",", $ids))->delete();
+    return response()->json(['success' => "Utilisateur(s) supprimé(s) avec succès."]);
 
-        $user = User::find($id);
-
-        if ($user->statut == "eleve") {
-          $user->eleve->nom = $request->input('nom');
-          $user->eleve->prenom = $request->input('prenom');
-          $user->eleve->save();
-        }elseif ($user->statut == "admin") {
-          $user->admin->nom = $request->input('nom');
-          $user->admin->prenom = $request->input('prenom');
-          $user->admin->save();
-        }
-
-        $user->email = $request->input('email');
-        $user->statut = $request->input('statut');
-
-        //Insertion IMAGE
-        if ($request->file('image_profil') == null) {
-        }else {
-          $avatar = $request->file('image_profil');
-          $filename = 'back/uploads/avatars/' . date('Y-m-d') . '_' . $avatar->getClientOriginalName();
-          Image::make($avatar)->resize(300,300)->save( public_path($filename ) );
-          $user->image_profil = $filename;
-        }
-        $user->save();
-
-        return redirect()->route("users.index")->with('success','Modification réussite !');
-    }
-
-    public function editMdp($id)
-    {
-        //
-        $user = User::find($id);
-        return view('back.user.editMdp')->with('user',$user);
-    }
-
-    public function updateMdp(Request $request, $id)
-    {
-        //
-        $validator = Validator::make($request->all(), [
-          'mdp' => 'required',
-        ]);
-        if ($validator->fails()){
-          return redirect()->route("users.editMdp", $id)->withErrors($validator)->withInput();
-        }
-        $user = User::find($id);
-        $user->password = bcrypt($request->input('mdp'));
-        $user->save();
-
-        return redirect()->route("users.index")->with('success','Modification réussite !');
-
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-        $user = User::find($id);
-
-        if ($user->statut == "eleve") {
-          $user->eleve->delete();
-        }elseif ($user->statut == "admin") {
-          $user->admin->delete();
-        }
-
-        $user->delete();
-
-        return redirect()->route("users.index")->with('error','Suppression réussite !');
-    }
-    public function deleteAll(Request $request)
-    {
-        $ids = $request->ids;
-        DB::table("users")->whereIn('id', explode(",", $ids))->delete();
-        return response()->json(['success' => "Utilisateur(s) supprimé(s) avec succès."]);
-
-        //return redirect()->route('offres.index')->withStatus(__('Offres supprimées avec succès'));
-    }
+    //return redirect()->route('offres.index')->withStatus(__('Offres supprimées avec succès'));
+  }
 }

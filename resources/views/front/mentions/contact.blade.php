@@ -146,17 +146,7 @@
                                     </div>
                                 </div>
                                 <!-- Fin Captcha -->
-                                <script type="text/javascript">
-                                    $('#reload').click(function() {
-                                        $.ajax({
-                                            type: 'GET',
-                                            url: 'reload-captcha',
-                                            success: function(data) {
-                                                $(".captcha span").html(data.captcha);
-                                            }
-                                        });
-                                    });
-                                </script>
+                              
                                 <div class="card-footer ml-auto mr-auto text-center">
                                     <button type="submit" onclick="GetUserDetailsContact()" name="send" class="btn btn-primary btn-round">Envoyer</button>
                                 </div>

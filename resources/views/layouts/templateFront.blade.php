@@ -98,14 +98,8 @@
 							<p>Administration</p>
 						</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="Logout" onclick="event.preventDefault();document.getElementById('logout-form').submit();"> Déconnexion </a>
-						<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-							{{ csrf_field() }}
-						</form>
-						</a>
-					</li>
-					@elseif(Auth::user()->statut == 'eleve')
+				
+					@endif
 					<li class="nav-item dropdown">
 						<a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown">
 							<i class="now-ui-icons design_app"></i>
@@ -126,7 +120,6 @@
 							</a>
 						</div>
 					</li>
-					@endif
 
 					@endif
 				</ul>
@@ -254,7 +247,7 @@
     $('#reload').click(function () {
         $.ajax({
             type: 'GET',
-            url: '/front/contact/reload-captcha',
+            url: '/reload-captcha',
             success: function (data) {
                 $(".captcha span").html(data.captcha);
             }
