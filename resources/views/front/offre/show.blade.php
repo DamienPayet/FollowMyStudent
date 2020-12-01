@@ -10,7 +10,7 @@
             <a href="{{ route('offre_front_index') }}" class="btn btn-sm btn-secondary "><i class="fas fa-arrow-left"></i> Retour</a>
           </div>
         </div>
-        @if(Auth::user()->statut == "admin" && $offre->valide =0)
+        @if(Auth::user()->statut == "admin" && $offre->valide == 0)
         <form action="{{route('offre.destroy', $offre)}}" method="post">
           @csrf
           @method('DELETE')

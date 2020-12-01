@@ -62,15 +62,16 @@ Route::group(['middleware' => 'admin'], function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::post('/back/order_up', 'QuestionnaireBackController@update_order')->name('updateorder');
-    Route::post('/back/order_up/quest', 'QuestionnaireBackController@update_orderQuestupdate_orderQuest')->name('updateorderquest');
-    //Route redirection vers forum acceuil
-    //Route::get('front/forum', 'StudentFrontController@forum')->name('forum');
-    Route::resource('front/forum', 'ForumController');
-    Route::get('front/forum', 'ForumController@index')->name('forum');
-    Route::get('front/forum/categorie/{id}', 'ForumController@index_sujet')->name('sujet.index');
-    Route::get('front/forum/create', 'ForumController@create')->name('sujet.create');
-    Route::get('front/forum/sujet/{sujet}', 'ForumController@show_sujet')->name('sujet.show');
+    Route::post('/back/order_up','QuestionnaireBackController@update_order')->name('updateorder');
+    Route::post('/back/order_up/quest','QuestionnaireBackController@update_orderQuest')->name('updateorderquest');
+  //Route redirection vers forum acceuil
+  //Route::get('front/forum', 'StudentFrontController@forum')->name('forum');
+  Route::resource('front/forum', 'ForumController');
+  Route::get('front/forum', 'ForumController@index')->name('forum');
+  Route::get('front/forum/categorie/{id}', 'ForumController@index_sujet')->name('sujet.index');
+  Route::get('front/forum/create', 'ForumController@create')->name('sujet.create');
+  Route::get('front/forum/sujet/{sujet}', 'ForumController@show_sujet')->name('sujet.show');
+  Route::get('front/forum/sujet/{sujet}/reponse', 'ForumController@store_reponse')->name('sujet.reponse.store');
 
     //Route redirection vers forum mes sujet
     Route::get('front/mes_sujets', 'StudentFrontController@forum_mes_sujets')->name('forum_mesSujets');

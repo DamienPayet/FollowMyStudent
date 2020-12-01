@@ -5,7 +5,7 @@
 <div class="wrapper">
   <div class="page-header page-header-small">
     <center>
-      <img src="{{url('front/images/bg4.jpg')}}"></img>
+      <img src="{{url('front/images/developer-team.png')}}"></img>
     </center>
     <div class="content-center">
       <div class="container">
