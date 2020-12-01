@@ -66,7 +66,7 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="{{route('questionnaire')}}">
+						<a class="nav-link" href="{{route('index_questionnaire')}}">
 							<i class="now-ui-icons files_paper"></i>
 							<p>Questionnaire</p>
 						</a>
@@ -98,7 +98,7 @@
 							<p>Administration</p>
 						</a>
 					</li>
-				
+
 					@endif
 					<li class="nav-item dropdown">
 						<a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown">

@@ -45,12 +45,12 @@
 
                             <div class="row">
                                 <div class="col text-center">
-                                    <button type="button" class="btn btn-lg btn-warning" onclick="startquest()">
-                                        Démarrer le questionnaire
+                                    <button type="button" class="btn btn-lg btn-warning">
+                                       <a href="{{route("questions")}}" >Démarrer le questionnaire</a>
                                     </button>
                                 </div>
                             </div>
-                        
+
                         @else
                         <div class="alert alert-danger" role="alert">
                             <div class="container">
@@ -69,18 +69,13 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col text-center">
-                                    <button type="button" class="btn btn-lg btn-warning" onclick="startquest()">
-                                        Reprendre là où je me suis arreté
+                                    <button type="button" class="btn btn-lg btn-warning">
+                                        <a href="{{route("questions")}}" >Reprendre là où je me suis arreté</a>
                                     </button>
                                 </div>
                             </div>
                         </div>
                         @endif
-                        <script>
-                            var obj = JSON.parse('<?php echo json_encode($user) ?>');
-                        </script>
-
-                        <script src="{{url('front/js/questionnaire.js')}}" type="text/javascript"></script>
                     </div>
                 </div>
             </div>

@@ -30,6 +30,17 @@ class StudentFrontController extends Controller
     public function edit(User $user, Request $request)
     {
         $user = Auth::user();
+        //$page = (int) $request->input('page') ?: 2;
+        //$images = \File::allFiles(public_path('front\images\avatars'));
+        //$images = collect(\File::allFiles(public_path('/front/images/avatars/')));
+        //dd($images);
+        //$onPage = 15;
+
+        //$slice = $images->slice(($page-1)* $onPage, $onPage);
+
+        // $paginator = new \Illuminate\Pagination\LengthAwarePaginator($slice, $images->count(), $onPage);
+
+        // return view('front.user.edit', compact('user'))->with('images', $paginator);
 
         $images = \File::allFiles(public_path('front\images\avatars'));
         return view('front.user.edit', compact('user', 'images'));
@@ -91,7 +102,7 @@ class StudentFrontController extends Controller
                     $avatar = request('imagechoisie');
 
                     $source = public_path('front/images/avatars/' . $avatar);
-                    $filename = date('Y-m-d-m-s') .  '_userID_' . $user->id . '_' . $avatar;
+                    $filename = date('Y-m-d-m-s') . '_userID_' . $user->id . '_' . $avatar;
                     $destination = 'front/images/uploads/' . $filename;
 
                     if (\File::copy($source, $destination)) {
@@ -108,7 +119,37 @@ class StudentFrontController extends Controller
         }
     }
 
-    public function questionnaire()
+
+    //Gestion du questionnaire
+    public function startQuestionnaire()
+    {
+        $user = auth::user();
+        $part = QuestionnairePart::orderBy('position', 'ASC')->get();
+        $question = QuestionnaireQuestion::orderBy('position', 'ASC')->get();
+        $counterep = 0;
+        $conterpart = 0;
+        if ($user->qreponses->count() != 0) {
+            foreach ($part as $partie) {
+                $counterep = 0;
+                foreach ($partie->questions as $question) {
+                    foreach ($question->reponses as $rep) {
+                        if ($rep->user_id == $user->id) {
+                            $counterep++;
+                        }
+                    }
+                }
+                if ($partie->questions->count() == $counterep) {
+                    $conterpart++;
+                }
+            }
+        }
+        return view("front.questionnaire.question")->with("user", $user)
+            ->with("question", $question)
+            ->with("part", $part)
+            ->with("startInt", $conterpart);
+    }
+
+    public function indexQuestionnaire()
     {
         $user = auth::user();
         $part = QuestionnairePart::all();
@@ -124,23 +165,8 @@ class StudentFrontController extends Controller
         $parts = QuestionnairePart::all();
         $questions = QuestionnaireQuestion::all();
 
-
         return response()->json(['questions' => $questions, 'parts' => $parts]);
     }
-
-    public function response_store(Request $request)
-    {
-        $user = auth::user();
-        foreach ($request->tab as $value) {
-            $reponse = new QuestionnaireReponse;
-            $reponse->reponse = $value[1];
-            $reponse->questionnaire_question_id = $value[0];
-            $reponse->user_id = $user->id;
-            $reponse->save();
-        }
-        return response()->json(['parts' => $request->tab]);
-    }
-
 
     public function end_question()
     {
@@ -151,6 +177,22 @@ class StudentFrontController extends Controller
             ->with("question", $question)
             ->with("part", $part);
     }
+
+    public function response_store(Request $request)
+    {
+        $user = auth::user();
+        for ($i = 0; $i < $request->len; $i++) {
+            $reponse = new QuestionnaireReponse;
+            $reponse->reponse = $request->rep[$i];
+            $reponse->questionnaire_question_id = $request->question[$i];
+            $reponse->user_id = $user->id;
+            $reponse->save();
+        }
+        return response()->json(['parts' => $request]);
+    }
+
+    //Fin gestion Questionnaire
+
 
     public function forum()
     {
