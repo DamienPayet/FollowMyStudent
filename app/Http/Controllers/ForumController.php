@@ -40,6 +40,30 @@ class ForumController extends Controller
     $sujet->update();
     return view('front/forum.show', compact('sujet','reponses','nbReponse'));
   }
+  public function store_reponse(Request $request, $sujet)
+  {
+
+    // On oblige à respecter certains critères avant de valider la requête
+    $validator = Validator::make($request->all(), [
+      'reponse' => 'required|min:10',
+    ]);
+    // Si la validation échoue
+    if ($validator->fails()) {
+      return back()->withInput()->withErrors($validator->errors());
+    }
+    $user = auth()->user()->id;
+    $reponse = new SujetReponse;
+
+    $reponse->reponse = $request->get('reponse');
+    $reponse->user_id = $user;
+    $reponse->sujet_id = $sujet;
+    $reponse->like = 0;
+    $reponse->nb_vue = 0;
+    $reponse->created_at = now();
+    $reponse->save();
+
+    return redirect()->route('sujet.show', $sujet)->withStatus(__('Réponse créée avec succès.'));
+  }
   public function create()
   {
     $section = Section::all();

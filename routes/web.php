@@ -71,6 +71,8 @@ Route::group(['middleware' => 'auth'], function () {
   Route::get('front/forum/categorie/{id}', 'ForumController@index_sujet')->name('sujet.index');
   Route::get('front/forum/create', 'ForumController@create')->name('sujet.create');
   Route::get('front/forum/sujet/{sujet}', 'ForumController@show_sujet')->name('sujet.show');
+  Route::get('front/forum/sujet/{sujet}/reponse', 'ForumController@store_reponse')->name('sujet.reponse.store');
+
 
   //Route redirection vers forum mes sujet
   Route::get('front/mes_sujets', 'StudentFrontController@forum_mes_sujets')->name('forum_mesSujets');
