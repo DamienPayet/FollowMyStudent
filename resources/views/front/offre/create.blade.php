@@ -47,9 +47,7 @@
                                     <label class="col-sm-2 col-form-label">{{ __('Description') }}</label>
                                     <div class="col-sm-7">
                                         <div class="form-group">
-                                            <textarea class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="Description de l'offre..." name="description" id="input-description" type="text" value="{{old('description')}}" required="true" aria-required="true" rows="6">
-                                                {{old('description') }}
-                                            </textarea>
+                                            <textarea class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" placeholder="Description de l'offre..." id="input-description" type="text" value="{{old('description')}}" required="true" aria-required="true" rows="10">{{old('description') }}</textarea>
                                             @if ($errors->has('description'))
                                             <span id="description-error" class="error text-danger" for="input-description">{{ $errors->first('description') }}</span>
                                             @endif
@@ -62,7 +60,7 @@
                                     <label class="col-sm-2 col-form-label" for="input-niveau">{{ __(' Niveau') }}</label>
                                     <div class="col-sm-7">
                                         <div class="form-group{{ $errors->has('niveau') ? ' has-danger' : '' }}">
-                                            <select name="niveau" id="niveau" class="form-control">
+                                            <select name="niveau" id="niveau" class="form-control" value="{{old('niveau')}}">
                                                 <option value="" selected>Sélectionner un niveau...</option>
                                                 <option value="Bac">Bac</option>
                                                 <option value="BTS">BTS</option>
@@ -78,7 +76,7 @@
                                     <label class="col-sm-2 col-form-label" for="input-niveau">Type de contrat</label>
                                     <div class="col-sm-7">
                                         <div class="form-group{{ $errors->has('niveau') ? ' has-danger' : '' }}">
-                                            <select name="type" id="type" class="form-control">
+                                            <select name="type" id="type" class="form-control" value="{{old('type')}}" >
                                                 <option value="" selected>Type de contrat</option>
                                                 <option value="CDD">CDD</option>
                                                 <option value="CDI">CDI</option>
@@ -115,7 +113,7 @@
                                 </div>
                                 <!-- Lien -->
                                 <div class="row">
-                                    <label class="col-sm-2 col-form-label">{{ __('Licence') }}</label>
+                                    <label class="col-sm-2 col-form-label">{{ __('Lien') }}</label>
                                     <div class="col-sm-7">
                                         <div class="form-group{{ $errors->has('lien') ? ' has-danger' : '' }}">
                                             <input class="form-control{{ $errors->has('lien') ? ' is-invalid' : '' }}" name="lien" id="input-lien" type="text" placeholder="{{ __('Lien de l\'offre') }}" value="{{old('lien')}}" />

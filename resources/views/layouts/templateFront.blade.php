@@ -98,7 +98,7 @@
 							<p>Administration</p>
 						</a>
 					</li>
-				
+
 					@endif
 					<li class="nav-item dropdown">
 						<a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown">
@@ -137,122 +137,127 @@
 		@show
 
 	</div>
-	<footer class="footer footer-big" data-background-color="black">
-		<div class="container">
+</body>
+<footer class="footer footer-big" data-background-color="black">
+	<div class="container">
 
-			<div class="content">
-				<div class="row">
-					<div class="col-md-2">
-						<h5 style="color: var(--primary-color);">A propos</h5>
-						<ul class="links-vertical">
-							<li>
-								<a href="{{route('mentions.rgpd')}}">
-									RGPD
-								</a>
-							</li>
-							<li>
-								<a href="{{route('contact.create')}}">
-									Nous contacter
-								</a>
-							</li>
-						</ul>
-					</div>
-					<div class="col-md-2">
-						<h5 style="color: var(--primary-color);">Les offres</h5>
-						<ul class="links-vertical">
-							<li>
-								<a href="{{route('offre_front_index')}}">
-									Consulter
-								</a>
-							</li>
-						</ul>
-					</div>
-					<div class="col-md-2">
-						<h5 style="color: var(--primary-color);">Le forum</h5>
-						<ul class="links-vertical">
-							<li>
-								<a href="#pablo">
-									Les règles
-								</a>
-							</li>
-							<li>
-								<a href="{{route('forum')}}">
-									Accueil
-								</a>
-							</li>
-							<li>
-								<a href="#pablo">
-									Mes sujets
-								</a>
-							</li>
-						</ul>
-					</div>
-					<div class="col-md-4">
-						<h5 style="color: var(--primary-color);">Suis nous !</h5>
-						<ul class="social-buttons">
-							<li>
-								<a class="nav-link" rel="tooltip" title="Suivez nous sur Twitter" data-placement="bottom" href="https://twitter.com/pmr_dole" target="_blank">
-									<i class="fab fa-twitter"></i>
-									<p class="d-lg-none d-xl-none">Twitter</p>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" rel="tooltip" title="Venez sur Facebook" data-placement="bottom" href="https://www.facebook.com/lycee.pasteurmontroland" target="_blank">
-									<i class="fab fa-facebook-square"></i>
-									<p class="d-lg-none d-xl-none">Facebook</p>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" rel="tooltip" title="Rendez vous sur Instagram" data-placement="bottom" href="https://www.instagram.com/mont.roland/" target="_blank">
-									<i class="fab fa-instagram"></i>
-									<p class="d-lg-none d-xl-none">Instagram</p>
-								</a>
-							</li>
-						</ul>
+		<div class="content">
+			<div class="row">
+				<div class="col-md-2">
+					<h5 style="color: var(--primary-color);">A propos</h5>
+					<ul class="links-vertical">
+						<li>
+							<a href="{{route('mentions.rgpd')}}">
+								RGPD
+							</a>
+						</li>
+						<li>
+							<a href="{{route('contact.create')}}">
+								Nous contacter
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-2">
+					<h5 style="color: var(--primary-color);">Les offres</h5>
+					<ul class="links-vertical">
+						<li>
+							<a href="{{route('offre_front_index')}}">
+								Consulter
+							</a>
+						</li>
+						<li>
+							<a href="{{route('offre_front_create')}}">
+								Créer
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-2">
+					<h5 style="color: var(--primary-color);">Le forum</h5>
+					<ul class="links-vertical">
+						<li>
+							<a href="#pablo">
+								Les règles
+							</a>
+						</li>
+						<li>
+							<a href="{{route('forum')}}">
+								Accueil
+							</a>
+						</li>
+						<li>
+							<a href="#pablo">
+								Mes sujets
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-4">
+					<h5 style="color: var(--primary-color);">Suis nous !</h5>
+					<ul class="social-buttons">
+						<li>
+							<a class="nav-link" rel="tooltip" title="Suivez nous sur Twitter" data-placement="bottom" href="https://twitter.com/pmr_dole" target="_blank">
+								<i class="fab fa-twitter"></i>
+								<p class="d-lg-none d-xl-none">Twitter</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" rel="tooltip" title="Venez sur Facebook" data-placement="bottom" href="https://www.facebook.com/lycee.pasteurmontroland" target="_blank">
+								<i class="fab fa-facebook-square"></i>
+								<p class="d-lg-none d-xl-none">Facebook</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" rel="tooltip" title="Rendez vous sur Instagram" data-placement="bottom" href="https://www.instagram.com/mont.roland/" target="_blank">
+								<i class="fab fa-instagram"></i>
+								<p class="d-lg-none d-xl-none">Instagram</p>
+							</a>
+						</li>
+					</ul>
 
-						<h5><small>Les nombres ne mentent pas...</small></h5>
-						<h5>7777<small class="text-muted">Offres disponibles</small></h5>
-						<h5>1.423.183 <small class="text-muted">Échanges</small></h5>
-					</div>
+					<h5><small>Les nombres ne mentent pas...</small></h5>
+					<h5>7777<small class="text-muted">Offres disponibles</small></h5>
+					<h5>1.423.183 <small class="text-muted">Échanges</small></h5>
 				</div>
 			</div>
-
-			<hr>
-
-			<div class="copyright" id="copyright">
-				&copy;
-				<script>
-					document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
-				</script>
-				Coded by <a href="" target="_blank">Damien, Hugo et Florent</a>.
-			</div>
 		</div>
-	</footer>
 
-	<!--   Core JS Files   -->
-	<script src="{{url('front/js/core/jquery.min.js')}}" type="text/javascript"></script>
-	<script src="{{url('front/js/core/popper.min.js')}}" type="text/javascript"></script>
-	<script src="{{url('front/js/core/bootstrap.min.js')}}" type="text/javascript"></script>
-	<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-	<script src="{{url('front/js/plugins/bootstrap-switch.js')}}"></script>
-	<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-	<script src="{{url('front/js/plugins/nouislider.min.js')}}" type="text/javascript"></script>
-	<!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
-	<script src="{{url('front/js/plugins/bootstrap-datepicker.js')}}" type="text/javascript"></script>
-	<script src="{{url('front/js/now-ui-kit.js?v=1.3.0')}}" type="text/javascript"></script>
-	<script src="{{url('audit/logger.js')}}" type="text/javascript"></script>
-	<script src="{{url('front/js/avatar_selector.js')}}" type="text/javascript"></script>
-</body>
+		<hr>
+
+		<div class="copyright" id="copyright">
+			&copy;
+			<script>
+				document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
+			</script>
+			Coded by <a href="" target="_blank">Damien, Hugo et Florent</a>.
+		</div>
+	</div>
+</footer>
+
+<!--   Core JS Files   -->
+<script src="{{url('front/js/core/jquery.min.js')}}" type="text/javascript"></script>
+<script src="{{url('front/js/core/popper.min.js')}}" type="text/javascript"></script>
+<script src="{{url('front/js/core/bootstrap.min.js')}}" type="text/javascript"></script>
+<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+<script src="{{url('front/js/plugins/bootstrap-switch.js')}}"></script>
+<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script src="{{url('front/js/plugins/nouislider.min.js')}}" type="text/javascript"></script>
+<!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
+<script src="{{url('front/js/plugins/bootstrap-datepicker.js')}}" type="text/javascript"></script>
+<script src="{{url('front/js/now-ui-kit.js?v=1.3.0')}}" type="text/javascript"></script>
+<script src="{{url('audit/logger.js')}}" type="text/javascript"></script>
+<script src="{{url('front/js/avatar_selector.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
-    $('#reload').click(function () {
-        $.ajax({
-            type: 'GET',
-            url: '/reload-captcha',
-            success: function (data) {
-                $(".captcha span").html(data.captcha);
-            }
-        });
-    });
-
+	$('#reload').click(function() {
+		$.ajax({
+			type: 'GET',
+			url: '/reload-captcha',
+			success: function(data) {
+				$(".captcha span").html(data.captcha);
+			}
+		});
+	});
 </script>
-</html>"
+
+</html>

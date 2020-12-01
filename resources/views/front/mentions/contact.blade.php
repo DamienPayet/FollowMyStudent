@@ -120,9 +120,7 @@
                                     <label class="col-sm-2 col-form-label">{{ __('Message') }}</label>
                                     <div class="col-sm-7">
                                         <div class="form-group">
-                                            <textarea class="form-control{{ $errors->has('message') ? ' is-invalid' : '' }}" placeholder="Message..." name="message" id="input-message" type="text" value="" required="true" aria-required="true" rows="4">
-                                            {{old('message') }}
-                                            </textarea>
+                                            <textarea class="form-control{{ $errors->has('message') ? ' is-invalid' : '' }}" placeholder="Message..." name="message" id="input-message" type="text" value="" required="true" aria-required="true" rows="4">{{old('message') }}</textarea>
                                             @if ($errors->has('message'))
                                             <span id="message-error" class="error text-danger" for="input-message">{{ $errors->first('message') }}</span>
                                             @endif
