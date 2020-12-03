@@ -40,7 +40,7 @@
             Ajouter une offre
           </button>
         </a>
-        
+
       </div>
       <h1 class="nb-offer"><br>
         Les <b>offres</b> disponibles
