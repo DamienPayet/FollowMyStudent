@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +15,7 @@
 <body>
 
 <div class="main">
-    <label id="startval" style="display: none " >{{$startInt}}</label>
+    <label id="startval" style="display: none ">{{$startInt}}</label>
     <div class="container">
         <h2>Questionnaire ASI</h2>
         <form method="POST" id="signup-form" class="signup-form" enctype="multipart/form-data">
@@ -29,13 +28,34 @@
                         @foreach($partie->questions as $question)
                             <div class="form-group">
                                 <label class="label_question">{{$question->question}}</label>
-                                <input class="part_{{$partie->position}}" type="text" name="reponse" id="{{$question->id}}" placeholder="{{$question->question}}"/>
+                                <input class="part_{{$partie->position}}" type="text" name="reponse"
+                                       id="{{$question->id}}" placeholder="{{$question->question}}"/>
                             </div>
                         @endforeach
                     </div>
                 </fieldset>
             @endforeach
+            <h3>
+                FIN
+            </h3>
+            <fieldset>
+                <div class="question_div">
+                    <div class="form-group">
+                        <label styleclass="label_question" style="
+    text-align: center;
+    font-size: xxx-large;
+    color: #1ed760;
+">Merci d'avoir participé au questionnaire.</label>
+                        <label styleclass="label_question" style="
+    text-align: center;
+    font-size: x-large;
+    color: #1ed760;
+">Cliquer sur finish pour retourner a la page d'acceuil.</label>
+                    </div>
+                </div>
+            </fieldset>
         </form>
+
     </div>
 
 </div>

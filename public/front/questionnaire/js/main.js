@@ -53,15 +53,9 @@ console.log();
             form.validate().settings.ignore = ":disabled,:hidden";
             return form.valid();
         },
-        onFinishing: function (event, currentIndex) {
-            console.log("end");
-            form.validate().settings.ignore = ":disabled";
-            return form.valid();
-        },
-        onFinished: function (event, currentIndex) {
-
-            console.log("sub");
-            alert('Sumited');
+        onFinishing: function (event, currentIndex)
+        {
+            document.location.href="/";
         },
         onStepChanged: function (event, currentIndex, priorIndex) {
             var listInput = document.querySelectorAll("input.part_" + currentIndex);

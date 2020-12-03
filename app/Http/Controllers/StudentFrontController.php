@@ -294,7 +294,6 @@ class StudentFrontController extends Controller
             }
         }
 
-
         return response()->json(['messages' => $conversation->messages, 'conversation_user' => $conversation->users, 'conversation' => $conversation, 'destinataire' => $destinataire]);
     }
 }
