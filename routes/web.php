@@ -76,8 +76,8 @@ Route::group(['middleware' => 'auth'], function () {
     //Route redirection vers forum mes sujet
     Route::get('front/mes_sujets', 'StudentFrontController@forum_mes_sujets')->name('forum_mesSujets');
     //Route  chat direct
-    Route::get('ajaxRequest', 'StudentFrontController@ajaxRequest')->name('ajaxRequest.index');
-    Route::get('tata', 'StudentFrontController@ajaxRequest1')->name('ajaxRequest.index');
+
+    Route::get('my_chat', 'StudentFrontController@ajaxRequest1')->name('ajaxRequest.index');
     Route::post('ajaxRequest/conv', 'StudentFrontController@ajaxRequestSync')->name('ajaxRequest.sync');
     Route::post('ajaxRequest/testconv', 'StudentFrontController@ajaxRequestConvt')->name('ajaxRequest.testconv');
     Route::post('ajaxRequest', 'StudentFrontController@ajaxRequestPost')->name('ajaxRequest.post');

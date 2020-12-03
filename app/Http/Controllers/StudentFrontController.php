@@ -205,17 +205,12 @@ class StudentFrontController extends Controller
     }
 
     // Conversation
-    public function ajaxRequest()
-    {
-        $user = auth::user();
-        return view('front.chat.index')->with('user', $user);
-    }
 
     public function ajaxRequest1()
     {
         $user = auth::user();
         $users = user::all();
-        return view('front.chat.index2')->with('user', $user)
+        return view('front.chat.index')->with('user', $user)
             ->with('users', $users);
     }
 
