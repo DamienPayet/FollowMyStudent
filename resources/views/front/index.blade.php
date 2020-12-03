@@ -26,19 +26,19 @@
         </ol>
         <div class="carousel-inner" role="listbox">
           <div class="carousel-item">
-            <img class="d-block" src="front/images/dam1.jpg" alt="First slide">
+            <img class="d-block" src="front/images/eva.jpg" alt="First slide">
             <div class="carousel-caption d-none d-md-block">
               <h5>Nature, United States</h5>
             </div>
           </div>
           <div class="carousel-item">
-            <img class="d-block" src="front/images/dam11.jpg" alt="Second slide">
+            <img class="d-block" src="front/images/ryan.jpg" alt="Second slide">
             <div class="carousel-caption d-none d-md-block">
               <h5>Somewhere Beyond, United States</h5>
             </div>
           </div>
           <div class="carousel-item active">
-            <img class="d-block" src="front/images/dam1.jpg" alt="Third slide">
+            <img class="d-block" src="front/images/avatar.jpg" alt="Third slide">
             <div class="carousel-caption d-none d-md-block">
               <h5>Yellowstone National Park, United States</h5>
             </div>
