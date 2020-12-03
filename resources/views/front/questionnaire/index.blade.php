@@ -17,13 +17,13 @@
                                     <center>OUPS! Tu n'as pas encore répondu au questionnaire.</center>
                                 </div>
                             </div>
-                            @elseif ($user->qreponses->count() >= 1)
+                            @elseif ($user->qreponses->count() > $question->count())
                             <div class="alert alert-warning" role="alert">
                                 <div class="container">
                                     <div class="alert-icon">
                                         <i class="now-ui-icons travel_info"></i>
                                     </div>
-                                    <center>ATTENTION!Tu n'a pas terminé le questionnaire.</center>
+                                    <center>ATTENTION! Tu n'a pas terminé le questionnaire.</center>
                                 </div>
                             </div>
                             @elseif ($user->qreponses->count() == $question->count())
@@ -47,7 +47,7 @@
                             <div id="acceuil">
                                 <br>
                                 <div class="container-fluid">
-                                   <!-- <div class="text-center" style="margin : 20px">
+                                    <!-- <div class="text-center" style="margin : 20px">
 
                                         <div class="text-center">
                                             <img style="width : 20% ;" src="{{url('front/images/v2.png')}}">
@@ -65,7 +65,7 @@
                                                 </a>
                                             </div>
                                         </div>
-                                        @elseif ($user->qreponses->count() >= 1)
+                                        @elseif ($user->qreponses->count() > $question->count())
                                         <div class="row">
                                             <div class="col text-center">
                                                 <a href="{{route('questions')}}">
