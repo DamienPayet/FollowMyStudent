@@ -11,7 +11,7 @@
       <div class="container">
         <div class="alert-icon">
           <i class="now-ui-icons travel_info"></i>
-        </div> Tu dois valider ton email pour accéder à toutes les fonctionnalités. 
+        </div> Tu dois valider ton email pour accéder à toutes les fonctionnalités.
         <a href="{{ route('front.users.edit', Auth::user()->id) }}">Accéder</a>
       </div>
     </div>
@@ -53,6 +53,8 @@
       </div>
 
     </div>
+  </div>
+  <div class="container">
   </div>
 </div>
 @endsection

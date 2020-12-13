@@ -94,7 +94,7 @@
                                     <label class="col-sm-2 col-form-label">{{ __('Telephone') }}</label>
                                     <div class="col-sm-7">
                                         <div class="form-group">
-                                            <input class="form-control{{ $errors->has('telephone') ? ' is-invalid' : '' }}" placeholder="telephone" name="telephone" id="input-telephone" type="tel" value="{{old('telephone')}}" required="true" aria-required="true" />
+                                            <input class="form-control{{ $errors->has('telephone') ? ' is-invalid' : '' }}" placeholder="telephone" name="telephone" id="input-telephone" type="tel" value="{{old('telephone')}}"  />
                                             @if ($errors->has('telephone'))
                                             <span id="telephone-error" class="error text-danger" for="input-telephone">{{ $errors->first('telephone') }}</span>
                                             @endif

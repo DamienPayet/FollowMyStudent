@@ -8,6 +8,8 @@ use Mail;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use Illuminate\Support\Facades\DB;
+use \Validator;
+use ConsoleTVs\Profanity\Facades\Profanity;
 
 class NousContacterController extends Controller
 {
@@ -41,11 +43,39 @@ class NousContacterController extends Controller
     {
         //dd($request);
         // Form validation
+        Validator::extend('not_contains', function ($attribute, $value, $parameters) {
+            // Banned words
+            $words = array('coucou', 'test', 'suce');
+            foreach ($words as $word) {
+                if (stripos($value, $word) !== false) return false;
+            }
+            return true;
+        });
+        $rules = array(
+            'message' => 'not_contains',
+            'nom' => 'required',
+            'prenom' => 'required',
+            'email' => 'required|email',
+            'telephone' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'sujet' => 'required|min:8',
+            'message' => 'required|min:15',
+            'captcha' => 'required|captcha',
+        );
+
+        $messages = array(
+            'not_contains' => 'The :attribute must not contain banned words',
+        );
+
+        $validator = Validator::make(\Request::all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator);;
+        }
         $this->validate($request, [
             'nom' => 'required',
             'prenom' => 'required',
             'email' => 'required|email',
-            'telephone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'telephone' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'sujet' => 'required|min:8',
             'message' => 'required|min:15',
             'captcha' => 'required|captcha',

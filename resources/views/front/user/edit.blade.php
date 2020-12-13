@@ -99,7 +99,7 @@
                                     <label class="col-sm-2 col-form-label">{{ __('Avatar actuel') }}</label>
                                     <div class="col-sm-7 text-center">
                                         <div class="form-group ml-auto mr-auto text-center text-center" style="width: 110px; height: 100px;">
-                                            <img class="form-control  text-center " name="image_profil" id="input-image_profil" src="{{url($user->image_profil)}}" value="{{$user->image_profil}}" required="true" aria-required="true">
+                                            <img class="form-control  text-center  img-raised" name="image_profil" id="input-image_profil" src="{{url($user->image_profil)}}" value="{{$user->image_profil}}" required="true" aria-required="true">
 
                                         </div>
                                     </div>

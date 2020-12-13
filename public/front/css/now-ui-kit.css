@@ -3780,6 +3780,7 @@ body {
 }
 
 .section-space {
+    background: #FFFFFF;
     height: 62px;
     display: block;
 }
@@ -5437,6 +5438,7 @@ img {
     padding-bottom: 20px;
     bottom: 0;
     width: 100%;
+    position: absolute;
 }
 
 .footer.footer-default {

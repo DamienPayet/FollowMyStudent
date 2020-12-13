@@ -136,7 +136,13 @@
 
 		@show
 
+		<center>
+				@include('cookieConsent::index')
+		</center>
+
 	</div>
+	<div class="section-space"></div>
+
 </body>
 <footer class="footer footer-big" data-background-color="black">
 	<div class="container">
