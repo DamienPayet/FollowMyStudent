@@ -35,12 +35,12 @@ class OffreFrontController extends Controller
       //return redirect()->route('offre_front_index')->with('error', 'Accès refusé');
       return redirect()->route('offre_front_index')->withErrors(['Erreur', 'Accès refusé']);
     }
-    
+
     $offre->nb_vue += 1;
     $offre->update();
-    $nonval_offres1 = DB::table('offres')->whereIn('valide',$offre)->get('valide');
+    $nonval_offres1 = DB::table('offres')->whereIn('valide', $offre)->get('valide');
     //$nonval_offres = DB::table('offres')->where('valide', 0)->value('valide');
-   // dd( $offre->valide);
+    // dd( $offre->valide);
     /*if($offre->valide == '0'){
       dd('val 0');
     }else{
@@ -84,9 +84,15 @@ class OffreFrontController extends Controller
     $offre->created_at = now();
     $offre->nb_vue = 0;
     $offre->user_id = Auth::user()->id;
-    $offre->save();
-    return redirect()->route('offre_front_index')->with('success', 'Offre soumise à modération. Elle sera validée prochainement');
+    if (Auth::user()->statut == "admin") {
+      $offre->valide = 1;
+      $offre->save();
 
+      return redirect()->route('offre_front_index')->with('success', 'Offre validée avec succès');
+    } else {
+      $offre->save();
+      return redirect()->route('offre_front_index')->with('success', 'Offre soumise à modération. Elle sera validée prochainement');
+    }
     // return redirect()->route('offre_front_index')->withStatus(__('Offre soumise à modération. Elle sera validée prochainement'));
   }
 }

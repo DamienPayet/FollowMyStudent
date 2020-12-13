@@ -11,6 +11,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
 use Mail;
 use Session;
+use Illuminate\Support\Facades\Auth;
 
 class OffreController extends Controller
 {
@@ -60,6 +61,9 @@ class OffreController extends Controller
     $offre->lien = $request->get('lien');
     $offre->created_at = now();
     $offre->nb_vue = 0;
+    if (Auth::user()->statut == "admin") {
+      $offre->valide == 1;
+    }
     $offre->save();
 
     return redirect()->route('offre.index')->withStatus(__('Offre créée avec succès.'));
