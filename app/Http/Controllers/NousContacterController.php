@@ -73,7 +73,7 @@ class NousContacterController extends Controller
             $clientIp = $remote;
         }
     
-        dd($clientIp);
+        //dd($clientIp);
         $contact = new Contact();
 
         //dd($test);
