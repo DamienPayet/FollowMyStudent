@@ -6,9 +6,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Auth::routes(['verify' => true]);
 
-Route::get('/', function () {
-    return view('front.index');
-})->name('index')->middleware('auth');
+
 Route::get('/logger', 'LogController@access')->name('log');
 
 //Route pour les admin :
@@ -33,6 +31,8 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('/back/uforum/{id}', 'ForumBackController@update_categorie')->name('categorie.update');
     Route::delete('/back/dforum/{id}', 'ForumBackController@destroy_categorie')->name('categorie.destroy');
     Route::delete('/back/dsujet/{id}', 'ForumBackController@destroy_sujet')->name('sujet.destroy');
+    Route::resource('back/home', 'HomeBackController');
+
 
     //route admin gestion questionnaire
     Route::resource('back/questionnaire', 'QuestionnaireBackController');
@@ -59,9 +59,11 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('/back/ucontact/{id}', 'NousContacterController@update')->name('contact.update');
     Route::delete('/back/contact/{id}', 'NousContacterController@destroy')->name('contact.destroy');
     Route::delete('contact-deleteselection', 'NousContacterController@deleteAll');
+
 });
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', 'StudentFrontController@home')->name('index');
     Route::post('/back/order_up','QuestionnaireBackController@update_order')->name('updateorder');
     Route::post('/back/order_up/quest','QuestionnaireBackController@update_orderQuest')->name('updateorderquest');
   //Route redirection vers forum acceuil
@@ -102,16 +104,7 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('/back1', function () {
     return view('layouts.templateBack');
 })->name('back');
-Route::get('/testt', function () {
-    return view('test');
-})->name('aaa');
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-//Route BACK
-Route::get('/testBack', function () {
-    return view('layouts.templateBack');
-});
 
 //Route Mentions légales
 Route::get('front/mentions', 'MentionsLegController@index')->name('mentions.rgpd');
