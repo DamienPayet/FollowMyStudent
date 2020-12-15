@@ -41,37 +41,7 @@ class NousContacterController extends Controller
     // Store Contact Form data
     public function contact(Request $request)
     {
-        //dd($request);
-        // Form validation
-        Validator::extend('not_contains', function ($attribute, $value, $parameters) {
-            // Banned words
-            $words = array('coucou', 'test', 'suce');
-            foreach ($words as $word) {
-                if (stripos($value, $word) !== false) return false;
-            }
-            return true;
-        });
-        $rules = array(
-            'message' => 'not_contains',
-            'nom' => 'required',
-            'prenom' => 'required',
-            'email' => 'required|email',
-            'telephone' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
-            'sujet' => 'required|min:8',
-            'message' => 'required|min:15',
-            'captcha' => 'required|captcha',
-        );
-
-        $messages = array(
-            'not_contains' => 'The :attribute must not contain banned words',
-        );
-
-        $validator = Validator::make(\Request::all(), $rules, $messages);
-
-        if ($validator->fails()) {
-            return back()->withErrors($validator);;
-        }
-        $this->validate($request, [
+        $validator = Validator::make($request->all(), [
             'nom' => 'required',
             'prenom' => 'required',
             'email' => 'required|email',
@@ -80,9 +50,50 @@ class NousContacterController extends Controller
             'message' => 'required|min:15',
             'captcha' => 'required|captcha',
         ]);
+        // Si la validation échoue
+        if ($validator->fails()) {
+            return back()->withInput()->withErrors($validator->errors());
+        }
 
+        if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
+            $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+            $_SERVER['HTTP_CLIENT_IP'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+        }
+        $client  = @$_SERVER['HTTP_CLIENT_IP'];
+        $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+        $remote  = $_SERVER['REMOTE_ADDR'];
+    
+        if(filter_var($client, FILTER_VALIDATE_IP)){
+            $clientIp = $client;
+        }
+        elseif(filter_var($forward, FILTER_VALIDATE_IP)){
+            $clientIp = $forward;
+        }
+        else{
+            $clientIp = $remote;
+        }
+    
+        dd($clientIp);
+        $contact = new Contact();
+
+        //dd($test);
+        $bad_word1 = 
+       // $bad_word2 = Profanity::blocker($bad_word2)->filter();
         //  Store data in database
-        Contact::create($request->all());
+        $contact->nom = $request->get('nom');
+        $contact->prenom = $request->get('prenom');
+        $contact->email = $request->get('email');
+        $contact->telephone = $request->get('telephone');
+
+        $bad_words_sujet = $request->get('sujet');
+        $bad_words_message = $request->get('message');
+        $clean_words_sujet = Profanity::blocker($bad_words_sujet)->filter();
+        $clean_words_message = Profanity::blocker($bad_words_message)->filter();
+
+        $contact->sujet = Profanity::blocker($bad_words_sujet)->filter();
+        $contact->message = Profanity::blocker($bad_words_message)->filter();
+
+        $contact->save();
 
         //  Send mail to admin
         \Mail::send('vendor.notifications.contact', array(
@@ -90,8 +101,8 @@ class NousContacterController extends Controller
             'prenom' => $request->get('prenom'),
             'email' => $request->get('email'),
             'telephone' => $request->get('telephone'),
-            'sujet' => $request->get('sujet'),
-            'user_query' => $request->get('message'),
+            'sujet' => $clean_words_sujet,
+            'user_query' => $clean_words_message,
         ), function ($message) use ($request) {
             $message->from($request->email);
             $message->to('pelletier.ft1@gmail.com', 'Admintrateur FMS')->subject('[FMS] - Nouvelle demande de contact');

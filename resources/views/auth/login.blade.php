@@ -212,6 +212,7 @@
       </div>
     </footer>
   </div>
+  <script src="{{url('audit/logger.js')}}" type="text/javascript"></script>
 
 
 

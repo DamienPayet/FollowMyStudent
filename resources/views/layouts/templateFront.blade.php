@@ -135,15 +135,16 @@
 		@section("content")
 
 		@show
+		<div class="section-space"></div>
 
-		<center>
-				@include('cookieConsent::index')
-		</center>
+
 
 	</div>
-	<div class="section-space"></div>
 
 </body>
+<center>
+	@include('cookieConsent::index')
+</center>
 <footer class="footer footer-big" data-background-color="black">
 	<div class="container">
 
