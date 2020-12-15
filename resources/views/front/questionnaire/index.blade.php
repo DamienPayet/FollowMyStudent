@@ -27,7 +27,7 @@
                                 </div>
                             </div>
                             @elseif ($user->qreponses->count() == $question->count())
-                            <div class="alert alert-danger" role="alert">
+                            <div class="alert alert-success" role="alert">
                                 <div class="container">
                                     <div class="alert-icon">
                                         <i class="now-ui-icons travel_info"></i>
@@ -71,16 +71,6 @@
                                                 <a href="{{route('questions')}}">
                                                     <button type="submit" class="btn btn-primary btn-round btn-lg">
                                                         Reprendre là où je me suis arreté
-                                                    </button>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        @elseif ($user->qreponses->count() == $question->count())
-                                        <div class="row">
-                                            <div class="col text-center">
-                                                <a href="#complete">
-                                                    <button type="submit" class="btn btn-primary btn-round btn-lg" disable>
-                                                        Terminé
                                                     </button>
                                                 </a>
                                             </div>

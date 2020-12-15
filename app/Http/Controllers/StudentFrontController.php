@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\HomePost;
 use Illuminate\Http\Request;
 use App\QuestionnaireQuestion;
 use App\QuestionnairePart;
@@ -26,7 +27,11 @@ class StudentFrontController extends Controller
     {
         $this->middleware('auth');
     }
-
+    public function home()
+    {
+        $post = HomePost::all();
+        return view('front.index',compact('post'));
+    }
     public function edit(User $user, Request $request)
     {
         $user = Auth::user();

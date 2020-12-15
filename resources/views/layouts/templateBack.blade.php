@@ -216,8 +216,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     Offres
                                 </p>
                             </a>
-                            <li><a href="#">Link in level 2</a></li>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{route('home.index')}}" class="nav-link">
+                                <i class="nav-icon fas fa-home"></i>
+                                <p>
+                                     Acceuil view
+                                </p>
+                            </a>
+                        </li>
+
+
                         <li class="nav-item">
                             <a href="{{route('forum.index')}}" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
@@ -225,11 +234,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     Forum
                                 </p>
                             </a>
-                            
+
                         </li>
                         <li class="nav-item">
                             <a href="{{route('questionnaire.index')}}" class="nav-link">
-                                <i class="far fa-question-circle"></i>
+                                <i class="nav-icon fas  fa-question-circle"></i>
                                 <p>
                                     Questionnaire
                                 </p>
@@ -237,7 +246,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </li>
                         <li class="nav-item">
                             <a href="{{route('contact.index')}}" class="nav-link">
-                                <i class="far fa-question-circle"></i>
+                                <i class="nav-icon fas fa-question-circle"></i>
                                 <p>
                                     Demandes de contact
                                 </p>
@@ -245,7 +254,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </li>
                         <li class="nav-item">
                             <a href="{{route('log.view')}}" class="nav-link">
-                                <i class="fas fa-eye"></i>
+                                <i class="nav-icon fas fa-eye"></i>
                                 <p>
                                     Log
                                 </p>
@@ -365,7 +374,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             headers: {
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                             },
-                            data: 
+                            data:
                             'ids=' + join_selected_values,
                             success: function(data) {
                                 if (data['success']) {
