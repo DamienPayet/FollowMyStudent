@@ -54,7 +54,7 @@ class NousContacterController extends Controller
         if ($validator->fails()) {
             return back()->withInput()->withErrors($validator->errors());
         }
-
+/*
         if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
             $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
             $_SERVER['HTTP_CLIENT_IP'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
@@ -72,13 +72,10 @@ class NousContacterController extends Controller
         else{
             $clientIp = $remote;
         }
-    
+    */
         //dd($clientIp);
         $contact = new Contact();
 
-        //dd($test);
-        $bad_word1 = 
-       // $bad_word2 = Profanity::blocker($bad_word2)->filter();
         //  Store data in database
         $contact->nom = $request->get('nom');
         $contact->prenom = $request->get('prenom');

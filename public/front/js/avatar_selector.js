@@ -2,6 +2,7 @@ $(document).ready(function() {
     // the body of this function is in assets/js/now-ui-kit.js
     nowuiKit.initSliders();
 });
+
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -20,8 +21,9 @@ $('#modal_button').click(function() {
     console.log(value);
     $('#imagechoisie').val(value);
     $('#myModal').modal('hide');
-    document.getElementById("input-image_profil").src = "/front/images/avatars/"+ value;
+    document.getElementById("input-image_profil").src = "/front/images/avatars/" + value;
 });
+
 function GetUserDetailsContact() {
     var getNom = document.getElementById('user_name').getAttribute('data-user_name');
     var getPrenom = document.getElementById('user_surname').getAttribute('data-user_surname');
@@ -29,7 +31,5 @@ function GetUserDetailsContact() {
     $('#nom').val(getNom);
     $('#prenom').val(getPrenom);
     $('#email').val(getEmail);
-    console.log("nom: " +getNom);
-    console.log("prenom: " + getPrenom);
-    console.log("email: " + getEmail);
+
 }

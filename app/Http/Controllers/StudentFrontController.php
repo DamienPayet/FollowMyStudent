@@ -47,7 +47,7 @@ class StudentFrontController extends Controller
 
         // return view('front.user.edit', compact('user'))->with('images', $paginator);
 
-        $images = \File::allFiles(public_path('front\images\avatars'));
+        $images = \File::allFiles(public_path('front/images/avatars'));
         return view('front.user.edit', compact('user', 'images'));
     }
 
