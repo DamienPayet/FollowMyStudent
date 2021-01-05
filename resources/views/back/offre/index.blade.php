@@ -76,7 +76,13 @@
                     @endif
                   </td>
                   <td>{{$offres->nb_vue}}</td>
-                  <td>{{$offres->valide}}</td>
+                  @if ($offres->valide = 1 )
+                  <td><span class="badge badge-success">Oui</span></td>
+                  @elseif ($offres->valide = 0 )
+                  <td><span class="badge badge-danger">Non</span></td>
+
+                  @endif
+
                   <td>{{ $offres->created_at }}</td>
                   <td>
                     <div style="display: inline-flex;">
@@ -88,6 +94,13 @@
                         <i class="fas fa-edit"></i>
                         <div class="ripple-container"></div>
                       </a>
+                      <form action="{{route('offre.destroy', $offres->id)}}" method="post">
+                          @csrf
+                          @method('DELETE')
+                          <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" onclick="return confirm('Est tu sur de vouloir supprimer cette offre ?')">
+                            <i class="fas fa-times"></i>
+                          </button>
+                        </form>
                     </div>
                   </td>
                   <td>
@@ -144,7 +157,7 @@
                   <th>Validée</th>
                   <th>Date de création</th>
                   <th>Actions</th>
-                  <th><input type="checkbox" id="master"></th>
+                  <th><input type="checkbox" id="master1"></th>
                 </tr>
               </thead>
               <tbody>
@@ -182,10 +195,17 @@
                       <form action="{{ route('offre.validation', $offres) }}" method="post">
                         @csrf
                         @method('POST')
-                        <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" onclick="return confirm('Est tu sur de vouloir valider cette demande ?')">
+                        <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" onclick="return confirm('Est tu sur de vouloir valider cette offre ?')">
                           <i class="fas fa-check"></i>
                         </button>
                       </form>
+                      <form action="{{route('offre.destroy', $offres->id)}}" method="post">
+                          @csrf
+                          @method('DELETE')
+                          <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" onclick="return confirm('Est tu sur de vouloir supprimer cette offre ?')">
+                            <i class="fas fa-times"></i>
+                          </button>
+                        </form>
                     </div>
                   </td>
                   <td>

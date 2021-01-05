@@ -99,7 +99,8 @@ class UserController extends Controller
    */
   public function show($id)
   {
-    //
+    $user = User::find($id);
+    return view('back.user.show')->with('user', $user);
   }
 
   /**
@@ -129,6 +130,7 @@ class UserController extends Controller
       'nom' => 'required',
       'prenom' => 'required',
       'email' => 'required|email',
+      'password' => 'same:password_confirmation',
       'statut' => 'required',
     ]);
     if ($validator->fails()) {
@@ -153,7 +155,9 @@ class UserController extends Controller
       $user->email_verified_at = null;
     }
     $user->statut = $request->input('statut');
-
+    if ($request->input('password') != null) {
+      $user->password = bcrypt($request->input('password'));
+    }
     //Insertion IMAGE
     if ($request->file('image_profil') == null) {
     } else {

@@ -61,7 +61,7 @@
                                     <div class="col-sm-7">
                                         <div class="form-group{{ $errors->has('niveau') ? ' has-danger' : '' }}">
                                             <select name="niveau" id="niveau" class="form-control" value="{{old('niveau')}}">
-                                                <option value="" selected>Sélectionner un niveau...</option>
+                                                <option value="{{old('niveau')}}" ? 'selected' >Sélectionner un niveau...</option>
                                                 <option value="Bac">Bac</option>
                                                 <option value="BTS">BTS</option>
                                                 <option value="Licence">Licence</option>
