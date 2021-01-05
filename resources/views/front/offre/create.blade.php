@@ -61,10 +61,10 @@
                                     <div class="col-sm-7">
                                         <div class="form-group{{ $errors->has('niveau') ? ' has-danger' : '' }}">
                                             <select name="niveau" id="niveau" class="form-control" value="{{old('niveau')}}">
-                                                <option value="{{old('niveau')}}" ? 'selected' >Sélectionner un niveau...</option>
-                                                <option value="Bac">Bac</option>
-                                                <option value="BTS">BTS</option>
-                                                <option value="Licence">Licence</option>
+                                                <option value="{{old('niveau')}}">Sélectionner un niveau...</option>
+                                                <option value="Bac" {{ old('niveau') == 'Bac' ? 'selected' : '' }}>Bac</option>
+                                                <option value="BTS" {{ old('niveau') == 'BTS' ? 'selected' : '' }}>BTS</option>
+                                                <option value="Licence" {{ old('niveau') == 'Licence' ? 'selected' : '' }}>Licence</option>
                                             </select> @if ($errors->has('niveau'))
                                             <span id="niveau-error" class="error text-danger" for="input-niveau">{{ $errors->first('niveau') }}</span>
                                             @endif
@@ -76,11 +76,11 @@
                                     <label class="col-sm-2 col-form-label" for="input-niveau">Type de contrat</label>
                                     <div class="col-sm-7">
                                         <div class="form-group{{ $errors->has('niveau') ? ' has-danger' : '' }}">
-                                            <select name="type" id="type" class="form-control" value="{{old('type')}}" >
+                                            <select name="type" id="type" class="form-control" value="{{old('type')}}">
                                                 <option value="" selected>Type de contrat</option>
-                                                <option value="CDD">CDD</option>
-                                                <option value="CDI">CDI</option>
-                                                <option value="Alternance">Apprentissage</option>
+                                                <option value="CDD" {{ old('type') == 'CDD' ? 'selected' : '' }}>CDD</option>
+                                                <option value="CDI" {{ old('type') == 'CDI' ? 'selected' : '' }}>CDI</option>
+                                                <option value="Alternance" {{ old('type') == 'Alternance' ? 'selected' : '' }}>Apprentissage</option>
                                             </select> @if ($errors->has('niveau'))
                                             <span id="niveau-error" class="error text-danger" for="input-niveau">{{ $errors->first('niveau') }}</span>
                                             @endif
