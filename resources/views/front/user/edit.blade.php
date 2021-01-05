@@ -170,7 +170,7 @@
                                             </button>
                                         </div>
                                         <div class="form-group">
-                                            <input id="captcha" type="text" class="form-control" placeholder="Enter les caractères" name="captcha">
+                                            <input id="captcha" type="text" class="form-control" placeholder="Enter les caractères" name="captcha" required>
                                         </div>
                                     </div>
                                 </div>
