@@ -57,42 +57,53 @@
           <div class="media-area">
             <h3 class="title text-center">{{$nbReponse}} Commentaires</h3><br>
 
-            @foreach ($reponses as $r)
-              <div class="media">
-                <a class="pull-left" href="#pablo">
-                  <div class="avatar">
-                    <img class="rounded-circle img-raised" src="{{url($r->user->image_profil)}}" alt="..." style="width: 80px; height: 80px;">
-                  </div>
-                </a>
-                <div class="media-body card" style="padding:2%;">
+            @if (isset($reponses))
+              @foreach ($reponses as $r)
+                <div class="media">
+                  <a class="pull-left" href="#pablo">
+                    <div class="avatar">
+                      <img class="rounded-circle img-raised" src="{{url($r->user->image_profil)}}" alt="..." style="width: 80px; height: 80px;">
+                    </div>
+                  </a>
+                  <div class="media-body card" style="padding:2%;">
 
-                  <b>
-                    @if ($r->user->statut == "eleve")
-                      {{ $r->user->eleve->prenom }}
-                    @elseif ($r->user->statut == "admin")
-                      {{ $r->user->admin->prenom }}
-                    @endif
+                    <b>
+                      @if ($r->user->statut == "eleve")
+                        {{ $r->user->eleve->prenom }}
+                      @elseif ($r->user->statut == "admin")
+                        {{ $r->user->admin->prenom }}
+                      @endif
 
-                    @if ($r->user->statut == "eleve")
-                      {{ $r->user->eleve->nom }}
-                    @elseif ($r->user->statut == "admin")
-                      {{ $r->user->admin->nom }}
-                    @endif
-                  </b>
-                  <div style="margin-top:1%;">
-                    <p style="text-align:justify;"> {{ $r->reponse }} </p>
-                  </div>
-                  <div class="media-footer">
-                    <a href="#pablo" class="btn btn-danger btn-neutral pull-right">
-                      <i class="now-ui-icons ui-2_favourite-28"></i> {{ $r->like }}
-                    </a>
+                      @if ($r->user->statut == "eleve")
+                        {{ $r->user->eleve->nom }}
+                      @elseif ($r->user->statut == "admin")
+                        {{ $r->user->admin->nom }}
+                      @endif
+                    </b>
+                    <div style="margin-top:1%;">
+                      <p style="text-align:justify;"> {{ $r->reponse }} </p>
+                    </div>
+                    <div class="media-footer">
+                      <a href="#pablo" class="btn btn-danger btn-neutral pull-right">
+                        <i class="now-ui-icons ui-2_favourite-28"></i> {{ $r->like }}
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
-            @endforeach
+              @endforeach
+            @endif
+
+            @if(session()->has('errors'))
+            <div class="alert alert-danger" role="alert">
+              @foreach($errors->all() as $error)
+              {{$error}}
+              <br>
+              @endforeach
+            </div>
+            @endif
 
             <h3 class="title text-center">Poster un commentaire</h3>
-            <form action="{{route('sujet.reponse.store', $r->sujet_id)}}" method="post">
+            <form action="{{route('sujet.reponse.store', $sujet->id)}}" method="post">
               @csrf
               @method('GET')
             <div class="media media-post">
