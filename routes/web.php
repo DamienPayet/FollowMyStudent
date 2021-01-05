@@ -97,6 +97,7 @@ Route::group(['middleware' => 'auth'], function () {
     //Route::get('front/user/{user}', 'StudentFrontController@show')->name('profil_show');
     Route::get('front/user/{user}', ['as' => 'front.users.edit', 'uses' => 'StudentFrontController@edit']);
     Route::patch('front/user/{user}/update', ['as' => 'front.users.update', 'uses' => 'StudentFrontController@update']);
+    Route::patch('captcha-user-validation/{user}', 'StudentFrontController@update')->name('user_front_store');
 
     Route::post('captcha-contact-validation', 'NousContacterController@Contact');
     Route::get('/front/contact/reload-captcha', 'NousContacterController@reloadCaptcha');

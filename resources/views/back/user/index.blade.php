@@ -9,7 +9,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header card-header-primary">
-            <h4 class="card-title ">Toutes les offres</h4>
+            <h4 class="card-title ">Tout les utilisateurs</h4>
           </div>
           <div class="card-body">
             @if (session('status'))
@@ -64,17 +64,24 @@
                     </td>
                     <td>
                       @if ($u->statut == "eleve")
-                      {{ $u->eleve->nom }}
+                      {{$u->eleve->nom }}
                       @elseif ($u->statut == "admin")
                       {{ $u->admin->nom }}
                       @endif
                     </td>
                     <td>{{ $u->email }}</td>
                     <td><img src="{{url($u->image_profil)}}" class="img-size-50 img-circle mr-3"></td>
-                    <td>{{ $u->statut }}</td>
+                    <td>
+                      @if ($u->statut == "eleve")
+                      <span class="badge badge-success">{{ $u->statut }}
+                    </td></span>
+                    @elseif ($u->statut == "admin")
+                    <span class="badge badge-danger">{{ $u->statut }}</td></span>
+                    @endif
+
                     <td>
                       <div style="display: inline-flex;">
-                        <a rel="tooltip" class="btn btn-linght" href="{{route('users.edit', $u->id)}}" data-original-title="" title="">
+                        <a rel="tooltip" class="btn btn-linght" href="{{route('users.show', $u->id)}}" data-original-title="" title="">
                           <i class="fas fa-eye"></i>
                           <div class="ripple-container"></div>
                         </a>
@@ -82,13 +89,15 @@
                           <i class="fas fa-edit"></i>
                           <div class="ripple-container"></div>
                         </a>
+                        @if ($u->id != auth()->id())
                         <form action="{{route('users.destroy', $u->id)}}" method="post">
                           @csrf
                           @method('DELETE')
-                          <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" onclick="return confirm('Est tu sur de vouloir supprimer cette offre ?')">
+                          <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" onclick="return confirm('Est tu sur de vouloir supprimer cet utilisateur ?')">
                             <i class="fas fa-times"></i>
                           </button>
                         </form>
+                        @endif
                       </div>
                     </td>
                     <td>

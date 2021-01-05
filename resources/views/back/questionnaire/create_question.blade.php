@@ -73,7 +73,7 @@
                                     </div>
                                 </div>
                                 <div class="card-footer ml-auto mr-auto text-center )">
-                                    <button name="id" value="{{$part->id}}" type="submit" class="btn btn-success">{{ __('Ajouter l\'offre') }}</button>
+                                    <button name="id" value="{{$part->id}}" type="submit" class="btn btn-success">{{ __('Ajouter') }}</button>
                                 </div>
                             </div>
                         </div>

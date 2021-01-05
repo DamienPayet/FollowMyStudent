@@ -61,8 +61,9 @@ class OffreController extends Controller
     $offre->lien = $request->get('lien');
     $offre->created_at = now();
     $offre->nb_vue = 0;
+    
     if (Auth::user()->statut == "admin") {
-      $offre->valide == 1;
+      $offre->valide = 1;
     }
     $offre->save();
 
@@ -96,12 +97,12 @@ class OffreController extends Controller
     return redirect()->route("offre.index")->with('success', 'Mise à jour réussite !');
   }
   public function validation(Request $request, $id)
-    {
-        $offre = Offre::find($id);
-        $offre->valide = !$offre->valide;
-        $offre->update();
-        return redirect()->route('offre.index')->withStatus(__('Offre publiée !'));
-    }
+  {
+    $offre = Offre::find($id);
+    $offre->valide = !$offre->valide;
+    $offre->update();
+    return redirect()->route('offre.index')->withStatus(__('Offre publiée !'));
+  }
   public function destroy(Offre $offre)
   {
     if (isset($offre->pdf)) {

@@ -114,7 +114,7 @@
                   <div class="row">
                     <label class="col-sm-2 col-form-label" for="input-pdf">{{ __('PDF') }}</label>
                     <div class="col-sm-7">
-                      <a id="viewer" href="{{url($offre->pdf)}}"><img style="width : 50px"src="{{url('back/images/pdf.png')}}"></a>
+                      <a id="viewer" href="{{url($offre->pdf)}}" target="_blank"><img style="width : 50px"src="{{url('back/images/pdf.png')}}"></a>
                     </div>
                   </div>
                   <br>

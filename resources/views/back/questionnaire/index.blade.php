@@ -136,7 +136,7 @@
                                                                             @method('DELETE')
                                                                             <button type="submit" rel="tooltip"
                                                                                     class="btn  btn-linght btn-round"
-                                                                                    onclick="return confirm('Est tu sur de vouloir supprimer cette offre ?')">
+                                                                                    onclick="return confirm('Est tu sur de vouloir supprimer cette question ?')">
                                                                                 <i class="fas fa-times"></i>
                                                                             </button>
                                                                         </form>

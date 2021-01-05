@@ -30,7 +30,7 @@ class StudentFrontController extends Controller
     public function home()
     {
         $post = HomePost::all();
-        return view('front.index',compact('post'));
+        return view('front.index', compact('post'));
     }
     public function edit(User $user, Request $request)
     {
@@ -92,8 +92,9 @@ class StudentFrontController extends Controller
         } elseif ($user->email_verified_at != null) {
 
             $getmail = $request->input('email');
-            $user->password = bcrypt($request->input('password'));
-
+            if ($request->input('password') != null) {
+                $user->password = bcrypt($request->input('password'));
+            }
             if ($user->email != $getmail) {
                 $user->email = $request->input('email');
                 $user->email_verified_at = null;
