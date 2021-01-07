@@ -15,6 +15,7 @@ use Validator;
 use Image;
 use Illuminate\Support\Facades\Storage;
 use Redirect;
+use function Sodium\add;
 
 class StudentFrontController extends Controller
 {
@@ -27,11 +28,13 @@ class StudentFrontController extends Controller
     {
         $this->middleware('auth');
     }
+
     public function home()
     {
         $post = HomePost::all();
         return view('front.index', compact('post'));
     }
+
     public function edit(User $user, Request $request)
     {
         $user = Auth::user();
@@ -240,6 +243,7 @@ class StudentFrontController extends Controller
             }
         }
         $conv = new Conversation;
+        $conv->is_open = true;
         $conv->save();
         $conv->users()->attach($user);
         $conv->users()->attach(User::find($id));
@@ -285,11 +289,16 @@ class StudentFrontController extends Controller
      */
     public function ajaxRequestSync(Request $request)
     {
-
+        $userloged = auth::user();
         $conversation = conversation::find($request->id);
-        $destinataire = "dd";
+        foreach ($conversation->messages as $mess) {
+            if ($mess->sender != $userloged->id) {
+                $mess->is_open = 1;
+                $mess->save();
+            }
+        }
         foreach ($conversation->users as $user) {
-            if ($user->id != auth::user()->id) {
+            if ($user->id != $userloged->id) {
                 if ($user->statut == "eleve") {
                     $destinataire = $user->eleve;
                 } else {
@@ -299,5 +308,39 @@ class StudentFrontController extends Controller
         }
 
         return response()->json(['messages' => $conversation->messages, 'conversation_user' => $conversation->users, 'conversation' => $conversation, 'destinataire' => $destinataire]);
+    }
+
+    public function ajaxRequestReaded()
+    {
+        $user = auth::user();
+        $nb_message = 0;
+        $destinataire = [];
+        foreach ($user->conversation as $conv) {
+            $counter = 0;
+            foreach ($conv->messages as $mess) {
+                if ($mess->sender != $user->id) {
+                    if ($mess->is_open != true) {
+                        $counter++;
+                        $nb_message++;
+                    }
+                }
+            }
+            if ($counter != 0) {
+                $conv->is_open = false;
+                foreach ($conv->users as $usr) {
+                    if ($usr->id != $user->id) {
+                        $array = array(
+                            "id" => $usr->id,
+                            "nb_msg" => $counter,
+                        );
+                        $destinataire [] = $array;
+                    }
+                }
+            } else {
+                $conv->is_open = true;
+            }
+            $conv->save();
+        }
+        return response()->json(['conv' => $user->conversation, 'nb_message' => $nb_message, 'dest' => $destinataire ] );
     }
 }

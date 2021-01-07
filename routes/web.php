@@ -31,6 +31,8 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('/back/uforum/{id}', 'ForumBackController@update_categorie')->name('categorie.update');
     Route::delete('/back/dforum/{id}', 'ForumBackController@destroy_categorie')->name('categorie.destroy');
     Route::delete('/back/dsujet/{id}', 'ForumBackController@destroy_sujet')->name('sujet.destroy');
+
+    //route admin gestion page accueil
     Route::resource('back/home', 'HomeBackController');
 
 
@@ -87,6 +89,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('my_chat', 'StudentFrontController@ajaxRequest1')->name('ajaxRequest.index');
     Route::post('ajaxRequest/conv', 'StudentFrontController@ajaxRequestSync')->name('ajaxRequest.sync');
     Route::post('ajaxRequest/testconv', 'StudentFrontController@ajaxRequestConvt')->name('ajaxRequest.testconv');
+    Route::get('ajaxRequest/readed', 'StudentFrontController@ajaxRequestReaded')->name('ajaxRequest.readed');
     Route::post('ajaxRequest', 'StudentFrontController@ajaxRequestPost')->name('ajaxRequest.post');
     //Route redirection vers front offre
     Route::get('front/offres', 'OffreFrontController@index')->name('offre_front_index');
