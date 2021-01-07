@@ -82,7 +82,9 @@ class HomeBackController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = HomePost::find($id);
+        $user =  Auth::user();
+        return view('back.home.create' , compact('user','post'));
     }
 
     /**

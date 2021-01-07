@@ -1,7 +1,7 @@
 @extends('layouts.templateFront')
 
 @section('content')
-<div class="section">
+<div class="section" >
   <div class="container">
     <div id="offers">
       <div class="text-center" style="margin : 20px">

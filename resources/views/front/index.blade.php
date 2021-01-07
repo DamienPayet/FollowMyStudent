@@ -17,36 +17,31 @@
                     </div>
                 </div>
             @endif
-
         </div>
         <div class="container">
-            <div class="offers-container tab">
-                @foreach($post as $p)
-                    
 
-                    <a href="#" class="card">
-                        <div class="card-header">
-                            <div class="card-info">
-                                <h2 class="title">{{$p->titre}}</h2>
-                            </div>
-                            <div class="localisation" style="font-size: 0.9em;">
-                                <p><i class="now-ui-icons location_pin"></i> {{$p->titre}}</p>
-                            </div>
-                            <p class="time">Mise en ligne
-
-                            <div class="card-tags">
-                                <ul>
-                                    <li>{{$p->titre}}</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <p>{{ \Illuminate\Support\Str::limit($p->titre, 250, $end='...') }}</p>
-                        </div>
+            @foreach($post as $p)
+                @if(isset($p->lien))
+                    <a href="{{$p->lien}}" class="card">
+                        @else
+                            <div class="card">
+                                @endif
+                                <h1 class="card-title">{{$p->titre}}</h1>
+                                <div class="card-body">
+                                    @if(isset($p->image))
+                                        <img class="card-img-top" src="{{$p->image}}" alt="Card image cap">
+                                    @endif
+                                    @if(isset($p->description))
+                                        <p class="card-text">{{$p->description}}</p>
+                                    @endif
+                                </div>
+                            @if(isset($p->lien))
                     </a>
-
-                @endforeach
-            </div>
+                @else
         </div>
+        @endif
+        @endforeach
+
+    </div>
     </div>
 @endsection
