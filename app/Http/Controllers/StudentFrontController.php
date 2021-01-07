@@ -62,8 +62,10 @@ class StudentFrontController extends Controller
 
     public function update(Request $request, $id)
     {
+        $user = User::find($id);
+
         $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email,'.$user->id,
             'password' => 'nullable|min:6|required_with:password_confirmation|same:password_confirmation',
             'password_confirmation' => 'nullable|min:6',
             'captcha' => 'required|captcha',
@@ -72,7 +74,6 @@ class StudentFrontController extends Controller
             return Redirect::back()->withErrors($validator)->withInput();
         }
         //Récupération de l'id de l'utilisateur
-        $user = User::find($id);
         //$user->email_verified_at == null;
         //$user->save();
 
@@ -85,12 +86,12 @@ class StudentFrontController extends Controller
                 $user->sendEmailVerificationNotification();
                 $user->updated_at = now();
                 $user->save();
-                return redirect()->route('front.users.edit', $user)->with('message', 'Nouvelle adresse enregistrée! Un email de validation viens de t\'etre envoyé.');
+                return redirect()->route('front.users.edit', $user)->with('message', 'Nouvelle adresse enregistrée! Un email de validation viens d\'etre envoyé.');
             } elseif ($user->email == $getmail) {
                 $user->sendEmailVerificationNotification();
                 $user->updated_at = now();
                 $user->save();
-                return redirect()->route('front.users.edit', $user)->with('message', 'Un email de validation viens de t\'etre envoyé.');
+                return redirect()->route('front.users.edit', $user)->with('message', 'Un email de validation viens d\'etre envoyé.');
             }
         } elseif ($user->email_verified_at != null) {
 
@@ -107,7 +108,7 @@ class StudentFrontController extends Controller
                 $user->sendEmailVerificationNotification();
                 $user->updated_at = now();
                 $user->save();
-                return redirect()->route('front.users.edit', $user)->with('message', 'Profil modifié avec succès! Vérifies tes emails.');
+                return redirect()->route('front.users.edit', $user)->with('message', 'Profil modifié avec succès! Un email de validation viens d\' envoyé.');
             } elseif ($user->isDirty()) {
                 //Insertion IMAGE
                 if (request('imagechoisie') != null) {
@@ -128,6 +129,37 @@ class StudentFrontController extends Controller
             } elseif (!$user->isDirty()) {
                 return redirect()->route('front.users.edit', $user)->with('unchange', 'Aucune information changée...');
             }
+        }
+    }
+    public function email_update(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'captcha' => 'required|captcha',
+        ]);
+        if ($validator->fails()) {
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+        //Récupération de l'id de l'utilisateur
+        $user = User::find($id);
+        if ($user->email_verified_at == null) {
+
+            $getmail = $request->input('email');
+
+            if ($user->email != $getmail) {
+                $user->email = $request->input('email');
+                $user->sendEmailVerificationNotification();
+                $user->updated_at = now();
+                $user->save();
+                return redirect()->route('front.users.edit', $user)->with('message', 'Nouvelle adresse enregistrée! Un email de validation viens de t\'etre envoyé.');
+            } elseif ($user->email == $getmail) {
+                $user->sendEmailVerificationNotification();
+                $user->updated_at = now();
+                $user->save();
+                return redirect()->route('front.users.edit', $user)->with('message', 'Un email de validation viens de t\'etre envoyé.');
+            }
+        } else {
+            return redirect()->route('front.users.edit', $user)->with('unchange', 'Aucune information changée...');
         }
     }
 
@@ -333,7 +365,7 @@ class StudentFrontController extends Controller
                             "id" => $usr->id,
                             "nb_msg" => $counter,
                         );
-                        $destinataire [] = $array;
+                        $destinataire[] = $array;
                     }
                 }
             } else {
@@ -341,6 +373,6 @@ class StudentFrontController extends Controller
             }
             $conv->save();
         }
-        return response()->json(['conv' => $user->conversation, 'nb_message' => $nb_message, 'dest' => $destinataire ] );
+        return response()->json(['conv' => $user->conversation, 'nb_message' => $nb_message, 'dest' => $destinataire]);
     }
 }

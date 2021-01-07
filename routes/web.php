@@ -77,6 +77,7 @@ Route::group(['middleware' => 'auth'], function () {
   //Route redirection vers forum acceuil
   //Route::get('front/forum', 'StudentFrontController@forum')->name('forum');
   Route::resource('front/forum', 'ForumController');
+  Route::get('front/forum', 'ForumController@index')->name('forum');
   Route::get('front/forum/categorie/{id}', 'ForumController@index_sujet')->name('sujet.index');
   Route::get('front/forum/create', 'ForumController@create')->name('sujet.create');
   Route::get('front/forum/sujet/{sujet}', 'ForumController@show_sujet')->name('sujet.show');
@@ -105,7 +106,8 @@ Route::group(['middleware' => 'auth'], function () {
     //Route::get('front/user/{user}', 'StudentFrontController@show')->name('profil_show');
     Route::get('front/user/{user}', ['as' => 'front.users.edit', 'uses' => 'StudentFrontController@edit']);
     Route::patch('front/user/{user}/update', ['as' => 'front.users.update', 'uses' => 'StudentFrontController@update']);
-    Route::patch('captcha-user-validation/{user}', 'StudentFrontController@update')->name('user_front_store');
+    Route::patch('/front/user/email-validation/{id}', 'StudentFrontController@email_update')->name('email.update');
+    Route::patch('captcha-user-validation/{id}', 'StudentFrontController@update')->name('user_front_store');
 
     Route::post('captcha-contact-validation', 'NousContacterController@Contact');
     Route::get('/front/contact/reload-captcha', 'NousContacterController@reloadCaptcha');
