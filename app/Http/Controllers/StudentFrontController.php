@@ -95,6 +95,9 @@ class StudentFrontController extends Controller
             if ($request->input('password') != null) {
                 $user->password = bcrypt($request->input('password'));
             }
+            if (request('imagechoisie') != null) {
+                $user->image_profil = $request->input('imagechoisie');
+            }
             if ($user->email != $getmail) {
                 $user->email = $request->input('email');
                 $user->email_verified_at = null;

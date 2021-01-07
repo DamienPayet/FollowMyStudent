@@ -57,7 +57,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <?php $user = auth()->user(); ?>
                             <!-- Message Start -->
                             <div class="media">
-                                <img src="uploads/avatars/{{$user->image_profil}}" class="img-size-50 img-circle mr-3">
+                                <img src="" class="img-size-50 img-circle mr-3">
                                 <div class="media-body">
                                     <h3 class="dropdown-item-title">
                                         @if ($user->statut == "eleve")
@@ -258,6 +258,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="{{url('back/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <!-- AdminLTE App -->
     <script src="{{url('back/dist/js/adminlte.min.js')}}"></script>
+    <script src="{{url('back/js/avatar_selector.js')}}" type="text/javascript"></script>
+
     <!-- DATATABLE -->
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>
     <script>

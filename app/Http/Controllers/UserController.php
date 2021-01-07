@@ -34,7 +34,8 @@ class UserController extends Controller
   public function create()
   {
     //
-    return view('back.user.create');
+    $images = \File::allFiles(public_path('front/images/avatars'));
+    return view('back.user.create', compact('images'));
   }
 
   /**
@@ -77,19 +78,24 @@ class UserController extends Controller
     $user->password = bcrypt($request->input('mdp'));
     $user->statut = $request->input('statut');
     //Insertion IMAGE
-    if ($request->file('image_profil') == null) {
-      $user->image_profil = "back/uploads/avatars/default.png";
-    } else {
-      $avatar = $request->file('image_profil');
-      $filename = 'back/uploads/avatars/' . date('Y-m-d') . '_' . $avatar->getClientOriginalName();
-      Image::make($avatar)->resize(300, 300)->save(public_path($filename));
-      $user->image_profil = $filename;
+    if (request('imagechoisie') == null) {
+      $user->image_profil = "images/default.png";
+    } elseif (request('imagechoisie') != null) {
+
+      $avatar = request('imagechoisie');
+      $source = public_path('front/images/avatars/' . $avatar);
+      $filename = date('Y-m-d-m-s') . '_userID_' . $user->id . '_' . $avatar;
+      $destination = 'front/images/uploads/' . $filename;
+
+      if (\File::copy($source, $destination)) {
+        $user->image_profil = $destination;
+      }
     }
-    //
     $user->save();
 
     return redirect()->route("users.index")->with('success', 'Création réussie !');
   }
+
 
   /**
    * Display the specified resource.
@@ -113,7 +119,8 @@ class UserController extends Controller
   {
     //
     $user = User::find($id);
-    return view('back.user.edit')->with('user', $user);
+    $images = \File::allFiles(public_path('front/images/avatars'));
+    return view('back.user.edit', compact('user', 'images'));
   }
 
   /**
@@ -159,13 +166,23 @@ class UserController extends Controller
       $user->password = bcrypt($request->input('password'));
     }
     //Insertion IMAGE
-    if ($request->file('image_profil') == null) {
-    } else {
+    if (request('imagechoisie') != null) {
+
+      $avatar = request('imagechoisie');
+      $source = public_path('front/images/avatars/' . $avatar);
+      $filename = date('Y-m-d-m-s') . '_userID_' . $user->id . '_' . $avatar;
+      $destination = 'front/images/uploads/' . $filename;
+
+      if (\File::copy($source, $destination)) {
+        $user->image_profil = $destination;
+      }
+      /*        
       $avatar = $request->file('image_profil');
       $filename = 'back/uploads/avatars/' . date('Y-m-d') . '_' . $avatar->getClientOriginalName();
       Image::make($avatar)->resize(300, 300)->save(public_path($filename));
-      $user->image_profil = $filename;
+      $user->image_profil = $filename;*/
     }
+    $user->updated_at = now();
     $user->save();
 
     return redirect()->route("users.index")->with('success', 'Modification réussie !');
