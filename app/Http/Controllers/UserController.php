@@ -240,4 +240,54 @@ class UserController extends Controller
 
     //return redirect()->route('offres.index')->withStatus(__('Offres supprimées avec succès'));
   }
+  public function avatar_index()
+  {
+    //
+    $images = \File::allFiles(public_path('front/images/avatars'));
+    return view('back.avatar.index', compact('images'));
+  }
+  public function avatar_create()
+  {
+    //
+    return view('back.avatar.create');
+  }
+  public function avatar_show()
+  {
+    //
+    $images = \File::allFiles(public_path('front/images/avatars'));
+    return view('back.avatar.index', compact('images'));
+  }
+  public function avatar_store(Request $request)
+  {
+    $avatar = $request->file('fileUpload');
+    $filename = 'front/images/avatars/' . $avatar->getClientOriginalName();
+    Image::make($avatar)->resize(300, 300)->save(public_path($filename));
+
+    return redirect()->route("avatar.index")->with('success', 'Avatar ajouté !');
+  }
+  public function avatar_destroy($image)
+  {
+    //dd($image);
+
+    $imagedel = public_path() . '/front/images/avatars/' . $image;
+    //dd($imagedel);
+    //    $image = 'front/images/avatars/' . $image->getFilename();
+    if (\File::exists($imagedel)) {
+      \File::delete($imagedel);
+    } else {
+      return redirect()->route("avatar.index")->with('error', 'Un problème est survenu..merci de réessayer');
+    }
+    return redirect()->route("avatar.index")->with('success', 'Avatar supprimé !');
+  }
+  public function avatar_deleteAll(Request $request)
+  {
+    $ids = $request->ids;
+
+    $ids = explode(",", $ids);
+
+    foreach ($ids as $id) {
+      \File::delete(public_path() . '/front/images/avatars/' .$id);
+    }
+    return response()->json(['success' => "Avatars supprimés avec succès."]);
+  }
 }

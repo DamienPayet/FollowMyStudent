@@ -8,6 +8,10 @@
                 <text style='margin-left:10px;color:red;'>* Champs obligatoires</text>
                 <br>
                 <div class="card ">
+                <div class="card-header card-header-primary">
+              <h4 class="card-title">{{ __('Modifier un utilisateur') }}</h4>
+              <p class="card-category"></p>
+            </div>
                     <div class="card-body ">
                         <div class="row">
                             <div class="col-md-12 ">

@@ -78,7 +78,6 @@
                     @elseif ($u->statut == "admin")
                     <span class="badge badge-danger">{{ $u->statut }}</td></span>
                     @endif
-
                     <td>
                       <div style="display: inline-flex;">
                         <a rel="tooltip" class="btn btn-linght" href="{{route('users.show', $u->id)}}" data-original-title="" title="">

@@ -49,6 +49,12 @@ Route::group(['middleware' => 'admin'], function () {
     Route::put('back/users/mdp/{users}', 'UserController@updateMdp')->name('users.updateMdp');
     Route::delete('users-deleteselection', 'UserController@deleteAll');
 
+    Route::get('/back/avatar', 'UserController@avatar_index')->name('avatar.index');
+    Route::get('/back/avatar/create', 'UserController@avatar_create')->name('avatar.create');
+    Route::post('/back/avatar/store', 'UserController@avatar_store')->name('avatar.store');
+    Route::delete('/back/avatar/delete/{id}', 'UserController@avatar_destroy')->name('avatar.destroy');
+    Route::delete('avatars-deleteselection', 'UserController@avatar_deleteAll');
+
 
     //Route indexBack
     Route::get('/back/index', 'DashboardController@index')->name('indexback');
@@ -69,7 +75,6 @@ Route::group(['middleware' => 'auth'], function () {
   //Route redirection vers forum acceuil
   //Route::get('front/forum', 'StudentFrontController@forum')->name('forum');
   Route::resource('front/forum', 'ForumController');
-  Route::get('front/forum', 'ForumController@index')->name('forum');
   Route::get('front/forum/categorie/{id}', 'ForumController@index_sujet')->name('sujet.index');
   Route::get('front/forum/create', 'ForumController@create')->name('sujet.create');
   Route::get('front/forum/sujet/{sujet}', 'ForumController@show_sujet')->name('sujet.show');
