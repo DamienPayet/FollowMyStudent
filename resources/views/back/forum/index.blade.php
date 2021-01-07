@@ -26,7 +26,7 @@
                             <div class="alert alert-success">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">
-                                        <i class="now-ui-icons ui-1_simple-remove"></i>
+                                    <i class="fas fa-times"></i>
                                     </span>
                                 </button>
                                 <span>{{ session('status') }}</span>

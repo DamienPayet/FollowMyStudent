@@ -286,7 +286,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     $(".sub_chk").prop('checked', false);
                 }
             });
-
+            $('#master1').on('click', function(e) {
+                if ($(this).is(':checked', true)) {
+                    $(".sub_chk1").prop('checked', true);
+                } else {
+                    $(".sub_chk1").prop('checked', false);
+                }
+            });
             $('.delete_all').on('click', function(e) {
 
 
@@ -294,7 +300,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 $(".sub_chk:checked").each(function() {
                     allVals.push($(this).attr('data-id'));
                 });
-
+                $(".sub_chk1:checked").each(function() {
+                    allVals.push($(this).attr('data-id'));
+                });
 
                 if (allVals.length <= 0) {
                     alert("Veuillez séléctionner au moins une ligne.");
@@ -329,9 +337,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             },
                             error: function(data) {
                                 alert(data.responseText);
+                            },
+                            success: function(data1) {
+                                if (data1['success']) {
+                                    $(".sub_chk1:checked").each(function() {
+                                        $(this).parents("tr").remove();
+                                    });
+                                    alert(data1['success']);
+                                } else if (data1['error']) {
+                                    alert(data1['error']);
+                                } else {
+                                    alert('Whoops...Quelque chose s\'est mal passé!!');
+                                }
+                            },
+                            error: function(data1) {
+                                alert(data1.responseText);
                             }
                         });
-
 
                         $.each(allVals, function(index, value) {
                             $('table tr').filter("[data-row-id='" + value + "']").remove();
@@ -370,12 +392,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             alert('Whoops...Quelque chose s\'est mal passé!!');
                         }
                     },
-                    error: function(data) {
-                        alert(data.responseText);
+                    error: function(data1) {
+                        alert(data1.responseText);
+                    },
+                    success: function(data1) {
+                        if (data1['success']) {
+                            $("#" + data1['tr']).slideUp("slow");
+                            alert(data1['success']);
+                        } else if (data1['error']) {
+                            alert(data1['error']);
+                        } else {
+                            alert('Whoops...Quelque chose s\'est mal passé!!');
+                        }
+                    },
+                    error: function(data1) {
+                        alert(data1.responseText);
                     }
                 });
-
-
                 return false;
             });
         });

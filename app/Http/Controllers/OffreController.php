@@ -18,7 +18,9 @@ class OffreController extends Controller
   public function index()
   {
     $offre = Offre::all();
-    return view('back/offre.index', compact('offre'));
+    $nonval_offres = DB::table('offres')->where('valide', '=', 0)->count();
+
+    return view('back/offre.index', compact('offre','nonval_offres'));
   }
   public function create(Offre $offre)
   {

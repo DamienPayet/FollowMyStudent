@@ -17,7 +17,7 @@
                 <div class="alert alert-success">
                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">
-                      <i class="now-ui-icons ui-1_simple-remove"></i>
+                    <i class="fas fa-times"></i>
                     </span>
                   </button>
                   <span>{{ session('status') }}</span>
@@ -60,6 +60,7 @@
               </thead>
               <tbody>
                 @foreach($offre as $offres)
+                @if ($offres->valide == 1 )
                 <tr class="text-center">
                   <td>{{ $offres->titre }}</td>
                   <td>{{substr($offres->description, -50)}}</td>
@@ -76,13 +77,11 @@
                     @endif
                   </td>
                   <td>{{$offres->nb_vue}}</td>
-                  @if ($offres->valide = 1 )
+                  @if ($offres->valide == 1 )
                   <td><span class="badge badge-success">Oui</span></td>
-                  @elseif ($offres->valide = 0 )
+                  @elseif ($offres->valide == 0 )
                   <td><span class="badge badge-danger">Non</span></td>
-
                   @endif
-
                   <td>{{ $offres->created_at }}</td>
                   <td>
                     <div style="display: inline-flex;">
@@ -95,18 +94,19 @@
                         <div class="ripple-container"></div>
                       </a>
                       <form action="{{route('offre.destroy', $offres->id)}}" method="post">
-                          @csrf
-                          @method('DELETE')
-                          <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" onclick="return confirm('Est tu sur de vouloir supprimer cette offre ?')">
-                            <i class="fas fa-times"></i>
-                          </button>
-                        </form>
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" onclick="return confirm('Est tu sur de vouloir supprimer cette offre ?')">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </form>
                     </div>
                   </td>
                   <td>
                     <input type="checkbox" class="sub_chk" data-id="{{$offres->id}}">
                   </td>
                 </tr>
+                @endif
                 @endforeach
               </tbody>
             </table>
@@ -127,7 +127,7 @@
                 <div class="alert alert-success">
                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">
-                      <i class="now-ui-icons ui-1_simple-remove"></i>
+                    <i class="fas fa-times"></i>
                     </span>
                   </button>
                   <span>{{ session('status') }}</span>
@@ -135,6 +135,17 @@
               </div>
             </div>
             @endif
+            @if($nonval_offres <= 0)
+
+            <div class="alert alert-success">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">
+                </span>
+              </button>
+              <span><center>{{ __('Bonne nouvelle ! Il n\'y a aucune offre a valider.') }}</center></span>
+            </div>
+            @elseif($offres->valide == 0 && $offres->valide->count() > 0)
+
             <div>
               <a>
                 <button style='margin-right:10px; float : left ;' type="submit" class="btn btn-success validate_all" data-url="{{ url('offres-validateselection') }}">
@@ -162,7 +173,6 @@
               </thead>
               <tbody>
                 @foreach($offre as $offres)
-
                 @if($offres->valide == 0)
                 <tr class="text-center">
                   <td>{{ $offres->titre }}</td>
@@ -180,7 +190,11 @@
                     @endif
                   </td>
                   <td>{{$offres->nb_vue}}</td>
-                  <td>{{$offres->valide}}</td>
+                  @if ($offres->valide == 1 )
+                  <td><span class="badge badge-success">Oui</span></td>
+                  @elseif ($offres->valide == 0 )
+                  <td><span class="badge badge-danger">Non</span></td>
+                  @endif
                   <td>{{ $offres->created_at }}</td>
                   <td>
                     <div style="display: inline-flex;">
@@ -200,22 +214,24 @@
                         </button>
                       </form>
                       <form action="{{route('offre.destroy', $offres->id)}}" method="post">
-                          @csrf
-                          @method('DELETE')
-                          <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" onclick="return confirm('Est tu sur de vouloir supprimer cette offre ?')">
-                            <i class="fas fa-times"></i>
-                          </button>
-                        </form>
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" onclick="return confirm('Est tu sur de vouloir supprimer cette offre ?')">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </form>
                     </div>
                   </td>
                   <td>
-                    <input type="checkbox" class="sub_chk" data-id="{{$offres->id}}">
+                    <input type="checkbox" class="sub_chk1" data-id="{{$offres->id}}">
                   </td>
                 </tr>
                 @endif
                 @endforeach
               </tbody>
             </table>
+            @endif
+
           </div>
         </div>
       </div>
