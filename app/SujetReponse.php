@@ -14,4 +14,8 @@ class SujetReponse extends Model
   {
     return $this->belongTo('App\Sujet');
   }
+  public function users()
+   {
+       return $this->belongsToMany('App\User')->withPivot('like');
+   }
 }

@@ -42,7 +42,6 @@ class ForumController extends Controller
   }
   public function store_reponse(Request $request, $sujet)
   {
-
     // On oblige à respecter certains critères avant de valider la requête
     $validator = Validator::make($request->all(), [
       'reponse' => 'required|min:10',
@@ -57,7 +56,6 @@ class ForumController extends Controller
     $reponse->reponse = $request->get('reponse');
     $reponse->user_id = $user;
     $reponse->sujet_id = $sujet;
-    $reponse->like = 0;
     $reponse->nb_vue = 0;
     $reponse->created_at = now();
     $reponse->save();
