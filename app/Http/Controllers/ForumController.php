@@ -94,7 +94,6 @@ class ForumController extends Controller
     $sujet->nb_vue += 1;
     $sujet->type = $request->get('type');
     $sujet->created_at = now();
-    $sujet->nbVue = 0;
     $sujet->save();
 
     return redirect()->route('forum')->withStatus(__('Sujet créé avec succès.'));
