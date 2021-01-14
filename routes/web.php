@@ -20,7 +20,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('/back/uoffre/{id}', 'OffreController@validation')->name('offre.validation');
     Route::delete('offres-deleteselection', 'offreController@deleteAll');
     //route admin gestion forum
-    Route::resource('back/forum', 'ForumBackController');
+    Route::resource('back/forum', 'ForumBackController'); //Voir pour modifier ça !!!
     Route::get('/back/esection/{id}', 'ForumBackController@edit')->name('section.edit');
     Route::post('/back/ssection', 'ForumBackController@store')->name('section.store');
     Route::post('/back/usection/{id}', 'ForumBackController@update')->name('section.update');
@@ -68,12 +68,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/back/order_up/quest','QuestionnaireBackController@update_orderQuest')->name('updateorderquest');
   //Route redirection vers forum acceuil
   //Route::get('front/forum', 'StudentFrontController@forum')->name('forum');
-  Route::resource('front/forum', 'ForumController');
-  Route::get('front/forum', 'ForumController@index')->name('forum');
-  Route::get('front/forum/categorie/{id}', 'ForumController@index_sujet')->name('sujet.index');
-  Route::get('front/forum/create', 'ForumController@create')->name('sujet.create');
-  Route::get('front/forum/sujet/{sujet}', 'ForumController@show_sujet')->name('sujet.show');
-  Route::get('front/forum/sujet/{sujet}/reponse', 'ForumController@store_reponse')->name('sujet.reponse.store');
+    Route::resource('front/forum', 'ForumController');
+     Route::get('front/forum', 'ForumController@index')->name('forum');
+    Route::get('front/forum/categorie/{id}', 'ForumController@index_sujet')->name('sujet.index');
+    Route::get('front/forum/create', 'ForumController@create')->name('sujet.create');
+    Route::get('front/forum/sujet/{sujet}', 'ForumController@show_sujet')->name('sujet.show');
+    Route::get('front/forum/sujet/{sujet}/reponse', 'ForumController@store_reponse')->name('sujet.reponse.store');
 
     //Route redirection vers forum mes sujet
     Route::get('front/mes_sujets', 'StudentFrontController@forum_mes_sujets')->name('forum_mesSujets');

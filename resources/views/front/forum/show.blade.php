@@ -43,7 +43,7 @@
             </div>
             <div class="col-md-6" style="text-align:right;">
               <div class="blog-tags">
-                <span>Le {{ \Carbon\Carbon::parse($sujet->created_at)->format('d/m/Y/h:m')}} </span>
+                <span>Le {{ \Carbon\Carbon::parse($sujet->created_at)->format('d/m/Y h:m')}} </span>
               </div>
             </div>
           </div>
@@ -84,8 +84,9 @@
                       <p style="text-align:justify;"> {{ $r->reponse }} </p>
                     </div>
                     <div class="media-footer">
-                      <a href="#pablo" class="btn btn-danger btn-neutral pull-right">
-                        <i class="now-ui-icons ui-2_favourite-28"></i> {{ $r->like }}
+                      <p style="font-style: italic;" class="btn btn-danger btn-neutral pull-left">{{ \Carbon\Carbon::parse($r->created_at)->format('d/m/Y H:i') }} </p>
+                      <a onclick="like({{$r->id}});" class="btn btn-danger btn-neutral pull-right">
+                        <i class="now-ui-icons ui-2_favourite-28"></i> <input type="number" id="inputLike" value="{{ $r->like }}">
                       </a>
                     </div>
                   </div>
@@ -107,11 +108,11 @@
               @csrf
               @method('GET')
             <div class="media media-post">
-              <a class="pull-left author" href="#pablo">
+              {{-- <a class="pull-left author" href="#pablo"> --}}
                 <div class="avatar">
                   <img class="rounded-circle img-raised" alt="64x64" src="{{url(auth()->user()->image_profil)}}" style="width: 80px; height: 80px;">
                 </div>
-              </a>
+              {{-- </a> --}}
               <div class="media-body card">
                 {{-- <lt-mirror style="display: none;">
                 <lt-highlighter contenteditable="false" style="display: none;">
@@ -136,4 +137,20 @@
 </div>
 </div>
 </div>
+<script>
+// ---- LIKE ----
+function like(id){
+    console.log(id);
+    // lesReponses = JSON.parse();
+    // console.log(lesReponses);
+
+  //   var user = JSON.parse();
+  //   console.log(user);
+  //
+  // let likeBtn = document.getElementById('inputLike');
+  // likeBtn.value = parseInt(likeBtn.value) + 1;
+
+}
+</script>
+
 @endsection
