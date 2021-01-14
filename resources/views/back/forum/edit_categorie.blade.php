@@ -34,8 +34,24 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-footer ml-auto mr-auto text-center )">
-                                <button type="submit" class="btn btn-success">Mettre à jour</button>
+                            <!-- Image -->
+                            <label class="col-sm-2 col-form-label">{{ __('Image') }}</label>
+                            <div class="col-sm-7 custom-file">
+                                <div class="form-group">
+                                    <input type="file" class="custom-file-input" id="selector" name="image">
+                                    <label class="custom-file-label" id="filename" for="validatedCustomFile">{{$categorie->image }}</label>
+                                </div>
+                            </div>
+
+                            <!-- Preview Image -->
+                            <div class="form-group">
+                                <label class="col-sm-2 col-form-label">{{ __('Prévisulisation Image') }}</label>
+                                <center>
+                                    <img src="{{url($categorie->image)}}" id="img_preview" class="img-rounded" style="height : 150px; border: solid 1px ">
+                                </center>
+                            </div>
+                            <div class="card-footer ml-auto mr-auto text-center">
+                                <button type="submit" class="btn btn-success">Modifier</button>
                             </div>
                         </div>
                     </div>
@@ -44,5 +60,21 @@
         </div>
     </div>
 </div>
+<script>
+    const fileSelector = document.getElementById('image');
+    fileSelector.addEventListener('change', (event) => {
+        const fileList = event.target.files;
+        document.getElementById('image_upload').innerHTML = fileList[0].name;
+        event.target.files
+        var file = event.target.files[0];
+        if (file) {
+            var reader = new FileReader();
 
+            reader.onload = function() {
+                $("#img_preview").attr("src", reader.result);
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
 @endsection

@@ -16,6 +16,7 @@ class CreateSujetCategoriesTable extends Migration
         Schema::create('sujet_categories', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
+            $table->string('image');
             $table->bigInteger('section_id')->unsigned()->nullable();
             $table->string('nb_vue');
             $table->timestamps();

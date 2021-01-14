@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Sujet;
 use App\Section;
 use App\SujetCategorie;
+use Image;
 
 class ForumBackController extends Controller
 {
@@ -73,6 +74,17 @@ class ForumBackController extends Controller
 
         $categorie->nom = $request->get('nom');
         $categorie->section_id = $request->get('id_section');
+
+        if ($request->file('image') == null) {
+            $categorie->image = 'front/images/categories/contact-us.png';
+        } else {
+            $image = $request->file('image');
+            $filename = 'front/images/categories/' . $image->getClientOriginalName();
+            Image::make($image)->resize(300, 300)->save(public_path($filename));
+            $categorie->image = $filename;
+        }
+        $categorie->nb_vue = 0;
+
         $categorie->save();
 
         return redirect()->route('forum.index')->withStatus(__('Catégorie créée avec succès.'));
@@ -82,8 +94,16 @@ class ForumBackController extends Controller
     {
         $categorie = SujetCategorie::find($id);
         $categorie->nom = $request->get('nom');
+        //Insertion IMAGE
+        if ($request->file('image') == null) {
+        } else {
+            $image = $request->file('image');
+            $filename = 'front/images/categories/' . $image->getClientOriginalName();
+            Image::make($image)->resize(300, 300)->save(public_path($filename));
+            $categorie->image = $filename;
+        }
         $categorie->update();
-        return redirect()->route("forum.index")->with('success', 'Mise à jour réussite !');
+        return redirect()->route("forum.index")->with('success', 'Catégorie mise à jour !');
     }
 
     public function destroy_categorie($id)

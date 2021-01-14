@@ -34,7 +34,28 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-footer ml-auto mr-auto text-center )">
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Image :</label>
+                                <div class="col-sm-7">
+                                    <div class="custom-file">
+                                        <input type="file" id="image" name="image" class="{{ $errors->has('image') ? ' is-invalid ' : '' }}custom-file-input">
+                                        <label class="custom-file-label" id="image_upload" for="image">Choisir une image</label>
+                                        @if ($errors->has('image'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('image') }}
+                                        </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div> <br>
+                            <!-- Preview Image -->
+                            <div class="form-group">
+                                <center>
+                                    <img src="" id="img_preview" class="img-rounded" style="height : 150px; border: solid 1px ">
+                                </center>
+                            </div>
+                            <br>
+                            <div class="card-footer ml-auto mr-auto text-center">
                                 <button name="id_section" value="{{$section->id}}" type="submit" class="btn btn-success">Ajouter</button>
                             </div>
                         </div>
@@ -44,5 +65,21 @@
         </div>
     </div>
 </div>
+<script>
+    const fileSelector = document.getElementById('image');
+    fileSelector.addEventListener('change', (event) => {
+        const fileList = event.target.files;
+        document.getElementById('image_upload').innerHTML = fileList[0].name;
+        event.target.files
+        var file = event.target.files[0];
+        if (file) {
+            var reader = new FileReader();
 
+            reader.onload = function() {
+                $("#img_preview").attr("src", reader.result);
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
 @endsection
