@@ -37,6 +37,7 @@ class ForumBackController extends Controller
 
         $section->titre = $request->get('section');
         $section->description = $request->get('description');
+        $section->nb_vue = 0;
         $section->save();
 
         return redirect()->route('forum.index')->withStatus(__('Section créée avec succès.'));
