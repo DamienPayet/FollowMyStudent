@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSujetReponsesTable extends Migration
+class CreateSujetReponsesUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateSujetReponsesTable extends Migration
      */
     public function up()
     {
-        Schema::create('sujet_reponses', function (Blueprint $table) {
+        Schema::create('sujet_reponses_users', function (Blueprint $table) {
             $table->id();
-            $table->longText('reponse');
             $table->bigInteger('user_id')->unsigned()->nullable();
-            $table->bigInteger('sujet_id')->unsigned()->nullable();
-            $table->integer('nb_vue');
+            $table->bigInteger('sujet_reponse_id')->unsigned()->nullable();
+            $table->boolean('like')->default(false);
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateSujetReponsesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sujet_reponses');
+        Schema::dropIfExists('sujet_reponses_users');
     }
 }
