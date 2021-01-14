@@ -16,7 +16,6 @@ class CreateSujetReponsesTable extends Migration
         Schema::create('sujet_reponses', function (Blueprint $table) {
             $table->id();
             $table->longText('reponse');
-            $table->bigInteger('user_id')->unsigned()->nullable();
             $table->bigInteger('sujet_id')->unsigned()->nullable();
             $table->integer('nb_vue');
             $table->timestamps();

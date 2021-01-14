@@ -36,9 +36,10 @@ class ForumController extends Controller
   {
     $reponses = SujetReponse::where('sujet_id', $sujet->id)->get();
     $nbReponse = SujetReponse::count('sujet_id', $sujet->id);
+    $users=User::all();
     $sujet->nb_vue += 1;
     $sujet->update();
-    return view('front/forum.show', compact('sujet','reponses','nbReponse'));
+    return view('front/forum.show', compact('sujet','reponses','nbReponse','users'));
   }
   public function store_reponse(Request $request, $sujet)
   {
@@ -54,7 +55,7 @@ class ForumController extends Controller
     $reponse = new SujetReponse;
 
     $reponse->reponse = $request->get('reponse');
-    $reponse->user_id = $user;
+    $reponse->users()->attach($user);
     $reponse->sujet_id = $sujet;
     $reponse->nb_vue = 0;
     $reponse->created_at = now();

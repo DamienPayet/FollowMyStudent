@@ -61,24 +61,41 @@
               @foreach ($reponses as $r)
                 <div class="media">
                   <a class="pull-left" href="#pablo">
+                    @foreach ($r->users as $u)
+                      @foreach ($users as $u2)
+                        @if ($u->pivot->user_id == $u2->id)
+                        <?php $reponse = $u2->image_profil ?>
+                        @endif
+                      @endforeach
+                    @endforeach
                     <div class="avatar">
-                      <img class="rounded-circle img-raised" src="{{url($r->user->image_profil)}}" alt="..." style="width: 80px; height: 80px;">
+                      <img class="rounded-circle img-raised" src="{{url($reponse)}}" alt="..." style="width: 80px; height: 80px;">
                     </div>
                   </a>
+
                   <div class="media-body card" style="padding:2%;">
 
                     <b>
-                      @if ($r->user->statut == "eleve")
-                        {{ $r->user->eleve->prenom }}
-                      @elseif ($r->user->statut == "admin")
-                        {{ $r->user->admin->prenom }}
-                      @endif
+                      @foreach ($r->users as $u)
+                        @foreach ($users as $u2)
+                          @if ($u->pivot->user_id == $u2->id)
 
-                      @if ($r->user->statut == "eleve")
+                            @if ($u2->statut == "eleve")
+                              {{ $u2->eleve->prenom }}
+                            @elseif ($u2->statut == "admin")
+                              {{ $u2->admin->prenom }}
+                            @endif
+
+                          @endif
+                        @endforeach
+                      @endforeach
+
+
+                      {{-- @if ($r->user->statut == "eleve")
                         {{ $r->user->eleve->nom }}
                       @elseif ($r->user->statut == "admin")
                         {{ $r->user->admin->nom }}
-                      @endif
+                      @endif  --}}
                     </b>
                     <div style="margin-top:1%;">
                       <p style="text-align:justify;"> {{ $r->reponse }} </p>
@@ -88,15 +105,18 @@
                       <a onclick="like({{$r->id}});" class="btn btn-danger btn-neutral pull-right">
                         <i class="now-ui-icons ui-2_favourite-28"></i> <input type="number" id="inputLike" value="">
                       </a>
-                      @foreach ($r->users as $test)
-{{ dd($test->like)}}
+                      @foreach ($users as $u)
+                        @foreach ($u->sujet_reponses() as $r2)
+
+
+
+                        @endforeach
                       @endforeach
                     </div>
                   </div>
                 </div>
               @endforeach
             @endif
-
             @if(session()->has('errors'))
             <div class="alert alert-danger" role="alert">
               @foreach($errors->all() as $error)
