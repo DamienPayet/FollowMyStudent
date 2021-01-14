@@ -86,8 +86,11 @@
                     <div class="media-footer">
                       <p style="font-style: italic;" class="btn btn-danger btn-neutral pull-left">{{ \Carbon\Carbon::parse($r->created_at)->format('d/m/Y H:i') }} </p>
                       <a onclick="like({{$r->id}});" class="btn btn-danger btn-neutral pull-right">
-                        <i class="now-ui-icons ui-2_favourite-28"></i> <input type="number" id="inputLike" value="{{ $r->like }}">
+                        <i class="now-ui-icons ui-2_favourite-28"></i> <input type="number" id="inputLike" value="">
                       </a>
+                      @foreach ($r->users as $test)
+{{ dd($test->like)}}
+                      @endforeach
                     </div>
                   </div>
                 </div>

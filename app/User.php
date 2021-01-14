@@ -51,6 +51,10 @@ class User extends Authenticatable implements MustVerifyEmail
   {
     return $this->belongsToMany(Conversation::class);
   }
+  public function sujet_reponses()
+   {
+       return $this->belongsToMany('App\SujetReponse');
+   }
 
 
   use Notifiable;
