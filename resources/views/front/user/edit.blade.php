@@ -70,9 +70,7 @@
                                         <div class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" readonly="readonly" style="background-color : #ececec;">{{Auth::user()->eleve->prenom}}</div>
                                         @elseif ($user->statut == "admin")
                                         <div class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" readonly="readonly" style="background-color : #ececec;">{{Auth::user()->admin->prenom}}</div>
-
                                         @endif
-
                                     </div>
                                 </div>
                                 <!-- Fin Nom - Prénom -->
@@ -175,19 +173,21 @@
                                     </div>
                                 </div>
                                 <!-- Validation -->
-                                @if ( $user->email_verified_at == null && $user->statut == "eleve" || $user->email_verified_at == null && $user->statut == "admin")
-                                <div class="card-footer ml-auto mr-auto text-center">
-                                    <button type="submit" class="btn btn-primary btn-round" style="background-color: #FF3636;"><i class="fas fa-times"></i>
-                                        {{ __('Vérifier mon email') }}
-                                    </button>
-                                </div>
-                                @elseif ($user->email_verified_at != null && $user->statut == "eleve" || $user->statut == "admin" && $user->email_verified_at != null)
+                                @if ($user->email_verified_at != null && $user->statut == "eleve" || $user->statut == "admin" && $user->email_verified_at != null)
                                 <div class="card-footer ml-auto mr-auto text-center">
                                     <button type="submit" class="btn btn-primary btn-round">Modifier mon profil
                                     </button>
                                 </div>
-                                @endif
                                 <!-- Fin Validation -->
+                                @endif
+                                @if ( $user->email_verified_at == null && $user->statut == "eleve" || $user->email_verified_at == null && $user->statut == "admin")
+                                <div class="card-footer ml-auto mr-auto text-center">
+                                    <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" style="background-color: #FF3636;">
+                                        <i class="fas fa-times"></i> {{ __('Vérifier mon email') }}
+                                    </button>
+                                </div>
+                                @endif
+
                             </form>
                         </div>
                     </div>
@@ -203,7 +203,7 @@
 
                 <h4 class="title title-up">Choisir une image</h4>
             </div>
-            <div class="modal-body" style="overflow:auto;max-height:calc(37vh - 125px);">
+            <div class="modal-body" style="overflow:auto;max-height:calc(90vh - 125px);">
                 <ul>
                     @foreach ($images as $image)
                     <li style="width:80px;display:inline-block;margin:5px 0px;">

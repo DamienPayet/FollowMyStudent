@@ -9,6 +9,10 @@
             @csrf
             @method('put')
             <div class="card ">
+            <div class="card-header card-header-primary">
+              <h4 class="card-title">{{ __('Modifier une offre') }}</h4>
+              <p class="card-category"></p>
+            </div>
               <div class="card-body ">
                 <div class="row">
                   <div class="col-md-12 ">

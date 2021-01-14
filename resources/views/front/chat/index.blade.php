@@ -21,7 +21,7 @@
                         <div class="list-group list-group-chat list-group-flush">
                             @foreach ($users as $utilisateur)
                                 @if ($utilisateur->id != $user->id)
-                                    <a onclick="testconv({{$utilisateur}})" class="list-group-item ">
+                                    <a onclick="testconv({{$utilisateur}})" id="item_conv_usr_{{$utilisateur->id}}"class="list-group-item">
                                         <div class="media">
                                             <img alt="Image" src="{{url($utilisateur->image_profil)}}" class="avatar">
                                             <div class="media-body ml-2">
@@ -32,9 +32,9 @@
                                                         <h6 class="mb-0">{{$utilisateur->admin->nom}} {{$utilisateur->admin->prenom}}</h6>
                                                 @endif
                                                 <!--Ici nombre de message nom lu -->
-                                                    <span class="badge badge-success"></span>
+                                                    <span class="badge badge-danger" id="nb-message_{{$utilisateur->id}}"></span>
                                                     <div>
-                                                        <small></small>
+                                                        <small id="info_msg_{{$utilisateur->id}}"></small>
                                                     </div>
                                                 </div>
                                             </div>
@@ -82,10 +82,12 @@
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <script src="{{url('front/js/chatresolver.js')}}"></script>
     <script type="text/javascript">
 
         setview();
         actualisation();
+
 
 
         function finder(){
@@ -112,6 +114,8 @@
         function testconv(utilisateur) {
             document.getElementById("mywindow").style = "display : flex";
             var id = utilisateur.id;
+            document.getElementById("item_conv_usr_" + id).style.backgroundColor = "white";
+            document.getElementById("nb-message_" + id).innerHTML = "";
             console.log(utilisateur.id);
             $.ajax({
                 type: 'POST',
@@ -157,9 +161,7 @@
 
         //Fonction ajax de recuperation des messages
         function viewconv(conv) {
-            console.log("ma conv");
             console.log(conv.id);
-            console.log("ma conv");
             $.ajax({
                 type: 'post',
                 url: "{{ route('ajaxRequest.sync') }}",
@@ -179,7 +181,6 @@
                     console.log('Erreur de sync');
                 }
             });
-            return "ok";
         }
 
         //Fonction ajax de affichage des messages

@@ -15,6 +15,7 @@ use Validator;
 use Image;
 use Illuminate\Support\Facades\Storage;
 use Redirect;
+use function Sodium\add;
 
 class StudentFrontController extends Controller
 {
@@ -27,11 +28,13 @@ class StudentFrontController extends Controller
     {
         $this->middleware('auth');
     }
+
     public function home()
     {
         $post = HomePost::all();
         return view('front.index', compact('post'));
     }
+
     public function edit(User $user, Request $request)
     {
         $user = Auth::user();
@@ -59,8 +62,10 @@ class StudentFrontController extends Controller
 
     public function update(Request $request, $id)
     {
+        $user = User::find($id);
+
         $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email,'.$user->id,
             'password' => 'nullable|min:6|required_with:password_confirmation|same:password_confirmation',
             'password_confirmation' => 'nullable|min:6',
             'captcha' => 'required|captcha',
@@ -69,7 +74,6 @@ class StudentFrontController extends Controller
             return Redirect::back()->withErrors($validator)->withInput();
         }
         //Récupération de l'id de l'utilisateur
-        $user = User::find($id);
         //$user->email_verified_at == null;
         //$user->save();
 
@@ -82,12 +86,12 @@ class StudentFrontController extends Controller
                 $user->sendEmailVerificationNotification();
                 $user->updated_at = now();
                 $user->save();
-                return redirect()->route('front.users.edit', $user)->with('message', 'Nouvelle adresse enregistrée! Un email de validation viens de t\'etre envoyé.');
+                return redirect()->route('front.users.edit', $user)->with('message', 'Nouvelle adresse enregistrée! Un email de validation viens d\'etre envoyé.');
             } elseif ($user->email == $getmail) {
                 $user->sendEmailVerificationNotification();
                 $user->updated_at = now();
                 $user->save();
-                return redirect()->route('front.users.edit', $user)->with('message', 'Un email de validation viens de t\'etre envoyé.');
+                return redirect()->route('front.users.edit', $user)->with('message', 'Un email de validation viens d\'etre envoyé.');
             }
         } elseif ($user->email_verified_at != null) {
 
@@ -95,13 +99,16 @@ class StudentFrontController extends Controller
             if ($request->input('password') != null) {
                 $user->password = bcrypt($request->input('password'));
             }
+            if (request('imagechoisie') != null) {
+                $user->image_profil = $request->input('imagechoisie');
+            }
             if ($user->email != $getmail) {
                 $user->email = $request->input('email');
                 $user->email_verified_at = null;
                 $user->sendEmailVerificationNotification();
                 $user->updated_at = now();
                 $user->save();
-                return redirect()->route('front.users.edit', $user)->with('message', 'Profil modifié avec succès! Vérifies tes emails.');
+                return redirect()->route('front.users.edit', $user)->with('message', 'Profil modifié avec succès! Un email de validation viens d\' envoyé.');
             } elseif ($user->isDirty()) {
                 //Insertion IMAGE
                 if (request('imagechoisie') != null) {
@@ -122,6 +129,37 @@ class StudentFrontController extends Controller
             } elseif (!$user->isDirty()) {
                 return redirect()->route('front.users.edit', $user)->with('unchange', 'Aucune information changée...');
             }
+        }
+    }
+    public function email_update(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'captcha' => 'required|captcha',
+        ]);
+        if ($validator->fails()) {
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+        //Récupération de l'id de l'utilisateur
+        $user = User::find($id);
+        if ($user->email_verified_at == null) {
+
+            $getmail = $request->input('email');
+
+            if ($user->email != $getmail) {
+                $user->email = $request->input('email');
+                $user->sendEmailVerificationNotification();
+                $user->updated_at = now();
+                $user->save();
+                return redirect()->route('front.users.edit', $user)->with('message', 'Nouvelle adresse enregistrée! Un email de validation viens de t\'etre envoyé.');
+            } elseif ($user->email == $getmail) {
+                $user->sendEmailVerificationNotification();
+                $user->updated_at = now();
+                $user->save();
+                return redirect()->route('front.users.edit', $user)->with('message', 'Un email de validation viens de t\'etre envoyé.');
+            }
+        } else {
+            return redirect()->route('front.users.edit', $user)->with('unchange', 'Aucune information changée...');
         }
     }
 
@@ -237,6 +275,7 @@ class StudentFrontController extends Controller
             }
         }
         $conv = new Conversation;
+        $conv->is_open = true;
         $conv->save();
         $conv->users()->attach($user);
         $conv->users()->attach(User::find($id));
@@ -282,11 +321,16 @@ class StudentFrontController extends Controller
      */
     public function ajaxRequestSync(Request $request)
     {
-
+        $userloged = auth::user();
         $conversation = conversation::find($request->id);
-        $destinataire = "dd";
+        foreach ($conversation->messages as $mess) {
+            if ($mess->sender != $userloged->id) {
+                $mess->is_open = 1;
+                $mess->save();
+            }
+        }
         foreach ($conversation->users as $user) {
-            if ($user->id != auth::user()->id) {
+            if ($user->id != $userloged->id) {
                 if ($user->statut == "eleve") {
                     $destinataire = $user->eleve;
                 } else {
@@ -296,5 +340,39 @@ class StudentFrontController extends Controller
         }
 
         return response()->json(['messages' => $conversation->messages, 'conversation_user' => $conversation->users, 'conversation' => $conversation, 'destinataire' => $destinataire]);
+    }
+
+    public function ajaxRequestReaded()
+    {
+        $user = auth::user();
+        $nb_message = 0;
+        $destinataire = [];
+        foreach ($user->conversation as $conv) {
+            $counter = 0;
+            foreach ($conv->messages as $mess) {
+                if ($mess->sender != $user->id) {
+                    if ($mess->is_open != true) {
+                        $counter++;
+                        $nb_message++;
+                    }
+                }
+            }
+            if ($counter != 0) {
+                $conv->is_open = false;
+                foreach ($conv->users as $usr) {
+                    if ($usr->id != $user->id) {
+                        $array = array(
+                            "id" => $usr->id,
+                            "nb_msg" => $counter,
+                        );
+                        $destinataire[] = $array;
+                    }
+                }
+            } else {
+                $conv->is_open = true;
+            }
+            $conv->save();
+        }
+        return response()->json(['conv' => $user->conversation, 'nb_message' => $nb_message, 'dest' => $destinataire]);
     }
 }

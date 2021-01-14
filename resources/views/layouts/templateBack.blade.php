@@ -12,7 +12,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="icon" type="image/png" href="{{url('front/images/favicon.ico')}}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Administration FMS</title>
+    <title>FMS | Administration</title>
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{url('back/plugins/fontawesome-free/css/all.min.css')}}">
@@ -38,21 +38,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <a href="{{route('index')}}" class="nav-link">Accueil</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Contact</a>
+                    <a href="{{route('contact.create')}}" class="nav-link">Contact</a>
                 </li>
             </ul>
-
-            <!-- SEARCH FORM -->
-            <form class="form-inline ml-3">
-                <div class="input-group input-group-sm">
-                    <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                    <div class="input-group-append">
-                        <button class="btn btn-navbar" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
@@ -63,27 +51,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <span class="badge badge-danger navbar-badge">3</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <a href="#" class="dropdown-item">
-                            <!-- Message Start -->
-                            <div class="media">
-                                <img src="{{url('back/dist/img/user1-128x128.jpg')}}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-                                <div class="media-body">
-                                    <h3 class="dropdown-item-title">
-                                        Brad Diesel
-                                        <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                                    </h3>
-                                    <p class="text-sm">Call me whenever you can...</p>
-                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                                </div>
-                            </div>
-                            <!-- Message End -->
-                        </a>
+
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item">
                             <?php $user = auth()->user(); ?>
                             <!-- Message Start -->
                             <div class="media">
-                                <img src="uploads/avatars/{{$user->image_profil}}" class="img-size-50 img-circle mr-3">
+                                <img src="" class="img-size-50 img-circle mr-3">
                                 <div class="media-body">
                                     <h3 class="dropdown-item-title">
                                         @if ($user->statut == "eleve")
@@ -100,61 +74,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
                                     </h3>
                                     <p class="text-sm">I got your message bro</p>
-                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i>Il y a 4 heures</p>
                                 </div>
                             </div>
                             <!-- Message End -->
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <!-- Message Start -->
-                            <div class="media">
-                                <img src="{{url('back/dist/img/user3-128x128.jpg')}}" alt="User Avatar" class="img-size-50 img-circle mr-3">
-                                <div class="media-body">
-                                    <h3 class="dropdown-item-title">
-                                        Nora Silvester
-                                        <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                                    </h3>
-                                    <p class="text-sm">The subject goes here</p>
-                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                                </div>
-                            </div>
-                            <!-- Message End -->
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+                        <a href="#" class="dropdown-item dropdown-footer">Voir tout les messages</a>
                     </div>
                 </li>
-                <!-- Notifications Dropdown Menu -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="far fa-bell"></i>
-                        <span class="badge badge-warning navbar-badge">15</span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <span class="dropdown-header">15 Notifications</span>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-envelope mr-2"></i> 4 new messages
-                            <span class="float-right text-muted text-sm">3 mins</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-users mr-2"></i> 8 friend requests
-                            <span class="float-right text-muted text-sm">12 hours</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-file mr-2"></i> 3 new reports
-                            <span class="float-right text-muted text-sm">2 days</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button"><i class="fas fa-th-large"></i></a>
-                </li>
+
             </ul>
         </nav>
         <!-- /.navbar -->
@@ -164,7 +93,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Brand Logo -->
             <a href="{{route('indexback')}}" class="brand-link">
                 <img src="{{url('front/images/favicon.ico')}}" alt="FollowMyStudent" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">Administration FMS</span>
+                <span class="brand-text font-weight-light">Administration</span>
             </a>
             <!-- Sidebar -->
             <div class="sidebar">
@@ -210,6 +139,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{route('avatar.index')}}" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>
+                                    Gestion avatars
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{route('offre.index')}}" class="nav-link">
                                 <i class="nav-icon fas fa-list-alt"></i>
                                 <p>
@@ -221,7 +158,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <a href="{{route('home.index')}}" class="nav-link">
                                 <i class="nav-icon fas fa-home"></i>
                                 <p>
-                                     Acceuil view
+                                    Acceuil view
                                 </p>
                             </a>
                         </li>
@@ -309,10 +246,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <footer class="main-footer">
             <!-- To the right -->
             <div class="float-right d-none d-sm-inline">
-                Anything you want
+
             </div>
             <!-- Default to the left -->
-            <strong>Copyright &copy; 2020 <a>FollowMyStudent</a>.</strong> All rights reserved.
+            <strong id="copyright">Copyright &copy; <script>
+                    document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
+                </script> <a>FollowMyStudent</a>.</strong> Tout droits réservés.
         </footer>
     </div>
     <!-- ./wrapper -->
@@ -327,6 +266,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="{{url('back/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <!-- AdminLTE App -->
     <script src="{{url('back/dist/js/adminlte.min.js')}}"></script>
+    <script src="{{url('back/js/avatar_selector.js')}}" type="text/javascript"></script>
+
     <!-- DATATABLE -->
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>
     <script>
@@ -345,7 +286,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     $(".sub_chk").prop('checked', false);
                 }
             });
-
+            $('#master1').on('click', function(e) {
+                if ($(this).is(':checked', true)) {
+                    $(".sub_chk1").prop('checked', true);
+                } else {
+                    $(".sub_chk1").prop('checked', false);
+                }
+            });
             $('.delete_all').on('click', function(e) {
 
 
@@ -353,7 +300,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 $(".sub_chk:checked").each(function() {
                     allVals.push($(this).attr('data-id'));
                 });
-
+                $(".sub_chk1:checked").each(function() {
+                    allVals.push($(this).attr('data-id'));
+                });
 
                 if (allVals.length <= 0) {
                     alert("Veuillez séléctionner au moins une ligne.");
@@ -373,8 +322,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             headers: {
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                             },
-                            data:
-                            'ids=' + join_selected_values,
+                            data: 'ids=' + join_selected_values,
                             success: function(data) {
                                 if (data['success']) {
                                     $(".sub_chk:checked").each(function() {
@@ -389,9 +337,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             },
                             error: function(data) {
                                 alert(data.responseText);
+                            },
+                            success: function(data1) {
+                                if (data1['success']) {
+                                    $(".sub_chk1:checked").each(function() {
+                                        $(this).parents("tr").remove();
+                                    });
+                                    alert(data1['success']);
+                                } else if (data1['error']) {
+                                    alert(data1['error']);
+                                } else {
+                                    alert('Whoops...Quelque chose s\'est mal passé!!');
+                                }
+                            },
+                            error: function(data1) {
+                                alert(data1.responseText);
                             }
                         });
-
 
                         $.each(allVals, function(index, value) {
                             $('table tr').filter("[data-row-id='" + value + "']").remove();
@@ -430,12 +392,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             alert('Whoops...Quelque chose s\'est mal passé!!');
                         }
                     },
-                    error: function(data) {
-                        alert(data.responseText);
+                    error: function(data1) {
+                        alert(data1.responseText);
+                    },
+                    success: function(data1) {
+                        if (data1['success']) {
+                            $("#" + data1['tr']).slideUp("slow");
+                            alert(data1['success']);
+                        } else if (data1['error']) {
+                            alert(data1['error']);
+                        } else {
+                            alert('Whoops...Quelque chose s\'est mal passé!!');
+                        }
+                    },
+                    error: function(data1) {
+                        alert(data1.responseText);
                     }
                 });
-
-
                 return false;
             });
         });

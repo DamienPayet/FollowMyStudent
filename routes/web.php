@@ -31,6 +31,8 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('/back/uforum/{id}', 'ForumBackController@update_categorie')->name('categorie.update');
     Route::delete('/back/dforum/{id}', 'ForumBackController@destroy_categorie')->name('categorie.destroy');
     Route::delete('/back/dsujet/{id}', 'ForumBackController@destroy_sujet')->name('sujet.destroy');
+
+    //route admin gestion page accueil
     Route::resource('back/home', 'HomeBackController');
 
 
@@ -48,6 +50,12 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('back/users/mdp/{users}', 'UserController@editMdp')->name('users.editMdp');
     Route::put('back/users/mdp/{users}', 'UserController@updateMdp')->name('users.updateMdp');
     Route::delete('users-deleteselection', 'UserController@deleteAll');
+
+    Route::get('/back/avatar', 'UserController@avatar_index')->name('avatar.index');
+    Route::get('/back/avatar/create', 'UserController@avatar_create')->name('avatar.create');
+    Route::post('/back/avatar/store', 'UserController@avatar_store')->name('avatar.store');
+    Route::delete('/back/avatar/delete/{id}', 'UserController@avatar_destroy')->name('avatar.destroy');
+    Route::delete('avatars-deleteselection', 'UserController@avatar_deleteAll');
 
 
     //Route indexBack
@@ -82,6 +90,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('my_chat', 'StudentFrontController@ajaxRequest1')->name('ajaxRequest.index');
     Route::post('ajaxRequest/conv', 'StudentFrontController@ajaxRequestSync')->name('ajaxRequest.sync');
     Route::post('ajaxRequest/testconv', 'StudentFrontController@ajaxRequestConvt')->name('ajaxRequest.testconv');
+    Route::get('ajaxRequest/readed', 'StudentFrontController@ajaxRequestReaded')->name('ajaxRequest.readed');
     Route::post('ajaxRequest', 'StudentFrontController@ajaxRequestPost')->name('ajaxRequest.post');
     //Route redirection vers front offre
     Route::get('front/offres', 'OffreFrontController@index')->name('offre_front_index');
@@ -97,7 +106,8 @@ Route::group(['middleware' => 'auth'], function () {
     //Route::get('front/user/{user}', 'StudentFrontController@show')->name('profil_show');
     Route::get('front/user/{user}', ['as' => 'front.users.edit', 'uses' => 'StudentFrontController@edit']);
     Route::patch('front/user/{user}/update', ['as' => 'front.users.update', 'uses' => 'StudentFrontController@update']);
-    Route::patch('captcha-user-validation/{user}', 'StudentFrontController@update')->name('user_front_store');
+    Route::patch('/front/user/email-validation/{id}', 'StudentFrontController@email_update')->name('email.update');
+    Route::patch('captcha-user-validation/{id}', 'StudentFrontController@update')->name('user_front_store');
 
     Route::post('captcha-contact-validation', 'NousContacterController@Contact');
     Route::get('/front/contact/reload-captcha', 'NousContacterController@reloadCaptcha');

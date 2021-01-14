@@ -47,22 +47,6 @@
                                                 </a>
                                                 <h4 class="card-title "
                                                     style="text-align: center">{{$p->titre}}</h4>
-                                                <!--Bouton deroulement de la section -->
-                                                <div id="btn_more_{{$p->id}}">
-                                                    <button onclick="down({{$p->id}})"
-                                                            style='margin-right:10px; float : right ;'
-                                                            class="btn btn-secondary">
-                                                        <i class="fas fa-caret-square-down"></i>
-                                                    </button>
-                                                </div>
-                                                <!--Bouton enroulement de la section -->
-                                                <div style="display: none" id="btn_less_{{$p->id}}">
-                                                    <button onclick="up({{$p->id}})"
-                                                            style='margin-right:10px; float : right ;'
-                                                            class="btn btn-secondary">
-                                                        <i class="fas fa-caret-square-up"></i>
-                                                    </button>
-                                                </div>
                                                 <!--Bouton supression de la section -->
                                                 <form action="{{ route('destroy.part', $p->id) }}"
                                                       method="post">
@@ -76,7 +60,7 @@
                                                     </button>
                                                 </form>
                                                 <!--Bouton edit de la section -->
-                                                <a href="{{ route('edit.part',  $p->id) }}">
+                                                <a href="{{ route('home.edit',  $p->id) }}">
                                                     <button style='margin-right:10px; float : right ;'
                                                             class="btn btn-info">
                                                         <i class="fas fa-edit"></i>
@@ -93,29 +77,5 @@
             </div>
         </div>
     </div>
-    <script>
-
-        downed = false;
-
-        function down(id) {
-            downed = true;
-            menu = document.getElementById('menu_' + id);
-            btn_more = document.getElementById('btn_more_' + id);
-            btn_less = document.getElementById('btn_less_' + id);
-            menu.style = "display : block";
-            btn_more.style = "display : none";
-            btn_less.style = "display : block";
-        }
-
-        function up(id) {
-            downed = false;
-            menu = document.getElementById('menu_' + id);
-            btn_more = document.getElementById('btn_more_' + id);
-            btn_less = document.getElementById('btn_less_' + id);
-            menu.style = "display : none";
-            btn_more.style = "display : block";
-            btn_less.style = "display : none";
-        }
-    </script>
     <script src="{{url('back/js/DragAndDrop.js')}}" type="text/javascript"></script>
 @endsection
