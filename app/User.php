@@ -53,7 +53,7 @@ class User extends Authenticatable implements MustVerifyEmail
   }
   public function sujet_reponses()
    {
-       return $this->belongsToMany('App\SujetReponse');
+       return $this->belongsToMany('App\SujetReponse')->withPivot('like');
    }
 
 

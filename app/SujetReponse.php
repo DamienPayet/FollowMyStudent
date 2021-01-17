@@ -6,16 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class SujetReponse extends Model
 {
-  public function user()
-  {
-    return $this->belongsTo('App\User');
-  }
   public function sujet()
   {
     return $this->belongTo('App\Sujet');
   }
   public function users()
    {
-       return $this->belongsToMany('App\User')->withPivot('like');
+       return $this->belongsToMany('App\User');
    }
 }
