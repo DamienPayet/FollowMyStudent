@@ -72,6 +72,7 @@ class UserController extends Controller
       $admin->prenom = $request->input('prenom');
       $admin->save();
       $user->administrateur_id = $admin->id;
+      $user->email_verified_at = now();
     }
 
     $user->email = $request->input('email');
@@ -132,11 +133,11 @@ class UserController extends Controller
    */
   public function update(Request $request, $id)
   {
-    //
+    $user = User::find($id);
     $validator = Validator::make($request->all(), [
       'nom' => 'required',
       'prenom' => 'required',
-      'email' => 'required|email',
+      'email' => 'required|email|unique:users,email,' . $user->id,
       'password' => 'same:password_confirmation',
       'statut' => 'required',
     ]);
@@ -144,15 +145,43 @@ class UserController extends Controller
       return redirect()->route("users.edit", $id)->withErrors($validator)->withInput();
     }
 
-    $user = User::find($id);
 
     if ($user->statut == "eleve") {
       $user->eleve->nom = $request->input('nom');
       $user->eleve->prenom = $request->input('prenom');
-      $user->eleve->save();
+      $statut_change = $request->input('statut');
+      if ($statut_change != $user->statut) {
+        $admin = new Admin;
+        //dd($user->eleve->id);
+        $user->eleve_id = null;
+
+        $admin->nom = $request->input('nom');
+        $admin->prenom = $request->input('prenom');
+        $admin->save();
+        $user->statut = $request->input('statut');
+        $user->administrateur_id = $admin->id;
+        $user->email_verified_at = now();
+        $user->save();
+        Eleve::find($user->eleve->id)->delete();
+      }
     } elseif ($user->statut == "admin") {
       $user->admin->nom = $request->input('nom');
       $user->admin->prenom = $request->input('prenom');
+
+      $statut_change = $request->input('statut');
+      if ($statut_change != $user->statut) {
+        $eleve = new Eleve;
+
+        $user->administrateur_id = null;
+        $eleve->nom = $request->input('nom');
+        $eleve->prenom = $request->input('prenom');
+        $eleve->save();
+        $user->statut = $request->input('statut');
+        $user->eleve_id = $eleve->id;
+        $user->email_verified_at = null;
+        $user->save();
+        Admin::find($user->admin->id)->delete();
+      }
       $user->admin->save();
     }
     $getmail = $request->input('email');
@@ -161,7 +190,7 @@ class UserController extends Controller
       $user->email = $request->input('email');
       $user->email_verified_at = null;
     }
-    $user->statut = $request->input('statut');
+    //$user->statut = $request->input('statut');
     if ($request->input('password') != null) {
       $user->password = bcrypt($request->input('password'));
     }
@@ -194,23 +223,6 @@ class UserController extends Controller
     $user = User::find($id);
     return view('back.user.editMdp')->with('user', $user);
   }
-
-  public function updateMdp(Request $request, $id)
-  {
-    //
-    $validator = Validator::make($request->all(), [
-      'mdp' => 'required',
-    ]);
-    if ($validator->fails()) {
-      return redirect()->route("users.editMdp", $id)->withErrors($validator)->withInput();
-    }
-    $user = User::find($id);
-    $user->password = bcrypt($request->input('mdp'));
-    $user->save();
-
-    return redirect()->route("users.index")->with('success', 'Modification réussie !');
-  }
-
   /**
    * Remove the specified resource from storage.
    *
@@ -286,7 +298,7 @@ class UserController extends Controller
     $ids = explode(",", $ids);
 
     foreach ($ids as $id) {
-      \File::delete(public_path() . '/front/images/avatars/' .$id);
+      \File::delete(public_path() . '/front/images/avatars/' . $id);
     }
     return response()->json(['success' => "Avatars supprimés avec succès."]);
   }

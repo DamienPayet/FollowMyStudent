@@ -38,7 +38,7 @@
                             <label class="col-sm-2 col-form-label">{{ __('Image') }}</label>
                             <div class="col-sm-7 custom-file">
                                 <div class="form-group">
-                                    <input type="file" class="custom-file-input" id="selector" name="image">
+                                    <input type="file" class="custom-file-input" id="image" name="image">
                                     <label class="custom-file-label" id="filename" for="validatedCustomFile">{{$categorie->image }}</label>
                                 </div>
                             </div>
@@ -64,7 +64,7 @@
     const fileSelector = document.getElementById('image');
     fileSelector.addEventListener('change', (event) => {
         const fileList = event.target.files;
-        document.getElementById('image_upload').innerHTML = fileList[0].name;
+        document.getElementById('filename').innerHTML = fileList[0].name;
         event.target.files
         var file = event.target.files[0];
         if (file) {

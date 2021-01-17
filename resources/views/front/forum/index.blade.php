@@ -41,17 +41,28 @@
         <h3 class="title" style="font-size: 2.2em; color: var(--primary-color);">
           <i class="now-ui-icons now-ui-icons files_paper" style="width : 30px">
           </i>
-          {{$sections->titre}}</h3><br>
+          {{$sections->titre}}
+        </h3><br>
         <h5 class="description"> {{$sections->description}}</h5>
       </div><br>
       <div class="container">
         <div class="categories-container tab">
 
           @foreach ($sections->categories as $categorie)
-          <a href="{{ route('sujet.index', $categorie->id, $sujets) }}" class="card" style=" width: 130px;height: 50px; text-align: center;align-items: center;
+          <a href="{{ route('sujet.index', $categorie->id, $sujets) }}" class="card card-blog" style="width: 15rem;height:15rem;">
+          <center>
+            <img class="card-img-top" src="{{url($categorie->image)}}" alt="Card image cap"  style="width: 10rem;" >
+            <div class="card-body" style="font-size: 1.2em;">
+            {{$categorie->nom}}
+            </div>
+            </center>
+
+          </a>
+         
+          <!-- <a href="{{ route('sujet.index', $categorie->id, $sujets) }}" class="card" style=" width: 130px;height: 50px; text-align: center;align-items: center;
     justify-content: center;">
             {{$categorie->nom}}
-          </a>
+          </a>-->
           @endforeach
         </div>
         @endif
