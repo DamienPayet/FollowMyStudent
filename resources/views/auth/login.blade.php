@@ -169,8 +169,7 @@
               <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">{{ __('Connexion') }}</button>
               <div class="pull-right">
                 @if (Route::has('password.request'))
-                <h6> <a class="link">
-                    <!-- href="{{ route('password.request') }}" -->
+                <h6> <a class="link" href="{{ route('password.request') }}">
                     {{ __('Mot de passe oublié?') }}
                   </a></h6>
                 @endif
