@@ -122,14 +122,7 @@
                             </form>
                             </a>
                     </li>
-                    @if(Auth::user()->statut == 'admin')
-                    <li class="nav-item">
-                        <a class="nav-link" target="_blank" href="{{route('indexback')}}">
-                            <i class="now-ui-icons ui-2_settings-90"></i>
-                            <p>Administration</p>
-                        </a>
-                    </li>
-                    @endif
+                    
                     @endif
                 </ul>
             </div>
