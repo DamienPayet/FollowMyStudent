@@ -63,7 +63,7 @@ class OffreController extends Controller
     $offre->lien = $request->get('lien');
     $offre->created_at = now();
     $offre->nb_vue = 0;
-    
+
     if (Auth::user()->statut == "admin") {
       $offre->valide = 1;
     }

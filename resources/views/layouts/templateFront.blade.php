@@ -20,6 +20,7 @@
     <link href="{{url('front/css/bootstrap.min.css')}}" rel="stylesheet"/>
     <link href="{{url('front/css/now-ui-kit.css?v=1.3.0')}}" rel="stylesheet"/>
     <link href="{{url('front/demo/demo.css')}}" rel="stylesheet"/>
+    <link href="{{url('front/css/emojionearea.css')}}" rel="stylesheet"/>
 
 </head>
 
@@ -97,6 +98,8 @@
                                 <p id="envelope">0</p>
                             </a>
                         </li>
+
+
                         @if(Auth::user()->statut == 'admin')
                             <li class="nav-item">
                                 <a class="nav-link" target="_blank" href="{{route('indexback')}}">
@@ -270,6 +273,7 @@
     <script src="{{url('audit/logger.js')}}" type="text/javascript"></script>
     <script src="{{url('front/js/avatar_selector.js')}}" type="text/javascript"></script>
     <script src="{{url('front/js/chatresolver.js')}}"></script>
+    <script src="{{url('front/js/emojionearea.js')}}"></script>
     <script type="text/javascript">
         $('#reload').click(function () {
             $.ajax({

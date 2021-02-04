@@ -31,10 +31,8 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('/back/uforum/{id}', 'ForumBackController@update_categorie')->name('categorie.update');
     Route::delete('/back/dforum/{id}', 'ForumBackController@destroy_categorie')->name('categorie.destroy');
     Route::delete('/back/dsujet/{id}', 'ForumBackController@destroy_sujet')->name('sujet.destroy');
-
     //route admin gestion page accueil
     Route::resource('back/home', 'HomeBackController');
-
 
     //route admin gestion questionnaire
     Route::resource('back/questionnaire', 'QuestionnaireBackController');

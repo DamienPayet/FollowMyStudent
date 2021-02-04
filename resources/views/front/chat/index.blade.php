@@ -2,6 +2,8 @@
 
 
 @section('content')
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" xmlns="http://www.w3.org/1999/html">
     <link rel="stylesheet" href="{{url('front/css/perso.css')}}">
     <div class="section section-pagination">
         <div class="container">
@@ -12,7 +14,8 @@
                     <div class="card card-plain">
                         <form class="card-header mb-3">
                             <div class="input-group">
-                                <input id="finder" onKeyPress="if(event.keyCode == 13) finder()" type="text" class="form-control" placeholder="Search contact">
+                                <input id="finder" onKeyPress="if(event.keyCode == 13) finder()" type="text"
+                                       class="form-control" placeholder="Search contact">
                                 <div class="input-group-append">
                                     <span class="input-group-text"><i class="tim-icons icon-zoom-split"></i></span>
                                 </div>
@@ -21,7 +24,8 @@
                         <div class="list-group list-group-chat list-group-flush">
                             @foreach ($users as $utilisateur)
                                 @if ($utilisateur->id != $user->id)
-                                    <a onclick="testconv({{$utilisateur}})" id="item_conv_usr_{{$utilisateur->id}}"class="list-group-item">
+                                    <a onclick="testconv({{$utilisateur}})" id="item_conv_usr_{{$utilisateur->id}}"
+                                       class="list-group-item">
                                         <div class="media">
                                             <img alt="Image" src="{{url($utilisateur->image_profil)}}" class="avatar">
                                             <div class="media-body ml-2">
@@ -32,7 +36,8 @@
                                                         <h6 class="mb-0">{{$utilisateur->admin->nom}} {{$utilisateur->admin->prenom}}</h6>
                                                 @endif
                                                 <!--Ici nombre de message nom lu -->
-                                                    <span class="badge badge-danger" id="nb-message_{{$utilisateur->id}}"></span>
+                                                    <span class="badge badge-danger"
+                                                          id="nb-message_{{$utilisateur->id}}"></span>
                                                     <div>
                                                         <small id="info_msg_{{$utilisateur->id}}"></small>
                                                     </div>
@@ -63,13 +68,13 @@
                         <div id="chat-div" class=" card-chat card-body">
                         </div>
                         <div class="card-footer d-block">
-                            <div class="align-items-center">
-                                <div class="input-group d-flex">
-                                    <div class="input-group-prepend d-flex">
-                                        <span class="input-group-text"><i class="tim-icons icon-pencil"></i></span>
-                                    </div>
-                                    <input type="text" id="msg" onKeyPress="if (event.keyCode == 13) send()"
-                                           class="form-control form-control-lg" placeholder="Your message">
+                            <div class="row justify-content-center">
+                                <div id="txtdiv" class="col-lg-10">
+                                            <textarea id="msg"
+                                                      class="form-control form-control-lg"
+                                                      placeholder="Your message"></textarea>
+                                </div>
+                                <div class=col-lg-1">
                                     <button id="btn" onclick="send()" class="">
                                         <i class="far fa-paper-plane"></i>
                                     </button>
@@ -80,26 +85,42 @@
                 </div>
             </div>
         </div>
+
+
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
     <script src="{{url('front/js/chatresolver.js')}}"></script>
+    <script
+        src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+        crossorigin="anonymous"></script>
     <script type="text/javascript">
 
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            emoji();
+        });
         setview();
         actualisation();
 
+        function emoji() {
+            $("#msg").emojioneArea({
+                inline: true
+            });
+            console.log(document.getElementsByClassName("emojionearea-editor").length);
+        }
 
-
-        function finder(){
+        function finder() {
             var texct = document.getElementById("finder");
-            if (textct != ""){
+            if (textct != "") {
                 $.ajax({
-                    type : "post",
-                    url : ""
+                    type: "post",
+                    url: ""
 
                 })
             }
         }
+
         function setview() {
             var larg = (document.body.clientWidth);
             var haut = (document.body.clientHeight);
@@ -116,7 +137,6 @@
             var id = utilisateur.id;
             document.getElementById("item_conv_usr_" + id).style.backgroundColor = "white";
             document.getElementById("nb-message_" + id).innerHTML = "";
-            console.log(utilisateur.id);
             $.ajax({
                 type: 'POST',
                 url: "{{ route('ajaxRequest.testconv') }}",
@@ -148,7 +168,6 @@
                     },
                     dataType: 'JSON',
                     success: function (response) {
-                        console.log(response);
                         viewmessage(response);
                     },
                     error: function () {
@@ -161,7 +180,7 @@
 
         //Fonction ajax de recuperation des messages
         function viewconv(conv) {
-            console.log(conv.id);
+
             $.ajax({
                 type: 'post',
                 url: "{{ route('ajaxRequest.sync') }}",
@@ -174,19 +193,17 @@
                     document.getElementById('btn').value = conv.id,
 
                         viewmessage(response);
-                    console.log("ma reponse : ");
-                    console.log(response);
                 },
                 error: function () {
                     console.log('Erreur de sync');
                 }
             });
+            emoji();
         }
 
         //Fonction ajax de affichage des messages
         function viewmessage(response) {
             var usr = <?php echo json_encode($user); ?>;
-            console.log(response);
             var conversation = response.conversation;
             var conversation_user = response.conversation_user;
             var messages = response.messages;
@@ -194,7 +211,7 @@
 
 
             header.innerHTML = username.nom + " " + username.prenom;
-            document.getElementById("pic_profil").src=conversation_user[1].image_profil;
+            document.getElementById("pic_profil").src = conversation_user[1].image_profil;
             //affichage des message;
             var div = '';
             for (var i = 0; i < messages.length; i++) {
@@ -212,7 +229,7 @@
                     div += '	<div class="card-body p-2">';
                     div += '	<p class="mb-1">' + messages[i].message + '<br></p>';
                     div += '	<div>';
-                    div += '	<small class="opacity-60">'+ heure +'</small>';
+                    div += '	<small class="opacity-60">' + heure + '</small>';
                     div += '	<i class="tim-icons icon-check-2"></i>';
                     div += '	</div>';
                     div += '	</div>';
@@ -225,7 +242,7 @@
                     div += '<div class="card ">';
                     div += '<div class="card-body p-2">';
                     div += '<p class="mb-1">' + messages[i].message + '</p>';
-                    div += '<div><small class="opacity-60"><i class="far fa-clock"></i>'+heure+'</small>';
+                    div += '<div><small class="opacity-60"><i class="far fa-clock"></i>' + heure + '</small>';
                     div += '</div>';
                     div += '</div>';
                     div += '</div>';
@@ -240,6 +257,7 @@
 
         //Fonction envoie de message;
         function send() {
+
             var message = document.getElementById('msg').value;
             var conversation_id = document.getElementById('btn').value;
 
@@ -253,13 +271,17 @@
                 },
                 dataType: 'JSON',
                 success: function (response) {
+                    document.getElementById("msg").value = "";
+                    document.getElementsByClassName('emojionearea-editor')[0].innerText = "";
+                    document.getElementsByClassName('emojionearea-editor')[0].innerHTML = "";
                     viewmessage(response);
-                    document.getElementById('msg').value = '';
+
                 },
                 error: function () {
                     console.log('Erreur');
                 }
             });
+
         }
     </script>
 @endsection

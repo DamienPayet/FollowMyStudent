@@ -8,7 +8,6 @@ function readed() {
         },
         dataType: 'JSON',
         success: function (response) {
-            console.log((response));
             setView(response);
         },
         error: function () {
