@@ -19,6 +19,7 @@ class QuestionnaireBackController extends Controller
         $parts = QuestionnairePart::orderBy('position', 'DESC')->get();
         $offre = Offre::all();
         $questions = QuestionnaireQuestion::orderBy('position', 'DESC')->get();
+
         return view('back.questionnaire.index', compact('parts', 'offre', 'questions'));
     }
 
