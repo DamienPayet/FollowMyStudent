@@ -10,8 +10,16 @@ class SujetReponse extends Model
   {
     return $this->belongTo('App\Sujet');
   }
-  public function users()
-   {
-       return $this->belongsToMany('App\User');
-   }
+  public function user()
+  {
+    return $this->belongsTo('App\User');
+  }
+  public function likes()
+  {
+    return $this->hasMany('App\Like');
+  }
+  public function isLikedByLoggedInUser()
+  {
+    return $this->likes->where('user_id', auth()->user()->id)->isEmpty() ? false : true;
+  }
 }

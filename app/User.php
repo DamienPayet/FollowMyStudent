@@ -55,6 +55,10 @@ class User extends Authenticatable implements MustVerifyEmail
    {
        return $this->belongsToMany('App\SujetReponse')->withPivot('like');
    }
+   public function likes()
+    {
+        return $this->hasMany('App\Like');
+    }
 
 
   use Notifiable;
