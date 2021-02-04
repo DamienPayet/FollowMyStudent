@@ -35,7 +35,7 @@
         <div class="container" style="height: 70%;">
 
             <div class="dropdown button-dropdown">
-                <a href="#pablo" class="dropdown-toggle" id="navbarDropdown" data-toggle="dropdown">
+                <a href="{{route('index')}}" class="dropdown-toggle" id="navbarDropdown" data-toggle="dropdown">
                     <span class="button-bar"></span>
                     <span class="button-bar"></span>
                     <span class="button-bar"></span>
@@ -43,7 +43,7 @@
 
             </div>
             <div class="navbar-translate">
-                <a class="navbar-brand" href="" rel="tooltip" title="Bienvenue sur Follow My Student !" data-placement="bottom">
+                <a class="navbar-brand" href="{{route('index')}}" rel="tooltip" title="Bienvenue sur Follow My Student !" data-placement="bottom">
                     Follow My Student
                 </a>
                 <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,89 +81,87 @@
     <div class="page-header clear-filter" filter-color="yellow">
         <div class="page-header-image" style="background-image:url(../front/images/software-engineer.png)"></div>
         <!-- <a href="https://iconscout.com/illustrations/developer-team" target="_blank">Developer Team Illustration</a> by <a href="https://iconscout.com/contributors/delesign" target="_blank">Delesign Graphics</a>-->
-        <div class="content">
-            <div class="container">
-                <div class="col-md-4 ml-auto mr-auto">
-                    <div class="card card-login card-plain">
-                        <div class="card-header text-center">
-                            <div class="logo-container">
-                                <img src="../front/images/favicon.ico" alt>
-                            </div>
+        <div class="container">
+            <div class="col-md-4 ml-auto mr-auto">
+                <div class="card card-login card-plain">
+                    <div class="card-header text-center">
+                        <div class="logo-container">
+                            <img src="../front/images/favicon.ico" alt>
                         </div>
-                        @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                        @endif
-                        @if(session()->has('errors'))
-                        <div class="alert alert-danger" role="alert">
-                            @foreach($errors->all() as $error)
-                            {{$error}}
-                            <br>
-                            @endforeach
-                        </div>
-                        @endif
-                        <div class="card-body">
-                            <form method="POST" action="{{ route('password.email') }}">
-                                @csrf
-                                <!-- Email -->
-                                <div class="input-group no-border input-lg">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="now-ui-icons users_circle-08"></i>
-                                        </span>
-                                    </div>
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email">
-                                    @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-
-                                <!-- Captcha -->
-                                <div class="captcha text-center">
-                                    <span>{!! captcha_img() !!}</span>
-                                    <button type="button" class="btn btn-danger btn-round" class="reload" id="reload">
-                                        &#x21bb;
-                                    </button>
-                                </div>
-                                <script>
-                                    $('#reload').click(function() {
-                                        console.log("ici");
-                                        $.ajax({
-                                            type: 'GET',
-                                            url: '/reload-captcha',
-                                            success: function(data) {
-                                                console.log(data.captcha);
-                                                $(".captcha span").html(data.captcha);
-                                            }
-                                        });
-                                    });
-                                </script>
-                                <div class="input-group no-border input-lg">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="now-ui-icons text_caps-small"></i>
-                                        </span>
-                                    </div>
-                                    <input type="captcha" placeholder="Captcha" class="form-control" class="form-control @error('captcha') is-invalid @enderror" name="captcha" required>
-                                    @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                                <!-- -->
-                        </div>
-                        <!-- Login -->
-                        <div class="card-footer text-center">
-                            <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">{{ __('Envoyer') }}</button>
-                            <div class="pull-right">
-                            </div>
-                        </div>
-                        </form>
                     </div>
+                    @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                    @endif
+                    @if(session()->has('errors'))
+                    <div class="alert alert-danger" role="alert">
+                        @foreach($errors->all() as $error)
+                        {{$error}}
+                        <br>
+                        @endforeach
+                    </div>
+                    @endif
+                    <div class="card-body">
+                        <form method="POST" action="{{ route('password.email') }}">
+                            @csrf
+                            <!-- Email -->
+                            <div class="input-group no-border input-lg">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="now-ui-icons users_circle-08"></i>
+                                    </span>
+                                </div>
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email">
+                                @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+
+                            <!-- Captcha -->
+                            <div class="captcha text-center">
+                                <span>{!! captcha_img() !!}</span>
+                                <button type="button" class="btn btn-danger btn-round" class="reload" id="reload">
+                                    &#x21bb;
+                                </button>
+                            </div>
+                            <script>
+                                $('#reload').click(function() {
+                                    console.log("ici");
+                                    $.ajax({
+                                        type: 'GET',
+                                        url: '/reload-captcha',
+                                        success: function(data) {
+                                            console.log(data.captcha);
+                                            $(".captcha span").html(data.captcha);
+                                        }
+                                    });
+                                });
+                            </script>
+                            <div class="input-group no-border input-lg">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="now-ui-icons text_caps-small"></i>
+                                    </span>
+                                </div>
+                                <input type="captcha" placeholder="Captcha" class="form-control" class="form-control @error('captcha') is-invalid @enderror" name="captcha" required>
+                                @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <!-- -->
+                    </div>
+                    <!-- Login -->
+                    <div class="card-footer text-center">
+                        <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">{{ __('Envoyer') }}</button>
+                        <div class="pull-right">
+                        </div>
+                    </div>
+                    </form>
                 </div>
             </div>
         </div>

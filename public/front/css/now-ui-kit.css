@@ -5434,11 +5434,10 @@ img {
 }
 
 .footer {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    
+    position: absolute;
     bottom: 0;
     width: 100%;
-    position: absolute;
 }
 
 .footer.footer-default {

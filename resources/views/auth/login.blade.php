@@ -43,7 +43,7 @@
 
       </div>
       <div class="navbar-translate">
-        <a class="navbar-brand" href="" rel="tooltip" title="Bienvenue sur Follow My Student !" data-placement="bottom" target="_blank">
+        <a class="navbar-brand" href="{{route('index')}}" rel="tooltip" title="Bienvenue sur Follow My Student !" data-placement="bottom">
           Follow My Student
         </a>
         <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,8 +80,7 @@
 
   <div class="page-header clear-filter" filter-color="yellow">
     <div class="page-header-image" style="background-image:url(../front/images/software-engineer.png)"></div>
-   <!-- <a href="https://iconscout.com/illustrations/developer-team" target="_blank">Developer Team Illustration</a> by <a href="https://iconscout.com/contributors/delesign" target="_blank">Delesign Graphics</a>-->
-    <div class="content">
+    <!-- <a href="https://iconscout.com/illustrations/developer-team" target="_blank">Developer Team Illustration</a> by <a href="https://iconscout.com/contributors/delesign" target="_blank">Delesign Graphics</a>-->
       <div class="container">
         <div class="col-md-4 ml-auto mr-auto">
           <div class="card card-login card-plain">
@@ -108,7 +107,7 @@
                       <i class="now-ui-icons users_circle-08"></i>
                     </span>
                   </div>
-                  <input type="text" placeholder="E-mail" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" >
+                  <input type="text" placeholder="E-mail" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
                   @error('email')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -131,7 +130,7 @@
                 </div>
                 <!-- Captcha -->
                 <div class="captcha text-center">
-                  <span >{!! captcha_img() !!}</span>
+                  <span>{!! captcha_img() !!}</span>
                   <button type="button" class="btn btn-danger btn-round" class="reload" id="reload">
                     &#x21bb;
                   </button>
@@ -179,7 +178,6 @@
           </div>
         </div>
       </div>
-    </div>
     <footer class="footer">
       <div class=" container ">
         <nav>
