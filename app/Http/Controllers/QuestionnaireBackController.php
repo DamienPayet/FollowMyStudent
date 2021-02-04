@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Offre;
 use App\QuestionnairePart;
 use App\QuestionnaireQuestion;
+use App\Sujet;
 use Illuminate\Http\Request;
 
 class QuestionnaireBackController extends Controller
@@ -16,6 +17,7 @@ class QuestionnaireBackController extends Controller
      */
     public function index()
     {
+
         $parts = QuestionnairePart::orderBy('position', 'DESC')->get();
         $offre = Offre::all();
         $questions = QuestionnaireQuestion::orderBy('position', 'DESC')->get();

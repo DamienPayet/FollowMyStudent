@@ -34,6 +34,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('/back/uforum/{id}', 'ForumBackController@update_categorie')->name('categorie.update');
     Route::delete('/back/dforum/{id}', 'ForumBackController@destroy_categorie')->name('categorie.destroy');
     Route::delete('/back/dsujet/{id}', 'ForumBackController@destroy_sujet')->name('sujet.destroy');
+
     //route admin gestion page accueil
     Route::resource('back/home', 'HomeBackController');
 
@@ -78,12 +79,13 @@ Route::group(['middleware' => 'auth'], function () {
   //Route redirection vers forum acceuil
   //Route::get('front/forum', 'StudentFrontController@forum')->name('forum');
     Route::resource('front/forum', 'ForumController');
-     Route::get('front/forum', 'ForumController@index')->name('forum');
+    Route::get('front/forum', 'ForumController@index')->name('forum');
     Route::get('front/forum/categorie/{id}', 'ForumController@index_sujet')->name('sujet.index');
     Route::get('front/forum/create', 'ForumController@create')->name('sujet.create');
     Route::get('front/forum/sujet/{sujet}', 'ForumController@show_sujet')->name('sujet.show');
+    Route::post('front/forum/sujet/like', 'ForumController@like')->name('reponses.like');
     Route::get('front/forum/sujet/{sujet}/reponse', 'ForumController@store_reponse')->name('sujet.reponse.store');
-
+    Route::post('front/se/searcher', 'ForumController@searching')->name('sujet.searching');
     //Route redirection vers forum mes sujet
     Route::get('front/mes_sujets', 'StudentFrontController@forum_mes_sujets')->name('forum_mesSujets');
     //Route  chat direct

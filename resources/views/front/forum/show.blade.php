@@ -7,7 +7,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="button-container">
-            <a href="{{ url()->previous() }}" class="btn btn-primary btn-round btn-lg">
+            <a href="{{ route("forum") }}" class="btn btn-primary btn-round btn-lg">
               Retour
             </a>
           </div>
@@ -61,57 +61,39 @@
               @foreach ($reponses as $r)
                 <div class="media">
                   <a class="pull-left" href="#pablo">
-                    @foreach ($r->users as $u)
-                      @foreach ($users as $u2)
-                        @if ($u->pivot->user_id == $u2->id)
-                        <?php $reponse = $u2->image_profil ?>
-                        @endif
-                      @endforeach
-                    @endforeach
                     <div class="avatar">
-                      <img class="rounded-circle img-raised" src="{{url($reponse)}}" alt="..." style="width: 80px; height: 80px;">
+                      <img class="rounded-circle img-raised" src="{{url($r->user->image_profil)}}" alt="..." style="width: 80px; height: 80px;">
                     </div>
                   </a>
 
                   <div class="media-body card" style="padding:2%;">
 
                     <b>
-                      @foreach ($r->users as $u)
-                        @foreach ($users as $u2)
-                          @if ($u->pivot->user_id == $u2->id)
+                      @if ($r->user->statut == "eleve")
+                        {{ $r->user->eleve->prenom }}
+                      @elseif ($r->user->statut == "admin")
+                        {{ $r->user->admin->prenom }}
+                      @endif
 
-                            @if ($u2->statut == "eleve")
-                              {{ $u2->eleve->prenom }}
-                            @elseif ($u2->statut == "admin")
-                              {{ $u2->admin->prenom }}
-                            @endif
-
-                          @endif
-                        @endforeach
-                      @endforeach
-
-
-                      {{-- @if ($r->user->statut == "eleve")
+                      @if ($r->user->statut == "eleve")
                         {{ $r->user->eleve->nom }}
                       @elseif ($r->user->statut == "admin")
                         {{ $r->user->admin->nom }}
-                      @endif  --}}
+                      @endif
                     </b>
                     <div style="margin-top:1%;">
                       <p style="text-align:justify;"> {{ $r->reponse }} </p>
                     </div>
                     <div class="media-footer">
                       <p style="font-style: italic;" class="btn btn-danger btn-neutral pull-left">{{ \Carbon\Carbon::parse($r->created_at)->format('d/m/Y H:i') }} </p>
-                      <a onclick="like({{$r->id}});" class="btn btn-danger btn-neutral pull-right">
-                        <i class="now-ui-icons ui-2_favourite-28"></i> <input type="number" id="inputLike" value="">
-                      </a>
-                      @foreach ($users as $u)
-                        @foreach ($u->sujet_reponses() as $r2)
-
-
-
-                        @endforeach
-                      @endforeach
+                      <form method="post" action="{{route('reponses.like')}}" id="form-js">
+                        {{-- {{ csrf_field() }}
+                        {{ method_field('post') }} --}}
+                        <input type="hidden" id="reponse-id-js" value="{{$r->id}}">
+                        <button type="submit" class="btn btn-danger btn-neutral pull-right"><i class="now-ui-icons ui-2_favourite-28"></i>
+                          <div id="count-js">{{$r->likes->count()}}</div>
+                        </button>
+                      </form>
                     </div>
                   </div>
                 </div>
@@ -160,20 +142,5 @@
 </div>
 </div>
 </div>
-<script>
-// ---- LIKE ----
-function like(id){
-    console.log(id);
-    // lesReponses = JSON.parse();
-    // console.log(lesReponses);
-
-  //   var user = JSON.parse();
-  //   console.log(user);
-  //
-  // let likeBtn = document.getElementById('inputLike');
-  // likeBtn.value = parseInt(likeBtn.value) + 1;
-
-}
-</script>
-
+<script src="{{url('front/js/like.js')}}"></script>
 @endsection
