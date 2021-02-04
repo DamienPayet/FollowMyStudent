@@ -65,6 +65,7 @@
                                                 <option value="Bac" {{ old('niveau') == 'Bac' ? 'selected' : '' }}>Bac</option>
                                                 <option value="BTS" {{ old('niveau') == 'BTS' ? 'selected' : '' }}>BTS</option>
                                                 <option value="Licence" {{ old('niveau') == 'Licence' ? 'selected' : '' }}>Licence</option>
+                                                <option value="Master" {{ old('niveau') == 'Master' ? 'selected' : '' }}>Master</option>
                                             </select> @if ($errors->has('niveau'))
                                             <span id="niveau-error" class="error text-danger" for="input-niveau">{{ $errors->first('niveau') }}</span>
                                             @endif

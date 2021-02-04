@@ -18,6 +18,7 @@ class OffreController extends Controller
   public function index()
   {
     $offre = Offre::all();
+    \LogActivity::addToLog('Admin - Affichage offres');
     $nonval_offres = DB::table('offres')->where('valide', '=', 0)->count();
 
     return view('back/offre.index', compact('offre','nonval_offres'));
@@ -45,6 +46,7 @@ class OffreController extends Controller
       return back()->withInput()->withErrors($validator->errors());
     }
     $offre = new Offre;
+    \LogActivity::addToLog('Admin - Création offre');
     $pdf_upload = $request->file('fileUpload');
     $rand = Str::random(10);
     if (($pdf_upload != NULL)) {
@@ -80,6 +82,8 @@ class OffreController extends Controller
   public function update(Request $request, Offre $offre)
   {
     $pdf_upload = $request->file('fileUpload');
+    \LogActivity::addToLog('Admin - Modification offre');
+
     $rand = Str::random(10);
     if (($pdf_upload != NULL)) {
       $pdf_nommage = date('Y-m-d') . '-' . $rand . '-' . $pdf_upload->getClientOriginalName();
@@ -101,6 +105,8 @@ class OffreController extends Controller
   public function validation(Request $request, $id)
   {
     $offre = Offre::find($id);
+    \LogActivity::addToLog('Admin - Validation offre');
+
     $offre->valide = !$offre->valide;
     $offre->update();
     return redirect()->route('offre.index')->withStatus(__('Offre publiée !'));
@@ -111,6 +117,8 @@ class OffreController extends Controller
       unlink(public_path($offre->pdf));
     }
     $offre->delete();
+    \LogActivity::addToLog('Admin - Suppression offre');
+
     return redirect()->route('offre.index')->withStatus(__('Offre supprimée avec succès'));
   }
 
@@ -118,6 +126,8 @@ class OffreController extends Controller
   {
     $ids = $request->ids;
     DB::table("offres")->whereIn('id', explode(",", $ids))->delete();
+    \LogActivity::addToLog('Admin - Suppression multiple offres');
+
     return response()->json(['success' => "Les offres ont été supprimées avec succès."]);
 
     //return redirect()->route('offres.index')->withStatus(__('Offres supprimées avec succès'));

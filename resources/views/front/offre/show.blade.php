@@ -30,13 +30,15 @@
       <div class="col-md-12 text-center">
       </div>
       <div class="card">
-        <div class="col-md-8 ml-auto mr-auto">
-          <h3 class="title card-header" style="font-size: 1.9em;">
-            <center>{{$offre->titre}}</center>
-          </h3>
+        <div class="col-md-8 ml-auto mr-auto text-center ">
+          <h3 class="title card-header" style="font-size: 1.9em;text-align: center;">
+            {{$offre->titre}}
+          </h3></br>
+        </div>
+
+        <div class="card-body">
           <pre style="white-space: pre-wrap;">
-          <pre style="white-space: pre-wrap;">
-          <h5 class="description">{{$offre->description }}</h5>
+          {{$offre->description }}
           </pre>
         </div>
       </div>

@@ -17,6 +17,7 @@ class NousContacterController extends Controller
     {
         //
         $contact = Contact::all();
+        \LogActivity::addToLog('Admin - Affichage demandes contacts');
         return view('back.contact.index')->with('contact', $contact);
     }
     public function create(User $user, Request $request)
@@ -28,6 +29,7 @@ class NousContacterController extends Controller
     public function show(Request $request, $id)
     {
         $contact = Contact::find($id);
+        \LogActivity::addToLog('Admin - Détails demande contact');
         return view('back.contact.show', compact('contact'));
     }
     public function update(Request $request, $id)
@@ -36,6 +38,7 @@ class NousContacterController extends Controller
         $contact->traite = !$contact->traite;
         $contact->update();
         //dd($contact);
+        \LogActivity::addToLog('Admin - Modification demande contact');
         return redirect()->route('contact.index')->withStatus(__('Demande traitée !'));
     }
     // Store Contact Form data
@@ -105,6 +108,8 @@ class NousContacterController extends Controller
             $message->to('pelletier.ft1@gmail.com', 'Admintrateur FMS')->subject('[FMS] - Nouvelle demande de contact');
         });
         // 
+        \LogActivity::addToLog('User - Création demande contact');
+
         return back()->with('success', 'Nous avons bien reçu votre message ! Merci de nous écrire, nous reviendrons prochainement vers vous.');
     }
     public function destroy($id)
@@ -112,18 +117,23 @@ class NousContacterController extends Controller
         $contact = Contact::find($id);
 
         $contact->delete();
+        \LogActivity::addToLog('Admin - Suppression demande contact');
+
         return redirect()->route('contact.index')->withStatus(__('Demande supprimée avec succès'));
     }
     public function deleteAll(Request $request)
     {
         $ids = $request->ids;
         DB::table("contacts")->whereIn('id', explode(",", $ids))->delete();
+        \LogActivity::addToLog('Admin - Suppressions multiples demande contact');
+
         return response()->json(['success' => "Les demandes ont été supprimées avec succès."]);
 
         //return redirect()->route('contact.index')->withStatus(__('Offres supprimées avec succès'));
     }
     public function reloadCaptcha()
     {
+        \LogActivity::addToLog('Rechargement captcha');
         return response()->json(['captcha' => captcha_img()]);
     }
 }

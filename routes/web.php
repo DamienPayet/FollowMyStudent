@@ -13,6 +13,9 @@ Route::get('/logger', 'LogController@access')->name('log');
 Route::group(['middleware' => 'admin'], function () {
     //route affichage des logs :
     Route::get('/back/log', 'LogController@index')->name('log.view');
+    Route::delete('/back/log/destroy/{id}', 'LogController@destroy')->name('log.destroy');
+    Route::get('add-to-log', 'LogController@myTestAddToLog');
+
     Route::get('/download', 'LogController@export');
 
     //route admin gestion offre
