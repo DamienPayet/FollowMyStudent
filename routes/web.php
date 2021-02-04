@@ -35,7 +35,6 @@ Route::group(['middleware' => 'admin'], function () {
     //route admin gestion page accueil
     Route::resource('back/home', 'HomeBackController');
 
-
     //route admin gestion questionnaire
     Route::resource('back/questionnaire', 'QuestionnaireBackController');
     Route::get('/back/question/{id}', 'QuestionnaireBackController@create_question')->name('create.question');
@@ -83,7 +82,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('front/forum/sujet/{sujet}', 'ForumController@show_sujet')->name('sujet.show');
     Route::post('front/forum/sujet/like', 'ForumController@like')->name('reponses.like');
     Route::get('front/forum/sujet/{sujet}/reponse', 'ForumController@store_reponse')->name('sujet.reponse.store');
-
+    Route::post('front/se/searcher', 'ForumController@searching')->name('sujet.searching');
     //Route redirection vers forum mes sujet
     Route::get('front/mes_sujets', 'StudentFrontController@forum_mes_sujets')->name('forum_mesSujets');
     //Route  chat direct

@@ -375,4 +375,5 @@ class StudentFrontController extends Controller
         }
         return response()->json(['conv' => $user->conversation, 'nb_message' => $nb_message, 'dest' => $destinataire]);
     }
+
 }

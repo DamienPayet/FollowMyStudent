@@ -34,4 +34,5 @@ class HomeController extends Controller
         $offres = Offre::all();
         return view('home', compact('offres','alreadyConsentedWithCookies'));
     }
+
 }

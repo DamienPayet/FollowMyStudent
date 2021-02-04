@@ -8,10 +8,10 @@
                 <text style='margin-left:10px;color:red;'>* Champs obligatoires</text>
                 <br>
                 <div class="card ">
-                <div class="card-header card-header-primary">
-              <h4 class="card-title">{{ __('Modifier un utilisateur') }}</h4>
-              <p class="card-category"></p>
-            </div>
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">{{ __('Modifier un utilisateur') }}</h4>
+                        <p class="card-category"></p>
+                    </div>
                     <div class="card-body ">
                         <div class="row">
                             <div class="col-md-12 ">
@@ -52,8 +52,12 @@
                                     @elseif ($user->statut == "admin")
                                     <option value="admin">Administrateur</option>
                                     @endif
+                                    @if($user->statut != "eleve")
                                     <option value="eleve">Élève</option>
+                                    @endif
+                                    @if($user->statut != "admin")
                                     <option value="admin">Administrateur</option>
+                                    @endif
                                 </select>
                             </div>
                             <div class="form-group">
