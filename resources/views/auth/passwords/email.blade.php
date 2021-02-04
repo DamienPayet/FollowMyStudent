@@ -35,7 +35,7 @@
         <div class="container" style="height: 70%;">
 
             <div class="dropdown button-dropdown">
-                <a href="#pablo" class="dropdown-toggle" id="navbarDropdown" data-toggle="dropdown">
+                <a href="{{route('index')}}" class="dropdown-toggle" id="navbarDropdown" data-toggle="dropdown">
                     <span class="button-bar"></span>
                     <span class="button-bar"></span>
                     <span class="button-bar"></span>
@@ -43,7 +43,7 @@
 
             </div>
             <div class="navbar-translate">
-                <a class="navbar-brand" href="" rel="tooltip" title="Bienvenue sur Follow My Student !" data-placement="bottom">
+            <a class="navbar-brand" href="{{route('index')}}" rel="tooltip" title="Bienvenue sur Follow My Student !" data-placement="bottom">
                     Follow My Student
                 </a>
                 <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">

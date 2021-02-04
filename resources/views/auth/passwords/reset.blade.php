@@ -43,7 +43,7 @@
 
             </div>
             <div class="navbar-translate">
-                <a class="navbar-brand" href="" rel="tooltip" title="Bienvenue sur Follow My Student !" data-placement="bottom" >
+            <a class="navbar-brand" href="{{route('index')}}" rel="tooltip" title="Bienvenue sur Follow My Student !" data-placement="bottom">
                     Follow My Student
                 </a>
                 <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
