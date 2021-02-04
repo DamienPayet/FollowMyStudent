@@ -108,7 +108,7 @@
     $value = $(this).val();
     $.ajax({
       type: 'get',
-      url: "{{route('sujet.search')}}",
+      url: "",
       data: {
         'search': $value
       },
