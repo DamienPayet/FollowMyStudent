@@ -15,10 +15,10 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <!-- CSS Files -->
-    <link href="{{url('front/css/bootstrap.min.css')}}" rel="stylesheet"/>
-    <link href="{{url('front/css/now-ui-kit.css?v=1.3.0')}}" rel="stylesheet"/>
-    <link href="{{url('front/demo/demo.css')}}" rel="stylesheet"/>
-    <link href="{{url('front/css/emojionearea.css')}}" rel="stylesheet"/>
+    <link href="{{url('front/css/bootstrap.min.css')}}" rel="stylesheet" />
+    <link href="{{url('front/css/now-ui-kit.css?v=1.3.0')}}" rel="stylesheet" />
+    <link href="{{url('front/demo/demo.css')}}" rel="stylesheet" />
+    <link href="{{url('front/css/emojionearea.css')}}" rel="stylesheet" />
 
 </head>
 
@@ -121,15 +121,15 @@
                                 {{ csrf_field() }}
                             </form>
                             </a>
-                        </li>
-                        @if(Auth::user()->statut == 'admin')
-                            <li class="nav-item">
-                                <a class="nav-link" target="_blank" href="{{route('indexback')}}">
-                                    <i class="now-ui-icons ui-2_settings-90"></i>
-                                    <p>Administration</p>
-                                </a>
-                            </li>
-
+                    </li>
+                    @if(Auth::user()->statut == 'admin')
+                    <li class="nav-item">
+                        <a class="nav-link" target="_blank" href="{{route('indexback')}}">
+                            <i class="now-ui-icons ui-2_settings-90"></i>
+                            <p>Administration</p>
+                        </a>
+                    </li>
+                    @endif
                     @endif
                 </ul>
             </div>
