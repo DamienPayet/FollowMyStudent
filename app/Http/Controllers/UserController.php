@@ -21,7 +21,7 @@ class UserController extends Controller
    */
   public function index()
   {
-    //
+    \LogActivity::addToLog('Admin - Affichage utilisateurs');
     $user = User::all();
     return view('back.user.index')->with('user', $user);
   }
@@ -33,7 +33,6 @@ class UserController extends Controller
    */
   public function create()
   {
-    //
     $images = \File::allFiles(public_path('front/images/avatars'));
     return view('back.user.create', compact('images'));
   }
@@ -93,7 +92,7 @@ class UserController extends Controller
       }
     }
     $user->save();
-
+    \LogActivity::addToLog('Admin - Création utilisateurs');
     return redirect()->route("users.index")->with('success', 'Création réussie !');
   }
 
@@ -107,6 +106,7 @@ class UserController extends Controller
   public function show($id)
   {
     $user = User::find($id);
+    \LogActivity::addToLog('Admin - Détail utilisateur');
     return view('back.user.show')->with('user', $user);
   }
 
@@ -213,16 +213,11 @@ class UserController extends Controller
     }
     $user->updated_at = now();
     $user->save();
+    \LogActivity::addToLog('Admin - Modifications utilisateur');
 
     return redirect()->route("users.index")->with('success', 'Modification réussie !');
   }
 
-  public function editMdp($id)
-  {
-    //
-    $user = User::find($id);
-    return view('back.user.editMdp')->with('user', $user);
-  }
   /**
    * Remove the specified resource from storage.
    *
@@ -241,6 +236,7 @@ class UserController extends Controller
     }
 
     $user->delete();
+    \LogActivity::addToLog('Admin - Suppresion utilisateur');
 
     return redirect()->route("users.index")->with('error', 'Suppression réussie !');
   }
@@ -250,12 +246,13 @@ class UserController extends Controller
     DB::table("users")->whereIn('id', explode(",", $ids))->delete();
     return response()->json(['success' => "Utilisateur(s) supprimé(s) avec succès."]);
 
-    //return redirect()->route('offres.index')->withStatus(__('Offres supprimées avec succès'));
+    \LogActivity::addToLog('Admin - Suppresion utilisateurs');
   }
   public function avatar_index()
   {
     //
     $images = \File::allFiles(public_path('front/images/avatars'));
+    \LogActivity::addToLog('Admin - Affichage avatars');
     return view('back.avatar.index', compact('images'));
   }
   public function avatar_create()
@@ -267,6 +264,7 @@ class UserController extends Controller
   {
     //
     $images = \File::allFiles(public_path('front/images/avatars'));
+    \LogActivity::addToLog('Admin - Détails avatar');
     return view('back.avatar.index', compact('images'));
   }
   public function avatar_store(Request $request)
@@ -274,6 +272,7 @@ class UserController extends Controller
     $avatar = $request->file('fileUpload');
     $filename = 'front/images/avatars/' . $avatar->getClientOriginalName();
     Image::make($avatar)->resize(300, 300)->save(public_path($filename));
+    \LogActivity::addToLog('Admin - Création avatar');
 
     return redirect()->route("avatar.index")->with('success', 'Avatar ajouté !');
   }
@@ -289,6 +288,8 @@ class UserController extends Controller
     } else {
       return redirect()->route("avatar.index")->with('error', 'Un problème est survenu..merci de réessayer');
     }
+    \LogActivity::addToLog('Admin - Suppression avatar');
+
     return redirect()->route("avatar.index")->with('success', 'Avatar supprimé !');
   }
   public function avatar_deleteAll(Request $request)
@@ -300,6 +301,7 @@ class UserController extends Controller
     foreach ($ids as $id) {
       \File::delete(public_path() . '/front/images/avatars/' . $id);
     }
+    \LogActivity::addToLog('Admin - Suppression multiples avatars');
     return response()->json(['success' => "Avatars supprimés avec succès."]);
   }
 }

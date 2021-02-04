@@ -32,24 +32,15 @@ class StudentFrontController extends Controller
     public function home()
     {
         $post = HomePost::all();
+        \LogActivity::addToLog('Affichage poste');
+
         return view('front.index', compact('post'));
     }
 
     public function edit(User $user, Request $request)
     {
         $user = Auth::user();
-        //$page = (int) $request->input('page') ?: 2;
-        //$images = \File::allFiles(public_path('front\images\avatars'));
-        //$images = collect(\File::allFiles(public_path('/front/images/avatars/')));
-        //dd($images);
-        //$onPage = 15;
-
-        //$slice = $images->slice(($page-1)* $onPage, $onPage);
-
-        // $paginator = new \Illuminate\Pagination\LengthAwarePaginator($slice, $images->count(), $onPage);
-
-        // return view('front.user.edit', compact('user'))->with('images', $paginator);
-
+        
         $images = \File::allFiles(public_path('front/images/avatars'));
         return view('front.user.edit', compact('user', 'images'));
     }
@@ -63,6 +54,7 @@ class StudentFrontController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
+        \LogActivity::addToLog('Utilisateur - Modification profil');
 
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|unique:users,email,'.$user->id,
@@ -142,6 +134,7 @@ class StudentFrontController extends Controller
         }
         //Récupération de l'id de l'utilisateur
         $user = User::find($id);
+        \LogActivity::addToLog('Utilisateur - Modification email');
         if ($user->email_verified_at == null) {
 
             $getmail = $request->input('email');
@@ -168,6 +161,7 @@ class StudentFrontController extends Controller
     public function startQuestionnaire()
     {
         $user = auth::user();
+        \LogActivity::addToLog('Utilisateur - Démarrage questionnaire');
         $part = QuestionnairePart::orderBy('position', 'ASC')->get();
         $question = QuestionnaireQuestion::orderBy('position', 'ASC')->get();
         $counterep = 0;

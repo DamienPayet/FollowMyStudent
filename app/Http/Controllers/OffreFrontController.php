@@ -16,6 +16,8 @@ class OffreFrontController extends Controller
 {
   public function index()
   {
+    \LogActivity::addToLog('Utilisateur - Affichage offre');
+
     $offres = Offre::paginate(6);
     $pop_offres = Offre::orderBy('nb_vue', 'desc')->take(3)->get();
     $nonval_offres = DB::table('offres')->where('valide', '=', 0)->count();
@@ -30,6 +32,7 @@ class OffreFrontController extends Controller
   public function show(Request $request, $id)
   {
     $offre = Offre::find($id);
+    \LogActivity::addToLog('Utilisateur - Affichage détails offre');
 
     if (Auth::user()->statut == "eleve" && $offre->valide == 0) {
       //return redirect()->route('offre_front_index')->with('error', 'Accès refusé');
@@ -66,6 +69,7 @@ class OffreFrontController extends Controller
       return back()->withInput()->withErrors($validator->errors());
     }
     $offre = new Offre;
+    \LogActivity::addToLog('Utilisateur - Création offre');
     $pdf_upload = $request->file('fileUpload');
     $rand = Str::random(10);
     if (($pdf_upload != NULL)) {
