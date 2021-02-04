@@ -156,7 +156,6 @@
     <footer class="footer footer-big" data-background-color="black">
         <div class="container">
             @if ( Auth::user()->email_verified_at != null && Auth::user()->statut == "eleve" || Auth::user()->email_verified_at != null && Auth::user()->statut == "admin")
-
             <div class="content" style="padding: 1em;">
                 <div class="row">
                     <div class="col-md-2">
