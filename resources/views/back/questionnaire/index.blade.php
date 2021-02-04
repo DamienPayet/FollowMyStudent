@@ -116,7 +116,7 @@
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        @foreach($parti->questions as $question)
+                                                        @foreach($parti->questions->sortBy('position') as $question)
                                                             <tr id="{{ $question->id }}" class="dragtb" draggable="true" class="text-center">
                                                                 <td>{{ $question->id }}</td>
                                                                 <td>{{$question->question}}</td>

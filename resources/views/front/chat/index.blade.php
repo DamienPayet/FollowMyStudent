@@ -12,20 +12,22 @@
             <div class="row flex-row">
                 <div id="leftbar" class="leftbar col-lg-4">
                     <div class="card card-plain">
-                        <form class="card-header mb-3">
-                            <div class="input-group">
-                                <input id="finder" onKeyPress="if(event.keyCode == 13) finder()" type="text"
-                                       class="form-control" placeholder="Search contact">
-                                <div class="input-group-append">
-                                    <span class="input-group-text"><i class="tim-icons icon-zoom-split"></i></span>
-                                </div>
+
+                        <div class="input-group">
+                            <input id="finder" onKeyPress="if(event.keyCode == 13) finder()" type="text"
+                                   class="form-control" placeholder="Search contact">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="tim-icons icon-zoom-split"></i></span>
                             </div>
-                        </form>
-                        <div class="list-group list-group-chat list-group-flush">
+                        </div>
+
+                        <div id="chatuserlist" class=" list-group list-group-chat list-group-flush">
+                            @php($counter = 0 )
                             @foreach ($users as $utilisateur)
                                 @if ($utilisateur->id != $user->id)
+                                    @php($counter++)
                                     <a onclick="testconv({{$utilisateur}})" id="item_conv_usr_{{$utilisateur->id}}"
-                                       class="list-group-item">
+                                       class="list-group-item chatuserlist">
                                         <div class="media">
                                             <img alt="Image" src="{{url($utilisateur->image_profil)}}" class="avatar">
                                             <div class="media-body ml-2">
@@ -112,12 +114,15 @@
 
         function finder() {
             var texct = document.getElementById("finder");
-            if (textct != "") {
-                $.ajax({
-                    type: "post",
-                    url: ""
-
-                })
+            var listItens = document.querySelectorAll('.chatuserlist');
+            for (var i = 0; i < listItens.length; i++) {
+                var txt1 = listItens[i].innerText.toUpperCase();
+                var txt2 = texct.value.toUpperCase();
+                if (txt1.includes(txt2) == false) {
+                    document.getElementById(listItens[i].id).style.display = "none";
+                }else{
+                    document.getElementById(listItens[i].id).style.display = "block";
+                }
             }
         }
 
