@@ -143,11 +143,14 @@
     <center>
         @include('cookieConsent::index')
     </center>
+    <div class="section-space"></div>
+    <div class="section-space"></div>
+
     <footer class="footer footer-big" data-background-color="black">
         <div class="container">
             @if ( Auth::user()->email_verified_at != null && Auth::user()->statut == "eleve" || Auth::user()->email_verified_at != null && Auth::user()->statut == "admin")
 
-            <div class="content">
+            <div class="content" style="padding: 1em;">
                 <div class="row">
                     <div class="col-md-2">
                         <h5 style="color: var(--primary-color);">A propos</h5>
@@ -230,7 +233,7 @@
             </div>
             @endif
             <hr>
-            <div class="copyright" id="copyright">
+            <div class="copyright" id="copyright" style="padding: 1em;">
                 &copy;
                 <script>
                     document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
