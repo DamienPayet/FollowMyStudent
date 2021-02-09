@@ -16,97 +16,103 @@ use App\Like;
 
 class ForumController extends Controller
 {
-  public function index()
-  {
-    $section = Section::all();
-    $sujets = Sujet::latest()->take(3)->get();
-    $categories = SujetCategorie::latest()->take(3)->get();
-    //$a = $section->categories()->paginate();
-    //$pg_categories = SujetCategorie::paginate(8);
-    //dd($pg_categories);
-    return view('front/forum.index', compact('section', 'sujets', 'categories'));
-  }
-  public function index_sujet($id)
-  {
-    $sujets = Sujet::all();
-    $categorie = SujetCategorie::find($id);
-    $categorie->nb_vue += 1;
-    $categorie->update();
-    $users = User::all();
-    return view('front/forum.index_sujet', compact('sujets', 'categorie', 'users'));
-  }
-  public function show_sujet(Sujet $sujet)
-  {
-    $reponses = SujetReponse::where('sujet_id', $sujet->id)->get();
-    $nbReponse = SujetReponse::where('sujet_id', $sujet->id)->count();
-    $users=User::all();
-    $sujet->nb_vue += 1;
-    $sujet->update();
-    return view('front/forum.show', compact('sujet','reponses','nbReponse','users'));
-  }
+    public function index()
+    {
+        $section = Section::all();
+        $sujets = Sujet::latest()->take(3)->get();
+        $categories = SujetCategorie::latest()->take(3)->get();
+        //$a = $section->categories()->paginate();
+        //$pg_categories = SujetCategorie::paginate(8);
+        //dd($pg_categories);
+        return view('front/forum.index', compact('section', 'sujets', 'categories'));
+    }
+    public function index_sujet($id)
+    {
+        $sujets = Sujet::all();
+        $categorie = SujetCategorie::find($id);
+        $categorie->nb_vue += 1;
+        $categorie->update();
+        $users = User::all();
+        return view('front/forum.index_sujet', compact('sujets', 'categorie', 'users'));
+    }
+    public function forum_messujets($id)
+    {
+        $user = User::find($id);
+        $sujets = Sujet::all();
 
-  public function store_reponse(Request $request, $sujet)
-  {
-      // On oblige à respecter certains critères avant de valider la requête
-      $validator = Validator::make($request->all(), [
-          'reponse' => 'required|min:10',
-      ]);
-      // Si la validation échoue
-      if ($validator->fails()) {
-          return back()->withInput()->withErrors($validator->errors());
-      }
-      $user = auth()->user()->id;
-      $reponse = new SujetReponse;
+        return view('front.forum.mes_sujets', compact('sujets', 'user'));
+    }
+    public function show_sujet(Sujet $sujet)
+    {
+        $reponses = SujetReponse::where('sujet_id', $sujet->id)->get();
+        $nbReponse = SujetReponse::where('sujet_id', $sujet->id)->count();
+        $users = User::all();
+        $sujet->nb_vue += 1;
+        $sujet->update();
+        return view('front/forum.show', compact('sujet', 'reponses', 'nbReponse', 'users'));
+    }
 
-      $reponse->reponse = $request->get('reponse');
-      $reponse->user_id = $user;
-      $reponse->sujet_id = $sujet;
-      $reponse->nb_vue = 0;
-      $reponse->created_at = now();
-      $reponse->save();
+    public function store_reponse(Request $request, $sujet)
+    {
+        // On oblige à respecter certains critères avant de valider la requête
+        $validator = Validator::make($request->all(), [
+            'reponse' => 'required|min:10',
+        ]);
+        // Si la validation échoue
+        if ($validator->fails()) {
+            return back()->withInput()->withErrors($validator->errors());
+        }
+        $user = auth()->user()->id;
+        $reponse = new SujetReponse;
 
-      return redirect()->route('sujet.show', $sujet)->withStatus(__('Réponse créée avec succès.'));
-  }
+        $reponse->reponse = $request->get('reponse');
+        $reponse->user_id = $user;
+        $reponse->sujet_id = $sujet;
+        $reponse->nb_vue = 0;
+        $reponse->created_at = now();
+        $reponse->save();
 
-  public function create()
-  {
-      $section = Section::all();
-      $categorie = SujetCategorie::all();
+        return redirect()->route('sujet.show', $sujet)->withStatus(__('Réponse créée avec succès.'));
+    }
 
-      return view('front.forum.create_sujet', compact('categorie', 'section'));
-  }
+    public function create()
+    {
+        $section = Section::all();
+        $categorie = SujetCategorie::all();
+
+        return view('front.forum.create_sujet', compact('categorie', 'section'));
+    }
 
 
 
-  public function like(): JsonResponse
-  {
-    $reponse = SujetReponse::find(request()->id);
+    public function like(): JsonResponse
+    {
+        $reponse = SujetReponse::find(request()->id);
 
-           if ($reponse->isLikedByLoggedInUser()) {
-               $res = Like::where([
-                   'user_id' => auth()->user()->id,
-                   'sujet_reponse_id' => request()->id
-               ])->delete();
+        if ($reponse->isLikedByLoggedInUser()) {
+            $res = Like::where([
+                'user_id' => auth()->user()->id,
+                'sujet_reponse_id' => request()->id
+            ])->delete();
 
-               if ($res) {
-                   return response()->json([
-                       'count' => SujetReponse::find(request()->id)->likes->count()
-                   ]);
-               }
+            if ($res) {
+                return response()->json([
+                    'count' => SujetReponse::find(request()->id)->likes->count()
+                ]);
+            }
+        } else {
+            $like = new Like();
 
-           } else {
-               $like = new Like();
+            $like->user_id = auth()->user()->id;
+            $like->sujet_reponse_id = request()->id;
 
-               $like->user_id = auth()->user()->id;
-               $like->sujet_reponse_id = request()->id;
+            $like->save();
 
-               $like->save();
-
-               return response()->json([
-                   'count' => SujetReponse::find(request()->id)->likes->count()
-               ]);
-           }
-       }
+            return response()->json([
+                'count' => SujetReponse::find(request()->id)->likes->count()
+            ]);
+        }
+    }
 
     public function store(Request $request)
     {
@@ -137,7 +143,7 @@ class ForumController extends Controller
 
     public function searching(Request $request)
     {
-        $sujets = Sujet::where('description' ,'like' , '%'.$request->message.'%')->get();
+        $sujets = Sujet::where('description', 'like', '%' . $request->message . '%')->get();
         return response()->json(['msg' =>  $sujets]);
     }
 }

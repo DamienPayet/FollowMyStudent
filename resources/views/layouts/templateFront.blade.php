@@ -86,14 +86,15 @@
                             <a class="dropdown-item" href="{{route('forum')}}">
                                 <i class="now-ui-icons business_chart-pie-36"></i> Accueil
                             </a>
-                            <a class="dropdown-item" target="_blank" href="{{route('forum_mesSujets')}}">
+                            <a class="dropdown-item" href="{{route('forum_mesSujets',Auth::user()->id)}}">
+
                                 <i class="now-ui-icons design_bullet-list-67"></i> Mes Sujets
                             </a>
                         </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('ajaxRequest.index')}}">
-                            <i class="fas fa-envelope"></i>
+                            <i class="now-ui-icons ui-1_email-85"></i>
                             <p id="envelope">0</p>
                         </a>
                     </li>
@@ -108,7 +109,7 @@
                     @endif
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown">
-                            <i class="now-ui-icons design_app"></i>
+                            <i class="now-ui-icons users_single-02"></i>
                             @if (Auth::user()->statut == "eleve")
                             <p> {{Auth::user()->eleve->prenom}} {{Auth::user()->eleve->nom }}</p>
                             @elseif (Auth::user()->statut == "admin")
@@ -117,16 +118,16 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink1">
                             <a class="dropdown-item" href="{{ route('front.users.edit', Auth::user()->id) }}">
-                                <i class="now-ui-icons business_chart-pie-36"></i> Mon profil
+                                <i class="now-ui-icons ui-1_settings-gear-63"></i> Mon profil
                             </a>
                             <a class="dropdown-item" href="Logout" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                Déconnexion </a>
+                            <i class="now-ui-icons media-1_button-power"></i> Déconnexion </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 {{ csrf_field() }}
                             </form>
                             </a>
                     </li>
-                    
+
                     @endif
                 </ul>
             </div>
@@ -199,7 +200,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#pablo">
+                                <a href="{{route('forum_mesSujets',Auth::user()->id)}}">
                                     Mes sujets
                                 </a>
                             </li>

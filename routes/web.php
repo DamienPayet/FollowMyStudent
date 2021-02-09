@@ -87,7 +87,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('front/forum/sujet/{sujet}/reponse', 'ForumController@store_reponse')->name('sujet.reponse.store');
     Route::post('front/se/searcher', 'ForumController@searching')->name('sujet.searching');
     //Route redirection vers forum mes sujet
-    Route::get('front/mes_sujets', 'StudentFrontController@forum_mes_sujets')->name('forum_mesSujets');
+    Route::get('front/mes_sujets/user/{id}', 'ForumController@forum_messujets')->name('forum_mesSujets');
     //Route  chat direct
 
     Route::get('my_chat', 'StudentFrontController@ajaxRequest1')->name('ajaxRequest.index');

@@ -40,7 +40,7 @@ class StudentFrontController extends Controller
     public function edit(User $user, Request $request)
     {
         $user = Auth::user();
-        
+
         $images = \File::allFiles(public_path('front/images/avatars'));
         return view('front.user.edit', compact('user', 'images'));
     }
@@ -50,14 +50,14 @@ class StudentFrontController extends Controller
         $user = Auth::user();
         return view('front.user.show', compact('user'));
     }
-
+   
     public function update(Request $request, $id)
     {
         $user = User::find($id);
         \LogActivity::addToLog('Utilisateur - Modification profil');
 
         $validator = Validator::make($request->all(), [
-            'email' => 'required|email|unique:users,email,'.$user->id,
+            'email' => 'required|email|unique:users,email,' . $user->id,
             'password' => 'nullable|min:6|required_with:password_confirmation|same:password_confirmation',
             'password_confirmation' => 'nullable|min:6',
             'captcha' => 'required|captcha',
@@ -369,5 +369,4 @@ class StudentFrontController extends Controller
         }
         return response()->json(['conv' => $user->conversation, 'nb_message' => $nb_message, 'dest' => $destinataire]);
     }
-
 }
