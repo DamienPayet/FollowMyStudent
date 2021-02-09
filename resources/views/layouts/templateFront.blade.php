@@ -79,16 +79,16 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown">
-                            <i class="now-ui-icons design_bullet-list-67"></i>
+                            <i class="now-ui-icons education_paper"></i>
                             <p>Forum</p>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink1">
                             <a class="dropdown-item" href="{{route('forum')}}">
-                                <i class="now-ui-icons business_chart-pie-36"></i> Accueil
+                                <i class="now-ui-icons shopping_shop"></i> Accueil
                             </a>
                             <a class="dropdown-item" href="{{route('forum_mesSujets',Auth::user()->id)}}">
 
-                                <i class="now-ui-icons design_bullet-list-67"></i> Mes Sujets
+                                <i class="now-ui-icons education_agenda-bookmark"></i> Mes Sujets
                             </a>
                         </div>
                     </li>
