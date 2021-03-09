@@ -157,21 +157,28 @@
             <div class="content" style="padding: 1em;">
                 <div class="row">
                     <div class="col-md-2">
-                        <h5 style="color: var(--primary-color);">A propos</h5>
+                        <h5 style="color: var(--primary-color);">Mentions légales</h5>
                         <ul class="links-vertical">
                             <li>
                                 <a href="{{route('mentions.rgpd')}}">
                                     RGPD
                                 </a>
                             </li>
-                            <li>
+                           
+                        </ul>
+                        </div>
+                        <div class="col-md-2">
+                        <h5 style="color: var(--primary-color);">Contact</h5>
+
+                        <ul class="links-vertical">
+                        <li>
                                 <a href="{{route('contact.create')}}">
                                     Nous contacter
                                 </a>
-                            </li>
-                        </ul>
+                            </li>                      
+                              </ul>
                     </div>
-                    <div class="col-md-2">
+                <!--    <div class="col-md-2">
                         <h5 style="color: var(--primary-color);">Les offres</h5>
                         <ul class="links-vertical">
                             <li>
@@ -235,6 +242,7 @@
                     </div>
                 </div>
             </div>
+            -->
             @endif
             <hr>
             <div class="copyright" id="copyright" style="padding: 1em;">
