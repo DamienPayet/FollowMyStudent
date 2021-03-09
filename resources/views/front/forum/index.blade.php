@@ -51,8 +51,19 @@
     <div class="features-8 section-image" style="background-image: url('front/images/bg6.jpg')">
         <div class="col-md-7 ml-auto mr-auto text-center">
             <h3 class="title" style="font-size: 2.2em; color: var(--primary-color);">
-                <i class="now-ui-icons now-ui-icons files_paper" style="width : 30px">
+            @if($sections->titre == 'Développement')
+                <i class="now-ui-icons design-2_html5" style="width : 30px">
                 </i>
+                @elseif($sections->titre == 'Réseaux')
+                <i class=" now-ui-icons tech_tv" style="width : 30px">
+                </i>
+                @elseif($sections->titre == 'Général')
+                <i class=" now-ui-icons emoticons_satisfied" style="width : 30px">
+                </i>
+                @elseif($sections->titre != 'Développement' || $sections->titre != 'Réseaux')
+                <i class="now-ui-icons design-2_html5" style="width : 30px">
+                </i>
+                @endif
                 {{$sections->titre}}
             </h3><br>
             <h5 class="description"> {{$sections->description}}</h5>
@@ -140,9 +151,9 @@
 
         for (var i = 0; i < response.msg.length; i++) {
             if (i < 10) {
-                var div = '<div class="alert alert-info" style="border-radius: 15px;" role="alert">';
+                var div = '<a href="/front/forum/sujet/' +response.msg[i].id + '"' + 'class="alert alert-info" style="border-radius: 15px;" role="alert">';
                 div += '<strong>' + response.msg[i].titre + '</strong>';
-                div += '</div>';
+                div += '</a>';
                 var ul = document.getElementById("resultlist");
                 var li = document.createElement("li");
                 li.setAttribute("id", "list_" + i);
@@ -155,4 +166,4 @@
     }
 </script>
 
-@endsection
+@endsection  
