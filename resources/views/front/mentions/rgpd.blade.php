@@ -200,7 +200,7 @@
                 Lors du traitement des Données Personnelles, <a href="http://followmystudent.test/">http://followmystudent.test/</a>prend toutes les mesures raisonnables visant à les protéger contre toute perte, utilisation détournée, accès non autorisé, divulgation, altération ou destruction.</p>
             <br>
 
-            <h3 style="font-size: 2.2em; color: var(--primary-color);">9. Liens hypertextes « cookies » et balises (“tags”) internet</h3><br>
+            <h3 style="font-size: 2.2em; color: var(--primary-color);">9. Liens hypertextes « cookies »</h3><br>
 
             <p>
                 Le site <a href="http://followmystudent.test/">http://followmystudent.test/</a> contient un certain nombre de liens hypertextes vers d’autres sites, mis en place avec l’autorisation de <a href="http://followmystudent.test/">http://followmystudent.test/</a>. Cependant, <a href="http://followmystudent.test/">http://followmystudent.test/</a> n’a pas la possibilité de vérifier le contenu des sites ainsi visités, et n’assumera en conséquence aucune responsabilité de ce fait.</p>
@@ -227,23 +227,7 @@
             <p>
                 Ces types de cookies ne sont déposés sur vos terminaux qu’à condition que vous y consentiez, en continuant votre navigation sur le Site Internet ou l’application mobile de <a href="http://followmystudent.test/">http://followmystudent.test/</a>. À tout moment, l’Utilisateur peut néanmoins revenir sur son consentement à ce que <a href="http://followmystudent.test/">http://followmystudent.test/</a> dépose ce type de cookies.</p>
             <br>
-            <h2 style="font-size: 1.5em; color: var(--primary-color);">9.2. Balises (“TAGS”) Internet</h2>
-            <br>
-
-
-            <p>
-
-                <a href="http://followmystudent.test/">http://followmystudent.test/</a> peut employer occasionnellement des balises Internet (également appelées « tags », ou balises d’action, GIF à un pixel, GIF transparents, GIF invisibles et GIF un à un) et les déployer par l’intermédiaire d’un partenaire spécialiste d’analyses Web susceptible de se trouver (et donc de stocker les informations correspondantes, y compris l’adresse IP de l’Utilisateur) dans un pays étranger.</p>
-
-            <p>
-                Ces balises sont placées à la fois dans les publicités en ligne permettant aux internautes d’accéder au Site, et sur les différentes pages de celui-ci.
-            </p>
-            <p>
-                Cette technologie permet à <a href="http://followmystudent.test/">http://followmystudent.test/</a> d’évaluer les réponses des visiteurs face au Site et l’efficacité de ses actions (par exemple, le nombre de fois où une page est ouverte et les informations consultées), ainsi que l’utilisation de ce Site par l’Utilisateur. </p>
-            <p>
-                Le prestataire externe pourra éventuellement recueillir des informations sur les visiteurs du Site et d’autres sites Internet grâce à ces balises, constituer des rapports sur l’activité du Site à l’attention de <a href="http://followmystudent.test/">http://followmystudent.test/</a>, et fournir d’autres services relatifs à l’utilisation de celui-ci et d’Internet.</p>
-            <p>
-            </p><br>
+            
 
             <h3 style="font-size: 2.2em; color: var(--primary-color);">10. Droit applicable et attribution de juridiction.</h3><br>
 

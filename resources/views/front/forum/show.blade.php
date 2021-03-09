@@ -15,8 +15,9 @@
 
         <div class="col-md-8 ml-auto mr-auto">
           <h3 class="title" style="font-size: 2.2em;">{{$sujet->titre}}</h3>
-          <br>
-          <p>{{$sujet->description}}</p>
+          <br>          <pre style="white-space: pre-wrap;">
+
+         {{$sujet->description}}</pre>
           <br> <br>
           <br>
 

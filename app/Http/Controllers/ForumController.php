@@ -12,6 +12,8 @@ use App\SujetCategorie;
 use App\User;
 use App\SujetReponse;
 use App\Like;
+use Symfony\Component\Console\Input\Input;
+
 
 
 class ForumController extends Controller

@@ -132,25 +132,28 @@
                 </ul>
             </div>
         </div>
+
     </nav>
+
     <!-- End Navbar -->
     <div class="wrapper">
         @section('header')
         @show
     </div>
     <div class="main">
+
         @section("content")
         @show
         <div class="section-space"></div>
     </div>
-
     </body>
     <center>
         @include('cookieConsent::index')
     </center>
     <div class="section-space"></div>
+    
     <div class="section-space"></div>
-
+    
     <footer class="footer footer-big" data-background-color="black">
         <div class="container">
             @if ( Auth::user()->email_verified_at != null && Auth::user()->statut == "eleve" || Auth::user()->email_verified_at != null && Auth::user()->statut == "admin")
