@@ -2,122 +2,143 @@
 
 
 @section('content')
-  <div class="section card">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="button-container">
-            <a href="{{ route("forum") }}" class="btn btn-primary btn-round btn-lg">
-              Retour
+<div class="section card">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="button-container">
+          <a href="{{ route("forum") }}" class="btn btn-primary btn-round btn-lg">
+            Retour
+          </a>
+        </div>
+      </div>
+      <div class="col-md-8 ml-auto mr-auto text-center" style="text-align:center;">
+        @if($sujet->type == 'Question' && $sujet->resolue == 0)
+        <form action="{{ route('sujet.resolution', $sujet) }}" method="post">
+          @csrf
+          @method('POST')
+          <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" style="background-color: #FF3636;">
+            <i class="fas fa-check"></i> {{ __('Résoudre ma question') }}
+          </button>
+        </form>
+        @elseif($sujet->type == 'Question'&& $sujet->resolue == 1)
+        <button type="submit" rel="tooltip" class="btn btn-sm btn-secondary">
+          <i class="fas fa-check"></i> {{ __('Résolu') }}
+        </button> @elseif($sujet->type == 'Discussion')
+        <div class="badge badge-info">Discussion</div>
+        @endif
+      </div>
+      <div class="col-md-8 ml-auto mr-auto">
+
+        <h3 class="title" style="font-size: 2.2em;">
+          <ul>
+
+          </ul>{{$sujet->titre}}
+        </h3>
+        <br>
+        <pre style="white-space: pre-wrap;">
+        {{$sujet->description}}
+        </pre>
+        <br> <br>
+        <br>
+
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 ml-auto mr-auto">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="blog-tags">
+              Posté par
+              @if ($sujet->user->statut == "eleve")
+              <span class="label label-primary" style="text-align:left;">
+                {{$sujet->user->eleve->prenom}} {{ $sujet->user->eleve->nom }}
+              </span>
+              @elseif ($sujet->user->statut == "admin")
+              <span class="label label-primary" style="text-align:left;">
+                {{$sujet->user->admin->prenom}} {{ $sujet->user->admin->nom }}
+              </span>
+              @endif
+            </div>
+          </div>
+          <div class="col-md-6" style="text-align:right;">
+            <div class="blog-tags">
+              <span>Le {{ \Carbon\Carbon::parse($sujet->created_at)->format('d/m/Y h:m')}} </span>
+            </div>
+          </div>
+        </div>
+        <hr>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 ml-auto mr-auto">
+        <div class="media-area">
+          <h3 class="title text-center">{{$nbReponse}} Commentaires</h3><br>
+
+          @if (isset($reponses))
+          @foreach ($reponses as $r)
+          <div class="media">
+            <a class="pull-left" href="#pablo">
+              <div class="avatar">
+                <img class="rounded-circle img-raised" src="{{url($r->user->image_profil)}}" alt="..." style="width: 80px; height: 80px;">
+              </div>
             </a>
-          </div>
-        </div>
 
-        <div class="col-md-8 ml-auto mr-auto">
-          <h3 class="title" style="font-size: 2.2em;">{{$sujet->titre}}</h3>
-          <br>          <pre style="white-space: pre-wrap;">
+            <div class="media-body card" style="padding:2%;">
 
-         {{$sujet->description}}</pre>
-          <br> <br>
-          <br>
-
-        </div>
-      </div>
-    </div>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8 ml-auto mr-auto">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="blog-tags">
-                Posté par
-                @if ($sujet->user->statut == "eleve")
-                  <span class="label label-primary" style="text-align:left;">
-                    {{$sujet->user->eleve->prenom}} {{ $sujet->user->eleve->nom }}
-                  </span>
-                @elseif ($sujet->user->statut == "admin")
-                  <span class="label label-primary" style="text-align:left;">
-                    {{$sujet->user->admin->prenom}} {{ $sujet->user->admin->nom }}
-                  </span>
+              <b>
+                @if ($r->user->statut == "eleve")
+                {{ $r->user->eleve->prenom }}
+                @elseif ($r->user->statut == "admin")
+                {{ $r->user->admin->prenom }}
                 @endif
+
+                @if ($r->user->statut == "eleve")
+                {{ $r->user->eleve->nom }}
+                @elseif ($r->user->statut == "admin")
+                {{ $r->user->admin->nom }}
+                @endif
+              </b>
+              <div style="margin-top:1%;">
+                <p style="text-align:justify;"> {{ $r->reponse }} </p>
               </div>
-            </div>
-            <div class="col-md-6" style="text-align:right;">
-              <div class="blog-tags">
-                <span>Le {{ \Carbon\Carbon::parse($sujet->created_at)->format('d/m/Y h:m')}} </span>
+              <div class="media-footer">
+                <p style="font-style: italic;" class="btn btn-danger btn-neutral pull-left">{{ \Carbon\Carbon::parse($r->created_at)->format('d/m/Y H:i') }} </p>
+                <form method="post" action="{{route('reponses.like')}}" id="form-js">
+                  {{-- {{ csrf_field() }}
+                  {{ method_field('post') }} --}}
+                  <input type="hidden" id="reponse-id-js" value="{{$r->id}}">
+                  <button type="submit" class="btn btn-danger btn-neutral pull-right"><i class="now-ui-icons ui-2_favourite-28"></i>
+                    <div id="count-js">{{$r->likes->count()}}</div>
+                  </button>
+                </form>
               </div>
             </div>
           </div>
-          <hr>
-        </div>
-      </div>
-    </div>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8 ml-auto mr-auto">
-          <div class="media-area">
-            <h3 class="title text-center">{{$nbReponse}} Commentaires</h3><br>
+          @endforeach
+          @endif
+          @if(session()->has('errors'))
+          <div class="alert alert-danger" role="alert">
+            @foreach($errors->all() as $error)
+            {{$error}}
+            <br>
+            @endforeach
+          </div>
+          @endif
 
-            @if (isset($reponses))
-              @foreach ($reponses as $r)
-                <div class="media">
-                  <a class="pull-left" href="#pablo">
-                    <div class="avatar">
-                      <img class="rounded-circle img-raised" src="{{url($r->user->image_profil)}}" alt="..." style="width: 80px; height: 80px;">
-                    </div>
-                  </a>
-
-                  <div class="media-body card" style="padding:2%;">
-
-                    <b>
-                      @if ($r->user->statut == "eleve")
-                        {{ $r->user->eleve->prenom }}
-                      @elseif ($r->user->statut == "admin")
-                        {{ $r->user->admin->prenom }}
-                      @endif
-
-                      @if ($r->user->statut == "eleve")
-                        {{ $r->user->eleve->nom }}
-                      @elseif ($r->user->statut == "admin")
-                        {{ $r->user->admin->nom }}
-                      @endif
-                    </b>
-                    <div style="margin-top:1%;">
-                      <p style="text-align:justify;"> {{ $r->reponse }} </p>
-                    </div>
-                    <div class="media-footer">
-                      <p style="font-style: italic;" class="btn btn-danger btn-neutral pull-left">{{ \Carbon\Carbon::parse($r->created_at)->format('d/m/Y H:i') }} </p>
-                      <form method="post" action="{{route('reponses.like')}}" id="form-js">
-                        {{-- {{ csrf_field() }}
-                        {{ method_field('post') }} --}}
-                        <input type="hidden" id="reponse-id-js" value="{{$r->id}}">
-                        <button type="submit" class="btn btn-danger btn-neutral pull-right"><i class="now-ui-icons ui-2_favourite-28"></i>
-                          <div id="count-js">{{$r->likes->count()}}</div>
-                        </button>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              @endforeach
-            @endif
-            @if(session()->has('errors'))
-            <div class="alert alert-danger" role="alert">
-              @foreach($errors->all() as $error)
-              {{$error}}
-              <br>
-              @endforeach
-            </div>
-            @endif
-
-            <h3 class="title text-center">Poster un commentaire</h3>
-            <form action="{{route('sujet.reponse.store', $sujet->id)}}" method="post">
-              @csrf
-              @method('GET')
+          <h3 class="title text-center">Poster un commentaire</h3>
+          <form action="{{route('sujet.reponse.store', $sujet->id)}}" method="post">
+            @csrf
+            @method('GET')
             <div class="media media-post">
               {{-- <a class="pull-left author" href="#pablo"> --}}
-                <div class="avatar">
-                  <img class="rounded-circle img-raised" alt="64x64" src="{{url(auth()->user()->image_profil)}}" style="width: 80px; height: 80px;">
-                </div>
+              <div class="avatar">
+                <img class="rounded-circle img-raised" alt="64x64" src="{{url(auth()->user()->image_profil)}}" style="width: 80px; height: 80px;">
+              </div>
               {{-- </a> --}}
               <div class="media-body card">
                 {{-- <lt-mirror style="display: none;">
@@ -130,18 +151,18 @@
             <lt-div class="lt-mirror__canvas" style="margin-top: 0px !important; margin-left: 0px !important; width: 391px !important; height: 69px !important;"></lt-div>
           </lt-div>
         </lt-mirror> --}}
-        <textarea class="form-control" name="reponse" placeholder="Ecrire un commentaire..." rows="4" spellcheck="false" data-gramm="false"></textarea>
-        <div class="media-footer">
-          <button type="submit" rel="tooltip" class="btn btn-primary pull-right">
-            <i class="now-ui-icons ui-1_send"></i> Envoyer
-          </button>
+                <textarea class="form-control" name="reponse" placeholder="Ecrire un commentaire..." rows="4" spellcheck="false" data-gramm="false"></textarea>
+                <div class="media-footer">
+                  <button type="submit" rel="tooltip" class="btn btn-primary pull-right">
+                    <i class="now-ui-icons ui-1_send"></i> Envoyer
+                  </button>
+                </div>
+              </div>
+            </div> <!-- end media-post -->
+          </form>
         </div>
       </div>
-    </div> <!-- end media-post -->
-    </form>
+    </div>
   </div>
-</div>
-</div>
-</div>
-<script src="{{url('front/js/like.js')}}"></script>
-@endsection
+  <script src="{{url('front/js/like.js')}}"></script>
+  @endsection

@@ -81,7 +81,13 @@
                                             <p class="time">Mise en ligne le {{ \Carbon\Carbon::parse($sujet->created_at)->format('d/m/Y')}} </p>
                                             <div class="card-tags">
                                                 <ul>
-                                                    <li>{{ $sujet->type }}</li>
+                                                    @if($sujet->type == 'Question' && $sujet->resolue == 0)
+                                                    <div class="badge badge-danger">{{ $sujet->type }}</div>
+                                                    @elseif($sujet->type == 'Question'&& $sujet->resolue == 1)
+                                                    <div class="badge badge-success">{{ $sujet->type }}</div>
+                                                    @elseif($sujet->type == 'Discussion')
+                                                    <div class="badge badge-info">{{ $sujet->type }}</div>
+                                                    @endif
                                                 </ul>
                                             </div>
                                         </div>

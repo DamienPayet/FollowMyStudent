@@ -37,6 +37,17 @@ class ForumController extends Controller
         $users = User::all();
         return view('front/forum.index_sujet', compact('sujets', 'categorie', 'users'));
     }
+    public function sujet_resolution($id)
+    {
+        $sujet = Sujet::find($id);
+
+        \LogActivity::addToLog('User - Résolution sujet');
+
+        $sujet->resolue = !$sujet->resolue;
+        $sujet->update();
+        return redirect()->route('forum')->withStatus(__('Sujet résolu !'));
+      
+    }
     public function forum_messujets($id)
     {
         $user = User::find($id);
