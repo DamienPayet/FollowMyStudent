@@ -82,9 +82,9 @@
                                             <div class="card-tags">
                                                 <ul>
                                                     @if($sujet->type == 'Question' && $sujet->resolue == 0)
-                                                    <div class="badge badge-danger">{{ $sujet->type }}</div>
+                                                    <div class="badge badge-danger">{{ $sujet->type }} (Non résolue)</div>
                                                     @elseif($sujet->type == 'Question'&& $sujet->resolue == 1)
-                                                    <div class="badge badge-success">{{ $sujet->type }}</div>
+                                                    <div class="badge badge-success">{{ $sujet->type }} (Résolue)</div>
                                                     @elseif($sujet->type == 'Discussion')
                                                     <div class="badge badge-info">{{ $sujet->type }}</div>
                                                     @endif

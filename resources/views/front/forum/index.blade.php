@@ -26,6 +26,16 @@
     </div>
 </div>
 <div class="cd-section" id="features">
+    @if(session()->has('success'))
+    <div class="alert alert-success text-center">
+        {{ session()->get('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">
+                <i class="now-ui-icons ui-1_simple-remove"></i>
+            </span>
+        </button>
+    </div>
+    @endif
     <div class="text-center" style="margin : 20px">
         <a href="{{route('sujet.create')}}">
             <button type="submit" class="btn btn-primary btn-round btn-lg">

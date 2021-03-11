@@ -45,7 +45,7 @@ class ForumController extends Controller
 
         $sujet->resolue = !$sujet->resolue;
         $sujet->update();
-        return redirect()->route('forum')->withStatus(__('Sujet résolu !'));
+        return redirect()->route('forum')->with('success', 'Sujet résolu !');
       
     }
     public function forum_messujets($id)
