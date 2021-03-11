@@ -56,6 +56,7 @@
                       <option value="Bac">Bac</option>
                       <option value="BTS">BTS</option>
                       <option value="Licence">Licence</option>
+                      <option value="Master">Master</option>
                     </select> @if ($errors->has('niveau'))
                     <span id="niveau-error" class="error text-danger" for="input-niveau">{{ $errors->first('niveau') }}</span>
                     @endif

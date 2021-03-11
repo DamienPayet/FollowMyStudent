@@ -48,7 +48,7 @@
                                     <label class="col-sm-2 col-form-label">{{ __('Description du sujet') }}</label>
                                     <div class="col-sm-7">
                                         <div class="form-group">
-                                            <textarea name="description" class="form-control" value="{{ old('description') }}" placeholder="Saisir la description du sujet..." name="description" id="description" type="text" value="{{ old('description') }}" required="true" aria-required="true"></textarea>
+                                            <textarea name="description" class="form-control" placeholder="Saisir la description du sujet..." name="description" id="description" type="text" value="{{ old('description') }}" required="true" aria-required="true">{{ old('description') }}</textarea>
                                             @if ($errors->has('description'))
                                             <span id="description-error" class="error text-danger" for="description">{{ $errors->first('description') }}</span>
                                             @endif
@@ -63,7 +63,7 @@
                                             <select name="categorie" id="categorie->id" class="selectpicker form-control edit" data-live-search="true" style="width:100%" required="true" aria-required="true">
                                                 <option value="" selected>Sélectionner une catégorie</option>
                                                 @foreach($categorie as $cat)
-                                                <option value="{{$cat->id}}"> {{$cat->section->titre}} - {{$cat->nom}} </option>
+                                                <option value="{{$cat->id}}" {{ (old("categorie") == $cat->id ? "selected":"") }}> {{$cat->section->titre}} - {{$cat->nom}} </option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -78,8 +78,9 @@
 
                                             <select name="type" id="type" class="selectpicker form-control edit" data-live-search="true" style="width:100%" required="true" aria-required="true">
                                                 <option value="" selected>Sélectionner le type</option>
-                                                <option value="Discussion">Discussion</option>
-                                                <option value="Question">Question</option>
+                                                <option value="Discussion"{{ old('type') == 'Discussion' ? 'selected' : '' }} >Discussion</option>
+                                                <option value="Question"{{ old('type') == 'Question' ? 'selected' : '' }} >Question</option>
+                                              
                                             </select>
                                         </div>
                                     </div>

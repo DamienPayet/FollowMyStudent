@@ -4,6 +4,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!--<link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">-->
     <link rel="icon" type="image/png" href="{{url('front/images/favicon.ico')}}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -75,21 +79,22 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown">
-                            <i class="now-ui-icons design_bullet-list-67"></i>
+                            <i class="now-ui-icons education_paper"></i>
                             <p>Forum</p>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink1">
                             <a class="dropdown-item" href="{{route('forum')}}">
-                                <i class="now-ui-icons business_chart-pie-36"></i> Accueil
+                                <i class="now-ui-icons shopping_shop"></i> Accueil
                             </a>
-                            <a class="dropdown-item" target="_blank" href="{{route('forum_mesSujets')}}">
-                                <i class="now-ui-icons design_bullet-list-67"></i> Mes Sujets
+                            <a class="dropdown-item" href="{{route('forum_mesSujets',Auth::user()->id)}}">
+
+                                <i class="now-ui-icons education_agenda-bookmark"></i> Mes Sujets
                             </a>
                         </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('ajaxRequest.index')}}">
-                            <i class="fas fa-envelope"></i>
+                            <i class="now-ui-icons ui-1_email-85"></i>
                             <p id="envelope">0</p>
                         </a>
                     </li>
@@ -104,7 +109,7 @@
                     @endif
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown">
-                            <i class="now-ui-icons design_app"></i>
+                            <i class="now-ui-icons users_single-02"></i>
                             @if (Auth::user()->statut == "eleve")
                             <p> {{Auth::user()->eleve->prenom}} {{Auth::user()->eleve->nom }}</p>
                             @elseif (Auth::user()->statut == "admin")
@@ -113,60 +118,70 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink1">
                             <a class="dropdown-item" href="{{ route('front.users.edit', Auth::user()->id) }}">
-                                <i class="now-ui-icons business_chart-pie-36"></i> Mon profil
+                                <i class="now-ui-icons ui-1_settings-gear-63"></i> Mon profil
                             </a>
                             <a class="dropdown-item" href="Logout" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                Déconnexion </a>
+                            <i class="now-ui-icons media-1_button-power"></i> Déconnexion </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 {{ csrf_field() }}
                             </form>
                             </a>
                     </li>
-                    
+
                     @endif
                 </ul>
             </div>
         </div>
+
     </nav>
+
     <!-- End Navbar -->
     <div class="wrapper">
         @section('header')
         @show
     </div>
     <div class="main">
+
         @section("content")
         @show
         <div class="section-space"></div>
     </div>
-
     </body>
     <center>
         @include('cookieConsent::index')
     </center>
     <div class="section-space"></div>
+    
     <div class="section-space"></div>
-
+    
     <footer class="footer footer-big" data-background-color="black">
         <div class="container">
             @if ( Auth::user()->email_verified_at != null && Auth::user()->statut == "eleve" || Auth::user()->email_verified_at != null && Auth::user()->statut == "admin")
             <div class="content" style="padding: 1em;">
                 <div class="row">
                     <div class="col-md-2">
-                        <h5 style="color: var(--primary-color);">A propos</h5>
+                        <h5 style="color: var(--primary-color);">Mentions légales</h5>
                         <ul class="links-vertical">
                             <li>
                                 <a href="{{route('mentions.rgpd')}}">
                                     RGPD
                                 </a>
                             </li>
-                            <li>
+                           
+                        </ul>
+                        </div>
+                        <div class="col-md-2">
+                        <h5 style="color: var(--primary-color);">Contact</h5>
+
+                        <ul class="links-vertical">
+                        <li>
                                 <a href="{{route('contact.create')}}">
                                     Nous contacter
                                 </a>
-                            </li>
-                        </ul>
+                            </li>                      
+                              </ul>
                     </div>
-                    <div class="col-md-2">
+                <!--    <div class="col-md-2">
                         <h5 style="color: var(--primary-color);">Les offres</h5>
                         <ul class="links-vertical">
                             <li>
@@ -195,7 +210,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#pablo">
+                                <a href="{{route('forum_mesSujets',Auth::user()->id)}}">
                                     Mes sujets
                                 </a>
                             </li>
@@ -230,6 +245,7 @@
                     </div>
                 </div>
             </div>
+            -->
             @endif
             <hr>
             <div class="copyright" id="copyright" style="padding: 1em;">

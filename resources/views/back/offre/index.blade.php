@@ -144,8 +144,7 @@
               </button>
               <span><center>{{ __('Bonne nouvelle ! Il n\'y a aucune offre a valider.') }}</center></span>
             </div>
-            @elseif($offres->valide == 0 && $offres->valide->count() > 0)
-
+            @elseif($offres->valide == 0 )
             <div>
               <a>
                 <button style='margin-right:10px; float : left ;' type="submit" class="btn btn-success validate_all" data-url="{{ url('offres-validateselection') }}">

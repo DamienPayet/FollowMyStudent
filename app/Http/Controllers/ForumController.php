@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use \Validator;
 use App\Sujet;
@@ -10,6 +11,10 @@ use App\Section;
 use App\SujetCategorie;
 use App\User;
 use App\SujetReponse;
+use App\Like;
+use Symfony\Component\Console\Input\Input;
+
+
 
 class ForumController extends Controller
 {
@@ -23,7 +28,6 @@ class ForumController extends Controller
         //dd($pg_categories);
         return view('front/forum.index', compact('section', 'sujets', 'categories'));
     }
-
     public function index_sujet($id)
     {
         $sujets = Sujet::all();
@@ -33,11 +37,28 @@ class ForumController extends Controller
         $users = User::all();
         return view('front/forum.index_sujet', compact('sujets', 'categorie', 'users'));
     }
+    public function sujet_resolution($id)
+    {
+        $sujet = Sujet::find($id);
 
+        \LogActivity::addToLog('User - Résolution sujet');
+
+        $sujet->resolue = !$sujet->resolue;
+        $sujet->update();
+        return redirect()->route('forum')->with('success', 'Sujet résolu !');
+      
+    }
+    public function forum_messujets($id)
+    {
+        $user = User::find($id);
+        $sujets = Sujet::all();
+
+        return view('front.forum.mes_sujets', compact('sujets', 'user'));
+    }
     public function show_sujet(Sujet $sujet)
     {
         $reponses = SujetReponse::where('sujet_id', $sujet->id)->get();
-        $nbReponse = SujetReponse::count('sujet_id', $sujet->id);
+        $nbReponse = SujetReponse::where('sujet_id', $sujet->id)->count();
         $users = User::all();
         $sujet->nb_vue += 1;
         $sujet->update();
@@ -58,7 +79,7 @@ class ForumController extends Controller
         $reponse = new SujetReponse;
 
         $reponse->reponse = $request->get('reponse');
-        $reponse->users()->attach($user);
+        $reponse->user_id = $user;
         $reponse->sujet_id = $sujet;
         $reponse->nb_vue = 0;
         $reponse->created_at = now();
@@ -73,6 +94,37 @@ class ForumController extends Controller
         $categorie = SujetCategorie::all();
 
         return view('front.forum.create_sujet', compact('categorie', 'section'));
+    }
+
+
+
+    public function like(): JsonResponse
+    {
+        $reponse = SujetReponse::find(request()->id);
+
+        if ($reponse->isLikedByLoggedInUser()) {
+            $res = Like::where([
+                'user_id' => auth()->user()->id,
+                'sujet_reponse_id' => request()->id
+            ])->delete();
+
+            if ($res) {
+                return response()->json([
+                    'count' => SujetReponse::find(request()->id)->likes->count()
+                ]);
+            }
+        } else {
+            $like = new Like();
+
+            $like->user_id = auth()->user()->id;
+            $like->sujet_reponse_id = request()->id;
+
+            $like->save();
+
+            return response()->json([
+                'count' => SujetReponse::find(request()->id)->likes->count()
+            ]);
+        }
     }
 
     public function store(Request $request)
@@ -104,7 +156,7 @@ class ForumController extends Controller
 
     public function searching(Request $request)
     {
-        $sujets = Sujet::where('description' ,'like' , '%'.$request->message.'%')->get();
+        $sujets = Sujet::where('description', 'like', '%' . $request->message . '%')->get();
         return response()->json(['msg' =>  $sujets]);
     }
 }

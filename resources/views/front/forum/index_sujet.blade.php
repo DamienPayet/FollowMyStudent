@@ -35,24 +35,31 @@
     @endif
 
     <div class="blogs-3">
+    @if($categorie->sujets->count() == 0)
+            <div class="alert alert-danger text-center role="alert">
+                <div class="container">
+                   
+                    <strong>Oh!</strong> Il n'existe aucun sujet dans cette catégorie.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">
+                            <i class="now-ui-icons ui-1_simple-remove"></i>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="text-center" style="margin : 20px">
+                <a href="{{route('sujet.create')}}">
+                    <button type="submit" class="btn btn-primary btn-round btn-lg">
+                        Ajouter un sujet
+                    </button>
+                </a>
+            </div>            @else
+
         <div class="container">
+          
             <div class="row">
                 <div class="col-md-10 ml-auto mr-auto">
-                    @if($categorie->sujets->count() == 0)
-                    <br>
-                    <div class="alert alert-danger" role="alert">
-                        <div class="container">
-                            <div class="alert-icon">
-                                <i class="now-ui-icons objects_support-17"></i>
-                            </div>
-                            <strong>Oups!</strong> Il n'existe aucun sujet dans cette catégorie.
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">
-                                    <i class="now-ui-icons ui-1_simple-remove"></i>
-                                </span>
-                            </button>
-                        </div>
-                    </div>
+
                     @if($categorie->sujets->count() == 0)
                     <div class="text-center" style="margin : 20px">
                         <a href="{{route('sujet.create')}}">
@@ -62,7 +69,6 @@
                         </a>
                     </div>
                     @endif
-                    @else
                     <div class="row">
                         <div class="container">
                             <div id="offers">
@@ -81,7 +87,13 @@
                                             <p class="time">Mise en ligne le {{ \Carbon\Carbon::parse($sujet->created_at)->format('d/m/Y')}} </p>
                                             <div class="card-tags">
                                                 <ul>
-                                                    <li>{{ $sujet->type }}</li>
+                                                    @if($sujet->type == 'Question' && $sujet->resolue == 0)
+                                                    <div class="badge badge-danger">{{ $sujet->type }} (Non résolue)</div>
+                                                    @elseif($sujet->type == 'Question'&& $sujet->resolue == 1)
+                                                    <div class="badge badge-success">{{ $sujet->type }} (Résolue)</div>
+                                                    @elseif($sujet->type == 'Discussion')
+                                                    <div class="badge badge-info">{{ $sujet->type }}</div>
+                                                    @endif
                                                 </ul>
                                             </div>
                                         </div>

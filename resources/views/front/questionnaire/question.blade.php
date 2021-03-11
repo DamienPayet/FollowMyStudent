@@ -28,7 +28,7 @@
                         @foreach($partie->questions as $question)
                             <div class="form-group">
                                 <label class="label_question">{{$question->question}}</label>
-                                <input class="part_{{$partie->position}}" type="text" name="reponse"
+                                <input class="part_{{$partie->position}}" type="text" name="{{$partie->position}}"
                                        id="{{$question->id}}" placeholder="{{$question->question}}"/>
                             </div>
                         @endforeach

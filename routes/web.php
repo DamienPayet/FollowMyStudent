@@ -13,6 +13,9 @@ Route::get('/logger', 'LogController@access')->name('log');
 Route::group(['middleware' => 'admin'], function () {
     //route affichage des logs :
     Route::get('/back/log', 'LogController@index')->name('log.view');
+    Route::delete('/back/log/destroy/{id}', 'LogController@destroy')->name('log.destroy');
+    Route::get('add-to-log', 'LogController@myTestAddToLog');
+
     Route::get('/download', 'LogController@export');
 
     //route admin gestion offre
@@ -66,24 +69,25 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('/back/ucontact/{id}', 'NousContacterController@update')->name('contact.update');
     Route::delete('/back/contact/{id}', 'NousContacterController@destroy')->name('contact.destroy');
     Route::delete('contact-deleteselection', 'NousContacterController@deleteAll');
-
 });
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', 'StudentFrontController@home')->name('index');
-    Route::post('/back/order_up','QuestionnaireBackController@update_order')->name('updateorder');
-    Route::post('/back/order_up/quest','QuestionnaireBackController@update_orderQuest')->name('updateorderquest');
-  //Route redirection vers forum acceuil
-  //Route::get('front/forum', 'StudentFrontController@forum')->name('forum');
+    Route::post('/back/order_up', 'QuestionnaireBackController@update_order')->name('updateorder');
+    Route::post('/back/order_up/quest', 'QuestionnaireBackController@update_orderQuest')->name('updateorderquest');
+    //Route redirection vers forum acceuil
+    //Route::get('front/forum', 'StudentFrontController@forum')->name('forum');
     Route::resource('front/forum', 'ForumController');
-     Route::get('front/forum', 'ForumController@index')->name('forum');
+    Route::get('front/forum', 'ForumController@index')->name('forum');
     Route::get('front/forum/categorie/{id}', 'ForumController@index_sujet')->name('sujet.index');
     Route::get('front/forum/create', 'ForumController@create')->name('sujet.create');
     Route::get('front/forum/sujet/{sujet}', 'ForumController@show_sujet')->name('sujet.show');
+    Route::post('front/forum/sujet/like', 'ForumController@like')->name('reponses.like');
+    Route::post('/sujet-resolution/{id}', 'ForumController@sujet_resolution')->name('sujet.resolution');
     Route::get('front/forum/sujet/{sujet}/reponse', 'ForumController@store_reponse')->name('sujet.reponse.store');
     Route::post('front/se/searcher', 'ForumController@searching')->name('sujet.searching');
     //Route redirection vers forum mes sujet
-    Route::get('front/mes_sujets', 'StudentFrontController@forum_mes_sujets')->name('forum_mesSujets');
+    Route::get('front/mes_sujets/user/{id}', 'ForumController@forum_messujets')->name('forum_mesSujets');
     //Route  chat direct
 
     Route::get('my_chat', 'StudentFrontController@ajaxRequest1')->name('ajaxRequest.index');
@@ -97,7 +101,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('captcha-offre-validation', 'OffreFrontController@store')->name('offre_front_store');
     Route::get('front/offre/{offre}', 'OffreFrontController@show')->name('offre_front_show');
     //Route redirection vers questionnaire
-    Route::get('front/questionnaire/index','StudentFrontController@indexQuestionnaire')->name("index_questionnaire");
+    Route::get('front/questionnaire/index', 'StudentFrontController@indexQuestionnaire')->name("index_questionnaire");
     Route::get('front/questions', 'StudentFrontController@startQuestionnaire')->name('questions');
     Route::get('front/end_question', 'StudentFrontController@end_question')->name('end_question');
     Route::get('front/response_store', 'StudentFrontController@response_store')->name('response_store');
