@@ -43,7 +43,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::delete('/back/dpart/{id}', 'QuestionnaireBackController@destroy_part')->name('destroy.part');
     Route::post('/back/upart/{id}', 'QuestionnaireBackController@update_part')->name('update.part');
     Route::post('/back/uquest/{id}', 'QuestionnaireBackController@update_quest')->name('update.quest');
-
+    Route::delete('question-deleteselection', 'QuestionnaireBackController@deleteAll');
     //Route Gestion User
     Route::resource('back/users', UserController::class);
     Route::get('back/users/mdp/{users}', 'UserController@editMdp')->name('users.editMdp');

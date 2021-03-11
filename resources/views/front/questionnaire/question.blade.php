@@ -64,9 +64,9 @@
 <script src="{{url('front/questionnaire/vendor/jquery/jquery.min.js')}}"></script>
 <script src="{{url('front/questionnaire/vendor/jquery-validation/dist/jquery.validate.min.js')}}"></script>
 <script src="{{url('front/questionnaire/vendor/jquery-validation/dist/additional-methods.min.js')}}"></script>
-<script src="{{url('front/questionnaire/vendor/jquery-steps/jquery.steps.min.js')}}"></script>
+<script src="{{url('front/questionnaire/vendor/jquery-steps/jquery.steps.js')}}"></script>
 <script src="{{url('front/questionnaire/js/main.js')}}"></script>
-<script src="{{url('front/js/questionnaire.js')}}" type="text/javascript"></script>
+
 </body>
 </html>
 
