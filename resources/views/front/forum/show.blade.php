@@ -187,5 +187,6 @@
       </div>
     </div>
   </div>
-  <script src="{{url('front/js/like.js')}}"></script>
-  @endsection
+</div>
+<script src="{{url('front/js/like.js')}}"></script>
+@endsection
