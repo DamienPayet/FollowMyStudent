@@ -8,7 +8,7 @@
             <div class="alert-icon">
                 <i class="now-ui-icons travel_info"></i>
             </div>
-            Tu dois valider ton email pour accéder à débloquer l'ensemble des fonctionnalités.
+            Tu dois valider ton email pour débloquer l'ensemble des fonctionnalités.
             <a href="{{ route('front.users.edit', Auth::user()->id) }}">C'est parti !</a>
         </div>
     </div>

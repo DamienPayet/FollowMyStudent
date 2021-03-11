@@ -71,7 +71,7 @@
         <!-- TABLE: LATEST ORDERS -->
         <div class="card">
             <div class="card-header border-transparent">
-                <h3 class="card-title">Dernière connexion</h3>
+                <h3 class="card-title">Derniers accès</h3>
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -90,7 +90,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Utilisateur</th>
-                            <th>Lieu</th>
+                            <th>URL</th>
                             <th>IP</th>
                         </tr>
                         </thead>
@@ -102,8 +102,8 @@
                                 <tr>
                                     <td>{{$loged->id}}</td>
                                     <td>{{$loged->user_id}}</td>
-                                    <td><span class="badge badge-success">{{$loged->city}}</span></td>
-                                    <td>
+                                    <td><span class="badge badge-success">{{$loged->url}}</span></td>
+                                    <td class="text-warning">
                                         <div class="sparkbar" data-color="#00a65a" data-height="20">
                                             {{$loged->ip}}
                                         </div>

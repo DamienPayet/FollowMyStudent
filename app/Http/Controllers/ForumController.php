@@ -67,6 +67,8 @@ class ForumController extends Controller
 
     public function store_reponse(Request $request, $sujet)
     {
+        \LogActivity::addToLog('User - Ajout réponse sujet');
+
         // On oblige à respecter certains critères avant de valider la requête
         $validator = Validator::make($request->all(), [
             'reponse' => 'required|min:10',
@@ -92,6 +94,7 @@ class ForumController extends Controller
     {
         $section = Section::all();
         $categorie = SujetCategorie::all();
+        \LogActivity::addToLog('User - Vue création sujet');
 
         return view('front.forum.create_sujet', compact('categorie', 'section'));
     }
@@ -140,6 +143,8 @@ class ForumController extends Controller
         if ($validator->fails()) {
             return back()->withInput()->withErrors($validator->errors());
         }
+        \LogActivity::addToLog('User - Création sujet');
+
         $sujet = new Sujet;
 
         $sujet->titre = $request->get('titre');
@@ -156,6 +161,8 @@ class ForumController extends Controller
 
     public function searching(Request $request)
     {
+        \LogActivity::addToLog('User - Recherche sujet');
+
         $sujets = Sujet::where('description', 'like', '%' . $request->message . '%')->get();
         return response()->json(['msg' =>  $sujets]);
     }

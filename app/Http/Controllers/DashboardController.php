@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Conversation;
 use App\Sujet;
+use Illuminate\Support\Facades\Log;
 
 class DashboardController extends Controller
 {
@@ -21,15 +22,16 @@ class DashboardController extends Controller
         $users = User::all();
         $nbruse = 0;
         foreach ($users as $usr) {
-            if ($usr->questionnaire_reponses->count()> 0 ){
+            if ($usr->questionnaire_reponses->count() > 0) {
                 $nbruse++;
             }
         }
-        $log = AuditAction::all();
+        //$log = AuditAction::all();
+        $log = \LogActivity::logActivityLists();
         $contact = Contact::all();
         $utilisateurs = User::all();
 
-        return view('back.dashboard.index', compact('log','contact','nbruse','offres', 'questionnaire', 'utilisateurs'));
+        return view('back.dashboard.index', compact('log', 'contact', 'nbruse', 'offres', 'questionnaire', 'utilisateurs'));
 
         $id = 1;
         $ok = false;
