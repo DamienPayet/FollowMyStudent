@@ -3,7 +3,18 @@
 
 @section('content')
 <div class="section card">
+  @if($sujet->resolue == 1)
+  <div class="alert alert-info text-center">
+    La question est résolue, il n'est plus possible de poster de commentaires.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">
+        <i class="now-ui-icons ui-1_simple-remove"></i>
+      </span>
+    </button>
+  </div>
+  @endif
   <div class="container">
+
     <div class="row">
       <div class="col-md-12">
         <div class="button-container">
@@ -129,7 +140,7 @@
             @endforeach
           </div>
           @endif
-
+          @if($sujet->resolue == 0)
           <h3 class="title text-center">Poster un commentaire</h3>
           <form action="{{route('sujet.reponse.store', $sujet->id)}}" method="post">
             @csrf
@@ -151,6 +162,7 @@
             <lt-div class="lt-mirror__canvas" style="margin-top: 0px !important; margin-left: 0px !important; width: 391px !important; height: 69px !important;"></lt-div>
           </lt-div>
         </lt-mirror> --}}
+
                 <textarea class="form-control" name="reponse" placeholder="Ecrire un commentaire..." rows="4" spellcheck="false" data-gramm="false"></textarea>
                 <div class="media-footer">
                   <button type="submit" rel="tooltip" class="btn btn-primary pull-right">
@@ -160,6 +172,8 @@
               </div>
             </div> <!-- end media-post -->
           </form>
+          @endif
+
         </div>
       </div>
     </div>
