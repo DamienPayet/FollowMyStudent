@@ -3,9 +3,18 @@
 
 @section('content')
 <div class="section card">
-  @if($sujet->resolue == 1)
+  @if($sujet->type == 'Question' && $sujet->resolue == 1)
   <div class="alert alert-info text-center">
     La question est résolue, il n'est plus possible de poster de commentaires.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">
+        <i class="now-ui-icons ui-1_simple-remove"></i>
+      </span>
+    </button>
+  </div>
+  @elseif($sujet->type == 'Discussion' && $sujet->resolue == 1)
+  <div class="alert alert-info text-center">
+    Impossible de poster de nouveau commentaire sur cette discussion.
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">
         <i class="now-ui-icons ui-1_simple-remove"></i>
