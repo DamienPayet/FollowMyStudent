@@ -2248,9 +2248,6 @@
 .zmdi-skip-next:before {
   content: '\f3b4';
 }
-.zmdi-skip-previous:before {
-  content: '\f3b5';
-}
 .zmdi-stop:before {
   content: '\f3b6';
 }
@@ -4579,9 +4576,7 @@
 .zmdi-skip-next:before {
   content: '\f3b4';
 }
-.zmdi-skip-previous:before {
-  content: '\f3b5';
-}
+
 .zmdi-stop:before {
   content: '\f3b6';
 }

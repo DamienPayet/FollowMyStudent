@@ -7,6 +7,7 @@ use App\QuestionnairePart;
 use App\QuestionnaireQuestion;
 use App\Sujet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class QuestionnaireBackController extends Controller
 {
@@ -181,6 +182,13 @@ class QuestionnaireBackController extends Controller
         $questionsrc->save();
         return response()->json(['result' =>'ok']);
     }
+    public function deleteAll(Request $request)
+    {
+        $ids = $request->ids;
+        DB::table("questionnaire_questions")->whereIn('id', explode(",", $ids))->delete();
+        return response()->json(['success' => "question(s) supprimé(s) avec succès."]);
 
+        //return redirect()->route('offres.index')->withStatus(__('Offres supprimées avec succès'));
+    }
 
 }
