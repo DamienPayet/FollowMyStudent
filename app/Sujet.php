@@ -8,11 +8,11 @@ class Sujet extends Model
 {
   public function user()
   {
-    return $this->belongsto('App\User');
+    return $this->belongsTo('App\User');
   }
   public function categorie()
   {
-    return $this->belongto('App\SujetCategorie');
+    return $this->belongsTo('App\SujetCategorie', 'categorie_id');
   }
   public function reponses()
   {

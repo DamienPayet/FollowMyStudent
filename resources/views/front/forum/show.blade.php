@@ -87,6 +87,13 @@
             <div class="blog-tags">
               <span>Le {{ \Carbon\Carbon::parse($sujet->created_at)->format('d/m/Y h:m')}} </span>
             </div>
+            @if ($sujet->user_id == Auth::user()->id)
+              <div class="button-container">
+                <a href="{{ route("sujet.edit", $sujet) }}" class="btn btn-primary btn-round btn-lg">
+                  Modifier mon sujet
+                </a>
+              </div>
+            @endif
           </div>
         </div>
         <hr>
@@ -129,14 +136,19 @@
               <div class="media-footer">
                 <p style="font-style: italic;" class="btn btn-danger btn-neutral pull-left">{{ \Carbon\Carbon::parse($r->created_at)->format('d/m/Y H:i') }} </p>
                 <form method="post" action="{{route('reponses.like')}}" id="form-js">
-                  {{-- {{ csrf_field() }}
-                  {{ method_field('post') }} --}}
                   <input type="hidden" id="reponse-id-js" value="{{$r->id}}">
                   <button type="submit" class="btn btn-danger btn-neutral pull-right"><i class="now-ui-icons ui-2_favourite-28"></i>
                     <div id="count-js">{{$r->likes->count()}}</div>
                   </button>
                 </form>
               </div>
+              @if ($sujet->user_id == Auth::user()->id)
+                <div class="button-container">
+                  <a href="{{ route("forum") }}" class="btn btn-danger btn-neutral pull-left" style="margin-top:-20px">
+                    Modifier mon commentaire
+                  </a>
+                </div>
+              @endif
             </div>
           </div>
           @endforeach

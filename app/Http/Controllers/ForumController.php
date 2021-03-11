@@ -46,7 +46,7 @@ class ForumController extends Controller
         $sujet->resolue = !$sujet->resolue;
         $sujet->update();
         return redirect()->route('forum')->with('success', 'Sujet résolu !');
-      
+
     }
     public function forum_messujets($id)
     {
@@ -63,6 +63,41 @@ class ForumController extends Controller
         $sujet->nb_vue += 1;
         $sujet->update();
         return view('front/forum.show', compact('sujet', 'reponses', 'nbReponse', 'users'));
+    }
+    public function edit_sujet(Sujet $sujet)
+    {
+      $sujet = Sujet::find($sujet);
+      $categorie = SujetCategorie::all();
+      if (Auth::user()->id == $sujet->first()->user_id) {
+        return view('front.forum.edit_sujet', compact('sujet', 'categorie'));
+    }else {
+      return redirect()->route('forum')->withErrors(['Erreur', 'Accès refusé']);
+    }
+    }
+
+    public function update_sujet(Request $request, Sujet $sujet)
+    {
+//
+// On oblige à respecter certains critères avant de valider la requête
+$validator = Validator::make($request->all(), [
+    'titre' => 'required|min:10|max:255',
+    'description' => 'required|min:15',
+    // 'captcha' => 'required|captcha',
+]);
+// Si la validation échoue
+if ($validator->fails()) {
+    return back()->withInput()->withErrors($validator->errors());
+}
+$s = Sujet::find($sujet->id);
+
+$s->titre = $request->get('titre');
+$s->description = $request->get('description');
+$s->categorie_id = $request->get('categorie');
+$s->user_id = Auth::user()->id;
+$s->updated_at = now();
+$s->save();
+
+return redirect()->route('sujet.show', $s)->withStatus(__('Sujet créé avec succès.'));
     }
 
     public function store_reponse(Request $request, $sujet)

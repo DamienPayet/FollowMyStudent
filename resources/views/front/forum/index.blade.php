@@ -2,7 +2,6 @@
 
 
 @section('content')
-<div class="wrapper">
     <div class="page-header page-header-small">
         <center>
             <img src="{{url('front/images/developer-team.png')}}"></img>
@@ -25,6 +24,20 @@
         </div>
     </div>
 </div>
+<div class="wrapper">
+  @if(session()->has('errors'))
+  <div class="alert alert-danger text-center " role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">
+            <i class="now-ui-icons ui-1_simple-remove"></i>
+        </span>
+    </button>
+    @foreach($errors->all() as $error)
+    {{$error}}
+    <br>
+    @endforeach
+  </div>
+  @endif
 <div class="cd-section" id="features">
     @if(session()->has('success'))
     <div class="alert alert-success text-center">

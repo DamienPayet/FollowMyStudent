@@ -88,8 +88,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('front/se/searcher', 'ForumController@searching')->name('sujet.searching');
     //Route redirection vers forum mes sujet
     Route::get('front/mes_sujets/user/{id}', 'ForumController@forum_messujets')->name('forum_mesSujets');
-    //Route  chat direct
+    Route::get('front/forum/sujet/{sujet}/edit', 'ForumController@edit_sujet')->name('sujet.edit');
+    Route::post('front/forum/sujet/{sujet}/update', 'ForumController@update_sujet')->name('sujet.update');
 
+    //Route  chat direct
     Route::get('my_chat', 'StudentFrontController@ajaxRequest1')->name('ajaxRequest.index');
     Route::post('ajaxRequest/conv', 'StudentFrontController@ajaxRequestSync')->name('ajaxRequest.sync');
     Route::post('ajaxRequest/testconv', 'StudentFrontController@ajaxRequestConvt')->name('ajaxRequest.testconv');
@@ -115,9 +117,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('captcha-contact-validation', 'NousContacterController@Contact');
     Route::get('/front/contact/reload-captcha', 'NousContacterController@reloadCaptcha');
 });
-Route::get('/back1', function () {
-    return view('layouts.templateBack');
-})->name('back');
+// Route::get('/back1', function () {
+//     return view('layouts.templateBack');
+// })->name('back');
 
 
 //Route Mentions légales
