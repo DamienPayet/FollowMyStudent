@@ -16,7 +16,7 @@
                                 @endforeach
                             </div>
                             @endif
-                            <form method="post" action="{{ route('forum.store') }}" autocomplete="off" class="form-horizontal" enctype="multipart/form-data" accept-charset="utf-8">
+                            <form method="post" action="{{ route('sujet.store') }}" autocomplete="off" class="form-horizontal" enctype="multipart/form-data" accept-charset="utf-8">
                                 {{ csrf_field() }}
                                 {{ method_field('post') }}
                                 <div class="row">

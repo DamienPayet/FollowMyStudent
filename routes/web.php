@@ -82,6 +82,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('front/forum/categorie/{id}', 'ForumController@index_sujet')->name('sujet.index');
     Route::get('front/forum/create', 'ForumController@create')->name('sujet.create');
     Route::get('front/forum/sujet/{sujet}', 'ForumController@show_sujet')->name('sujet.show');
+    Route::post('front/forum/sujet/store', 'ForumController@store')->name('sujet.store');
     Route::post('front/forum/sujet/like', 'ForumController@like')->name('reponses.like');
     Route::post('/sujet-resolution/{id}', 'ForumController@sujet_resolution')->name('sujet.resolution');
     Route::get('front/forum/sujet/{sujet}/reponse', 'ForumController@store_reponse')->name('sujet.reponse.store');
