@@ -4,6 +4,7 @@ console.log();
     var form = $("#signup-form");
     form.validate({
         errorPlacement: function errorPlacement(error, element) {
+            console.log(element);
             element.before(error);
         },
         rules: {
@@ -89,7 +90,6 @@ function readURL(input) {
 }
 
 function todb(responses, questions,leingth) {
-console.log("jsuis la");
     $.ajax({
         type: 'get',
         url: "response_store",

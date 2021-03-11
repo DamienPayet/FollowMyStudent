@@ -42,10 +42,11 @@
                                                 <a href="">
                                                     <button style='margin-right:10px; float : left ;'
                                                             class="btn btn-dark">
-                                                        <i class="fas fa-arrows-alt-v " ></i>
+                                                        <i class="fas fa-arrows-alt-v "></i>
                                                     </button>
                                                 </a>
-                                                <h4 class="card-title " style="text-align: center">{{$parti->titre}}</h4>
+                                                <h4 class="card-title "
+                                                    style="text-align: center">{{$parti->titre}}</h4>
                                                 <!--Bouton deroulement de la section -->
                                                 <div id="btn_more_{{$parti->id}}">
                                                     <button onclick="down({{$parti->id}})"
@@ -94,15 +95,6 @@
                                                         </button>
                                                     </a>
                                                 </div>
-                                                <div>
-                                                    <a href="{{route('questionnaire.create')}}">
-                                                        <button style='margin-right:10px; float : right ;'
-                                                                type="submit"
-                                                                class="btn btn-danger">
-                                                            Supprimer la séction
-                                                        </button>
-                                                    </a>
-                                                </div>
                                                 <br/> <br/>
                                                 <div class="table-responsive">
                                                     <table class="table" id="table_id">
@@ -112,12 +104,13 @@
                                                             <th>Question</th>
                                                             <th>Position</th>
                                                             <th>Actions</th>
-                                                            <th><input type="checkbox" id="master"></th>
+                                                            <th><input type="checkbox"  id="master"></th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
                                                         @foreach($parti->questions->sortBy('position') as $question)
-                                                            <tr id="{{ $question->id }}" class="dragtb" draggable="true" class="text-center">
+                                                            <tr id="{{ $question->id }}" class="dragtb" draggable="true"
+                                                                class="text-center">
                                                                 <td>{{ $question->id }}</td>
                                                                 <td>{{$question->question}}</td>
                                                                 <td>{{ $question->position }}</td>

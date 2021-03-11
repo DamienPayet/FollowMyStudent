@@ -46,7 +46,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::delete('/back/dpart/{id}', 'QuestionnaireBackController@destroy_part')->name('destroy.part');
     Route::post('/back/upart/{id}', 'QuestionnaireBackController@update_part')->name('update.part');
     Route::post('/back/uquest/{id}', 'QuestionnaireBackController@update_quest')->name('update.quest');
-
+    Route::delete('question-deleteselection', 'QuestionnaireBackController@deleteAll');
     //Route Gestion User
     Route::resource('back/users', UserController::class);
     Route::get('back/users/mdp/{users}', 'UserController@editMdp')->name('users.editMdp');
@@ -82,6 +82,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('front/forum/categorie/{id}', 'ForumController@index_sujet')->name('sujet.index');
     Route::get('front/forum/create', 'ForumController@create')->name('sujet.create');
     Route::get('front/forum/sujet/{sujet}', 'ForumController@show_sujet')->name('sujet.show');
+    Route::post('front/forum/sujet/store', 'ForumController@store')->name('sujet.store');
     Route::post('front/forum/sujet/like', 'ForumController@like')->name('reponses.like');
     Route::post('/sujet-resolution/{id}', 'ForumController@sujet_resolution')->name('sujet.resolution');
     Route::get('front/forum/sujet/{sujet}/reponse', 'ForumController@store_reponse')->name('sujet.reponse.store');

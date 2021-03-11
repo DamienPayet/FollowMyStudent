@@ -16,7 +16,7 @@ class CreateHomePostsTable extends Migration
         Schema::create('home_posts', function (Blueprint $table) {
             $table->id();
             $table->string("titre");
-            $table->string("description")->nullable(true);
+            $table->longText("description")->nullable(true);
             $table->string("image")->nullable(true);
             $table->string("lien")->nullable(true);
             $table->integer('position');

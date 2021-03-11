@@ -17,8 +17,8 @@
 
 
                 <div class="text-center" style="font-size: 1.5em;">
-                    {{ __('Avant toute chose, merci de lire, les ')}}
-                    <a href="#rules" data-toggle="tab">règles.</a>
+                    {{ __('Avant toute chose, merci de lire les ')}}
+                    <a href="/front/forum/sujet/1">règles.</a>
                 </div>
             </div>
         </div>
