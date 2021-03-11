@@ -51,7 +51,7 @@
     <div class="features-8 section-image" style="background-image: url('front/images/bg6.jpg')">
         <div class="col-md-7 ml-auto mr-auto text-center">
             <h3 class="title" style="font-size: 2.2em; color: var(--primary-color);">
-            @if($sections->titre == 'Développement')
+                @if($sections->titre == 'Développement')
                 <i class="now-ui-icons design-2_html5" style="width : 30px">
                 </i>
                 @elseif($sections->titre == 'Réseaux')
@@ -151,7 +151,8 @@
 
         for (var i = 0; i < response.msg.length; i++) {
             if (i < 10) {
-                var div = '<a href="/front/forum/sujet/' +response.msg[i].id + '"' + 'class="alert alert-info" style="border-radius: 15px;" role="alert">';
+                var div = '<div class="alert alert-info" style="border-radius: 15px;" role="alert"><a href="/front/forum/sujet/' + response.msg[i].id + '"' + ';>';
+
                 div += '<strong>' + response.msg[i].titre + '</strong>';
                 div += '</a>';
                 var ul = document.getElementById("resultlist");
@@ -165,5 +166,4 @@
         }
     }
 </script>
-
-@endsection  
+@endsection
