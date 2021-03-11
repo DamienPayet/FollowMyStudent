@@ -13,31 +13,35 @@
         </div>
     </div>
     @endif
-    <div class="container">
-        <div class="title text-center h1-seo">
-            <h4>Bienvenue !</h4>
-        </div>
+    <div id="offers">
 
+        <h1 class="nb-offer"><br>
+            Bienvenue sur <b>F</b>ollow <b>M</b>y <b>S</b>tudent !
+        </h1>
     </div>
-    <div class="container">
 
+    <div class="container"  style="width: 40rem;">
+        <h1 class="text-center" style="font-size: 1.6em;">Nos derniers posts :</h1>
+    <br>
         @foreach($post as $p)
         @if(isset($p->lien))
         <a href="{{$p->lien}}" class="card">
             @else
             <div class="card">
                 @endif
-                <h1 class="card-title">{{$p->titre}}</h1>
+                <h1 class="card-header text-center" style="font-size: 1.6em;">{{$p->titre}}</h1>
                 <div class="card-body">
                     @if(isset($p->image))
                     <img class="card-img-top" src="{{$p->image}}" alt="Card image cap">
                     @endif
                     @if(isset($p->description))
-                    <p class="card-text">{{$p->description}}</p>
+                    <pre style="white-space: pre-wrap;">
+{{$p->description}}</pre>
                     @endif
                 </div>
                 @if(isset($p->lien))
         </a>
+        
         @else
     </div>
     @endif

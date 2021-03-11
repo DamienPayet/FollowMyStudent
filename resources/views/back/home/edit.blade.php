@@ -7,12 +7,12 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <form method="post" action="{{ route('home.store') }}" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('home.update', $post->id) }}" enctype="multipart/form-data">
                         @csrf
-                        @method('post')
+                        @method('put')
                         <div class="card ">
                             <div class="card-header card-header-primary">
-                                <h4 class="card-title">Ajouter un post</h4>
+                                <h4 class="card-title">Editer un post</h4>
                                 <p class="card-category"></p>
                             </div>
                             <!-- Retour -->
@@ -35,12 +35,12 @@
                                     </div>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" onchange="set()"  id="ctxtbo">
+                                    <input class="form-check-input" type="checkbox" value="{{$post->description}}" onchange="set()"  id="ctxtbo">
                                     <label class="form-check-label" for="defaultCheck1">
                                         Text
                                     </label>
                                     <div class="form-group">
-                                        <textarea name="txtbo"  disabled id="txtbo" style="width: 100%" rows="5"></textarea>
+                                        <textarea name="txtbo"  disabled id="txtbo" style="width: 100%" rows="5">{{$post->description}}</textarea>
                                     </div>
                                 </div>
                                 <div class="form-check">
@@ -51,11 +51,11 @@
                                     <div class="form-group">
                                         <input class="form-control"
                                                style="color : #009fff ; text-decoration: underline;" disabled name="link" id="link" type="text" placeholder="Lien"
-                                               value=""  aria-required="true"/>
+                                               value="{{$post->lien}}"  aria-required="true"/>{{$post->lien}}
                                     </div>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" onchange="set()" id="cpic">
+                                    <input class="form-check-input" type="checkbox" value="{{$post->image}}" onchange="set()" id="cpic">
                                     <label class="form-check-label" for="defaultCheck1">
                                         Image
                                     </label>
@@ -74,7 +74,7 @@
 
                                 <div class="card-footer ml-auto mr-auto text-center )">
                                     <button type="submit"
-                                            class="btn btn-success">Ajouter le poste
+                                            class="btn btn-success">Modifier le poste
                                     </button>
                                 </div>
                             </div>

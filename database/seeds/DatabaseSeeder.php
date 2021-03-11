@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
       EleveSeeder::class,
       UserSeeder::class,
       ForumSeeder::class,
-      OffreSeeder::class
+      OffreSeeder::class,
+      HomePostSeeder::class
     ]);
   }
 }

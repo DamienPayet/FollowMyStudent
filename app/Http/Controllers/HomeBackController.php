@@ -61,7 +61,10 @@ class HomeBackController extends Controller
             $post->position = 1;
 
         $post->save();
+        return redirect()->route("home.index")->withStatus(__('Post ajouté avec succès'));
     }
+
+    
 
     /**
      * Display the specified resource.
@@ -84,7 +87,7 @@ class HomeBackController extends Controller
     {
         $post = HomePost::find($id);
         $user =  Auth::user();
-        return view('back.home.create' , compact('user','post'));
+        return view('back.home.edit' , compact('user','post'));
     }
 
     /**
@@ -96,7 +99,28 @@ class HomeBackController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = HomePost::find($id);
+        $post->titre = $request->titre;
+        if(isset($request->txtbo)){
+            $post->description = $request->txtbo;
+        }
+        if(isset($request->link)){
+            $post->lien = $request->link;
+        }
+        if($request->file('pic') != null){
+            $picture = $request->file('pic');
+            $filename = 'back/uploads/article/' . date('Y-m-d') . '_' . $picture->getClientOriginalName();
+            Image::make($picture)->save(public_path($filename));
+            $post->image = $filename;
+        }
+        $id = HomePost::orderBy('position', 'DESC')->get();
+        if($id->count()  > 0){
+            $post->position = $id[0]->position + 1 ;
+        }else
+            $post->position = 1;
+
+        $post->save();
+        return redirect()->route("home.index")->withStatus(__('Post modifié avec succès'));
     }
 
     /**
@@ -107,6 +131,9 @@ class HomeBackController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = HomePost::find($id);
+
+        $post->delete();
+        return redirect()->route('home.index')->withStatus(__('Post supprimé avec succès'));
     }
 }

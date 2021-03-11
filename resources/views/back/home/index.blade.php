@@ -5,6 +5,20 @@
     <link href="{{url('back/dist/css/dag.css')}}" rel="stylesheet"/>
     <div class="content">
         <div class="container-fluid">
+        @if (session('status'))
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="alert alert-success">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">
+                    <i class="fas fa-times"></i>
+                    </span>
+                  </button>
+                  <span>{{ session('status') }}</span>
+                </div>
+              </div>
+            </div>
+            @endif
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
@@ -19,20 +33,7 @@
                                 </button>
                             </a>
                         </div>
-                        @if (session('status'))
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="alert alert-success">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">
-                                        <i class="now-ui-icons ui-1_simple-remove"></i>
-                                    </span>
-                                        </button>
-                                        <span>{{ session('status') }}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
+                       
                         <ul>
                             @foreach($post as $p)
                                 <li id="{{$p->id}}" class="draggable" draggable="true">
@@ -48,12 +49,12 @@
                                                 <h4 class="card-title "
                                                     style="text-align: center">{{$p->titre}}</h4>
                                                 <!--Bouton supression de la section -->
-                                                <form action="{{ route('destroy.part', $p->id) }}"
+                                                <form action="{{ route('home.destroy', $p->id) }}"
                                                       method="post">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button
-                                                        onclick="return confirm(' ❌ Est tu sur de vouloir supprimer cette section ?❌ \n ⭕Cela entrainera la supression de toutes les questions contenues dans celle-ci⭕ \n ⛔Continuer ❓')"
+                                                        onclick="return confirm(' ❌ Est tu sur de vouloir supprimer ce post ❓')"
                                                         style='margin-right:10px; float : right ;'
                                                         class="btn btn-danger">
                                                         <i class="fas fa-times-circle"></i>
