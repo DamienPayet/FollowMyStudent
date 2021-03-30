@@ -25,11 +25,12 @@
         <br>
         @foreach($post as $p)
         @if(isset($p->lien))
-        <a href="{{$p->lien}}" class="card" style="color:black;">
+        <a href="{{$p->lien}}" class="card" style="color:black;  text-decoration: none;">
             @else
             <div class="card">
                 @endif
                 <h1 class="card-header text-center" style="font-size: 1.6em;text-align: center;">{{$p->titre}}</h1>
+
                 <div class="card-body">
                     @if(isset($p->image))
                     <img class="card-img-top" src="{{$p->image}}" alt="Card image cap">
@@ -39,11 +40,17 @@
                     {{$p->description}}
                     </pre>
                     @endif
+
                 </div>
                 @if(isset($p->lien))
+
         </a>
 
         @else
+        <pre class="text-center">
+        Publié le {{date('d-m-Y', strtotime($p->created_at))}}
+
+        </pre>
     </div>
     @endif
     @endforeach
