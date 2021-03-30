@@ -20,28 +20,29 @@
         </h1>
     </div>
 
-    <div class="container"  style="width: 40rem;">
+    <div class="container" style="width: 40rem;">
         <h1 class="text-center" style="font-size: 1.6em;">Nos derniers posts :</h1>
-    <br>
+        <br>
         @foreach($post as $p)
         @if(isset($p->lien))
-        <a href="{{$p->lien}}" class="card">
+        <a href="{{$p->lien}}" class="card" style="color:black;">
             @else
             <div class="card">
                 @endif
-                <h1 class="card-header text-center" style="font-size: 1.6em;">{{$p->titre}}</h1>
+                <h1 class="card-header text-center" style="font-size: 1.6em;text-align: center;">{{$p->titre}}</h1>
                 <div class="card-body">
                     @if(isset($p->image))
                     <img class="card-img-top" src="{{$p->image}}" alt="Card image cap">
                     @endif
                     @if(isset($p->description))
                     <pre style="white-space: pre-wrap;">
-{{$p->description}}</pre>
+                    {{$p->description}}
+                    </pre>
                     @endif
                 </div>
                 @if(isset($p->lien))
         </a>
-        
+
         @else
     </div>
     @endif

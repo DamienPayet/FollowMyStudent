@@ -158,7 +158,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <a href="{{route('home.index')}}" class="nav-link">
                                 <i class="nav-icon fas fa-home"></i>
                                 <p>
-                                    Acceuil view
+                                    Posts
                                 </p>
                             </a>
                         </li>
