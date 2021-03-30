@@ -19,10 +19,10 @@
             Bienvenue sur <b>F</b>ollow <b>M</b>y <b>S</b>tudent !
         </h1>
     </div>
-
+    <br><br><br><br>
     <div class="container" style="width: 40rem;">
         <h1 class="text-center" style="font-size: 1.6em;">Nos derniers posts :</h1>
-        <br>
+        <br><br><br>
         @foreach($post as $p)
         @if(isset($p->lien))
         <a href="{{$p->lien}}" class="card" style="color:black;  text-decoration: none;">
@@ -43,13 +43,14 @@
 
                 </div>
                 @if(isset($p->lien))
-
+                <pre class="text-center">
+        Publié le {{date('d-m-Y', strtotime($p->created_at))}}
+        </pre>
         </a>
 
         @else
         <pre class="text-center">
         Publié le {{date('d-m-Y', strtotime($p->created_at))}}
-
         </pre>
     </div>
     @endif

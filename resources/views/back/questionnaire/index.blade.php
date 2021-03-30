@@ -69,7 +69,7 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <button
-                                                        onclick="return confirm(' ❌ Est tu sur de vouloir supprimer cette section ?❌ \n ⭕Cela entrainera la supression de toutes les questions contenues dans celle-ci⭕ \n ⛔Continuer ❓')"
+                                                        onclick="return confirm(' ❌ Est tu sur de vouloir supprimer cette section ?❌ \n Cela entrainera la supression de toutes les questions contenues dans celle-ci')"
                                                         style='margin-right:10px; float : right ;'
                                                         class="btn btn-danger">
                                                         <i class="fas fa-times-circle"></i>

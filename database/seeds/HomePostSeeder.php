@@ -24,7 +24,7 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
             'titre' => 'Le forum',
             'description' => 'Après avoir confirmé votre adresse email, vous aurez accès au forum ainsi qu\'a toute les autres fonctionnalité du site.
 Le forum est un lieu de partage et d\'échange. Veuillez d\'abord lire les règles !
-Les règles sont disponibles en cliquant sur ce card.',
+Elles sont disponibles en cliquant sur ce card.',
             'lien' => 'http://followmystudent.test/front/forum/sujet/1',
             'position' => 2,
             'created_at' => now()
