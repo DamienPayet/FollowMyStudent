@@ -25,7 +25,6 @@ Route::group(['middleware' => 'admin'], function () {
     Route::delete('/back/log/destroy/{id}', 'LogController@destroy')->name('log.destroy');
     Route::get('add-to-log', 'LogController@myTestAddToLog');
 
-    Route::get('/download', 'LogController@export');
 
     //route admin gestion offre
     Route::resource('back/offre', 'OffreController');
@@ -56,6 +55,10 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('/back/upart/{id}', 'QuestionnaireBackController@update_part')->name('update.part');
     Route::post('/back/uquest/{id}', 'QuestionnaireBackController@update_quest')->name('update.quest');
     Route::delete('question-deleteselection', 'QuestionnaireBackController@deleteAll');
+
+    Route::get('/back/aquestion/reponse', 'QuestionnaireBackController@index_reponse')->name('reponse.index');
+    Route::get('/download', 'QuestionnaireBackController@export')->name('export');
+
     //Route Gestion User
     Route::resource('back/users', UserController::class);
     Route::get('back/users/mdp/{users}', 'UserController@editMdp')->name('users.editMdp');

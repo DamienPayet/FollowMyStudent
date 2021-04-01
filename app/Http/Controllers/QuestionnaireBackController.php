@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Offre;
 use App\QuestionnairePart;
 use App\QuestionnaireQuestion;
+use App\QuestionnaireReponse;
 use App\Sujet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Response;
 
 class QuestionnaireBackController extends Controller
 {
@@ -41,7 +43,6 @@ class QuestionnaireBackController extends Controller
         $part = QuestionnairePart::find($partid);
         $questions = $part->questions;
         return view('back.questionnaire.create_question', compact('part', 'questions'));
-
     }
 
 
@@ -59,9 +60,9 @@ class QuestionnaireBackController extends Controller
             $question->questionnaire_question_id = $request->get('sous-question');
         }
         $question->questionnaire_part_id = $request->get('id');
+        $question->created_at = now();
         $question->save();
         return redirect()->route('questionnaire.index')->withStatus(__('Offre créée avec succès.'));
-
     }
 
     public function store_part(Request $request)
@@ -70,7 +71,6 @@ class QuestionnaireBackController extends Controller
         $part->titre = $request->get('section');
         $part->save();
         return redirect()->route('questionnaire.index')->withStatus(__('Offre créée avec succès.'));
-
     }
 
     /**
@@ -112,7 +112,6 @@ class QuestionnaireBackController extends Controller
      */
     public function update(Request $request, $id)
     {
-
     }
 
     public function update_quest(Request $request, $id)
@@ -135,7 +134,6 @@ class QuestionnaireBackController extends Controller
         $part->titre = $request->get('section');
         $part->update();
         return redirect()->route('questionnaire.index')->withStatus(__('Section modifié avec succès'));
-
     }
 
     /**
@@ -162,16 +160,16 @@ class QuestionnaireBackController extends Controller
     }
     public function update_order(Request $request)
     {
-        $partsrc= QuestionnairePart::find($request->source);
+        $partsrc = QuestionnairePart::find($request->source);
         $partdst = QuestionnairePart::find($request->destination);
         $postionsrc = intval($partsrc->position);
         $partsrc->position = intval($partdst->position);
         $partdst->position = $postionsrc;
         $partsrc->save();
         $partdst->save();
-        return response()->json(['result' =>'ok']);
+        return response()->json(['result' => 'ok']);
     }
-    public function update_orderQuest (Request  $request)
+    public function update_orderQuest(Request  $request)
     {
         $questionsrc = QuestionnaireQuestion::find($request->source);
         $questiondst = QuestionnaireQuestion::find($request->destination);
@@ -180,7 +178,7 @@ class QuestionnaireBackController extends Controller
         $questiondst->position = $positionsrc;
         $questiondst->save();
         $questionsrc->save();
-        return response()->json(['result' =>'ok']);
+        return response()->json(['result' => 'ok']);
     }
     public function deleteAll(Request $request)
     {
@@ -190,5 +188,58 @@ class QuestionnaireBackController extends Controller
 
         //return redirect()->route('offres.index')->withStatus(__('Offres supprimées avec succès'));
     }
+    public function index_reponse()
+    {
+        $reponses = QuestionnaireReponse::all();
+        $questions = QuestionnaireQuestion::all();
+        return view('back.questionnaire.index_reponse', compact('reponses', 'questions'));
+    }
+    public function export(Request $request)
+    {
+      
+       /* $fp = fopen('log.csv', 'w');
+        $reponses = QuestionnaireReponse::all();
+        $questions = QuestionnaireQuestion::all();
 
+
+        
+        foreach ($questions as $fields) {
+            fputcsv($fp, $fields->attributesToArray());
+           
+        }
+        fclose($fp);
+        $file = "log.csv";
+        return Response::download($file);*/
+        
+        $fileName = 'reponse.csv';
+        $tasks = QuestionnaireReponse::all();
+    
+             $headers = array(
+                 "Content-type"        => "text/csv",
+                 "Content-Disposition" => "attachment; filename=$fileName",
+                 "Pragma"              => "no-cache",
+                 "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+                 "Expires"             => "0"
+             );
+     
+             $columns = array('Id', 'Reponse', 'Date');
+             $callback = function() use($tasks, $columns) {
+                $file = fopen('php://output', 'w');
+                fputcsv($file, $columns);
+              
+                 foreach ($tasks as $task) {
+                     
+                     $row['Id'] = $task->id;
+                     $row['Reponse'] = $task->reponse;
+                     $row['Date']  = $task->created_at;
+                     
+                     fputcsv($file, array($row['Id'], $row['Reponse'], $row['Date']));
+                 }
+     
+                 fclose($file);
+             };
+     
+             return response()->stream($callback, 200, $headers);
+            }
+    
 }

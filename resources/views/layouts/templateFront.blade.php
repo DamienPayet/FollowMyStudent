@@ -207,7 +207,7 @@
     <!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
     <script src="{{url('front/js/plugins/bootstrap-datepicker.js')}}" type="text/javascript"></script>
     <script src="{{url('front/js/now-ui-kit.js?v=1.3.0')}}" type="text/javascript"></script>
-    <script src="{{url('audit/logger.js')}}" type="text/javascript"></script>
+   <!-- <script src="{{url('audit/logger.js')}}" type="text/javascript"></script>-->
     <script src="{{url('front/js/avatar_selector.js')}}" type="text/javascript"></script>
     <script src="{{url('front/js/chatresolver.js')}}"></script>
     <script src="{{url('front/js/emojionearea.js')}}"></script>
