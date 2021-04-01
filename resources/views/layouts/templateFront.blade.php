@@ -156,7 +156,8 @@
 
     <footer class="footer footer-big" data-background-color="black">
         <div class="container">
-            @if ( Auth::user()->email_verified_at != null && Auth::user()->statut == "eleve" || Auth::user()->email_verified_at != null && Auth::user()->statut == "admin")
+
+            @if (Auth::guest() || !Auth::guest() && Auth::user()->email_verified_at != null && Auth::user()->statut == "eleve" || Auth::user()->email_verified_at != null && Auth::user()->statut == "admin")
             <div class="content" style="padding: 1em;">
                 <div class="row">
                     <div class="col-md-2">
@@ -181,71 +182,7 @@
                             </li>
                               </ul>
                     </div>
-                <!--    <div class="col-md-2">
-                        <h5 style="color: var(--primary-color);">Les offres</h5>
-                        <ul class="links-vertical">
-                            <li>
-                                <a href="{{route('offre_front_index')}}">
-                                    Consulter
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{route('offre_front_create')}}">
-                                    Créer
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-md-2">
-                        <h5 style="color: var(--primary-color);">Le forum</h5>
-                        <ul class="links-vertical">
-                            <li>
-                                <a href="#pablo">
-                                    Les règles
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{route('forum')}}">
-                                    Accueil
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{route('forum_mesSujets',Auth::user()->id)}}">
-                                    Mes sujets
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-md-4">
-                        <h5 style="color: var(--primary-color);">Suis nous !</h5>
-                        <ul class="social-buttons">
-                            <li>
-                                <a class="nav-link" rel="tooltip" title="Suivez nous sur Twitter" data-placement="bottom" href="https://twitter.com/pmr_dole" target="_blank">
-                                    <i class="fab fa-twitter"></i>
-                                    <p class="d-lg-none d-xl-none">Twitter</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" rel="tooltip" title="Venez sur Facebook" data-placement="bottom" href="https://www.facebook.com/lycee.pasteurmontroland" target="_blank">
-                                    <i class="fab fa-facebook-square"></i>
-                                    <p class="d-lg-none d-xl-none">Facebook</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" rel="tooltip" title="Rendez vous sur Instagram" data-placement="bottom" href="https://www.instagram.com/mont.roland/" target="_blank">
-                                    <i class="fab fa-instagram"></i>
-                                    <p class="d-lg-none d-xl-none">Instagram</p>
-                                </a>
-                            </li>
-                        </ul>
-
-                        <h5><small>Les nombres ne mentent pas...</small></h5>
-                        <h5>7777<small class="text-muted">Offres disponibles</small></h5>
-                        <h5>1.423.183 <small class="text-muted">Échanges</small></h5>
-                    </div>
-                </div>
-            </div>
-            -->
+               
             @endif
             <hr>
             <div class="copyright" id="copyright" style="padding: 1em;">

@@ -4,7 +4,7 @@
 <head>
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title> {{ __('FollowMyStudent - Réinitialisation mot de passe') }}
+    <title> {{ __('FollowMyStudent - Réinitialer mon mot de passe') }}
     </title>
     <style>
         /* -------------------------------------
@@ -137,7 +137,7 @@
                                             <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; box-sizing: border-box;">
                                                 <tbody>
                                                     <tr>
-                                                        <td align="left" style="font-family: sans-serif; font-size: 14px; vertical-align: top; padding-bottom: 15px;">
+                                                        <td align="left" style="text-align: center; font-family: sans-serif; font-size: 14px; vertical-align: top; padding-bottom: 15px;">
                                                             <center>
                                                                 <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;">
                                                                     <tbody>
