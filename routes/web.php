@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Auth::routes(['verify' => true]);
 
-
 Route::get('/logger', 'LogController@access')->name('log');
 
 //Route pour les admin :
@@ -91,6 +90,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('front/mes_sujets/user/{id}', 'ForumController@forum_messujets')->name('forum_mesSujets');
     Route::get('front/forum/sujet/{sujet}/edit', 'ForumController@edit_sujet')->name('sujet.edit');
     Route::post('front/forum/sujet/{sujet}/update', 'ForumController@update_sujet')->name('sujet.update');
+    //Route ajax pour modification de reponse
+    Route::post('/front/forum/reponse/update/{reponse}', 'ForumController@update_reponse')->name('update_reponse');
 
     //Route  chat direct
     Route::get('my_chat', 'StudentFrontController@ajaxRequest1')->name('ajaxRequest.index');

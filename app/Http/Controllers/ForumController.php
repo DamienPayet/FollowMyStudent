@@ -100,6 +100,16 @@ $s->save();
 return redirect()->route('sujet.show', $s)->withStatus(__('Sujet créé avec succès.'));
     }
 
+    public function update_reponse(Request $request, $reponse)
+    {
+      $maReponse = SujetReponse::find($reponse);
+      $maReponse->reponse = $request->reponse;
+      $maReponse->updated_at = now();
+      $maReponse->save();
+      return response()->json(["success"=>"Modification réussite !"]);
+
+    }
+
     public function store_reponse(Request $request, $sujet)
     {
         \LogActivity::addToLog('User - Ajout réponse sujet');
@@ -119,7 +129,6 @@ return redirect()->route('sujet.show', $s)->withStatus(__('Sujet créé avec suc
         $reponse->user_id = $user;
         $reponse->sujet_id = $sujet;
         $reponse->nb_vue = 0;
-        $reponse->created_at = now();
         $reponse->save();
 
         return redirect()->route('sujet.show', $sujet)->withStatus(__('Réponse créée avec succès.'));

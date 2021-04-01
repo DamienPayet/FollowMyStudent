@@ -151,9 +151,9 @@
         @include('cookieConsent::index')
     </center>
     <div class="section-space"></div>
-    
+
     <div class="section-space"></div>
-    
+
     <footer class="footer footer-big" data-background-color="black">
         <div class="container">
             @if ( Auth::user()->email_verified_at != null && Auth::user()->statut == "eleve" || Auth::user()->email_verified_at != null && Auth::user()->statut == "admin")
@@ -167,7 +167,7 @@
                                     RGPD
                                 </a>
                             </li>
-                           
+
                         </ul>
                         </div>
                         <div class="col-md-2">
@@ -178,7 +178,7 @@
                                 <a href="{{route('contact.create')}}">
                                     Nous contacter
                                 </a>
-                            </li>                      
+                            </li>
                               </ul>
                     </div>
                 <!--    <div class="col-md-2">
@@ -285,5 +285,6 @@
             });
         });
     </script>
-
+@section('script')
+@show
 </html>

@@ -2,6 +2,7 @@
 
 
 @section('content')
+
 <div class="section card">
   @if($sujet->type == 'Question' && $sujet->resolue == 1)
   <div class="alert alert-info text-center">
@@ -90,7 +91,7 @@
             @if ($sujet->user_id == Auth::user()->id)
               <div class="button-container">
                 <a href="{{ route("sujet.edit", $sujet) }}" class="btn btn-primary btn-round btn-lg">
-                  Modifier mon sujet
+                  <i class="now-ui-icons ui-1_settings-gear-63"></i>
                 </a>
               </div>
             @endif
@@ -131,21 +132,24 @@
                 @endif
               </b>
               <div style="margin-top:1%;">
-                <p style="text-align:justify;"> {{ $r->reponse }} </p>
+                <textarea class="form-control" readonly="readonly" id="textarea-reponse-{{$r->id}}">{{ $r->reponse }}</textarea>
               </div>
               <div class="media-footer">
-                <p style="font-style: italic;" class="btn btn-danger btn-neutral pull-left">{{ \Carbon\Carbon::parse($r->created_at)->format('d/m/Y H:i') }} </p>
+                <p style="font-style: italic;" class="btn btn-danger btn-neutral pull-left" id="update-reponse-{{$r->id}}">{{ \Carbon\Carbon::parse($r->updated_at)->format('d/m/Y H:i') }} </p>
                 <form method="post" action="{{route('reponses.like')}}" id="form-js">
                   <input type="hidden" id="reponse-id-js" value="{{$r->id}}">
-                  <button type="submit" class="btn btn-danger btn-neutral pull-right"><i class="now-ui-icons ui-2_favourite-28"></i>
+                  <button type="submit" class="btn btn-danger btn-neutral pull-right"><i class="now-ui-icons ui-2_like"></i>
                     <div id="count-js">{{$r->likes->count()}}</div>
                   </button>
                 </form>
               </div>
-              @if ($sujet->user_id == Auth::user()->id)
+              @if ($r->user_id == Auth::user()->id)
                 <div class="button-container">
-                  <a href="{{ route("forum") }}" class="btn btn-danger btn-neutral pull-left" style="margin-top:-20px">
-                    Modifier mon commentaire
+                  <a onclick="editReponse({{$r->id}})" class="btn btn-danger btn-neutral pull-left" style="margin-top:-20px">
+                    <i class="now-ui-icons ui-1_settings-gear-63"></i>
+                  </a>
+                  <a onclick="updateReponse({{$r->id}})" class="btn btn-danger btn-neutral pull-left" style="margin-top:-20px">
+                    <i class="now-ui-icons ui-1_check"></i>
                   </a>
                 </div>
               @endif
@@ -201,4 +205,34 @@
   </div>
 </div>
 <script src="{{url('front/js/like.js')}}"></script>
+@endsection
+
+@section('script')
+  <script>
+  function editReponse(id){
+    if (document.getElementById("textarea-reponse-"+id).readOnly == true) {
+      document.getElementById("textarea-reponse-"+id).readOnly = false;
+    }
+    else{
+      document.getElementById("textarea-reponse-"+id).readOnly = true;
+    }
+  }
+  function updateReponse(id){ // AJOUTER UN JETON CSRF
+    if (document.getElementById("textarea-reponse-"+id).readOnly == false) {
+      var reponse = document.getElementById("textarea-reponse-"+id).value;
+      $.ajax({
+        method:"post",
+        url: "http://fms:8888/front/forum/reponse/update/" + id,
+        data: {
+          reponse : reponse,
+          _token: '{{csrf_token()}}'
+              },
+        success:function(data){
+          alert(data.success);
+        }
+      });
+      document.getElementById("textarea-reponse-"+id).readOnly = true;
+    }
+  }
+  </script>
 @endsection

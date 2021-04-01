@@ -43,7 +43,7 @@
                                     </div>
                                 </div>
                                 <!-- Fin -->
-                                <!-- username -->
+                                <!-- Description -->
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label">{{ __('Description du sujet') }}</label>
                                     <div class="col-sm-7">
@@ -80,7 +80,7 @@
                                                 <option value="" selected>Sélectionner le type</option>
                                                 <option value="Discussion"{{ old('type') == 'Discussion' ? 'selected' : '' }} >Discussion</option>
                                                 <option value="Question"{{ old('type') == 'Question' ? 'selected' : '' }} >Question</option>
-                                              
+
                                             </select>
                                         </div>
                                     </div>
