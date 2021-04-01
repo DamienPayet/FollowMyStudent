@@ -8,6 +8,15 @@ Auth::routes(['verify' => true]);
 
 Route::get('/logger', 'LogController@access')->name('log');
 
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', 'StudentFrontController@home')->name('index');
+    //Route edition de profil utilisateur
+    Route::get('front/user/{user}', ['as' => 'front.users.edit', 'uses' => 'StudentFrontController@edit']);
+    Route::patch('front/user/{user}/update', ['as' => 'front.users.update', 'uses' => 'StudentFrontController@update']);
+    Route::patch('/front/user/email-validation/{id}', 'StudentFrontController@email_update')->name('email.update');
+    Route::patch('captcha-user-validation/{id}', 'StudentFrontController@update')->name('user_front_store');
+});
+
 //Route pour les admin :
 Route::group(['middleware' => 'admin'], function () {
     //route affichage des logs :
@@ -15,7 +24,6 @@ Route::group(['middleware' => 'admin'], function () {
     Route::delete('/back/log/destroy/{id}', 'LogController@destroy')->name('log.destroy');
     Route::get('add-to-log', 'LogController@myTestAddToLog');
 
-    Route::get('/download', 'LogController@export');
 
     //route admin gestion offre
     Route::resource('back/offre', 'OffreController');
@@ -46,6 +54,10 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('/back/upart/{id}', 'QuestionnaireBackController@update_part')->name('update.part');
     Route::post('/back/uquest/{id}', 'QuestionnaireBackController@update_quest')->name('update.quest');
     Route::delete('question-deleteselection', 'QuestionnaireBackController@deleteAll');
+
+    Route::get('/back/aquestion/reponse', 'QuestionnaireBackController@index_reponse')->name('reponse.index');
+    Route::get('/download', 'QuestionnaireBackController@export')->name('export');
+
     //Route Gestion User
     Route::resource('back/users', UserController::class);
     Route::get('back/users/mdp/{users}', 'UserController@editMdp')->name('users.editMdp');
@@ -70,14 +82,12 @@ Route::group(['middleware' => 'admin'], function () {
     Route::delete('contact-deleteselection', 'NousContacterController@deleteAll');
 });
 
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('/', 'StudentFrontController@home')->name('index');
+Route::group(['middleware' => 'auth', 'email'], function () {
     Route::post('/back/order_up', 'QuestionnaireBackController@update_order')->name('updateorder');
     Route::post('/back/order_up/quest', 'QuestionnaireBackController@update_orderQuest')->name('updateorderquest');
     //Route redirection vers forum acceuil
-    //Route::get('front/forum', 'StudentFrontController@forum')->name('forum');
-    Route::resource('front/forum', 'ForumController');
-    Route::get('front/forum', 'ForumController@index')->name('forum');
+   // Route::resource('front/forum', 'ForumController');
+Route::get('front/forum', 'ForumController@index')->name('forum');
     Route::get('front/forum/categorie/{id}', 'ForumController@index_sujet')->name('sujet.index');
     Route::get('front/forum/create', 'ForumController@create')->name('sujet.create');
     Route::get('front/forum/sujet/{sujet}', 'ForumController@show_sujet')->name('sujet.show');
@@ -109,12 +119,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('front/questions', 'StudentFrontController@startQuestionnaire')->name('questions');
     Route::get('front/end_question', 'StudentFrontController@end_question')->name('end_question');
     Route::get('front/response_store', 'StudentFrontController@response_store')->name('response_store');
-    //Route edition de profil utilisateur
-    //Route::get('front/user/{user}', 'StudentFrontController@show')->name('profil_show');
-    Route::get('front/user/{user}', ['as' => 'front.users.edit', 'uses' => 'StudentFrontController@edit']);
-    Route::patch('front/user/{user}/update', ['as' => 'front.users.update', 'uses' => 'StudentFrontController@update']);
-    Route::patch('/front/user/email-validation/{id}', 'StudentFrontController@email_update')->name('email.update');
-    Route::patch('captcha-user-validation/{id}', 'StudentFrontController@update')->name('user_front_store');
+
 
     Route::post('captcha-contact-validation', 'NousContacterController@Contact');
     Route::get('/front/contact/reload-captcha', 'NousContacterController@reloadCaptcha');

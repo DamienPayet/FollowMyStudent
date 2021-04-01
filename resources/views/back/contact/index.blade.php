@@ -17,7 +17,7 @@
                 <div class="alert alert-success">
                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">
-                    <i class="fas fa-times"></i>
+                      <i class="fas fa-times"></i>
                     </span>
                   </button>
                   <span>{{ session('status') }}</span>
@@ -120,6 +120,5 @@
       </div>
     </div>
   </div>
-</div>
 </div>
 @endsection
