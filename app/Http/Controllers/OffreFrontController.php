@@ -14,6 +14,11 @@ use Redirect;
 
 class OffreFrontController extends Controller
 {
+  public function __construct()
+  {
+    $this->middleware('email');
+  }
+  
   public function index()
   {
     \LogActivity::addToLog('Utilisateur - Affichage offre');

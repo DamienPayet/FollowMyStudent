@@ -18,6 +18,10 @@ use Symfony\Component\Console\Input\Input;
 
 class ForumController extends Controller
 {
+    public function __construct()
+    {
+      $this->middleware('email');
+    }
     public function index()
     {
         $section = Section::all();

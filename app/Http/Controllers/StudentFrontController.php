@@ -26,7 +26,10 @@ class StudentFrontController extends Controller
      */
     public function __construct()
     {
+        $this->middleware('email')->except(['ajaxRequestReaded','home','edit','email_update','update']);
+
         $this->middleware('auth');
+
     }
 
     public function home()
