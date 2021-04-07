@@ -53,7 +53,7 @@ class StudentFrontController extends Controller
         $user = Auth::user();
         return view('front.user.show', compact('user'));
     }
-   
+
     public function update(Request $request, $id)
     {
         $user = User::find($id);
@@ -228,7 +228,9 @@ class StudentFrontController extends Controller
             $reponse->questionnaire_question_id = $request->question[$i];
             $reponse->user_id = $user->id;
             $reponse->save();
+            dump($reponse);
         }
+dd("dfs");
         return response()->json(['parts' => $request]);
     }
 
@@ -278,7 +280,6 @@ class StudentFrontController extends Controller
         $conv->users()->attach(User::find($id));
         return response()->json(['conv' => $conv]);
     }
-
 
     public function ajaxRequestPost(Request $request)
     {

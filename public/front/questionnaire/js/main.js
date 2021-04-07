@@ -1,110 +1,20 @@
-console.log();
-(function ($) {
+var fieldlist = document.querySelectorAll(".field");
+for(var i = 0 ; i < fieldlist.length ; i ++){
+    fieldlist[i].style.display = "none";
+}
+setview(fieldlist[0]);
+function setview(field){
+    field.style.display = "block";
+    var id = field.getAttribute("id");
+    $(".quest_" + id).validate({
+        submitHandler: function(form) {
 
-    var form = $("#signup-form");
-    form.validate({
-        errorPlacement: function errorPlacement(error, element) {
-            console.log(element);
-            element.before(error);
-        },
-        rules: {
-            reponse: {
-                required: true,
-            },
-        },
-        messages: {
-            reponse: {
-                required: "Merci de completer toute les questions"
-            },
-        },
-        onfocusout: function (element) {
-            $(element).valid();
-        },
-        highlight: function (element, errorClass, validClass) {
-            $(element).parent().parent().find('.form-group').addClass('form-error');
-            $(element).removeClass('valid');
-            $(element).addClass('error');
-        },
-        unhighlight: function (element, errorClass, validClass) {
-            $(element).parent().parent().find('.form-group').removeClass('form-error');
-            $(element).removeClass('error');
-            $(element).addClass('valid');
+            console.log(form);
         }
     });
 
-    form.steps({
-        startIndex: parseInt(document.getElementById("startval").innerText),
-        headerTag: "h3",
-        bodyTag: "fieldset",
-        transitionEffect: "fade",
-        labels: {
-            next: 'Next',
-            finish: 'Finish',
-            current: ''
-        },
-        titleTemplate: '<h3 class="title">#title#</h3>',
-        onInit: function (event, currentIndex) {
-            // Suppress (skip) "Warning" step if the user is old enough.
-            if (currentIndex === 0) {
-                form.find('.actions').addClass('test');
-            }
-        },
-
-        onStepChanging: function (event, currentIndex, newIndex) {
-            form.validate().settings.ignore = ":disabled,:hidden";
-            return form.valid();
-        },
-        onFinishing: function (event, currentIndex)
-        {
-            document.location.href="/";
-        },
-        onStepChanged: function (event, currentIndex, priorIndex) {
-            var listInput = document.querySelectorAll("input.part_" + currentIndex);
-            var listRep = [];
-            var listQuest = [];
-            for (var i = 0; i < listInput.length; i++) {
-                listRep[i] = listInput[i].value;
-                listQuest[i] = listInput[i].id;
-            }
-            var length = listQuest.length;
-            todb(listRep, listQuest,length);
-            console.log(listRep);
-            console.log(listQuest);
-        }
-    });
-
-
-})(jQuery);
-
-function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-            $('.your_picture_image')
-                .attr('src', e.target.result);
-        };
-
-        reader.readAsDataURL(input.files[0]);
-    }
 }
 
-function todb(responses, questions,leingth) {
-    $.ajax({
-        type: 'get',
-        url: "response_store",
-        data: {
-            _token: '{{csrf_token()}}',
-            rep: responses,
-            question: questions,
-            len: leingth
-        },
-        dataType: 'JSON',
-        success: function (response) {
-            //console.log(response);
-        },
-        error: function () {
-            console.log('Erreur');
-        }
-    });
+function todb(){
+    console.log("jt'envopie ça bg");
 }
