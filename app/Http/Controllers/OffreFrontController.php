@@ -11,6 +11,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Redirect;
+use ConsoleTVs\Profanity\Facades\Profanity;
 
 class OffreFrontController extends Controller
 {
@@ -84,8 +85,12 @@ class OffreFrontController extends Controller
         $offre->pdf = $pdf_get;
       }
     }
-    $offre->titre = $request->get('titre');
-    $offre->description = $request->get('description');
+    
+    $bad_words_sujet = $request->get('titre');
+    $bad_words_message = $request->get('description');
+
+    $offre->titre = Profanity::blocker($bad_words_sujet)->filter();
+    $offre->description = Profanity::blocker($bad_words_message)->filter();
     $offre->niveau = $request->get('niveau');
     $offre->lieu = $request->get('lieu');
     $offre->entreprise = $request->get('entreprise');
