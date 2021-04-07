@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\QuestionnairePart;
+use App\QuestionnaireQuestion;
+use
+    Illuminate\Http\Request;
 use App\User;
 use App\Eleve;
 use App\Admin;
 use App\Traits\UploadTrait;
+use Illuminate\Support\Facades\Auth;
+use phpDocumentor\Reflection\Types\Compound;
 use Validator;
 use Image;
 use Illuminate\Support\Facades\DB;
@@ -19,6 +24,12 @@ class UserController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
+  public function test(){
+      $user = auth::user();
+      $part = QuestionnairePart::all();
+      $question = QuestionnaireQuestion::all();
+      return view('test',compact("user","part","question"));
+  }
   public function index()
   {
     \LogActivity::addToLog('Admin - Affichage utilisateurs');
@@ -205,7 +216,7 @@ class UserController extends Controller
       if (\File::copy($source, $destination)) {
         $user->image_profil = $destination;
       }
-      /*        
+      /*
       $avatar = $request->file('image_profil');
       $filename = 'back/uploads/avatars/' . date('Y-m-d') . '_' . $avatar->getClientOriginalName();
       Image::make($avatar)->resize(300, 300)->save(public_path($filename));
