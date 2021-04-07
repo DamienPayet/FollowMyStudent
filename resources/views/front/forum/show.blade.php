@@ -222,7 +222,7 @@
       var reponse = document.getElementById("textarea-reponse-"+id).value;
       $.ajax({
         method:"post",
-        url: "http://fms:8888/front/forum/reponse/update/" + id,
+        url: "/front/forum/reponse/update/" + id,
         data: {
           reponse : reponse,
           _token: '{{csrf_token()}}'
