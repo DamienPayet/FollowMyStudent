@@ -16,6 +16,10 @@ class AdminSeeder extends Seeder
         'prenom'=> 'FMS',
       ]);
       DB::table('admins')->insert([
+        'nom'=> 'Administateur',
+        'prenom'=> 'WEB',
+      ]);
+      DB::table('admins')->insert([
         'nom'=> 'Courbez',
         'prenom'=> 'Julian',
       ]);

@@ -67,14 +67,14 @@ class ForumController extends Controller
         $sujet->update();
         return view('front/forum.show', compact('sujet', 'reponses', 'nbReponse', 'users'));
     }
-    public function edit_sujet(Sujet $sujet)
+    public function edit_sujet($id)
     {
-        $sujet = Sujet::find($sujet);
+        $sujet = Sujet::find($id);
         $categorie = SujetCategorie::all();
-        if (Auth::user()->id == $sujet->first()->user_id) {
+        if (Auth::user()->id == $sujet->user_id || Auth::user()->statut == "admin" ) {
             return view('front.forum.edit_sujet', compact('sujet', 'categorie'));
         } else {
-            return redirect()->route('forum')->withErrors(['Erreur', 'Accès refusé']);
+            return redirect()->route('forum')->withErrors(['Accès refusé']);
         }
     }
 
