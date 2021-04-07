@@ -13,7 +13,7 @@ use App\User;
 use App\SujetReponse;
 use App\Like;
 use Symfony\Component\Console\Input\Input;
-
+use ConsoleTVs\Profanity\Facades\Profanity;
 
 
 class ForumController extends Controller
@@ -94,8 +94,14 @@ if ($validator->fails()) {
 }
 $s = Sujet::find($sujet->id);
 
-$s->titre = $request->get('titre');
-$s->description = $request->get('description');
+$bad_words_sujet = $request->get('titre');
+$bad_words_message = $request->get('description');
+
+$s->titre = Profanity::blocker($bad_words_sujet)->filter();
+$s->description = Profanity::blocker($bad_words_message)->filter();
+
+//$s->titre = $request->get('titre');
+//$s->description = $request->get('description');
 $s->categorie_id = $request->get('categorie');
 $s->user_id = Auth::user()->id;
 $s->updated_at = now();
@@ -129,7 +135,11 @@ return redirect()->route('sujet.show', $s)->withStatus(__('Sujet créé avec suc
         $user = auth()->user()->id;
         $reponse = new SujetReponse;
 
-        $reponse->reponse = $request->get('reponse');
+        $bad_words_sujet = $request->get('reponse');
+    
+        $reponse->reponse = Profanity::blocker($bad_words_sujet)->filter();
+
+       // $reponse->reponse = $request->get('reponse');
         $reponse->user_id = $user;
         $reponse->sujet_id = $sujet;
         $reponse->nb_vue = 0;
@@ -185,7 +195,6 @@ return redirect()->route('sujet.show', $s)->withStatus(__('Sujet créé avec suc
             'titre' => 'required|min:10|max:255',
             'description' => 'required|min:15',
             'captcha' => 'required|captcha',
-
         ]);
         // Si la validation échoue
         if ($validator->fails()) {
@@ -194,17 +203,23 @@ return redirect()->route('sujet.show', $s)->withStatus(__('Sujet créé avec suc
         \LogActivity::addToLog('User - Création sujet');
 
         $sujet = new Sujet;
+        $bad_words_sujet = $request->get('titre');
+        $bad_words_message = $request->get('description');
+    
+        $sujet->titre = Profanity::blocker($bad_words_sujet)->filter();
+        $sujet->description = Profanity::blocker($bad_words_message)->filter();
 
-        $sujet->titre = $request->get('titre');
-        $sujet->description = $request->get('description');
+        //$sujet->titre = $request->get('titre');
+        //$sujet->description = $request->get('description');
         $sujet->categorie_id = $request->get('categorie');
         $sujet->user_id = Auth::user()->id;
         $sujet->nb_vue += 1;
         $sujet->type = $request->get('type');
         $sujet->created_at = now();
         $sujet->save();
+        return redirect()->route('forum')->with('success', 'Sujet créé  avec succès');
 
-        return redirect()->route('forum')->withStatus(__('Sujet créé avec succès.'));
+      //  return redirect()->route('forum')->withStatus(__('Sujet créé avec succès.'));
     }
 
     public function searching(Request $request)

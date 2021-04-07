@@ -8,7 +8,7 @@
                 <div class="col-md-12">
                     <div class="card ">
                         <div class="card-body ">
-                        @if(session()->has('errors'))
+                            @if(session()->has('errors'))
                             <div class="alert alert-danger" role="alert">
                                 @foreach($errors->all() as $error)
                                 {{$error}}
@@ -16,7 +16,8 @@
                                 @endforeach
                             </div>
                             @endif
-                            <form method="post" action="{{ route('sujet.store') }}" autocomplete="off" class="form-horizontal" enctype="multipart/form-data" accept-charset="utf-8">
+                            <form method="post" action="{{url('captcha-sujet-validation')}}">
+
                                 {{ csrf_field() }}
                                 {{ method_field('post') }}
                                 <div class="row">
@@ -78,8 +79,8 @@
 
                                             <select name="type" id="type" class="selectpicker form-control edit" data-live-search="true" style="width:100%" required="true" aria-required="true">
                                                 <option value="" selected>Sélectionner le type</option>
-                                                <option value="Discussion"{{ old('type') == 'Discussion' ? 'selected' : '' }} >Discussion</option>
-                                                <option value="Question"{{ old('type') == 'Question' ? 'selected' : '' }} >Question</option>
+                                                <option value="Discussion" {{ old('type') == 'Discussion' ? 'selected' : '' }}>Discussion</option>
+                                                <option value="Question" {{ old('type') == 'Question' ? 'selected' : '' }}>Question</option>
 
                                             </select>
                                         </div>
@@ -101,7 +102,7 @@
                                     </div>
                                 </div>
                                 <!-- Fin Captcha -->
-                                <div class="card-footer ml-auto mr-auto text-center )">
+                                <div class="card-footer ml-auto mr-auto text-center">
                                     <button type="submit" class="btn btn-info">Ajouter</button>
                                 </div>
 
