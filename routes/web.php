@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Auth::routes(['verify' => true]);
 
+route::get('/tester','UserController@test');
 Route::get('/logger', 'LogController@access')->name('log');
 
 Route::group(['middleware' => 'auth'], function () {
