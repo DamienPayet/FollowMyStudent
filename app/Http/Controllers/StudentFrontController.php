@@ -222,7 +222,7 @@ class StudentFrontController extends Controller
     public function response_store(Request $request)
     {
         $user = auth::user();
-        for ($i = 0; $i < $request-; $i++) {
+        for ($i = 0; $i < $request->len; $i++) {
             $reponse = new QuestionnaireReponse;
             $reponse->reponse = $request->rep[$i];
             $reponse->questionnaire_question_id = $request->question[$i];
@@ -280,7 +280,6 @@ dd("dfs");
         $conv->users()->attach(User::find($id));
         return response()->json(['conv' => $conv]);
     }
-
 
     public function ajaxRequestPost(Request $request)
     {

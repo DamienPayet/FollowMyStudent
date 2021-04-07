@@ -9,7 +9,8 @@
     <title>Sign Up Form</title>
 
     <!-- Font Icon -->
-    <link rel="stylesheet" href="{{url('/front/questionnaire/fonts/material-icon/css/material-design-iconic-font.min.css')}}">
+    <link rel="stylesheet"
+          href="{{url('/front/questionnaire/fonts/material-icon/css/material-design-iconic-font.min.css')}}">
 
     <!-- Main css -->
     <link rel="stylesheet" href="{{url('/front/questionnaire/css/style.css')}}">
@@ -31,25 +32,34 @@
                 </div>
             </div>
             <div class="signup-form-conent">
-                <form method="get" id="signup-form" action="{{route('response_store')}}" class="signup-form" enctype="multipart/form-data">
-                    @foreach($part as $par)
+
+                @foreach($part as $par)
                     <h3></h3>
 
-                    <fieldset>
-                        <span class="step-current">Step {{$par->position}} / {{$part->count()}}</span>
-                        @foreach($par->questions as $question)
-                        <div class="form-group">
-                            <input type="text" name="question_{{$question->id}}" id="question_{{$question->id}}" required/>
-                            <label for="question_{{$question->id}}">{{$question->question}}</label>
-                        </div>
-                            @for($i = 0 ; $i < strlen($question->question)/25 ; $i++)
-                                <br>
-                            @endfor
-                        @endforeach
+                    <fieldset class="field" id="{{$par->position}}">
+                        <form class="quest_{{$par->position}}" id="{{$par->position}}">
+                            <span class="step-current">Step {{$par->position}} / {{$part->count()}}</span>
+                            @foreach($par->questions as $question)
+                                <div class="form-group">
+                                    <input class="question" type="text" name="question_{{$question->id}}"
+                                           id="question_{{$question->id}}" required/>
+                                    <label for="question_{{$question->id}}">{{$question->question}}</label>
+                                </div>
+                                @for($i = 0 ; $i < strlen($question->question)/25 ; $i++)
+                                    <br>
+                                @endfor
+                            @endforeach
+                            <div class="actions clearfix">
+                                <ul role="menu" aria-label="Pagination">
+                                    <li aria-hidden="false" aria-disabled="false"><button type="submit" id="btn_next" href="#next"
+                                                                                     role="menuitem">Suivant</button></li>
+                                </ul>
+                            </div>
+                        </form>
                     </fieldset>
-                    @endforeach
+                @endforeach
 
-                </form>
+
             </div>
         </div>
     </div>
@@ -59,8 +69,6 @@
 <!-- JS -->
 <script src="{{url('/front/questionnaire/vendor/jquery/jquery.min.js')}}"></script>
 <script src="{{url('/front/questionnaire/vendor/jquery-validation/dist/jquery.validate.min.js')}}"></script>
-<script src="{{url('/front/questionnaire/vendor/jquery-validation/dist/additional-methods.min.js')}}"></script>
-<script src="{{url('/front/questionnaire/vendor/jquery-steps/jquery.steps.min.js')}}"></script>
 <script src="{{url('/front/questionnaire/js/main.js')}}"></script>
 </body>
 
