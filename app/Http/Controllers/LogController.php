@@ -27,7 +27,7 @@ class LogController extends Controller
         $logdb->save();
         return response()->json(['user' => $logdb]);
     }
-    
+
     public function index()
     {
 
