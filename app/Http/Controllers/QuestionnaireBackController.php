@@ -212,7 +212,7 @@ class QuestionnaireBackController extends Controller
         foreach ($users as $user) {
             if ($user->qreponses->count() == $questions->count()) {
                 $line = array();
-                $line[0] = $user->eleve->nom;
+                $line[0] = $user->eleve->nom . ' - ' . $user->eleve->prenom;
                 foreach ($user->qreponses as $reponse) {
                     $line[count($line)] = $reponse->reponse;
                 }
@@ -220,55 +220,20 @@ class QuestionnaireBackController extends Controller
             }
         }
         $csv = Writer::createFromString();
+
         //insert the header
         $csv->insertOne($header);
 
         //insert all the records
         $csv->insertAll($records);
+        echo $csv->getContent();
 
-        echo $csv->toString();
-        /* $fp = fopen('log.csv', 'w');
-        $reponses = QuestionnaireReponse::all();
-        $questions = QuestionnaireQuestion::all();
-
-
-        
-        foreach ($questions as $fields) {
+        $fp = fopen('export_reponses.csv', 'w');
+        foreach ($csv as $fields) {
             fputcsv($fp, $fields->attributesToArray());
-           
         }
         fclose($fp);
-        $file = "log.csv";
-        return Response::download($file);*/
-
-        /*  $fileName = 'reponse.csv';
-        $tasks = QuestionnaireReponse::all();
-    
-             $headers = array(
-                 "Content-type"        => "text/csv",
-                 "Content-Disposition" => "attachment; filename=$fileName",
-                 "Pragma"              => "no-cache",
-                 "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
-                 "Expires"             => "0"
-             );
-     
-             $columns = array('Id', 'Reponse', 'Date');
-             $callback = function() use($tasks, $columns) {
-                $file = fopen('php://output', 'w');
-                fputcsv($file, $columns);
-              
-                 foreach ($tasks as $task) {
-                     
-                     $row['Id'] = $task->id;
-                     $row['Reponse'] = $task->reponse;
-                     $row['Date']  = $task->created_at;
-                     
-                     fputcsv($file, array($row['Id'], $row['Reponse'], $row['Date']));
-                 }
-     
-                 fclose($file);
-             };
-     
-             return response()->stream($callback, 200, $headers);*/
+        $file = "export_reponses.csv";
+        return Response::download($file);
     }
 }
