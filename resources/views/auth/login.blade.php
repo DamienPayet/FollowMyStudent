@@ -79,7 +79,7 @@
   <!-- End Navbar -->
 
   <div class="page-header clear-filter" filter-color="yellow">
-    <div class="page-header-image" style="background-image:url(../front/images/software-engineer.png)"></div>
+    <div class="page-header-image" style="background-image:url(../front/images/software-engineer.png);opacity: 0.4;"></div>
     <!-- <a href="https://iconscout.com/illustrations/developer-team" target="_blank">Developer Team Illustration</a> by <a href="https://iconscout.com/contributors/delesign" target="_blank">Delesign Graphics</a>-->
       <div class="container">
         <div class="col-md-4 ml-auto mr-auto">
