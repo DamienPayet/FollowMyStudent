@@ -123,6 +123,7 @@ Route::get('front/forum', 'ForumController@index')->name('forum');
     Route::get('front/end_question', 'StudentFrontController@end_question')->name('end_question');
     Route::get('front/response_store', 'StudentFrontController@response_store')->name('response_store');
 
+    Route::get('front/mentions/a-propos', 'MentionsLegController@nous')->name('mentions.apropos');
 
     Route::post('captcha-contact-validation', 'NousContacterController@Contact');
     Route::get('/front/contact/reload-captcha', 'NousContacterController@reloadCaptcha');

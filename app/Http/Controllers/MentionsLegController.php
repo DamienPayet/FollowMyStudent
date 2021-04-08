@@ -11,4 +11,9 @@ class MentionsLegController extends Controller
         \LogActivity::addToLog('RGPD - Affichage mentions');
         return view('front/mentions.rgpd');
     }
+    public function nous()
+    {
+        \LogActivity::addToLog('Mentions - Affichage crédits');
+        return view('front/mentions.nous');
+    }
 }

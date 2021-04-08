@@ -2,14 +2,24 @@
 
 @section('content')
 <div class="section" id="carousel">
-    @if (Auth::user()->email_verified_at == null)
+    @if (Auth::user()->email_verified_at == null )
     <div class="alert alert-warning" role="alert" style="text-align: center;">
         <div class="container">
             <div class="alert-icon">
                 <i class="now-ui-icons travel_info"></i>
             </div>
             Tu dois valider ton email pour débloquer l'ensemble des fonctionnalités.
-            <a href="{{ route('front.users.edit', Auth::user()->id) }}">C'est parti !</a>
+            <a href="{{ route('front.users.edit', Auth::user()->id) }}">En avant !</a>
+        </div>
+    </div>
+    @elseif (Auth::user()->password_change_at == null)
+    <div class="alert alert-warning" role="alert" style="text-align: center;">
+        <div class="container">
+            <div class="alert-icon">
+                <i class="now-ui-icons travel_info"></i>
+            </div>
+            Tu dois changer ton mot de passe pour débloquer l'ensemble des fonctionnalités.
+            <a href="{{ route('front.users.edit', Auth::user()->id) }}">En avant !</a>
         </div>
     </div>
     @endif

@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
       $table->bigInteger('administrateur_id')->unsigned()->nullable();
       $table->timestamp('email_verified_at')->nullable();
       $table->string('password');
+      $table->timestamp('password_change_at')->nullable();
       $table->rememberToken();
       $table->timestamps();
     });

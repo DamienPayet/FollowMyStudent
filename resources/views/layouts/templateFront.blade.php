@@ -34,6 +34,7 @@
                 <a class="nav-link" href="{{route('index')}}">
                     <i class="now-ui-icons shopping_shop"></i>
                     <p>Accueil</p>
+
                 </a>
                 <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-bar top-bar"></span>
@@ -64,7 +65,9 @@
                     </li>
                     @endif
                     @if (!Auth::guest())
-                    @if ( Auth::user()->email_verified_at != null && Auth::user()->statut == "eleve" || Auth::user()->email_verified_at != null && Auth::user()->statut == "admin")
+                    @if (Auth::user()->email_verified_at != null && Auth::user()->statut == "eleve" || Auth::user()->email_verified_at != null && Auth::user()->statut == "admin")
+                    @if (Auth::user()->password_change_at != null)
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('offre_front_index')}}">
                             <i class="now-ui-icons business_briefcase-24"></i>
@@ -107,6 +110,7 @@
                     </li>
                     @endif
                     @endif
+                    @endif
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown">
                             <i class="now-ui-icons users_single-02"></i>
@@ -121,7 +125,7 @@
                                 <i class="now-ui-icons ui-1_settings-gear-63"></i> Mon profil
                             </a>
                             <a class="dropdown-item" href="Logout" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                            <i class="now-ui-icons media-1_button-power"></i> Déconnexion </a>
+                                <i class="now-ui-icons media-1_button-power"></i> Déconnexion </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 {{ csrf_field() }}
                             </form>
@@ -160,6 +164,7 @@
             @if (Auth::guest() || !Auth::guest() && Auth::user()->email_verified_at != null && Auth::user()->statut == "eleve" || Auth::user()->email_verified_at != null && Auth::user()->statut == "admin")
             <div class="content" style="padding: 1em;">
                 <div class="row">
+
                     <div class="col-md-2">
                         <h5 style="color: var(--primary-color);">Mentions légales</h5>
                         <ul class="links-vertical">
@@ -170,29 +175,36 @@
                             </li>
 
                         </ul>
-                        </div>
-                        <div class="col-md-2">
+                    </div>
+                    <div class="col-md-2">
                         <h5 style="color: var(--primary-color);">Contact</h5>
 
                         <ul class="links-vertical">
-                        <li>
+                            <li>
                                 <a href="{{route('contact.create')}}">
                                     Nous contacter
                                 </a>
                             </li>
-                              </ul>
+                        </ul>
                     </div>
-               
-            @endif
-            <hr>
-            <div class="copyright" id="copyright" style="padding: 1em;">
-                &copy;
-                <script>
-                    document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
-                </script>
-                FollowMyStudent.
-            </div>
-        </div>
+                    @endif
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-1" style="text-align: center;">
+                        <img src="/front/images/favicon.ico" alt>
+                    </div>
+                    <hr>
+                    <a href="{{route('mentions.apropos')}}">
+
+                        <div class="copyright" id="copyright" style="padding: 1em;">
+                            &copy;
+                            <script>
+                                document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
+                            </script>
+                            FollowMyStudent.
+                        </div>
+                    </a>
+                </div>
 
     </footer>
 
@@ -207,7 +219,7 @@
     <!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
     <script src="{{url('front/js/plugins/bootstrap-datepicker.js')}}" type="text/javascript"></script>
     <script src="{{url('front/js/now-ui-kit.js?v=1.3.0')}}" type="text/javascript"></script>
-   <!-- <script src="{{url('audit/logger.js')}}" type="text/javascript"></script>-->
+    <!-- <script src="{{url('audit/logger.js')}}" type="text/javascript"></script>-->
     <script src="{{url('front/js/avatar_selector.js')}}" type="text/javascript"></script>
     <script src="{{url('front/js/chatresolver.js')}}"></script>
     <script src="{{url('front/js/emojionearea.js')}}"></script>
@@ -222,6 +234,7 @@
             });
         });
     </script>
-@section('script')
-@show
+    @section('script')
+    @show
+
 </html>

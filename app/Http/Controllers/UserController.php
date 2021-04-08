@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\QuestionnairePart;
 use App\QuestionnaireQuestion;
 use
-    Illuminate\Http\Request;
+  Illuminate\Http\Request;
 use App\User;
 use App\Eleve;
 use App\Admin;
@@ -15,6 +15,7 @@ use phpDocumentor\Reflection\Types\Compound;
 use Validator;
 use Image;
 use Illuminate\Support\Facades\DB;
+use App\Mail\WelcomeMail;
 
 class UserController extends Controller
 {
@@ -24,11 +25,12 @@ class UserController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function test(){
-      $user = auth::user();
-      $part = QuestionnairePart::all();
-      $question = QuestionnaireQuestion::all();
-      return view('test',compact("user","part","question"));
+  public function test()
+  {
+    $user = auth::user();
+    $part = QuestionnairePart::all();
+    $question = QuestionnaireQuestion::all();
+    return view('test', compact("user", "part", "question"));
   }
   public function index()
   {
@@ -103,6 +105,16 @@ class UserController extends Controller
       }
     }
     $user->save();
+
+    $email = $request->get("email");
+    $data = ([
+      "nom" => $request->get("nom"),
+      "prenom" => $request->get("prenom"),
+      "email" => $request->get("email"),
+      "password"=> $request->input('mdp'),
+    ]);
+    \Mail::to($email)->send(new WelcomeMail($data));
+
     \LogActivity::addToLog('Admin - Création utilisateurs');
     return redirect()->route("users.index")->with('success', 'Création réussie !');
   }

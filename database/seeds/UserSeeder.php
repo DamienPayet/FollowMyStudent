@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
       'statut' => 'admin',
       'image_profil' => 'images/default-admin.png',
       'email_verified_at' => now(),
+      'password_change_at' => now(),
       'administrateur_id' => 1
     ]);
     DB::table('users')->insert([
@@ -25,6 +26,7 @@ class UserSeeder extends Seeder
       'statut' => 'admin',
       'image_profil' => 'images/default-admin.png',
       'email_verified_at' => now(),
+      'password_change_at' => now(),
       'administrateur_id' => 2
     ]);
     DB::table('users')->insert([
@@ -54,6 +56,7 @@ class UserSeeder extends Seeder
       'statut' => 'admin',
       'image_profil' => 'images/default-admin.png',
       'email_verified_at' => now(),
+      'password_change_at' => now(),
       'administrateur_id' => 3
     ]);
     DB::table('users')->insert([
