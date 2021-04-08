@@ -85,9 +85,9 @@
         <div class="col-md-4 ml-auto mr-auto">
           <div class="card card-login card-plain">
             <div class="card-header text-center">
-              <div class="logo-container">
+              
                 <img src="../front/images/favicon.ico" alt>
-              </div>
+              
             </div>
             @if(session()->has('errors'))
             <div class="alert alert-danger" role="alert">
