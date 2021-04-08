@@ -57,26 +57,6 @@ class NousContacterController extends Controller
         if ($validator->fails()) {
             return back()->withInput()->withErrors($validator->errors());
         }
-/*
-        if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
-            $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
-            $_SERVER['HTTP_CLIENT_IP'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
-        }
-        $client  = @$_SERVER['HTTP_CLIENT_IP'];
-        $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
-        $remote  = $_SERVER['REMOTE_ADDR'];
-    
-        if(filter_var($client, FILTER_VALIDATE_IP)){
-            $clientIp = $client;
-        }
-        elseif(filter_var($forward, FILTER_VALIDATE_IP)){
-            $clientIp = $forward;
-        }
-        else{
-            $clientIp = $remote;
-        }
-    */
-        //dd($clientIp);
         $contact = new Contact();
 
         //  Store data in database
@@ -105,12 +85,12 @@ class NousContacterController extends Controller
             'user_query' => $clean_words_message,
         ), function ($message) use ($request) {
             $message->from($request->email);
-            $message->to('pelletier.ft1@gmail.com', 'Admintrateur FMS')->subject('[FMS] - Nouvelle demande de contact');
+            $message->to('admin@gmail.com', 'Admintrateur FMS')->subject('[FMS] - Nouvelle demande de contact');
         });
         // 
         \LogActivity::addToLog('User - Création demande contact');
 
-        return back()->with('success', 'Nous avons bien reçu votre message ! Merci de nous écrire, nous reviendrons prochainement vers vous.');
+        return redirect()->route('indexback')->withStatus(__('Nous avons bien reçu votre message ! Merci de nous écrire, nous reviendrons prochainement vers vous.'));
     }
     public function destroy($id)
     {

@@ -79,7 +79,7 @@ function todatabase(src, dest) {
             //console.log(ok)
         },
         error: function () {
-            console.log('Erreur');
+           // console.log('Erreur');
         }
     });
 }
@@ -105,8 +105,8 @@ function dragDropTable(e) {
     if (dragSrcEl != this) {
         dragSrcEl.innerHTML = this.innerHTML;
         this.innerHTML = e.dataTransfer.getData('text/html');
-        console.log(dragSrcEl.id);
-       console.log(this.id);
+       // console.log(dragSrcEl.id);
+       //console.log(this.id);
          todatabaseTable(dragSrcEl.id, this.id);
     }
     return false;
@@ -156,10 +156,10 @@ function todatabaseTable(src, dest) {
         },
         dataType: 'JSON',
         success: function (response) {
-            console.log("ok")
+        //    console.log("ok")
         },
         error: function () {
-            console.log('Erreur');
+         //   console.log('Erreur');
         }
     });
 }

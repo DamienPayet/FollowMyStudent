@@ -223,7 +223,7 @@
     }
 
     function up(id, type) {
-        console.log("chupa me");
+       // console.log("chupa me");
         switch (type) {
             case "section":
                 objet = document.getElementById('section_' + id);

@@ -13,7 +13,7 @@ $("#av_image").change(function() {
 });
 $('#modal_button').click(function() {
     var value = document.querySelector('input[name="new_avatar"]:checked').value;
-    console.log(value);
+   // console.log(value);
     $('#imagechoisie').val(value);
     $('#myModal').modal('hide');
     document.getElementById("input-image_profil").src = "/front/images/avatars/" + value;

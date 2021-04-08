@@ -17,6 +17,7 @@
         "laravel/framework": "^7.24",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.2",
+        "league/csv": "^9.6",
         "mews/captcha": "^3.2",
         "musonza/chat": "^4.4",
         "spatie/laravel-cookie-consent": "^2.12",

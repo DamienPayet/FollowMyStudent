@@ -1,3 +1,4 @@
+/*
 function target(ip, ipinfo, navigateur, date, url) {
     this.ip = ip;
     this.ipinfo = ipinfo;
@@ -27,7 +28,7 @@ function getip() {
 }
 
 function getipinfo() {
-    var requestURL = 'http://api.ipstack.com/' + t.ip + '?access_key=6d47e38078a81cc352c560288cf1c38f&format=1';
+    var requestURL = 'http://api.ipstack.com/' + t.ip + '?access_key=ahnon&format=1';
     var request = new XMLHttpRequest();
 
     request.open('GET', requestURL);
@@ -74,8 +75,6 @@ function godb() {
         }
     });
 }
-
-
-
+*/
 
 
