@@ -68,7 +68,9 @@
                                         {{ $log->user->admin->nom }}
                                         @endif
                                         </td>
-                                        <td>{{$log->created_at}}</td>
+                                        <td>
+                                          {{ \Carbon\Carbon::parse($log->created_at)->format('d/m/Y  H:i:s')}}
+                                        </td>
                                         <td>
                                             <div style="display: inline-flex;">
                                                 <form action="{{route('log.destroy', $log->id)}}" method="post">
