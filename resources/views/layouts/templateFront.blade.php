@@ -189,10 +189,12 @@
                     </div>
                     @endif
                     <div class="col-md-2">
-                    </div>
+                    </div> 
+                    @if (Auth::user()->password_change_at != null || Auth::user()->email_verified_at != null)
+
                     <div class="col-md-1" style="text-align: center;">
                         <img src="/front/images/favicon.ico" alt>
-                    </div>
+                    </div>@endif
                     <hr>
                     <a href="{{route('mentions.apropos')}}">
 
