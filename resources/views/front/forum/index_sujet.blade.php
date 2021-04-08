@@ -98,7 +98,7 @@
                                             </div>
                                         </div>
                                         <div class="card-body">
-                                            <p>{{ \Illuminate\Support\Str::limit($sujet->description, 250, $end='...') }}</p>
+                                            <p>{!! Str::words($sujet->description, 250, $end='...') !!}</p>
                                         </div>
                                     </a>
                                     @endforeach
