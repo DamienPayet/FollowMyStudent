@@ -6,7 +6,9 @@
     <div class="container-fluid">
         <!-- Info boxes -->
         <div class="row">
+
             <div class="col-12 col-sm-6 col-md-3">
+              <a href="{{route('offre.index')}}" class="nav-link">
                 <div class="info-box">
                     <span class="info-box-icon bg-info elevation-1"><i class="fas fa-globe-europe"></i></span>
 
@@ -16,12 +18,14 @@
                   {{$offres->count()}}
                 </span>
                     </div>
+
                     <!-- /.info-box-content -->
-                </div>
+                </div></a>
                 <!-- /.info-box -->
             </div>
             <!-- /.col -->
             <div class="col-12 col-sm-6 col-md-3">
+              <a href="{{route('reponse.index')}}" class="nav-link">
                 <div class="info-box mb-3">
                     <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
 
@@ -30,7 +34,7 @@
                         <span class="info-box-number">{{$nbruse}}</span>
                     </div>
                     <!-- /.info-box-content -->
-                </div>
+                </div></a>
                 <!-- /.info-box -->
             </div>
             <!-- /.col -->
@@ -39,6 +43,7 @@
             <div class="clearfix hidden-md-up"></div>
 
             <div class="col-12 col-sm-6 col-md-3">
+              <a href="{{route('contact.index')}}" class="nav-link">
                 <div class="info-box mb-3">
                     <span class="info-box-icon bg-success elevation-1"><i class="fas fa-question-circle"></i></span>
 
@@ -47,11 +52,12 @@
                         <span class="info-box-number">{{$contact->count()}}</span>
                     </div>
                     <!-- /.info-box-content -->
-                </div>
+                </div></a>
                 <!-- /.info-box -->
             </div>
             <!-- /.col -->
             <div class="col-12 col-sm-6 col-md-3">
+              <a href="{{route('users.index')}}" class="nav-link">
                 <div class="info-box mb-3">
                     <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user"></i></span>
 
@@ -60,7 +66,7 @@
                         <span class="info-box-number"> {{$utilisateurs->count()}}</span>
                     </div>
                     <!-- /.info-box-content -->
-                </div>
+                </div></a>
                 <!-- /.info-box -->
             </div>
             <!-- /.col -->
@@ -88,7 +94,6 @@
                     <table class="table m-0">
                         <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Utilisateur</th>
                             <th>URL</th>
                             <th>IP</th>
@@ -100,8 +105,19 @@
                             @php($counter++)
                             @if($counter <= 10)
                                 <tr>
-                                    <td>{{$loged->id}}</td>
-                                    <td>{{$loged->user_id}}</td>
+                                    <td>
+                                      @if ($loged->user->statut == "eleve")
+                                        {{ $loged->user->eleve->prenom }}
+                                      @elseif ($loged->user->statut == "admin")
+                                        {{ $loged->user->admin->prenom }}
+                                      @endif
+
+                                      @if ($loged->user->statut == "eleve")
+                                        {{ $loged->user->eleve->nom }}
+                                      @elseif ($loged->user->statut == "admin")
+                                        {{ $loged->user->admin->nom }}
+                                      @endif
+                                    </td>
                                     <td><span class="badge badge-success">{{$loged->url}}</span></td>
                                     <td class="text-warning">
                                         <div class="sparkbar" data-color="#00a65a" data-height="20">
