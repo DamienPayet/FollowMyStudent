@@ -26,10 +26,9 @@ class StudentFrontController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('email')->except(['ajaxRequestReaded','home','edit','email_update','update']);
+        $this->middleware('email')->except(['ajaxRequestReaded', 'home', 'edit', 'email_update', 'update']);
 
         $this->middleware('auth');
-
     }
 
     public function home()
@@ -79,11 +78,19 @@ class StudentFrontController extends Controller
             if ($user->email != $getmail) {
                 $user->email = $request->input('email');
                 $user->sendEmailVerificationNotification();
+                if ($request->input('password') != null) {
+                    $user->password = bcrypt($request->input('password'));
+                    $user->password_change_at = now();
+                }
                 $user->updated_at = now();
                 $user->save();
                 return redirect()->route('front.users.edit', $user)->with('message', 'Nouvelle adresse enregistrée! Un email de validation vient d\'être envoyé.');
             } elseif ($user->email == $getmail) {
                 $user->sendEmailVerificationNotification();
+                if ($request->input('password') != null) {
+                    $user->password = bcrypt($request->input('password'));
+                    $user->password_change_at = now();
+                }
                 $user->updated_at = now();
                 $user->save();
                 return redirect()->route('front.users.edit', $user)->with('message', 'Un email de validation vient d\'être envoyé.');
@@ -93,6 +100,7 @@ class StudentFrontController extends Controller
             $getmail = $request->input('email');
             if ($request->input('password') != null) {
                 $user->password = bcrypt($request->input('password'));
+                $user->password_change_at = now();
             }
             if (request('imagechoisie') != null) {
                 $user->image_profil = $request->input('imagechoisie');
@@ -230,7 +238,7 @@ class StudentFrontController extends Controller
             $reponse->save();
             dump($reponse);
         }
-dd("dfs");
+        dd("dfs");
         return response()->json(['parts' => $request]);
     }
 

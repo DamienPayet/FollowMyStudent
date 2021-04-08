@@ -20,7 +20,7 @@
                                     <div class="container">
                                         <div class="alert-icon">
                                             <i class="now-ui-icons travel_info"></i>
-                                        </div> Tu dois valider ton email pour accéder à toutes les fonctionnalités.
+                                        </div> Tu dois changer ton mot de passe et valider ton email pour accéder à toutes les fonctionnalités.
                                     </div>
                                 </div>
                                 @endif
@@ -129,11 +129,7 @@ height: 100px;" src="{{url($user->image_profil)}}" value="{{$user->image_profil}
                                     <label class="col-sm-2 col-form-label">{{ __('Mot de passe') }}</label>
                                     <div class="col-sm-7">
                                         <div class="form-group">
-                                            @if ( $user->email_verified_at == null && $user->statut == "eleve" || $user->email_verified_at == null && $user->statut == "admin")
-                                            <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" readonly="readonly" placeholder="Mot de passe" name="password" id="input-password" type="password" requierd="true" value="" aria-required="true" />
-                                            @elseif ( $user->email_verified_at != null && $user->statut == "eleve" || $user->email_verified_at != null && $user->statut == "admin")
                                             <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="Mot de passe" name="password" id="input-password" type="password" requierd="true" value="" aria-required="true" />
-                                            @endif
                                             @if ($errors->has('password'))
                                             <!-- <span id="password-error" class="error text-danger" for="input-password">{{ $errors->first('password') }}</span>-->
                                             @endif
@@ -146,11 +142,7 @@ height: 100px;" src="{{url($user->image_profil)}}" value="{{$user->image_profil}
                                     <label class="col-sm-2 col-form-label">{{ __('Confirmation mot de passe') }}</label>
                                     <div class="col-sm-7">
                                         <div class="form-group">
-                                            @if ( $user->email_verified_at == null && $user->statut == "eleve" || $user->email_verified_at == null && $user->statut == "admin")
-                                            <input class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" readonly="readonly" placeholder="Confirmation mot de passe" name="password_confirmation" id="input-password_confirmation" type="password" value="" aria-required="true" />
-                                            @elseif ( $user->email_verified_at != null && $user->statut == "eleve" || $user->email_verified_at != null && $user->statut == "admin")
                                             <input class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" placeholder="Confirmation mot de passe" name="password_confirmation" id="input-password_confirmation" type="password" value="" aria-required="true" />
-                                            @endif
                                             @if ($errors->has('password_confirmation'))
                                             <!--<span id="password_confirmation-error" class="error text-danger" for="input-password_confirmation">{{ $errors->first('password_confirmation') }}</span>-->
                                             @endif
@@ -184,7 +176,7 @@ height: 100px;" src="{{url($user->image_profil)}}" value="{{$user->image_profil}
                                 @if ( $user->email_verified_at == null && $user->statut == "eleve" || $user->email_verified_at == null && $user->statut == "admin")
                                 <div class="card-footer ml-auto mr-auto text-center">
                                     <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" style="background-color: #FF3636;">
-                                        <i class="fas fa-times"></i> {{ __('Vérifier mon email') }}
+                                        <i class="fas fa-times"></i> {{ __('Valider') }}
                                     </button>
                                 </div>
                                 @endif
