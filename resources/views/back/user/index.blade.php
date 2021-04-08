@@ -41,7 +41,6 @@
               <table id="table_id" class="table">
                 <thead>
                   <tr>
-                    <th>id</th>
                     <th>Prénom</th>
                     <th>Nom</th>
                     <th>Email</th>
@@ -54,7 +53,6 @@
                 <tbody>
                   @foreach ($user as $u)
                   <tr>
-                    <td>{{ $u->id }}</td>
                     <td>
                       @if ($u->statut == "eleve")
                       {{ $u->eleve->prenom }}

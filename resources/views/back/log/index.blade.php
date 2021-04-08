@@ -15,7 +15,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title ">Tout les logs</h4>
+                        <h4 class="card-title ">Tous les logs</h4>
                     </div>
                     <div class="card-body">
                         @if (session('status'))
@@ -37,7 +37,6 @@
                             <table id="table_id" class="table">
                                 <thead>
                                     <tr>
-                                        <th>id</th>
                                         <th>Action</th>
                                         <th>URL</th>
                                         <th>Méthode</th>
@@ -51,13 +50,24 @@
                                 <tbody>
                                     @foreach($logs as $log)
                                     <tr>
-                                        <td>{{$log->id}}</td>
                                         <td>{{ $log->subject }}</td>
                                         <td class="text-success">{{ $log->url }}</td>
                                         <td><label class="label label-info">{{ $log->method }}</label></td>
                                         <td class="text-warning">{{ $log->ip }}</td>
                                         <td class="text-danger">{{ $log->agent }}</td>
-                                        <td>{{$log->user_id}}</td>
+                                        <td>
+                                        @if ($log->user->statut == "eleve")
+                                        {{ $log->user->eleve->prenom }}
+                                        @elseif ($log->user->statut == "admin")
+                                        {{ $log->user->admin->prenom }}
+                                        @endif
+
+                                        @if ($log->user->statut == "eleve")
+                                        {{ $log->user->eleve->nom }}
+                                        @elseif ($log->user->statut == "admin")
+                                        {{ $log->user->admin->nom }}
+                                        @endif
+                                        </td>
                                         <td>{{$log->created_at}}</td>
                                         <td>
                                             <div style="display: inline-flex;">
