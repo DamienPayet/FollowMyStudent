@@ -66,7 +66,7 @@
                                             <select class="form-control" name="sous-question" id="select">
                                                 @if($question->questionnaire_question_id != "")
                                                     @foreach($questions as $questiona)
-                                                        <script> console.log({{$question->questionnaire_question_id }})</script>
+                                                        <script> //console.log({{$question->questionnaire_question_id }})</script>
                                                         @if($question->questionnaire_question_id == $questiona->id)
 
                                                             <option value="{{$questiona->id}}"

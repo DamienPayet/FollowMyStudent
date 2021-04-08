@@ -31,84 +31,84 @@ class ForumSeeder extends Seeder
         ]);
         DB::table('sujet_categories')->insert([
             'nom' => 'Forum',
-            'image'=>'images/contact-us.png',
+            'image'=>'front/images/categories/FORUM.jpg',
             'section_id' => 1,
             'nb_vue' => 0,
             'created_at' => now()
         ]);
         DB::table('sujet_categories')->insert([
             'nom' => 'Études',
-            'image'=>'images/contact-us.png',
+            'image'=>'front/images/categories/learning-concept.png',
             'section_id' => 1,
             'nb_vue' => 0,
             'created_at' => now()
         ]);
         DB::table('sujet_categories')->insert([
             'nom' => 'BlaBla',
-            'image'=>'images/contact-us.png',
+            'image'=>'front/images/categories/blabla.jpeg',
             'section_id' => 1,
             'nb_vue' => 0,
             'created_at' => now()
         ]);
         DB::table('sujet_categories')->insert([
             'nom' => 'Divers',
-            'image'=>'images/contact-us.png',
+            'image'=>'front/images/categories/divers.png',
             'section_id' => 1,
             'nb_vue' => 0,
             'created_at' => now()
         ]);
         DB::table('sujet_categories')->insert([
             'nom' => 'Windows',
-            'image'=>'images/contact-us.png',
+            'image'=>'front/images/categories/windows.png',
             'section_id' => 2,
             'nb_vue' => 0,
             'created_at' => now()
         ]);
         DB::table('sujet_categories')->insert([
             'nom' => 'Linux',
-            'image'=>'images/contact-us.png',
+            'image'=>'front/images/categories/linux.png',
             'section_id' => 2,
             'nb_vue' => 0,
             'created_at' => now()
         ]);
         DB::table('sujet_categories')->insert([
             'nom' => 'OS Divers',
-            'image'=>'images/contact-us.png',
+            'image'=>'front/images/categories/ciscso.png',
             'section_id' => 2,
             'nb_vue' => 0,
             'created_at' => now()
         ]);
         DB::table('sujet_categories')->insert([
             'nom' => 'Divers',
-            'image'=>'images/contact-us.png',
+            'image'=>'front/images/categories/divers.png',
             'section_id' => 2,
             'nb_vue' => 0,
             'created_at' => now()
         ]);
         DB::table('sujet_categories')->insert([
             'nom' => 'C/C++',
-            'image'=>'images/contact-us.png',
+            'image'=>'front/images/categories/1200px-ISO_C++_Logo.svg.png',
             'section_id' => 3,
             'nb_vue' => 0,
             'created_at' => now()
         ]);
         DB::table('sujet_categories')->insert([
             'nom' => 'Divers',
-            'image'=>'images/contact-us.png',
+            'image'=>'front/images/categories/ProgrammingLanguage1-1.jpg',
             'section_id' => 3,
             'nb_vue' => 0,
             'created_at' => now()
         ]);
         DB::table('sujet_categories')->insert([
             'nom' => 'Java',
-            'image'=>'images/contact-us.png',
+            'image'=>'front/images/categories/java.png',
             'section_id' => 3,
             'nb_vue' => 0,
             'created_at' => now()
         ]);
         DB::table('sujet_categories')->insert([
             'nom' => 'Framework Web',
-            'image'=>'images/contact-us.png',
+            'image'=>'front/images/categories/framework.png',
             'section_id' => 3,
             'nb_vue' => 0,
             'created_at' => now()

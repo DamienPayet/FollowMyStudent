@@ -81,12 +81,12 @@ class StudentFrontController extends Controller
                 $user->sendEmailVerificationNotification();
                 $user->updated_at = now();
                 $user->save();
-                return redirect()->route('front.users.edit', $user)->with('message', 'Nouvelle adresse enregistrée! Un email de validation viens d\'etre envoyé.');
+                return redirect()->route('front.users.edit', $user)->with('message', 'Nouvelle adresse enregistrée! Un email de validation vient d\'être envoyé.');
             } elseif ($user->email == $getmail) {
                 $user->sendEmailVerificationNotification();
                 $user->updated_at = now();
                 $user->save();
-                return redirect()->route('front.users.edit', $user)->with('message', 'Un email de validation viens d\'etre envoyé.');
+                return redirect()->route('front.users.edit', $user)->with('message', 'Un email de validation vient d\'être envoyé.');
             }
         } elseif ($user->email_verified_at != null) {
 
@@ -103,7 +103,7 @@ class StudentFrontController extends Controller
                 $user->sendEmailVerificationNotification();
                 $user->updated_at = now();
                 $user->save();
-                return redirect()->route('front.users.edit', $user)->with('message', 'Profil modifié avec succès! Un email de validation viens d\' envoyé.');
+                return redirect()->route('front.users.edit', $user)->with('message', 'Profil modifié avec succès! Un email de validation vient d\'être envoyé.');
             } elseif ($user->isDirty()) {
                 //Insertion IMAGE
                 if (request('imagechoisie') != null) {
@@ -147,12 +147,12 @@ class StudentFrontController extends Controller
                 $user->sendEmailVerificationNotification();
                 $user->updated_at = now();
                 $user->save();
-                return redirect()->route('front.users.edit', $user)->with('message', 'Nouvelle adresse enregistrée! Un email de validation viens de t\'etre envoyé.');
+                return redirect()->route('front.users.edit', $user)->with('message', 'Nouvelle adresse enregistrée! Un email de validation vient de t\'être envoyé.');
             } elseif ($user->email == $getmail) {
                 $user->sendEmailVerificationNotification();
                 $user->updated_at = now();
                 $user->save();
-                return redirect()->route('front.users.edit', $user)->with('message', 'Un email de validation viens de t\'etre envoyé.');
+                return redirect()->route('front.users.edit', $user)->with('message', 'Un email de validation vient de t\'être envoyé.');
             }
         } else {
             return redirect()->route('front.users.edit', $user)->with('unchange', 'Aucune information changée...');

@@ -10,6 +10,10 @@ use App\Sujet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Response;
+use App\User;
+//use NunoMaduro\Collision\Contracts\Writer;
+use League\Csv\Writer;
+use League\Csv\Reader;
 
 class QuestionnaireBackController extends Controller
 {
@@ -196,50 +200,40 @@ class QuestionnaireBackController extends Controller
     }
     public function export(Request $request)
     {
-      
-       /* $fp = fopen('log.csv', 'w');
-        $reponses = QuestionnaireReponse::all();
+        $users = User::all();
         $questions = QuestionnaireQuestion::all();
 
+        $header = array();
+        $header[0] = 'eleve';
+        foreach ($questions as $question) {
+            $header[count($header)] = $question->question;
+        }
+        $records = array();
+        foreach ($users as $user) {
+            if ($user->qreponses->count() == $questions->count()) {
+                $line = array();
+                $line[0] = $user->eleve->nom . ' - ' . $user->eleve->prenom;
+                foreach ($user->qreponses as $reponse) {
+                    $line[count($line)] = $reponse->reponse;
+                }
+                $records[count($records)] = $line;
+            }
+        }
+        $csv = Writer::createFromString();
 
-        
-        foreach ($questions as $fields) {
+        //insert the header
+        $csv->insertOne($header);
+
+        //insert all the records
+        $csv->insertAll($records);
+        echo $csv->getContent();
+
+        $fp = fopen('export_reponses.csv', 'w');
+        foreach ($csv as $fields) {
             fputcsv($fp, $fields->attributesToArray());
-           
         }
         fclose($fp);
-        $file = "log.csv";
-        return Response::download($file);*/
-        
-        $fileName = 'reponse.csv';
-        $tasks = QuestionnaireReponse::all();
-    
-             $headers = array(
-                 "Content-type"        => "text/csv",
-                 "Content-Disposition" => "attachment; filename=$fileName",
-                 "Pragma"              => "no-cache",
-                 "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
-                 "Expires"             => "0"
-             );
-     
-             $columns = array('Id', 'Reponse', 'Date');
-             $callback = function() use($tasks, $columns) {
-                $file = fopen('php://output', 'w');
-                fputcsv($file, $columns);
-              
-                 foreach ($tasks as $task) {
-                     
-                     $row['Id'] = $task->id;
-                     $row['Reponse'] = $task->reponse;
-                     $row['Date']  = $task->created_at;
-                     
-                     fputcsv($file, array($row['Id'], $row['Reponse'], $row['Date']));
-                 }
-     
-                 fclose($file);
-             };
-     
-             return response()->stream($callback, 200, $headers);
-            }
-    
+        $file = "export_reponses.csv";
+        return Response::download($file);
+    }
 }

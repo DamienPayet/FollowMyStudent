@@ -88,12 +88,12 @@
             <div class="blog-tags">
               <span>Le {{ \Carbon\Carbon::parse($sujet->created_at)->format('d/m/Y h:m')}} </span>
             </div>
-            @if ($sujet->user_id == Auth::user()->id)
-              <div class="button-container">
-                <a href="{{ route("sujet.edit", $sujet) }}" class="btn btn-primary btn-round btn-lg">
-                  <i class="now-ui-icons ui-1_settings-gear-63"></i>
-                </a>
-              </div>
+            @if ($sujet->user_id == Auth::user()->id || Auth::user()->statut == "admin")
+            <div class="button-container">
+              <a href="{{ route('sujet.edit', $sujet->id) }}" class="btn btn-primary btn-round btn-lg">
+                <i class="now-ui-icons ui-1_settings-gear-63"></i>
+              </a>
+            </div>
             @endif
           </div>
         </div>
@@ -143,15 +143,15 @@
                   </button>
                 </form>
               </div>
-              @if ($r->user_id == Auth::user()->id)
-                <div class="button-container">
-                  <a onclick="editReponse({{$r->id}})" class="btn btn-danger btn-neutral pull-left" style="margin-top:-20px">
-                    <i class="now-ui-icons ui-1_settings-gear-63"></i>
-                  </a>
-                  <a onclick="updateReponse({{$r->id}})" class="btn btn-danger btn-neutral pull-left" style="margin-top:-20px">
-                    <i class="now-ui-icons ui-1_check"></i>
-                  </a>
-                </div>
+              @if ($r->user_id == Auth::user()->id || Auth::user()->statut == "admin")
+              <div class="button-container">
+                <a onclick="editReponse({{$r->id}})" class="btn btn-danger btn-neutral pull-left" style="margin-top:-20px">
+                  <i class="now-ui-icons ui-1_settings-gear-63"></i>
+                </a>
+                <a onclick="updateReponse({{$r->id}})" class="btn btn-danger btn-neutral pull-left" style="margin-top:-20px">
+                  <i class="now-ui-icons ui-1_check"></i>
+                </a>
+              </div>
               @endif
             </div>
           </div>
@@ -208,31 +208,31 @@
 @endsection
 
 @section('script')
-  <script>
-  function editReponse(id){
-    if (document.getElementById("textarea-reponse-"+id).readOnly == true) {
-      document.getElementById("textarea-reponse-"+id).readOnly = false;
-    }
-    else{
-      document.getElementById("textarea-reponse-"+id).readOnly = true;
+<script>
+  function editReponse(id) {
+    if (document.getElementById("textarea-reponse-" + id).readOnly == true) {
+      document.getElementById("textarea-reponse-" + id).readOnly = false;
+    } else {
+      document.getElementById("textarea-reponse-" + id).readOnly = true;
     }
   }
-  function updateReponse(id){ // AJOUTER UN JETON CSRF
-    if (document.getElementById("textarea-reponse-"+id).readOnly == false) {
-      var reponse = document.getElementById("textarea-reponse-"+id).value;
+
+  function updateReponse(id) { // AJOUTER UN JETON CSRF
+    if (document.getElementById("textarea-reponse-" + id).readOnly == false) {
+      var reponse = document.getElementById("textarea-reponse-" + id).value;
       $.ajax({
-        method:"post",
+        method: "post",
         url: "/front/forum/reponse/update/" + id,
         data: {
-          reponse : reponse,
+          reponse: reponse,
           _token: '{{csrf_token()}}'
-              },
-        success:function(data){
+        },
+        success: function(data) {
           alert(data.success);
         }
       });
-      document.getElementById("textarea-reponse-"+id).readOnly = true;
+      document.getElementById("textarea-reponse-" + id).readOnly = true;
     }
   }
-  </script>
+</script>
 @endsection

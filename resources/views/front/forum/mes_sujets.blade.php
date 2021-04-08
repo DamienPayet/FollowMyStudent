@@ -20,7 +20,7 @@
             </h1>
             <div class="offers-container tab">
               @foreach($sujets as $sujet)
-              @if ($sujet->user_id = $user)
+              @if ($sujet->user_id == $user->id)
               <a href="{{ route('sujet.show', $sujet) }}" class="card">
                 <div class="card-header">
                   <div class="card-info">

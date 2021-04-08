@@ -151,7 +151,7 @@
         document.getElementById("resultlist").innerHTML = '';
         if (document.getElementById("text-search").value != "") {
             var text = document.getElementById("text-search").value;
-            console.log(text);
+           // console.log(text);
             $.ajax({
                 type: 'post',
                 url: "{{ route('sujet.searching') }}",
@@ -164,7 +164,7 @@
                     viewprops(response);
                 },
                 error: function() {
-                    console.log('Erreur');
+                 //   console.log('Erreur');
                 }
             });
         }

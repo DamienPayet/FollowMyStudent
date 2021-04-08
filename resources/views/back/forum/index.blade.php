@@ -26,7 +26,7 @@
                             <div class="alert alert-success">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">
-                                    <i class="fas fa-times"></i>
+                                        <i class="fas fa-times"></i>
                                     </span>
                                 </button>
                                 <span>{{ session('status') }}</span>
@@ -156,11 +156,11 @@
                                                     @foreach($categorie->sujets as $sujet)
                                                     <tr class="text-center">
                                                         <td>{{ $sujet->id }}</td>
-                                                        <td>{{$sujet->titre}}</td>
+                                                        <td>{{ $sujet->titre }}</td>
                                                         <td>{{ $sujet->created_at }}</td>
                                                         <td>
                                                             <div style="display: inline-flex;">
-                                                                <a rel="tooltip" class="btn btn-linght" href="{{ route('categorie.edit', $categorie->id) }}" data-original-title="" title="">
+                                                                <a rel="tooltip" class="btn btn-linght" href="{{ route('sujet.edit', $sujet->id) }}" data-original-title="" title="">
                                                                     <i class="fas fa-edit"></i>
                                                                     <div class="ripple-container"></div>
                                                                 </a>
@@ -223,7 +223,7 @@
     }
 
     function up(id, type) {
-        console.log("chupa me");
+       // console.log("chupa me");
         switch (type) {
             case "section":
                 objet = document.getElementById('section_' + id);

@@ -12,12 +12,20 @@ class UserSeeder extends Seeder
   public function run()
   {
     DB::table('users')->insert([
+      'email' => 'admin@fms.fr',
+      'password' => bcrypt('yLkx2J%mA8LeKX'),
+      'statut' => 'admin',
+      'image_profil' => 'images/default-admin.png',
+      'email_verified_at' => now(),
+      'administrateur_id' => 1
+    ]);
+    DB::table('users')->insert([
       'email' => 'admin@gmail.com',
       'password' => bcrypt('admin'),
       'statut' => 'admin',
       'image_profil' => 'images/default-admin.png',
       'email_verified_at' => now(),
-      'administrateur_id' => 1
+      'administrateur_id' => 2
     ]);
     DB::table('users')->insert([
       'email' => 'florent@gmail.com',
@@ -41,12 +49,12 @@ class UserSeeder extends Seeder
       'eleve_id' => 3
     ]);
     DB::table('users')->insert([
-      'email' => 'julian@gmail.com',
-      'password' => bcrypt('julian'),
+      'email' => 'julian.courbez@gmail.com',
+      'password' => bcrypt('suFRqHT2E-6'),
       'statut' => 'admin',
       'image_profil' => 'images/default-admin.png',
       'email_verified_at' => now(),
-      'administrateur_id' => 2
+      'administrateur_id' => 3
     ]);
     DB::table('users')->insert([
       'email' => 'eleve@gmail.com',

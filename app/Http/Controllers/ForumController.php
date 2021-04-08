@@ -20,7 +20,7 @@ class ForumController extends Controller
 {
     public function __construct()
     {
-      $this->middleware('email');
+        $this->middleware('email');
     }
     public function index()
     {
@@ -50,7 +50,6 @@ class ForumController extends Controller
         $sujet->resolue = !$sujet->resolue;
         $sujet->update();
         return redirect()->route('forum')->with('success', 'Sujet résolu !');
-
     }
     public function forum_messujets($id)
     {
@@ -68,56 +67,55 @@ class ForumController extends Controller
         $sujet->update();
         return view('front/forum.show', compact('sujet', 'reponses', 'nbReponse', 'users'));
     }
-    public function edit_sujet(Sujet $sujet)
+    public function edit_sujet($id)
     {
-      $sujet = Sujet::find($sujet);
-      $categorie = SujetCategorie::all();
-      if (Auth::user()->id == $sujet->first()->user_id) {
-        return view('front.forum.edit_sujet', compact('sujet', 'categorie'));
-    }else {
-      return redirect()->route('forum')->withErrors(['Erreur', 'Accès refusé']);
-    }
+        $sujet = Sujet::find($id);
+        $categorie = SujetCategorie::all();
+        if (Auth::user()->id == $sujet->user_id || Auth::user()->statut == "admin" ) {
+            return view('front.forum.edit_sujet', compact('sujet', 'categorie'));
+        } else {
+            return redirect()->route('forum')->withErrors(['Accès refusé']);
+        }
     }
 
     public function update_sujet(Request $request, Sujet $sujet)
     {
-//
-// On oblige à respecter certains critères avant de valider la requête
-$validator = Validator::make($request->all(), [
-    'titre' => 'required|min:10|max:255',
-    'description' => 'required|min:15',
-    // 'captcha' => 'required|captcha',
-]);
-// Si la validation échoue
-if ($validator->fails()) {
-    return back()->withInput()->withErrors($validator->errors());
-}
-$s = Sujet::find($sujet->id);
+        //
+        // On oblige à respecter certains critères avant de valider la requête
+        $validator = Validator::make($request->all(), [
+            'titre' => 'required|min:10|max:255',
+            'description' => 'required|min:15',
+            'captcha' => 'required|captcha',
+        ]);
+        // Si la validation échoue
+        if ($validator->fails()) {
+            return back()->withInput()->withErrors($validator->errors());
+        }
+        $s = Sujet::find($sujet->id);
 
-$bad_words_sujet = $request->get('titre');
-$bad_words_message = $request->get('description');
+        $bad_words_sujet = $request->get('titre');
+        $bad_words_message = $request->get('description');
 
-$s->titre = Profanity::blocker($bad_words_sujet)->filter();
-$s->description = Profanity::blocker($bad_words_message)->filter();
+        $s->titre = Profanity::blocker($bad_words_sujet)->filter();
+        $s->description = Profanity::blocker($bad_words_message)->filter();
 
-//$s->titre = $request->get('titre');
-//$s->description = $request->get('description');
-$s->categorie_id = $request->get('categorie');
-$s->user_id = Auth::user()->id;
-$s->updated_at = now();
-$s->save();
+        //$s->titre = $request->get('titre');
+        //$s->description = $request->get('description');
+        $s->categorie_id = $request->get('categorie');
+        $s->user_id = Auth::user()->id;
+        $s->updated_at = now();
+        $s->save();
 
-return redirect()->route('sujet.show', $s)->withStatus(__('Sujet créé avec succès.'));
+        return redirect()->route('sujet.show', $s)->withStatus(__('Sujet créé avec succès.'));
     }
 
     public function update_reponse(Request $request, $reponse)
     {
-      $maReponse = SujetReponse::find($reponse);
-      $maReponse->reponse = $request->reponse;
-      $maReponse->updated_at = now();
-      $maReponse->save();
-      return response()->json(["success"=>"Modification réussite !"]);
-
+        $maReponse = SujetReponse::find($reponse);
+        $maReponse->reponse = $request->reponse;
+        $maReponse->updated_at = now();
+        $maReponse->save();
+        return response()->json(["success" => "Modification réussite !"]);
     }
 
     public function store_reponse(Request $request, $sujet)
@@ -136,10 +134,10 @@ return redirect()->route('sujet.show', $s)->withStatus(__('Sujet créé avec suc
         $reponse = new SujetReponse;
 
         $bad_words_sujet = $request->get('reponse');
-    
+
         $reponse->reponse = Profanity::blocker($bad_words_sujet)->filter();
 
-       // $reponse->reponse = $request->get('reponse');
+        // $reponse->reponse = $request->get('reponse');
         $reponse->user_id = $user;
         $reponse->sujet_id = $sujet;
         $reponse->nb_vue = 0;
@@ -205,7 +203,7 @@ return redirect()->route('sujet.show', $s)->withStatus(__('Sujet créé avec suc
         $sujet = new Sujet;
         $bad_words_sujet = $request->get('titre');
         $bad_words_message = $request->get('description');
-    
+
         $sujet->titre = Profanity::blocker($bad_words_sujet)->filter();
         $sujet->description = Profanity::blocker($bad_words_message)->filter();
 
@@ -219,7 +217,7 @@ return redirect()->route('sujet.show', $s)->withStatus(__('Sujet créé avec suc
         $sujet->save();
         return redirect()->route('forum')->with('success', 'Sujet créé  avec succès');
 
-      //  return redirect()->route('forum')->withStatus(__('Sujet créé avec succès.'));
+        //  return redirect()->route('forum')->withStatus(__('Sujet créé avec succès.'));
     }
 
     public function searching(Request $request)

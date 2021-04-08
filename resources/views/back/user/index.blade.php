@@ -9,7 +9,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header card-header-primary">
-            <h4 class="card-title ">Tout les utilisateurs</h4>
+            <h4 class="card-title ">Tous les utilisateurs</h4>
           </div>
           <div class="card-body">
             @if (session('status'))
@@ -92,7 +92,7 @@
                         <form action="{{route('users.destroy', $u->id)}}" method="post">
                           @csrf
                           @method('DELETE')
-                          <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" onclick="return confirm('Est tu sur de vouloir supprimer cet utilisateur ?')">
+                          <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" onclick="return confirm('Es-tu sur de vouloir supprimer cet utilisateur ?')">
                             <i class="fas fa-times"></i>
                           </button>
                         </form>
