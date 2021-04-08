@@ -12,7 +12,7 @@
                         @method('post')
                         <div class="card ">
                             <div class="card-header card-header-primary">
-                                <h4 class="card-title">Ajouter une question</h4>
+                                <h4 class="card-title">Modifier une section</h4>
                                 <p class="card-category"></p>
                             </div>
                             <!-- Retour -->

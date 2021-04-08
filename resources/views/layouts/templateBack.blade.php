@@ -179,7 +179,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </li>
                         <li class="nav-item">
                             <a href="{{route('reponse.index')}}" class="nav-link">
-                                <i class="nav-icon fas  fa-question-circle"></i>
+                                <i class="fas fa-reply-all"></i>
                                 <p>
                                     Gestion des réponses
                                 </p>
@@ -187,7 +187,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </li>
                         <li class="nav-item">
                             <a href="{{route('contact.index')}}" class="nav-link">
-                                <i class="nav-icon fas fa-question-circle"></i>
+                                <i class="fab fa-wpforms"></i>
                                 <p>
                                     Demandes de contact
                                 </p>

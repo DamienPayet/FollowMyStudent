@@ -56,9 +56,9 @@
                   <tr class="text-center">
                     <td>{{ $contacts->id }}</td>
                     @if ($contacts->traite == 0)
-                    <td class="alert alert-danger">{{ $contacts->traite }}</td>
+                    <td class="alert alert-danger">NON</td>
                     @elseif ($contacts->traite == 1)
-                    <td class="alert alert-success">{{ $contacts->traite }}</td>
+                    <td class="alert alert-success">OUI</td>
                     @endif
                     <td>{{ $contacts->nom }}</td>
                     <td>{{ $contacts->prenom }}</td>
