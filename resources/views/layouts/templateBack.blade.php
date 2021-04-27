@@ -114,7 +114,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </a>
                     </div>
                 </div>
-
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -127,21 +126,33 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('users.index')}}" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
                                     Utilisateurs
+                                    <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{route('users.index')}}" class="nav-link">
+                                        <i class="nav-icon fas fa-users"></i>
+                                        <p>
+                                            Gestion des utilisateurs
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('avatar.index')}}" class="nav-link">
+                                        <i class="nav-icon fas fa-users"></i>
+                                        <p>
+                                            Gestion des avatars
+                                        </p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{route('avatar.index')}}" class="nav-link">
-                                <i class="nav-icon fas fa-users"></i>
-                                <p>
-                                    Gestion avatars
-                                </p>
-                            </a>
-                        </li>
+
                         <li class="nav-item">
                             <a href="{{route('offre.index')}}" class="nav-link">
                                 <i class="nav-icon fas fa-list-alt"></i>
@@ -158,8 +169,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </p>
                             </a>
                         </li>
-
-
                         <li class="nav-item">
                             <a href="{{route('forum.index')}}" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
@@ -167,23 +176,33 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     Forum
                                 </p>
                             </a>
-
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('questionnaire.index')}}" class="nav-link">
-                                <i class="nav-icon fas  fa-question-circle"></i>
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-question-circle"></i>
                                 <p>
                                     Questionnaire
+                                    <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('reponse.index')}}" class="nav-link">
-                                <i class="nav-icon fas fa-reply-all"></i>
-                                <p>
-                                    Gestion des réponses
-                                </p>
-                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{route('questionnaire.index')}}" class="nav-link">
+                                        <i class="nav-icon fas  fa-question-circle"></i>
+                                        <p>
+                                            Gestion du questionnaire
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('reponse.index')}}" class="nav-link">
+                                        <i class="nav-icon fas fa-reply-all"></i>
+                                        <p>
+                                            Gestion des réponses
+                                        </p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('contact.index')}}" class="nav-link">
@@ -201,6 +220,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </p>
                             </a>
                         </li>
+
+
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
