@@ -8,7 +8,7 @@ class SujetReponse extends Model
 {
   public function sujet()
   {
-    return $this->belongTo('App\Sujet');
+    return $this->belongsTo('App\Sujet');
   }
   public function user()
   {

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Sujet;
 use App\Section;
 use App\SujetCategorie;
+use App\SujetReponse;
+use App\User;
 use Image;
 
 class ForumBackController extends Controller
@@ -58,6 +60,41 @@ class ForumBackController extends Controller
         $section->delete();
         return redirect()->route('forum.index')->withStatus(__('Section supprimée avec succès'));
     }
+
+
+    // COMMENTAIRES 
+    public function index_commentaire()
+    {
+        $commentaires = SujetReponse::all();
+
+        return view('back.forum.commentaire.index', compact('commentaires'));
+    }
+    public function edit_commentaire($id)
+    {
+        $commentaire = SujetReponse::find($id);
+        return view('back.forum/commentaire/edit',  compact('commentaire'));
+    }
+
+    public function update_commentaire(Request $request, $id)
+    {
+        $commentaire = SujetReponse::find($id);
+        $commentaire->reponse = $request->get('reponse');
+
+        $commentaire->update();
+        return redirect()->route("commentaire.index")->with('success', 'Commentaire mis à jour !');
+    }
+
+    public function destroy_commentaire($id)
+    {
+        $commentaire = SujetReponse::find($id);
+
+        $commentaire->delete();
+        return redirect()->route('commentaire.index')->withStatus(__('Commentaire supprimé avec succès'));
+    }
+
+
+    // CATEGORIE
+
     public function create_categorie($id)
     {
         $section = Section::find($id);
@@ -114,6 +151,7 @@ class ForumBackController extends Controller
         $categorie->delete();
         return redirect()->route('forum.index')->withStatus(__('Catégorie supprimée avec succès'));
     }
+    // SUJET
     public function destroy_sujet($id)
     {
         $sujet = Sujet::find($id);

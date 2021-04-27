@@ -127,7 +127,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-users"></i>
+                                <i class="nav-icon fas fa-user-cog"></i>
                                 <p>
                                     Utilisateurs
                                     <i class="right fas fa-angle-left"></i>
@@ -136,7 +136,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="{{route('users.index')}}" class="nav-link">
-                                        <i class="nav-icon fas fa-users"></i>
+                                        <i class="nav-icon fas fa-user-edit"></i>
                                         <p>
                                             Gestion des utilisateurs
                                         </p>
@@ -144,7 +144,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{route('avatar.index')}}" class="nav-link">
-                                        <i class="nav-icon fas fa-users"></i>
+                                        <i class="nav-icon fas fa-smile"></i>
                                         <p>
                                             Gestion des avatars
                                         </p>
@@ -152,7 +152,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </li>
                             </ul>
                         </li>
-
                         <li class="nav-item">
                             <a href="{{route('offre.index')}}" class="nav-link">
                                 <i class="nav-icon fas fa-list-alt"></i>
@@ -170,16 +169,36 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('forum.index')}}" class="nav-link">
-                                <i class="nav-icon fas fa-users"></i>
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-child"></i>
                                 <p>
                                     Forum
+                                    <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{route('forum.index')}}" class="nav-link">
+                                        <i class="nav-icon fas fa-users"></i>
+                                        <p>
+                                            Gestion du forum
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('commentaire.index')}}" class="nav-link">
+                                        <i class="nav-icon fas fa-comments"></i>
+                                        <p>
+                                            Gestion des commentaires
+                                        </p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
+
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-question-circle"></i>
+                                <i class="nav-icon fas fa-question"></i>
                                 <p>
                                     Questionnaire
                                     <i class="right fas fa-angle-left"></i>

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Auth::routes(['verify' => true]);
 
-route::get('/tester','UserController@test');
+route::get('/tester', 'UserController@test');
 Route::get('/logger', 'LogController@access')->name('log');
 
 Route::group(['middleware' => 'auth'], function () {
@@ -32,6 +32,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::delete('offres-deleteselection', 'offreController@deleteAll');
     //route admin gestion forum
     Route::resource('back/forum', 'ForumBackController'); //Voir pour modifier ça !!!
+
     Route::get('/back/esection/{id}', 'ForumBackController@edit')->name('section.edit');
     Route::post('/back/ssection', 'ForumBackController@store')->name('section.store');
     Route::post('/back/usection/{id}', 'ForumBackController@update')->name('section.update');
@@ -43,6 +44,10 @@ Route::group(['middleware' => 'admin'], function () {
     Route::delete('/back/dforum/{id}', 'ForumBackController@destroy_categorie')->name('categorie.destroy');
     Route::delete('/back/dsujet/{id}', 'ForumBackController@destroy_sujet')->name('sujet.destroy');
 
+    Route::get('/back/commentaire', 'ForumBackController@index_commentaire')->name('commentaire.index');
+    Route::get('/back/commentaire/{id}/edit', 'ForumBackController@edit_commentaire')->name('commentaire.edit');
+    Route::post('/back/commentaire/{id}/update', 'ForumBackController@update_commentaire')->name('commentaire.update');
+    Route::delete('/back/commentaire/{id}/destroy', 'ForumBackController@destroy_commentaire')->name('commentaire.destroy');
     //route admin gestion page accueil
     Route::resource('back/home', 'HomeBackController');
 
@@ -87,8 +92,8 @@ Route::group(['middleware' => 'auth', 'email'], function () {
     Route::post('/back/order_up', 'QuestionnaireBackController@update_order')->name('updateorder');
     Route::post('/back/order_up/quest', 'QuestionnaireBackController@update_orderQuest')->name('updateorderquest');
     //Route redirection vers forum acceuil
-   // Route::resource('front/forum', 'ForumController');
-Route::get('front/forum', 'ForumController@index')->name('forum');
+    // Route::resource('front/forum', 'ForumController');
+    Route::get('front/forum', 'ForumController@index')->name('forum');
     Route::get('front/forum/categorie/{id}', 'ForumController@index_sujet')->name('sujet.index');
     Route::get('front/forum/create', 'ForumController@create')->name('sujet.create');
     Route::get('front/forum/sujet/{sujet}', 'ForumController@show_sujet')->name('sujet.show');
