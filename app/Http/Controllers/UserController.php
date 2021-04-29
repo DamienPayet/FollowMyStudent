@@ -27,10 +27,7 @@ class UserController extends Controller
    */
   public function test()
   {
-    $user = auth::user();
-    $part = QuestionnairePart::all();
-    $question = QuestionnaireQuestion::all();
-    return view('test', compact("user", "part", "question"));
+
   }
   public function index()
   {

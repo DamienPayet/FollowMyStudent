@@ -1,77 +1,124 @@
 <!DOCTYPE html>
-<html lang="fr">
-
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="colorlib.com">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>FollowMyStudent - Questionnaire</title>
-    <link rel="icon" type="image/png" href="{{url('front/images/favicon.ico')}}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FMS / Questionnaire</title>
 
-    <!-- Font Icon -->
-    <link rel="stylesheet" href="{{url('front/questionnaire/fonts/material-icon/css/material-design-iconic-font.min.css')}}">
-    <link rel="stylesheet" href="{{url('front/questionnaire/css/style.css')}}">
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{url('/front/questionnaire/lib/fontawesome-free/css/all.min.css')}}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{url('/front/questionnaire/css/adminlte.min.css')}}">
 </head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
 
-<body>
-<div class="row">
-        <button type="button" class="btn btn-success"><a href="{{ route('index') }}">Retour</a></button>
-    </div>
-    <div class="main">
-    
-        <label id="startval" style="display: none ">{{$startInt}}</label>
-      
-        <div class="container">
-            <h2>Questionnaire ASI</h2>
-            <form method="POST" id="signup-form" class="signup-form" enctype="multipart/form-data">
-                @foreach($part as $partie)
-                <h3>
-                    {{$partie->titre}}
-                </h3>
-                <fieldset>
-                    <div class="question_div">
-                        @foreach($partie->questions as $question)
-                        <div class="form-group">
-                            <label class="label_question">{{$question->question}}</label>
-                            <input class="part_{{$partie->position}}" type="text" name="{{$partie->position}}" id="{{$question->id}}" placeholder="{{$question->question}}" />
-                        </div>
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <img width="100%" src="{{url("/front/images/v2.png")}}">
+    </aside>
+
+    <div class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Questionnaire suivi des anciens éléves</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-12">
+                        <!-- general form elements -->
+
+                        @foreach($part as $par)
+
+
+                            <fieldset class="field" id="{{$par->position}}">
+                                <div class="card card-green">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Patie {{$par->position}} / {{$part->count()}}</h3>
+                                    </div>
+                                    <div class="card-body">
+
+
+                                        <form class="quest_{{$par->position}}" id="{{$par->position}}">
+
+                                            <input type="hidden" id="info_{{$par->position}}" value="{{$par->id}}"
+                                                   name="part">
+                                            @foreach($par->questions as $question)
+
+                                                <div class="form-group">
+                                                    <label
+                                                        for="question_{{$question->id}}">{{$question->question}}</label>
+                                                    <input class=" form-control question_{{$par->position}}"
+                                                           type="text"
+                                                           name="question_{{$question->id}}"
+                                                           id="question_{{$question->id}}" required/>
+                                                </div>
+                                            @endforeach
+                                            <div class="text-center">
+                                                <button class="btn btn-info" type="submit" id="btn_next" href="#next"
+                                                        role="menuitem">Suivant
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </fieldset>
                         @endforeach
-                    </div>
-                </fieldset>
-                @endforeach
-                <h3>
-                    FIN
-                </h3>
-                <fieldset>
-                    <div class="question_div">
-                        <div class="form-group">
-                            <label styleclass="label_question" style="
-    text-align: center;
-    font-size: xxx-large;
-    color: #1ed760;
-">Merci d'avoir participé au questionnaire.</label>
-                            <label styleclass="label_question" style="
-    text-align: center;
-    font-size: x-large;
-    color: #1ed760;
-">Cliquer sur finish pour retourner a la page d'acceuil.</label>
-                        </div>
-                    </div>
-                </fieldset>
-            </form>
+                       <!-- <fieldset class="field" id="12">
+                            <div class="card card-success">
+                                <div class="card-header">
+                                    <h3 class="card-title">fin</h3>
+                                </div>
+                                <div class="card-body">
+                                    <a href="{{url('/')}}">fin </a>
+DSQQDSDQS
+                                    DQS
+                                    DQS
+                                    DSQS
+                                    QDS
+                                    QDS
+                                    QDS
+                                    <a href="{{url('/')}}">fin</a>
 
-        </div>
-
+                                </div>
+                            </div>
+                        </fieldset>-->
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
+    <footer class="main-footer">
+        <div class="float-right d-none d-sm-block">
+            <b>Version</b>1.0.0
+        </div>
+        <strong>Copyright &copy; 2020-2021 <a href="https://adminlte.io">FMS</a>.</strong> All rights reserved.
+    </footer>
 
-    <!-- JS -->
-    <script src="{{url('front/questionnaire/vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{url('front/questionnaire/vendor/jquery-validation/dist/jquery.validate.min.js')}}"></script>
-    <script src="{{url('front/questionnaire/vendor/jquery-validation/dist/additional-methods.min.js')}}"></script>
-    <script src="{{url('front/questionnaire/vendor/jquery-steps/jquery.steps.js')}}"></script>
-    <script src="{{url('front/questionnaire/js/main.js')}}"></script>
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+<script src="{{url('/front/questionnaire/lib/jquery/jquery.min.js')}}"></script>
+<script src="{{url('/front/questionnaire/lib/validate/jquery.validate.js')}}"></script>
+<script src="{{url('/front/questionnaire/lib/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{url('/front/questionnaire/lib/js/adminlte.min.js')}}"></script>
+<script src="{{url('/front/questionnaire/js/main.js')}}"></script>
 
 </body>
-
 </html>
+

@@ -33,7 +33,7 @@
                                 </button>
                             </a>
                         </div>
-                       
+
                         <ul>
                             @foreach($post as $p)
                                 <li id="{{$p->id}}" class="draggable" draggable="true">
@@ -54,7 +54,7 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <button
-                                                        onclick="return confirm(' ❌ Est tu sur de vouloir supprimer ce post ❓')"
+                                                        onclick="return confirm(' ❌ Es tu sur de vouloir supprimer ce post ❓')"
                                                         style='margin-right:10px; float : right ;'
                                                         class="btn btn-danger">
                                                         <i class="fas fa-times-circle"></i>

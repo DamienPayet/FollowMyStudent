@@ -17,6 +17,7 @@
                                     <center>OUPS! Tu n'as pas encore répondu au questionnaire.</center>
                                 </div>
                             </div>
+
                             @elseif ($user->qreponses->count() < $question->count())
                             <div class="alert alert-warning" role="alert">
                                 <div class="container">

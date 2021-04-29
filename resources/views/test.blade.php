@@ -1,75 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="colorlib.com">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign Up Form</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FMS / Questionnaire</title>
 
-    <!-- Font Icon -->
+    <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
-          href="{{url('/front/questionnaire/fonts/material-icon/css/material-design-iconic-font.min.css')}}">
-
-    <!-- Main css -->
-    <link rel="stylesheet" href="{{url('/front/questionnaire/css/style.css')}}">
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{url('/front/questionnaire/lib/fontawesome-free/css/all.min.css')}}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{url('/front/questionnaire/css/adminlte.min.css')}}">
 </head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
 
-<body>
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <img width="100%" src="{{url("/front/images/v2.png")}}">
+    </aside>
 
-<div class="main">
-
-    <div class="container">
-        <div class="signup-content">
-            <div class="signup-desc">
-                <div class="signup-desc-content">
-                    <h2><span>Questionnaire</span>ASI</h2>
-                    <p class="title">Bienvenue dans le questionnaire</p>
-                    <p class="title">Merci de veiller a entierement completer le questionnaire</p>
-
-                    <img src="{{url('/front')}}" alt="" class="signup-img">
+    <div class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Questionnaire suivi des anciens éléves</h1>
+                    </div>
                 </div>
             </div>
-            <div class="signup-form-conent">
+        </section>
 
-                @foreach($part as $par)
-                    <h3></h3>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-12">
+                        <!-- general form elements -->
+                        @foreach($part as $par)
 
-                    <fieldset class="field" id="{{$par->position}}">
-                        <form class="quest_{{$par->position}}" id="{{$par->position}}">
-                            <span class="step-current">Step {{$par->position}} / {{$part->count()}}</span>
-                            @foreach($par->questions as $question)
-                                <div class="form-group">
-                                    <input class="question" type="text" name="question_{{$question->id}}"
-                                           id="question_{{$question->id}}" required/>
-                                    <label for="question_{{$question->id}}">{{$question->question}}</label>
+
+                            <fieldset class="field" id="{{$par->position}}">
+                                <div class="card card-green">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Patie {{$par->position}} / {{$part->count()}}</h3>
+                                    </div>
+                                    <div class="card-body">
+
+
+                                        <form class="quest_{{$par->position}}" id="{{$par->position}}">
+
+                                            <input type="hidden" id="info_{{$par->position}}" value="{{$par->id}}"
+                                                   name="part">
+                                            @foreach($par->questions as $question)
+
+                                                <div class="form-group">
+                                                    <label
+                                                        for="question_{{$question->id}}">{{$question->question}}</label>
+                                                    <input class=" form-control question_{{$par->position}}"
+                                                           type="text"
+                                                           name="question_{{$question->id}}"
+                                                           id="question_{{$question->id}}" required/>
+                                                </div>
+                                            @endforeach
+                                            <div class="text-center">
+                                                <button class="btn btn-info" type="submit" id="btn_next" href="#next"
+                                                        role="menuitem">Suivant
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
-                                @for($i = 0 ; $i < strlen($question->question)/25 ; $i++)
-                                    <br>
-                                @endfor
-                            @endforeach
-                            <div class="actions clearfix">
-                                <ul role="menu" aria-label="Pagination">
-                                    <li aria-hidden="false" aria-disabled="false"><button type="submit" id="btn_next" href="#next"
-                                                                                     role="menuitem">Suivant</button></li>
-                                </ul>
-                            </div>
-                        </form>
-                    </fieldset>
-                @endforeach
-
-
+                            </fieldset>
+                        @endforeach
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
     </div>
+    <footer class="main-footer">
+        <div class="float-right d-none d-sm-block">
+            <b>Version</b>1.0.0
+        </div>
+        <strong>Copyright &copy; 2020-2021 <a href="https://adminlte.io">FMS</a>.</strong> All rights reserved.
+    </footer>
 
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
 </div>
-
-<!-- JS -->
-<script src="{{url('/front/questionnaire/vendor/jquery/jquery.min.js')}}"></script>
-<script src="{{url('/front/questionnaire/vendor/jquery-validation/dist/jquery.validate.min.js')}}"></script>
+<!-- ./wrapper -->
+<script src="{{url('/front/questionnaire/lib/jquery/jquery.min.js')}}"></script>
+<script src="{{url('/front/questionnaire/lib/validate/jquery.validate.js')}}"></script>
+<script src="{{url('/front/questionnaire/lib/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{url('/front/questionnaire/lib/js/adminlte.min.js')}}"></script>
 <script src="{{url('/front/questionnaire/js/main.js')}}"></script>
-</body>
 
+</body>
 </html>
+

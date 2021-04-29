@@ -127,6 +127,8 @@ Route::group(['middleware' => 'auth', 'email'], function () {
     Route::get('front/questions', 'StudentFrontController@startQuestionnaire')->name('questions');
     Route::get('front/end_question', 'StudentFrontController@end_question')->name('end_question');
     Route::get('front/response_store', 'StudentFrontController@response_store')->name('response_store');
+    Route::get('front/get_info_quest', 'StudentFrontController@get_info_quest')->name('get_info_quest');
+
 
     Route::get('front/mentions/a-propos', 'MentionsLegController@nous')->name('mentions.apropos');
 
