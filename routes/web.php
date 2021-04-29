@@ -22,7 +22,9 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => 'admin'], function () {
     //route affichage des logs :
     Route::get('/back/log', 'LogController@index')->name('log.view');
+    Route::get('/back/log/export', 'LogController@export')->name('log.export');
     Route::delete('/back/log/destroy/{id}', 'LogController@destroy')->name('log.destroy');
+    Route::delete('logs-deleteselection', 'LogController@deleteAll');
     Route::get('add-to-log', 'LogController@myTestAddToLog');
 
 

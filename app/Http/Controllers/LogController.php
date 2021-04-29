@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Response;
 use App\LogActivity as LogActivityModel;
+use Illuminate\Support\Facades\DB;
 
 class LogController extends Controller
 {
@@ -53,4 +54,12 @@ class LogController extends Controller
         $log->delete();
         return redirect()->route('log.view')->with('success', 'Log supprimé avec succès !');
     }
+    public function deleteAll(Request $request)
+  {
+    $ids = $request->ids;
+    DB::table("log_activities")->whereIn('id', explode(",", $ids))->delete();
+    return response()->json(['success' => "Logs(s) supprimé(s) avec succès."]);
+
+    \LogActivity::addToLog('Admin - Suppression logs');
+  }
 }

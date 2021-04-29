@@ -166,7 +166,7 @@
                     viewmessage(response);
                 },
                 error: function() {
-                  //  console.log('Erreur');
+                    //  console.log('Erreur');
                 }
             });
         }
@@ -190,7 +190,7 @@
                     viewmessage(response);
             },
             error: function() {
-              // console.log('Erreur de sync');
+                // console.log('Erreur de sync');
             }
         });
         emoji();
@@ -273,7 +273,7 @@
 
             },
             error: function() {
-               // console.log('Erreur');
+                // console.log('Erreur');
             }
         });
 

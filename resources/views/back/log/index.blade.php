@@ -32,6 +32,17 @@
                             </div>
                         </div>
                         @endif
+                        <div>
+                            <a href="{{route('log.export')}}">
+                                <button style='margin-left:10px;' type="submit" class="btn btn-primary">
+                                    Exporter les logs
+                                </button>
+                            </a>
+                            <button style='margin-right:10px; float : right ;' type="submit" class="btn btn-danger delete_all" data-url="{{ url('logs-deleteselection') }}">
+                                Supprimer la séléction
+                            </button>
+                        </div> <br /> <br />
+
                         <div class="table-responsive">
 
                             <table id="table_id" class="table">
@@ -45,6 +56,7 @@
                                         <th>Utilisateur</th>
                                         <th>Date</th>
                                         <th>Action</th>
+                                        <th width="50px"><input type="checkbox" id="master"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -56,20 +68,20 @@
                                         <td class="text-warning">{{ $log->ip }}</td>
                                         <td class="text-danger">{{ $log->agent }}</td>
                                         <td>
-                                        @if ($log->user->statut == "eleve")
-                                        {{ $log->user->eleve->prenom }}
-                                        @elseif ($log->user->statut == "admin")
-                                        {{ $log->user->admin->prenom }}
-                                        @endif
+                                            @if ($log->user->statut == "eleve")
+                                            {{ $log->user->eleve->prenom }}
+                                            @elseif ($log->user->statut == "admin")
+                                            {{ $log->user->admin->prenom }}
+                                            @endif
 
-                                        @if ($log->user->statut == "eleve")
-                                        {{ $log->user->eleve->nom }}
-                                        @elseif ($log->user->statut == "admin")
-                                        {{ $log->user->admin->nom }}
-                                        @endif
+                                            @if ($log->user->statut == "eleve")
+                                            {{ $log->user->eleve->nom }}
+                                            @elseif ($log->user->statut == "admin")
+                                            {{ $log->user->admin->nom }}
+                                            @endif
                                         </td>
                                         <td>
-                                          {{ \Carbon\Carbon::parse($log->created_at)->format('d/m/Y  H:i:s')}}
+                                            {{ \Carbon\Carbon::parse($log->created_at)->format('d/m/Y  H:i:s')}}
                                         </td>
                                         <td>
                                             <div style="display: inline-flex;">
@@ -81,6 +93,9 @@
                                                     </button>
                                                 </form>
                                             </div>
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" class="sub_chk" data-id="{{$log->id}}">
                                         </td>
                                     </tr>
                                     @endforeach
