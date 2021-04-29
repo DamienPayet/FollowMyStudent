@@ -28,7 +28,7 @@
           <div class="card-body">
 
             <div>
-              <button style='margin-right:10px; float : right ;' type="submit" class="btn btn-danger delete_all" data-url="{{ url('users-deleteselection') }}">
+              <button style='margin-right:10px; float : right ;' type="submit" class="btn btn-danger delete_all" data-url="{{ url('commentaires-deleteselection') }}">
                 Supprimer la séléction
               </button>
             </div>
