@@ -150,6 +150,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         </p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route('archive.index')}}" class="nav-link">
+                                        <i class="nav-icon fas fa-user-edit"></i>
+                                        <p>
+                                            Utilisateurs archivés
+                                        </p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item">

@@ -68,6 +68,9 @@ Route::group(['middleware' => 'admin'], function () {
 
     //Route Gestion User
     Route::resource('back/users', UserController::class);
+    Route::get('/back/archives', 'UserController@index_archive')->name('archive.index');
+    Route::post('/back/archives/{id}', 'UserController@archiver')->name('user.archiver');
+
     Route::get('back/users/mdp/{users}', 'UserController@editMdp')->name('users.editMdp');
     Route::put('back/users/mdp/{users}', 'UserController@updateMdp')->name('users.updateMdp');
     Route::delete('users-deleteselection', 'UserController@deleteAll');

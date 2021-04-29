@@ -87,6 +87,13 @@
                           <div class="ripple-container"></div>
                         </a>
                         @if ($u->id != auth()->id())
+                        <form action="{{ route('user.archiver', $u) }}" method="post">
+                          @csrf
+                          @method('POST')
+                          <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" onclick="return confirm('Est tu sur de vouloir archiver cet utilisateur? Il ne pourra plus se connecter au site.')">
+                            <i class="fas fa-check"></i>
+                          </button>
+                        </form>
                         <form action="{{route('users.destroy', $u->id)}}" method="post">
                           @csrf
                           @method('DELETE')

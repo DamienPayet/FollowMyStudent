@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\QuestionnairePart;
 use App\QuestionnaireQuestion;
-use
-  Illuminate\Http\Request;
+use Illuminate\Http\Request;
 use App\User;
 use App\Eleve;
 use App\Admin;
@@ -16,6 +15,7 @@ use Validator;
 use Image;
 use Illuminate\Support\Facades\DB;
 use App\Mail\WelcomeMail;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -111,7 +111,7 @@ class UserController extends Controller
       "nom" => $request->get("nom"),
       "prenom" => $request->get("prenom"),
       "email" => $request->get("email"),
-      "password"=> $request->input('mdp'),
+      "password" => $request->input('mdp'),
     ]);
     \Mail::to($email)->send(new WelcomeMail($data));
 
@@ -326,5 +326,39 @@ class UserController extends Controller
     }
     \LogActivity::addToLog('Admin - Suppression multiples avatars');
     return response()->json(['success' => "Avatars supprimés avec succès."]);
+  }
+  public function index_archive()
+  {
+    \LogActivity::addToLog('Admin - Affichage utilisateurs archivés');
+    $users = User::all();
+    $archived_users = DB::table('users')->where('archived', '=', 1)->count();
+
+    return view('back.user.archive', compact('users', 'archived_users'));
+  }
+  public function archiver(Request $request, $id)
+  {
+    $user = User::find($id);
+    \LogActivity::addToLog('Admin - Archivage utilisateur');
+    if ($user->archived == 0) {
+      $user->archived = 1;
+      $user->archived_at = now();
+      $user->password = bcrypt(Str::random(16));
+      $user->email_verified_at = null;
+      $user->password_change_at = null;
+
+      $user->update();
+      return redirect()->route('archive.index')->withStatus(__('Utilisateur archivé!'));
+    } elseif ($user->archived == 1) {
+      $user->archived = 0;
+      $user->archived_at = null;
+      $user->update();
+
+      $token = Str::random(60);
+      $resetpassword = $user;
+      $resetpassword->sendPasswordResetNotification($token);
+
+      return redirect()->route('users.index')->withStatus(__('Utilisateur réactivé! Un email lui a été envoyer afin de renouveller son mot de passe'));
+    }
+    return redirect()->route('archive.index')->withStatus(__('Problème non géré'));
   }
 }

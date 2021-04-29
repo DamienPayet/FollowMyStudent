@@ -23,6 +23,8 @@ class CreateUsersTable extends Migration
       $table->timestamp('email_verified_at')->nullable();
       $table->string('password');
       $table->timestamp('password_change_at')->nullable();
+      $table->boolean('archived')->nullable()->default(0);
+      $table->timestamp('archived_at')->nullable();
       $table->rememberToken();
       $table->timestamps();
     });
