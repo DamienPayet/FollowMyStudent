@@ -27,13 +27,14 @@ class UserController extends Controller
    */
   public function test()
   {
-
   }
   public function index()
   {
     \LogActivity::addToLog('Admin - Affichage utilisateurs');
     $user = User::all();
-    return view('back.user.index')->with('user', $user);
+    $archived_users = DB::table('users')->where('archived', '=', 1)->count();
+
+    return view('back.user.index', compact('user', 'archived_users'));
   }
 
   /**

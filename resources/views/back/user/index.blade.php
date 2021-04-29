@@ -26,6 +26,22 @@
               </div>
             </div>
             @endif
+            @if($archived_users >= 1)
+            <div class="alert alert-info">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">
+                </span>
+              </button>
+              <span>
+                <center>{{ __('Il existes des utilisateurs archivés.') }}
+                  <a rel="tooltip" class="btn btn-linght" href="{{route('archive.index')}}" data-original-title="" title="">
+                    <i class="fas fa-eye"></i> Consulter
+                    <div class="ripple-container"></div>
+                  </a>
+                </center>
+              </span>
+            </div>
+            @endif
             <div>
               <a href="{{route('users.create')}}">
                 <button style='margin-left:10px;' type="submit" class="btn btn-primary">
@@ -112,6 +128,7 @@
                   </tr>
                   @endforeach
                 </tbody>
+
               </table>
             </div>
           </div>
