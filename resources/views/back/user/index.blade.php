@@ -68,6 +68,7 @@
                 </thead>
                 <tbody>
                   @foreach ($user as $u)
+                  @if($u->archived == 0)
                   <tr>
                     <td>
                       @if ($u->statut == "eleve")
@@ -126,6 +127,7 @@
                       @endif
                     </td>
                   </tr>
+                  @endif
                   @endforeach
                 </tbody>
 
