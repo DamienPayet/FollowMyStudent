@@ -92,6 +92,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::delete('/back/contact/{id}', 'NousContacterController@destroy')->name('contact.destroy');
     Route::delete('contact-deleteselection', 'NousContacterController@deleteAll');
 });
+Route::get('/logout-archived', '\App\Http\Controllers\Auth\LoginController@logout')->name('deconnexion');
 
 Route::group(['middleware' => 'auth', 'email'], function () {
     Route::post('/back/order_up', 'QuestionnaireBackController@update_order')->name('updateorder');
