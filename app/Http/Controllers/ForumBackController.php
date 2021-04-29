@@ -9,6 +9,7 @@ use App\SujetCategorie;
 use App\SujetReponse;
 use App\User;
 use Image;
+use Illuminate\Support\Facades\DB;
 
 class ForumBackController extends Controller
 {
@@ -92,7 +93,14 @@ class ForumBackController extends Controller
         return redirect()->route('commentaire.index')->withStatus(__('Commentaire supprimé avec succès'));
     }
 
+    public function deleteAll(Request $request)
+    {
+        $ids = $request->ids;
+        DB::table("sujet_reponses")->whereIn('id', explode(",", $ids))->delete();
+        return response()->json(['success' => "Commentaire(s) supprimé(s) avec succès."]);
 
+        \LogActivity::addToLog('Admin - Commentaire utilisateurs');
+    }
     // CATEGORIE
 
     public function create_categorie($id)

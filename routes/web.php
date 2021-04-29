@@ -48,6 +48,8 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/back/commentaire/{id}/edit', 'ForumBackController@edit_commentaire')->name('commentaire.edit');
     Route::post('/back/commentaire/{id}/update', 'ForumBackController@update_commentaire')->name('commentaire.update');
     Route::delete('/back/commentaire/{id}/destroy', 'ForumBackController@destroy_commentaire')->name('commentaire.destroy');
+    Route::delete('commentaires-deleteselection', 'ForumBackController@deleteAll');
+
     //route admin gestion page accueil
     Route::resource('back/home', 'HomeBackController');
 
