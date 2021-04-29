@@ -8,7 +8,7 @@ class QuestionnaireReponse extends Model
 {
   public function question()
   {
-    return $this->belongsTo('App\QuestionnaireQuestion');
+    return $this->belongsTo('App\QuestionnaireQuestion','questionnaire_question_id');
   }
   public function user()
   {

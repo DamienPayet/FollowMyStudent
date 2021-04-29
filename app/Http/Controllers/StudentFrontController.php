@@ -134,6 +134,7 @@ class StudentFrontController extends Controller
             }
         }
     }
+
     public function email_update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
@@ -230,20 +231,36 @@ class StudentFrontController extends Controller
     public function response_store(Request $request)
     {
         $user = auth::user();
-        for ($i = 0; $i < $request->len; $i++) {
-            $reponse = new QuestionnaireReponse;
-            $reponse->reponse = $request->rep[$i];
-            $reponse->questionnaire_question_id = $request->question[$i];
-            $reponse->user_id = $user->id;
-            $reponse->save();
-            dump($reponse);
+        $questions = QuestionnaireQuestion::where('questionnaire_part_id', $request->input("part"))->get();
+
+        foreach ($questions as $question) {
+            if ($request->input("df")["question_" . $question->id] != null) {
+                foreach (QuestionnaireReponse::where('user_id', $user->id)->where('questionnaire_question_id', $question->id)->get() as $rep) {
+                    $rep->delete();
+                }
+                $rep = new QuestionnaireReponse();
+                $rep->reponse = $request->input("df")["question_" . $question->id];
+                $rep->questionnaire_question_id = $question->id;
+                $rep->user_id = $user->id;
+                $rep->save();
+            }
         }
-        dd("dfs");
-        return response()->json(['parts' => $request]);
+        return response()->json(["part" => "ok"]);
     }
 
-    //Fin gestion Questionnaire
-
+    public function get_info_quest()
+    {
+        $user = auth::user();
+        $questions = QuestionnaireQuestion::all();
+        $user_rep = $user->qreponses;
+        $part =0;
+        foreach ($user_rep as $rep){
+            if ($rep->question->part->position > $part){
+                $part = $rep->question->part->position;
+            }
+        }
+        return response()->json(["start_to"=>$part]);
+    }
 
     public function forum()
     {
