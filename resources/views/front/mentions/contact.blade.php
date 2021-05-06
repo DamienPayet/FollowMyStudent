@@ -141,12 +141,13 @@
                                             <div class="col-sm-7">
                                                 <div class="captcha text-center">
                                                     <span>{!! captcha_img() !!}</span>
+
                                                     <button type="button" class="btn btn-danger" class="reload" id="reload">
                                                         &#x21bb;
                                                     </button>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input id="captcha" type="text" class="form-control" placeholder="Enter les caractères" name="captcha">
+                                                    <input id="captcha" type="captcha" placeholder="Entrer les caractères" class="form-control" class="form-control @error('captcha') is-invalid @enderror" name="captcha" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -165,4 +166,5 @@
         </div>
     </div>
 </div>
+
 @endsection

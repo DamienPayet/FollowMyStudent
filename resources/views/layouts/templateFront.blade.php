@@ -229,7 +229,7 @@
     <script src="{{url('front/js/avatar_selector.js')}}" type="text/javascript"></script>
     <script src="{{url('front/js/chatresolver.js')}}"></script>
     <script src="{{url('front/js/emojionearea.js')}}"></script>
-    <script type="text/javascript">
+ <script type="text/javascript">
         $('#reload').click(function() {
             $.ajax({
                 type: 'GET',

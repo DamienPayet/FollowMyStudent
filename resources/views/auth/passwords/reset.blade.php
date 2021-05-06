@@ -156,12 +156,12 @@
                             </div>
                             <script>
                                 $('#reload').click(function() {
-                                  //  console.log("ici");
+                                    //  console.log("ici");
                                     $.ajax({
                                         type: 'GET',
                                         url: '/reload-captcha',
                                         success: function(data) {
-                                         //   console.log(data.captcha);
+                                            //   console.log(data.captcha);
                                             $(".captcha span").html(data.captcha);
                                         }
                                     });

@@ -161,7 +161,7 @@ height: 100px;" src="{{url($user->image_profil)}}" value="{{$user->image_profil}
                                             </button>
                                         </div>
                                         <div class="form-group">
-                                            <input id="captcha" type="text" class="form-control" placeholder="Enter les caractères" name="captcha" required>
+                                            <input id="captcha" type="captcha" placeholder="Enter les caractères" class="form-control" class="form-control @error('captcha') is-invalid @enderror" name="captcha" required>
                                         </div>
                                     </div>
                                 </div>

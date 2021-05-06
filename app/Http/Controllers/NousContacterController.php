@@ -89,8 +89,7 @@ class NousContacterController extends Controller
         });
         // 
         \LogActivity::addToLog('User - Création demande contact');
-
-        return redirect()->route('indexback')->withStatus(__('Nous avons bien reçu votre message ! Merci de nous écrire, nous reviendrons prochainement vers vous.'));
+        return redirect()->route('contact.create')->with('success', 'Nous avons bien reçu votre message ! Merci de nous écrire, nous reviendrons prochainement vers vous.');
     }
     public function destroy($id)
     {

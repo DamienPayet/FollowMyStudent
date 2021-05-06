@@ -152,12 +152,12 @@
                                             </button>
                                         </div>
                                         <div class="form-group">
-                                            <input id="captcha" type="text" class="form-control" placeholder="Enter les caractères" name="captcha">
+                                            <input id="captcha" type="captcha" placeholder="Enter les caractères" class="form-control" class="form-control @error('captcha') is-invalid @enderror" name="captcha" required>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- Fin Captcha -->
-                              
+
                                 <div class="card-footer ml-auto mr-auto text-center">
                                     <button type="submit" name="send" class="btn btn-primary btn-round">Envoyer</button>
                                 </div>
