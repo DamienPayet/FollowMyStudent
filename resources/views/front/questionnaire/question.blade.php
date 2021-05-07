@@ -24,7 +24,7 @@
                     Accueil
                 </button>
             </a><br><br>
-            < <img width="50%" src="{{url("/front/images/v2.png")}}">
+            <img width="50%" src="{{url("/front/images/v2.png")}}">
         </aside>
 
         <div class="content-wrapper">
@@ -44,18 +44,13 @@
                         <!-- left column -->
                         <div class="col-md-12">
                             <!-- general form elements -->
-
                             @foreach($part as $par)
-
-
                             <fieldset class="field" id="{{$par->position}}">
                                 <div class="card card-green">
                                     <div class="card-header">
                                         <h3 class="card-title">Patie {{$par->position}} / {{$part->count()}}</h3>
                                     </div>
                                     <div class="card-body">
-
-
                                         <form class="quest_{{$par->position}}" id="{{$par->position}}">
 
                                             <input type="hidden" id="info_{{$par->position}}" value="{{$par->id}}" name="part">
@@ -114,7 +109,7 @@ DSQQDSDQS
             </div>
             <strong></strong> <a href="{{route('contact.create')}}">
                 <strong> Nous contacter</strong>
-            </a> - 
+            </a> -
             <a href="{{route('mentions.rgpd')}}">
                 <strong>RGPD</strong>
             </a>

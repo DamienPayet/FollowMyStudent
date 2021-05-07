@@ -22,7 +22,8 @@
         "mews/captcha": "^3.2",
         "musonza/chat": "^4.4",
         "spatie/laravel-cookie-consent": "^2.12",
-        "spatie/laravel-searchable": "^1.9"
+        "spatie/laravel-searchable": "^1.9",
+        "spatie/simple-excel": "^1.2"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
