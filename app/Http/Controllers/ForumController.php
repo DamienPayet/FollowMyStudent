@@ -85,7 +85,7 @@ class ForumController extends Controller
         $validator = Validator::make($request->all(), [
             'titre' => 'required|min:10|max:255',
             'description' => 'required|min:15',
-            'captcha' => 'required|captcha',
+            'captcha' => 'required',
         ]);
         // Si la validation échoue
         if ($validator->fails()) {

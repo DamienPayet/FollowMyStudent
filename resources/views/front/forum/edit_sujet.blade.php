@@ -89,7 +89,7 @@
                                     </div>
                                 </div>
                                 <!-- Fin Captcha -->
-                                <div class="card-footer ml-auto mr-auto text-center )">
+                                <div class="card-footer ml-auto mr-auto text-center">
                                     <button type="submit" class="btn btn-info">Modifier</button>
                                 </div>
 
