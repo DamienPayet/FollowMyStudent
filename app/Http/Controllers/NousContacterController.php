@@ -49,9 +49,9 @@ class NousContacterController extends Controller
             'prenom' => 'required',
             'email' => 'required|email',
             'telephone' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
-            'sujet' => 'required|min:8',
+            'sujet' => 'required|min:8|max:200',
             'message' => 'required|min:15',
-            'captcha' => 'required|captcha',
+            'captcha' => 'required',
         ]);
         // Si la validation échoue
         if ($validator->fails()) {
@@ -74,7 +74,6 @@ class NousContacterController extends Controller
         $contact->message = Profanity::blocker($bad_words_message)->filter();
 
         $contact->save();
-
         //  Send mail to admin
         \Mail::send('vendor.notifications.contact', array(
             'nom' => $request->get('nom'),
@@ -88,8 +87,13 @@ class NousContacterController extends Controller
             $message->to('admin@gmail.com', 'Admintrateur FMS')->subject('[FMS] - Nouvelle demande de contact');
         });
         // 
-        \LogActivity::addToLog('User - Création demande contact');
-        return redirect()->route('contact.create')->with('success', 'Nous avons bien reçu votre message ! Merci de nous écrire, nous reviendrons prochainement vers vous.');
+        
+        if (Auth::guest()) {
+            return redirect()->route('login')->with('status', 'Nous avons bien reçu votre message ! Merci de nous écrire, nous reviendrons prochainement vers vous.');
+        } else {
+            \LogActivity::addToLog('User - Création demande contact');
+            return redirect()->route('contact.create')->withStatus(__( 'Nous avons bien reçu votre message ! Merci de nous écrire, nous reviendrons prochainement vers vous.'));
+        }
     }
     public function destroy($id)
     {

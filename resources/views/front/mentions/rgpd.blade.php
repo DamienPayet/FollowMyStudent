@@ -4,216 +4,114 @@
 @section('content')
 <div class="section">
     <div class="container card">
-        <h3 class="title card-header" style="font-size: 2.2em; color: var(--primary-color); text-align: center;align-items: center;justify-content: center;">EN COURS DE REDACTION</h3><br>
-        <h3 class="title card-header" style="font-size: 2.2em; color: var(--primary-color); text-align: center;align-items: center;justify-content: center;">Définitions</h3><br>
+        <h3 class="title card-header" style="font-size: 2.2em; color: var(--primary-color); text-align: center;align-items: center;justify-content: center;">Mentions légales</h3><br>
         <div ng-bind-html="rgpdHTML"><br></div>
-
-        <p><b style=" font-size: 1.2em; color: var(--primary-color);">Client :</b> tout professionnel ou personne physique capable au sens des articles 1123 et suivants du Code civil, ou personne morale, qui visite le Site objet des présentes conditions générales.<br>
-            <br><b style="font-size: 1.2em; color: var(--primary-color);">Prestations et Services :</b> <a href="Follow My Student">Follow My Student</a> met à disposition des Clients :
+        <p><b style=" font-size: 1.2em; color: var(--primary-color);"></b> <br>
         </p>
         <div ng-bind-html="rgpdHTML"><br>
-
-
-            <p><b style="font-size: 1.2em; color: var(--primary-color);">Contenu :</b> Ensemble des éléments constituants l’information présente sur le Site, notamment textes – images – vidéos.</p><br>
-
-            <p><b style="font-size: 1.2em; color: var(--primary-color);">Informations clients :</b> Ci après dénommé « Information (s) » qui correspondent à l’ensemble des données personnelles susceptibles d’être détenues par <a href="Follow My Student">Follow My Student</a> pour la gestion de votre compte, de la gestion de la relation client et à des fins d’analyses et de statistiques.</p>
-
-
+            <h3 style="font-size: 2.2em; color: var(--primary-color);"> 1. Présentation du site.</h3><br><br>
+            En vertu de l'article 6 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique, il est précisé aux utilisateurs du site www.followmystudent.fr l'identité des différents intervenants dans le cadre de sa réalisation et de son suivi :
             <br>
-            <p><b style="font-size: 1.2em; color: var(--primary-color);">Utilisateur :</b> Internaute se connectant, utilisant le site susnommé.</p><br>
-            <p><b style="font-size: 1.2em; color: var(--primary-color);">Informations personnelles :</b> « Les informations qui permettent, sous quelque forme que ce soit, directement ou non, l'identification des personnes physiques auxquelles elles s'appliquent » (article 4 de la loi n° 78-17 du 6 janvier 1978).</p>
-            <p>Les termes « données à caractère personnel », « personne concernée », « sous traitant » et « données sensibles » ont le sens défini par le Règlement Général sur la Protection des Données (RGPD : n° 2016-679)</p>
-            <br>
-
-            <h3 style="font-size: 2.2em; color: var(--primary-color);">1. Présentation du site internet.</h3><br>
-            <p>En vertu de l'article 6 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique, il est précisé aux utilisateurs du site internet <a href="Follow My Student">Follow My Student</a> l'identité des différents intervenants dans le cadre de sa réalisation et de son suivi:
-            </p><br>
-            <p><strong>Propriétaire</strong> : GROUPE MONT ROLAND – GROUPE MONT ROLAND LA SALLE DOLE 55 Boulevard Wilson 39100 Dole<br>
-
-                <strong>Responsable publication</strong> : Courbez Julian – jcourbez@modifier<br>
-                Le responsable publication est une personne physique ou une personne morale.<br>
-                <strong>Webmaster</strong> : Courbez Julian – jcourbez@modifier<br>
-                <strong>Hébergeur</strong> : Ni Host – https://www.ni-host.com/ 59100 Roubaix na<br>
-                <strong>Délégué à la protection des données</strong> : Courbez Julian – jcourbez@aaaa<br>
-            </p><br>
-            <br>
-
-            <h3 style="font-size: 2.2em; color: var(--primary-color);">2. Conditions générales d’utilisation du site et des services proposés.</h3><br>
-
-            <p>Le Site constitue une œuvre de l’esprit protégée par les dispositions du Code de la Propriété Intellectuelle et des Réglementations Internationales applicables.
-                Le Client ne peut en aucune manière réutiliser, céder ou exploiter pour son propre compte tout ou partie des éléments ou travaux du Site.</p>
-
-            <p>L’utilisation du site <a href="Follow My Student">Follow My Student</a> implique l’acceptation pleine et entière des conditions générales d’utilisation ci-après décrites. Ces conditions d’utilisation sont susceptibles d’être modifiées ou complétées à tout moment, les utilisateurs du site <a href="Follow My Student">Follow My Student</a> sont donc invités à les consulter de manière régulière.</p>
-
-            <p>Ce site internet est normalement accessible à tout moment aux utilisateurs. Une interruption pour raison de maintenance technique peut être toutefois décidée par <a href="Follow My Student">Follow My Student</a>, qui s’efforcera alors de communiquer préalablement aux utilisateurs les dates et heures de l’intervention.
-                Le site web <a href="Follow My Student">Follow My Student</a> est mis à jour régulièrement par <a href="Follow My Student">Follow My Student</a> responsable. De la même façon, les mentions légales peuvent être modifiées à tout moment : elles s’imposent néanmoins à l’utilisateur qui est invité à s’y référer le plus souvent possible afin d’en prendre connaissance.</p>
-            <br>
-
-            <h3 style="font-size: 2.2em; color: var(--primary-color);">3. Description des services fournis.</h3>
-            <br>
-
-            <p>Toutes les informations indiquées sur le site <a href="Follow My Student">Follow My Student</a> sont données à titre indicatif, et sont susceptibles d’évoluer. Par ailleurs, les renseignements figurant sur le site <a href="Follow My Student">Follow My Student</a> ne sont pas exhaustifs. Ils sont donnés sous réserve de modifications ayant été apportées depuis leur mise en ligne.</p>
-            <br>
-            <h3 style="font-size: 2.2em; color: var(--primary-color);">4. Limitations contractuelles sur les données techniques.</h3>
-            <br>
-
-            <p>Le site utilise la technologie JavaScript, Html et Php.
-
-                Le site Internet ne pourra être tenu responsable de dommages matériels liés à l’utilisation du site. De plus, l’utilisateur du site s’engage à accéder au site en utilisant un matériel récent, ne contenant pas de virus et avec un navigateur de dernière génération mis-à-jour
-                Le site <a href="Follow My Student">Follow My Student</a> est hébergé chez un prestataire sur le territoire de l’Union Européenne conformément aux dispositions du Règlement Général sur la Protection des Données (RGPD : n° 2016-679)</p>
-
-            <p>L’objectif est d’apporter une prestation qui assure le meilleur taux d’accessibilité. L’hébergeur assure la continuité de son service 24 Heures sur 24, tous les jours de l’année. Il se réserve néanmoins la possibilité d’interrompre le service d’hébergement pour les durées les plus courtes possibles notamment à des fins de maintenance, d’amélioration de ses infrastructures, de défaillance de ses infrastructures ou si les Prestations et Services génèrent un trafic réputé anormal.</p>
-
-            <p><a href="Follow My Student">Follow My Student</a> et l’hébergeur ne pourront être tenus responsables en cas de dysfonctionnement du réseau Internet, des lignes téléphoniques ou du matériel informatique et de téléphonie lié notamment à l’encombrement du réseau empêchant l’accès au serveur.</p>
-            <br>
-
-            <h3 style="font-size: 2.2em; color: var(--primary-color);">5. Propriété intellectuelle et contrefaçons.</h3>
-            <br>
-
-            <p><a href="Follow My Student">Follow My Student</a> est propriétaire des droits de propriété intellectuelle et détient les droits d’usage sur tous les éléments accessibles sur le site internet, notamment les textes, images, graphismes, logos, vidéos, icônes et sons.
-                Toute reproduction, représentation, modification, publication, adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite, sauf autorisation écrite préalable de : <a href="Follow My Student">Follow My Student</a>.</p>
-
-            <p>Toute exploitation non autorisée du site ou de l’un quelconque des éléments qu’il contient sera considérée comme constitutive d’une contrefaçon et poursuivie conformément aux dispositions des articles L.335-2 et suivants du Code de Propriété Intellectuelle.</p>
-            <br>
-
-            <h3 style="font-size: 2.2em; color: var(--primary-color);">6. Limitations de responsabilité.</h3>
-            <br>
-
-            <p><a href="Follow My Student">Follow My Student</a> agit en tant qu’éditeur du site. <a href="Follow My Student">Follow My Student</a> est responsable de la qualité et de la véracité du Contenu qu’il publie. </p>
-
-            <p><a href="Follow My Student">Follow My Student</a> ne pourra être tenu responsable des dommages directs et indirects causés au matériel de l’utilisateur, lors de l’accès au site internet <a href="Follow My Student">Follow My Student</a>, et résultant soit de l’utilisation d’un matériel ne répondant pas aux spécifications indiquées au point 4, soit de l’apparition d’un bug ou d’une incompatibilité.</p>
-
-            <p><a href="Follow My Student">Follow My Student</a> ne pourra également être tenu responsable des dommages indirects (tels par exemple qu’une perte de marché ou perte d’une chance) consécutifs à l’utilisation du site <a href="Follow My Student">Follow My Student</a>.
-                Des espaces interactifs (possibilité de poser des questions dans l’espace contact) sont à la disposition des utilisateurs. <a href="Follow My Student">Follow My Student</a> se réserve le droit de supprimer, sans mise en demeure préalable, tout contenu déposé dans cet espace qui contreviendrait à la législation applicable en France, en particulier aux dispositions relatives à la protection des données. Le cas échéant, <a href="Follow My Student">Follow My Student</a> se réserve également la possibilité de mettre en cause la responsabilité civile et/ou pénale de l’utilisateur, notamment en cas de message à caractère raciste, injurieux, diffamant, ou pornographique, quel que soit le support utilisé (texte, photographie …).</p>
-            <br>
-
-            <h3 style="font-size: 2.2em; color: var(--primary-color);">7. Gestion des données personnelles.</h3>
-            <br>
-
-            <p>Le Client est informé des réglementations concernant la communication marketing, la loi du 21 Juin 2014 pour la confiance dans l’Economie Numérique, la Loi Informatique et Liberté du 06 Août 2004 ainsi que du Règlement Général sur la Protection des Données (RGPD : n° 2016-679). </p>
-            <br>
-
-            <h2 style="font-size: 1.5em; color: var(--primary-color);">7.1 Responsables de la collecte des données personnelles</h2>
-            <br>
-
-            <p>Pour les Données Personnelles collectées dans le cadre de la création du compte personnel de l’Utilisateur et de sa navigation sur le Site, le responsable du traitement des Données Personnelles est : GROUPE MONT ROLAND. <a href="Follow My Student">Follow My Student</a>est représenté par Courbez Julian, son représentant légal</p>
-
-            <p>En tant que responsable du traitement des données qu’il collecte, <a href="Follow My Student">Follow My Student</a> s’engage à respecter le cadre des dispositions légales en vigueur. Il lui appartient notamment au Client d’établir les finalités de ses traitements de données, de fournir à ses prospects et clients, à partir de la collecte de leurs consentements, une information complète sur le traitement de leurs données personnelles et de maintenir un registre des traitements conforme à la réalité.
-                Chaque fois que <a href="Follow My Student">Follow My Student</a> traite des Données Personnelles, <a href="Follow My Student">Follow My Student</a> prend toutes les mesures raisonnables pour s’assurer de l’exactitude et de la pertinence des Données Personnelles au regard des finalités pour lesquelles <a href="Follow My Student">Follow My Student</a> les traite.</p>
-            <br>
-
-            <h2 style="font-size: 1.5em; color: var(--primary-color);">7.2 Finalité des données collectées</h2><br>
-
-            <br>
-
-            <p><a href="Follow My Student">Follow My Student</a> est susceptible de traiter tout ou partie des données : </p>
-
-            <ul>
-                <li>pour prévenir et lutter contre la fraude informatique (spamming, hacking…) : matériel informatique utilisé pour la navigation, l’adresse IP, le mot de passe (hashé) </li>
-                <li>pour améliorer la navigation sur le Site : données de connexion et d’utilisation </li>
-            </ul>
-
-            <p><a href="Follow My Student">Follow My Student</a> ne commercialise pas vos données personnelles qui sont donc uniquement utilisées par nécessité ou à des fins statistiques et d’analyses.</p>
-            <br>
-
-            <h2 style="font-size: 1.5em; color: var(--primary-color);">7.3 Droit d’accès, de rectification et d’opposition</h2><br>
+            <b>Propriétaire :</b> Groupe Mont Roland – Siret 77838286100012 code NAF 8531Z – 55 boulevard Wilson 39100 Dole<br><br>
+            <b> Créateurs :</b> M. Hugo BUFFARD - M. Damien PAYET - M. Florent PELLETIER -- M. Julian COURBEZ - M. Sébastien PERNELLE<br><br>
+            <b>Responsable publication :</b> M. Julian COURBEZ – jcourbez@groupemontroland.fr<br><br>
+            Le responsable publication est une personne physique ou une personne morale.<br><br>
+            <b>Webmaster :</b> M. Olivier BAILLY – obailly@groupemontroland.fr<br><br>
+            <b>Hébergeur :</b> Groupe Mont Roland – 55 Boulevard Wilson 39100 Dole<br><br>
+            <b>Crédits :</b>
+            Le modèle de mentions légales est offert par Subdelirium.com Modèle de mentions légales
+            <br><br><br>
+            <h3 style="font-size: 2.2em; color: var(--primary-color);"> 2. Conditions générales d’utilisation du site et des services proposés.</h3><br><br>
+            L’utilisation du site www.followmystudent.fr implique l’acceptation pleine et entière des conditions générales d’utilisation ci-après décrites. Ces conditions d’utilisation sont susceptibles d’être modifiées ou complétées à tout moment, les utilisateurs du site www.groupemontroland.fr sont donc invités à les consulter de manière régulière.
+            <br><br>
+            Ce site est normalement accessible à tout moment aux utilisateurs. Une interruption pour raison de maintenance technique peut être toutefois décidée par Groupe Mont Roland, qui s’efforcera alors de communiquer préalablement aux utilisateurs les dates et heures de l’intervention.
+            <br><br>
+            Le site www.followmystudent.fr est mis à jour régulièrement par M. Julian COURBEZ. De la même façon, les mentions légales peuvent être modifiées à tout moment : elles s’imposent néanmoins à l’utilisateur qui est invité à s’y référer le plus souvent possible afin d’en prendre connaissance.
+            <br><br><br>
 
 
-            <p>
-                Conformément à la réglementation européenne en vigueur, les Utilisateurs de <a href="Follow My Student">Follow My Student</a> disposent des droits suivants : </p>
-            <ul>
-
-                <li>droit d'accès (article 15 RGPD) et de rectification (article 16 RGPD), de mise à jour, de complétude des données des Utilisateurs droit de verrouillage ou d’effacement des données des Utilisateurs à caractère personnel (article 17 du RGPD), lorsqu’elles sont inexactes, incomplètes, équivoques, périmées, ou dont la collecte, l'utilisation, la communication ou la conservation est interdite </li>
-
-                <li>droit de retirer à tout moment un consentement (article 13-2c RGPD) </li>
-
-                <li>droit à la limitation du traitement des données des Utilisateurs (article 18 RGPD) </li>
-
-                <li>droit d’opposition au traitement des données des Utilisateurs (article 21 RGPD) </li>
-
-                <li>droit à la portabilité des données que les Utilisateurs auront fournies, lorsque ces données font l’objet de traitements automatisés fondés sur leur consentement ou sur un contrat (article 20 RGPD) </li>
-
-                <li>droit de définir le sort des données des Utilisateurs après leur mort et de choisir à qui <a href="Follow My Student">Follow My Student</a> devra communiquer (ou non) ses données à un tiers qu’ils aura préalablement désigné</li>
-            </ul>
-
-            <p>Dès que <a href="Follow My Student">Follow My Student</a> a connaissance du décès d’un Utilisateur et à défaut d’instructions de sa part, <a href="Follow My Student">Follow My Student</a> s’engage à détruire ses données, sauf si leur conservation s’avère nécessaire à des fins probatoires ou pour répondre à une obligation légale.</p>
-
-            <p>Si l’Utilisateur souhaite savoir comment <a href="Follow My Student">Follow My Student</a> utilise ses Données Personnelles, demander à les rectifier ou s’oppose à leur traitement, l’Utilisateur peut contacter <a href="Follow My Student">Follow My Student</a> par écrit à l’adresse suivante : </p>
-
-            GROUPE MONT ROLAND – DPO, Courbez Julian <br>
-            GROUPE MONT ROLAND LA SALLE DOLE 55 Boulevard Wilson 39100 Dole.
-
-            <p>Dans ce cas, l’Utilisateur doit indiquer les Données Personnelles qu’il souhaiterait que <a href="Follow My Student">Follow My Student</a> corrige, mette à jour ou supprime, en s’identifiant précisément avec une copie d’une pièce d’identité (carte d’identité ou passeport). </p>
-
-            <p>
-                Les demandes de suppression de Données Personnelles seront soumises aux obligations qui sont imposées à <a href="Follow My Student">Follow My Student</a> par la loi, notamment en matière de conservation ou d’archivage des documents. Enfin, les Utilisateurs de <a href="Follow My Student">Follow My Student</a> peuvent déposer une réclamation auprès des autorités de contrôle, et notamment de la CNIL (https://www.cnil.fr/fr/plaintes).</p>
-            <br>
-
-            <h2 style="font-size: 1.5em; color: var(--primary-color);">7.4 Non-communication des données personnelles</h2><br>
+            <h3 style="font-size: 2.2em; color: var(--primary-color);">3. Description des services fournis.</h3><br><br><br>
+            Le site www.followmystudent.fr a pour objet de fournir une information concernant l’ensemble des activités de la société.
+            <br><br>
+            Groupe Mont Roland s’efforce de fournir sur le site www.followmystudent.fr des informations aussi précises que possible. Toutefois, il ne pourra être tenue responsable des omissions, des inexactitudes et des carences dans la mise à jour, qu’elles soient de son fait ou du fait des tiers partenaires qui lui fournissent ces informations.
+            <br><br>
+            Tous les informations indiquées sur le site www.followmystudent.fr sont données à titre indicatif, et sont susceptibles d’évoluer. Par ailleurs, les renseignements figurant sur le site www.groupemontroland.fr ne sont pas exhaustifs. Ils sont donnés sous réserve de modifications ayant été apportées depuis leur mise en ligne.
+            <br><br><br>
 
 
-            <p>
-                <a href="Follow My Student">Follow My Student</a> s’interdit de traiter, héberger ou transférer les Informations collectées sur ses Clients vers un pays situé en dehors de l’Union européenne ou reconnu comme « non adéquat » par la Commission européenne sans en informer préalablement le client. Pour autant, <a href="Follow My Student">Follow My Student</a> reste libre du choix de ses sous-traitants techniques et commerciaux à la condition qu’il présentent les garanties suffisantes au regard des exigences du Règlement Général sur la Protection des Données (RGPD : n° 2016-679).
-            </p>
+            <h3 style="font-size: 2.2em; color: var(--primary-color);">4. Limitations contractuelles sur les données techniques.</h3><br><br><br>
+            Le site utilise la technologie JavaScript et JQuery.
+            <br><br><br>
+            Le site Internet ne pourra être tenu responsable de dommages matériels liés à l’utilisation du site. De plus, l’utilisateur du site s’engage à accéder au site en utilisant un matériel récent, ne contenant pas de virus et avec un navigateur de dernière génération mis-à-jour
+            <br><br><br>
+                <h3 style="font-size: 2.2em; color: var(--primary-color);">5. Propriété intellectuelle et contrefaçons.</h3><br><br><br>
+                Groupe Mont Roland est propriétaire des droits de propriété intellectuelle ou détient les droits d’usage sur tous les éléments accessibles sur le site, notamment les textes, images, graphismes, logo, icônes, sons, logiciels.
+                <br><br>
+                Toute reproduction, représentation, modification, publication, adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite, sauf autorisation écrite préalable de : Groupe Mont Roland.
+                <br><br>
+                Toute exploitation non autorisée du site ou de l’un quelconque des éléments qu’il contient sera considérée comme constitutive d’une contrefaçon et poursuivie conformément aux dispositions des articles L.335-2 et suivants du Code de Propriété Intellectuelle.
 
-            <p>
-                <a href="Follow My Student">Follow My Student</a> s’engage à prendre toutes les précautions nécessaires afin de préserver la sécurité des Informations et notamment qu’elles ne soient pas communiquées à des personnes non autorisées. Cependant, si un incident impactant l’intégrité ou la confidentialité des Informations du Client est portée à la connaissance de <a href="Follow My Student">Follow My Student</a>, celle-ci devra dans les meilleurs délais informer le Client et lui communiquer les mesures de corrections prises. Par ailleurs <a href="Follow My Student">Follow My Student</a> ne collecte aucune « données sensibles ».
-            </p>
+                <br><br><br>
 
-            <p>
-                Les Données Personnelles de l’Utilisateur peuvent être traitées par des filiales de <a href="Follow My Student">Follow My Student</a> et des sous-traitants (prestataires de services), exclusivement afin de réaliser les finalités de la présente politique.</p>
+                <h3 style="font-size: 2.2em; color: var(--primary-color);">6. Limitations de responsabilité.</h3><br><br><br>
+                Groupe Mont Roland ne pourra être tenue responsable des dommages directs et indirects causés au matériel de l’utilisateur, lors de l’accès au site www.pasteurmontroland.com, et résultant soit de l’utilisation d’un matériel ne répondant pas aux spécifications indiquées au point 4, soit de l’apparition d’un bug ou d’une incompatibilité.
+                <br><br>
+                Groupe Mont Roland ne pourra également être tenue responsable des dommages indirects (tels par exemple qu’une perte de marché ou perte d’une chance) consécutifs à l’utilisation du site www.groupemontroland.fr.
+                <br><br>
+                Des espaces interactifs (possibilité de poser des questions dans l’espace contact) sont à la disposition des utilisateurs. Groupe Mont Roland se réserve le droit de supprimer, sans mise en demeure préalable, tout contenu déposé dans cet espace qui contreviendrait à la législation applicable en France, en particulier aux dispositions relatives à la protection des données. Le cas échéant, Groupe Mont Roland se réserve également la possibilité de mettre en cause la responsabilité civile et/ou pénale de l’utilisateur, notamment en cas de message à caractère raciste, injurieux, diffamant, ou pornographique, quel que soit le support utilisé (texte, photographie…).
 
-            <div ng-bind-html="rgpdHTML"><br>
 
-                <h2 style="font-size: 1.5em; color: var(--primary-color);">7.5 Types de données collectées</h2><br>
+                <br><br><br>
+                <h3 style="font-size: 2.2em; color: var(--primary-color);">7. Gestion des données personnelles.</h3><br><br><br>
+                En France, les données personnelles sont notamment protégées par la loi n° 78-87 du 6 janvier 1978, la loi n° 2004-801 du 6 août 2004, l'article L. 226-13 du Code pénal et la Directive Européenne du 24 octobre 1995.
+                <br><br>
+                A l'occasion de l'utilisation du site www.followmystudent.fr, peuvent êtres recueillies : la navigateur utilisé, l'adresse de protocole Internet (IP) de l'utilisateur, la date, l'heure et les pages consultées.
+                <br><br>
+                En tout état de cause Groupe Mont Roland ne collecte des informations personnelles relatives à l'utilisateur que pour le besoin de certains services proposés par le site www.groupemontroland.fr. L'utilisateur fournit ces informations en toute connaissance de cause, notamment lorsqu'il procède par lui-même à leur saisie. Il est alors précisé à l'utilisateur du site www.groupemontroland.fr l’obligation ou non de fournir ces informations.
+                <br><br>
+                Conformément aux dispositions des articles 38 et suivants de la loi 78-17 du 6 janvier 1978 relative à l’informatique, aux fichiers et aux libertés, tout utilisateur dispose d’un droit d’accès, de rectification et d’opposition aux données personnelles le concernant, en effectuant sa demande écrite et signée, accompagnée d’une copie du titre d’identité avec signature du titulaire de la pièce, en précisant l’adresse à laquelle la réponse doit être envoyée.
+                <br><br>
+                Aucune information personnelle de l'utilisateur du site www.followmystudent.fr n'est publiée à l'insu de l'utilisateur, échangée, transférée, cédée ou vendue sur un support quelconque à des tiers. Seule l'hypothèse du rachat de Groupe Mont Roland et de ses droits permettrait la transmission des dites informations à l'éventuel acquéreur qui serait à son tour tenu de la même obligation de conservation et de modification des données vis à vis de l'utilisateur du site www.groupemontroland.fr.
+                <br><br>
+                Les bases de données sont protégées par les dispositions de la loi du 1er juillet 1998 transposant la directive 96/9 du 11 mars 1996 relative à la protection juridique des bases de données.
+                <br><br><br>
 
-                <p>Concernant les utilisateurs d’un Site <a href="Follow My Student">Follow My Student</a>, nous collectons les données suivantes qui sont indispensables au fonctionnement du service&nbsp;, et qui seront conservées pendant une période maximale de 3 ans après la fin de la relation contractuelle:<br>nom,prénom,adresse email, adresse IP, url parcourus, navigateur utilisé</p>
-            </div>
 
-            <br>
+                <h3 style="font-size: 2.2em; color: var(--primary-color);">8. Liens hypertextes et cookies.</h3><br><br><br>
+                Le site www.followmystudent.fr contient un certain nombre de liens hypertextes vers d’autres sites, mis en place avec l’autorisation de Groupe Mont Roland. Cependant, Groupe Mont Roland n’a pas la possibilité de vérifier le contenu des sites ainsi visités, et n’assumera en conséquence aucune responsabilité de ce fait.
+                <br><br>
+                La navigation sur le site www.followmystudent.fr est susceptible de provoquer l’installation de cookie(s) sur l’ordinateur de l’utilisateur. Un cookie est un fichier de petite taille, qui ne permet pas l’identification de l’utilisateur, mais qui enregistre des informations relatives à la navigation d’un ordinateur sur un site. Les données ainsi obtenues visent à faciliter la navigation ultérieure sur le site, et ont également vocation à permettre diverses mesures de fréquentation.
+                <br><br>
+                Le refus d’installation d’un cookie peut entraîner l’impossibilité d’accéder à certains services. L’utilisateur peut toutefois configurer son ordinateur de la manière suivante, pour refuser l’installation des cookies :
+                <br><br>
+                Sous Internet Explorer : onglet outil (pictogramme en forme de rouage en haut a droite) / options internet. Cliquez sur Confidentialité et choisissez Bloquer tous les cookies. Validez sur Ok.
+                <br><br>
+                Sous Firefox : en haut de la fenêtre du navigateur, cliquez sur le bouton Firefox, puis aller dans l'onglet Options. Cliquer sur l'onglet Vie privée. Paramétrez les Règles de conservation sur : utiliser les paramètres personnalisés pour l'historique. Enfin décochez-la pour désactiver les cookies.
+                <br><br>
+                Sous Safari : Cliquez en haut à droite du navigateur sur le pictogramme de menu (symbolisé par un rouage). Sélectionnez Paramètres. Cliquez sur Afficher les paramètres avancés. Dans la section "Confidentialité", cliquez sur Paramètres de contenu. Dans la section "Cookies", vous pouvez bloquer les cookies.
+                <br><br>
+                Sous Chrome : Cliquez en haut à droite du navigateur sur le pictogramme de menu (symbolisé par trois lignes horizontales). Sélectionnez Paramètres. Cliquez sur Afficher les paramètres avancés. Dans la section "Confidentialité", cliquez sur préférences. Dans l'onglet "Confidentialité", vous pouvez bloquer les cookies.
+                <br><br><br>
 
-            <h3 style="font-size: 2.2em; color: var(--primary-color);">8. Notification d’incident</h3><br>
 
-            <p>
-                Quels que soient les efforts fournis, aucune méthode de transmission sur Internet et aucune méthode de stockage électronique n'est complètement sûre. Nous ne pouvons en conséquence pas garantir une sécurité absolue.
-                Si nous prenions connaissance d'une brèche de la sécurité, nous avertirions les utilisateurs concernés afin qu'ils puissent prendre les mesures appropriées. Nos procédures de notification d’incident tiennent compte de nos obligations légales, qu'elles se situent au niveau national ou européen. Nous nous engageons à informer pleinement nos clients de toutes les questions relevant de la sécurité de leur compte et à leur fournir toutes les informations nécessaires pour les aider à respecter leurs propres obligations réglementaires en matière de reporting.</p>
-            <p>
-                Aucune information personnelle de l'utilisateur du site <a href="Follow My Student">Follow My Student</a> n'est publiée à l'insu de l'utilisateur, échangée, transférée, cédée ou vendue sur un support quelconque à des tiers. Seule l'hypothèse du rachat de <a href="Follow My Student">Follow My Student</a> et de ses droits permettrait la transmission des dites informations à l'éventuel acquéreur qui serait à son tour tenu de la même obligation de conservation et de modification des données vis à vis de l'utilisateur du site <a href="Follow My Student">Follow My Student</a>.</p>
+                <h3 style="font-size: 2.2em; color: var(--primary-color);">9. Droit applicable et attribution de juridiction.</h3><br><br><br>
+                Tout litige en relation avec l’utilisation du site www.followmystudent.fr est soumis au droit français. Il est fait attribution exclusive de juridiction aux tribunaux compétents de Paris.
+                <br><br><br>
 
-            <h3>Sécurité</h3>
 
-            <p>
-                Pour assurer la sécurité et la confidentialité des Données Personnelles et des Données Personnelles de Santé, <a href="Follow My Student">Follow My Student</a> utilise des réseaux protégés par des dispositifs standards tels que par pare-feu, l’encryption et mot de passe. </p>
+                <h3 style="font-size: 2.2em; color: var(--primary-color);">10. Les principales lois concernées.</h3><br><br><br>
+                Loi n° 78-17 du 6 janvier 1978, notamment modifiée par la loi n° 2004-801 du 6 août 2004 relative à l'informatique, aux fichiers et aux libertés.
+                <br><br>
+                Loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique.
+                <br><br><br>
 
-            <p>
-                <!-- Lors du traitement des Données Personnelles, <a href="Follow My Student">Follow My Student</a> prend toutes les mesures raisonnables visant à les protéger contre toute perte, utilisation détournée, accès non autorisé, divulgation, altération ou destruction.</p>
-                --><br>
 
-            <h3 style="font-size: 2.2em; color: var(--primary-color);">9. Liens hypertextes « cookies »</h3><br>
-
-            <p>
-                Le site <a href="Follow My Student">Follow My Student</a> contient un certain nombre de liens hypertextes vers d’autres sites, mis en place avec l’autorisation de <a href="Follow My Student">Follow My Student</a>. Cependant, <a href="Follow My Student">Follow My Student</a> n’a pas la possibilité de vérifier le contenu des sites ainsi visités, et n’assumera en conséquence aucune responsabilité de ce fait.</p>
-            <p></p>
-            <br>
-
-            <h2 style="font-size: 1.5em; color: var(--primary-color);">9.1. « COOKIES »</h2><br>
-
-            <p>
-                Un « cookie » est un petit fichier d’information envoyé sur le navigateur de l’Utilisateur et enregistré au sein du terminal de l’Utilisateur (ex : ordinateur, smartphone), (ci-après « Cookies »). Ce fichier comprend des informations telles que le navigateur, ainsi que la date et l’heure d’accès. Les Cookies ne risquent en aucun cas d’endommager le terminal de l’Utilisateur.</p>
-            <p>
-                <a href="Follow My Student">Follow My Student</a> est susceptible de traiter les informations de l’Utilisateur concernant sa visite du Site, telles que les pages consultées, les recherches effectuées. Ces informations permettent à <a href="Follow My Student">Follow My Student</a> d'avoir des traces de la navigation, en cas de problèmes, foodage, spam.
-            </p>
-            <p>
-
+                <h3 style="font-size: 2.2em; color: var(--primary-color);"> 11. Lexique.</h3><br><br><br>
+                Utilisateur : Internaute se connectant, utilisant le site susnommé.
+                <br><br>
+                Informations personnelles : « les informations qui permettent, sous quelque forme que ce soit, directement ou non, l'identification des personnes physiques auxquelles elles s'appliquent » (article 4 de la loi n° 78-17 du 6 janvier 1978).
                 <br>
-
-
-            <h3 style="font-size: 2.2em; color: var(--primary-color);">10. Droit applicable et attribution de juridiction.</h3><br>
-
-            <p>
-                Tout litige en relation avec l’utilisation du site <a href="Follow My Student">Follow My Student</a> est soumis au droit français.
-                En dehors des cas où la loi ne le permet pas, il est fait attribution exclusive de juridiction aux tribunaux compétents.</p>
-            <br>
+                <br>
         </div>
     </div>
 

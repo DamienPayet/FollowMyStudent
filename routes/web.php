@@ -137,29 +137,22 @@ Route::group(['middleware' => 'auth', 'email'], function () {
     Route::get('front/response_store', 'StudentFrontController@response_store')->name('response_store');
     Route::get('front/get_info_quest', 'StudentFrontController@get_info_quest')->name('get_info_quest');
 
+    Route::post('captcha-contact-validation', 'NousContacterController@Contact');
 
     Route::get('front/mentions/a-propos', 'MentionsLegController@nous')->name('mentions.apropos');
 
-    Route::post('captcha-contact-validation', 'NousContacterController@Contact');
     Route::get('/front/contact/reload-captcha', 'NousContacterController@reloadCaptcha');
 });
 // Route::get('/back1', function () {
 //     return view('layouts.templateBack');
 // })->name('back');
 
-
-//Route Mentions légales
-Route::get('front/mentions', 'MentionsLegController@index')->name('mentions.rgpd');
-//Route pour recharger le captcha
-Route::get('/reload-captcha', 'NousContacterController@reloadCaptcha');
-
-// Render in view
-Route::get('front/contact', [
-    'uses' => 'NousContacterController@create'
-])->name('contact.create');
-
-// Post form data
-Route::post('front/contact', [
-    'uses' => 'NousContacterController@contact',
-    'as' => 'contact.store'
-]);
+    //Route Mentions légales
+    Route::get('front/mentions', 'MentionsLegController@index')->name('mentions.rgpd');
+    //Route pour recharger le captcha
+    Route::get('/reload-captcha', 'NousContacterController@reloadCaptcha');
+    // Render in view
+    Route::get('front/contact', 'NousContacterController@create')->name('contact.create');
+    // Post form data
+    Route::post('captcha-contact-validation', 'NousContacterController@Contact');
+    Route::post('front/contact', 'NousContacterController@contact')->name('contact.store');

@@ -15,6 +15,18 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-body ">
+                                    @if (session('status'))
+                                    <div class="alert alert-success" role="alert">
+                                        <div class="alert-icon">
+                                            <i class="now-ui-icons travel_info"></i>
+                                        </div> {{ session('status') }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">
+                                                <i class="now-ui-icons ui-1_simple-remove"></i>
+                                            </span>
+                                        </button>
+                                    </div>
+                                    @endif
                                     <!-- Success message -->
                                     @if(session()->has('success'))
                                     <div class="alert alert-success">
