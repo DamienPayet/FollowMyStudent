@@ -27,7 +27,7 @@
                                 @endforeach
                             </div>
                             @endif
-                            <form method="post" action="{{url('captcha-offre-validation')}}">
+                            <form method="post" action="{{url('captcha-offre-validation')}}" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <!-- Titre -->
                                 <div class="row">
@@ -141,6 +141,14 @@
                                         </div>
                                     </div>
                                 </div>
+                                    <script>
+                                        //Script affichage du fichier selectionné :
+                                        var selector = document.getElementById("selector");
+                                        var setto = document.getElementById("filename");
+                                        selector.addEventListener("change", function(){
+                                           setto.innerText = selector.files[0].name
+                                        })
+                                    </script>
                                 <!-- Captcha -->
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label">{{ __('Captcha') }}</label>

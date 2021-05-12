@@ -35521,7 +35521,9 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 .dark-mode .register-logo a {
   color: #fff;
 }
-
+.error {
+    color : red;
+}
 .error-page {
   margin: 20px auto 0;
   width: 600px;

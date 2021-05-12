@@ -86,14 +86,14 @@
                         <form action="{{ route('user.archiver', $user) }}" method="post">
                           @csrf
                           @method('POST')
-                          <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" onclick="return confirm('Est tu sur de vouloir réactiver cet utilisateur ? Il pourra à nouveau se connecter')">
+                          <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" title="Ré-Activer l'utilisateur" onclick="return confirm('Est tu sur de vouloir réactiver cet utilisateur ? Il pourra à nouveau se connecter')">
                             <i class="fas fa-check"></i>
                           </button>
                         </form>
                         <form action="{{ route('users.destroy', $user->id) }}" method="post">
                           @csrf
                           @method('DELETE')
-                          <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" onclick="return confirm('Est tu sur de vouloir supprimer cette demande ?')">
+                          <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" title="Supprimer l'utilisateur archiver" onclick="return confirm('Est tu sur de vouloir supprimer cette demande ?')">
                             <i class="fas fa-times"></i>
                           </button>
                         </form>

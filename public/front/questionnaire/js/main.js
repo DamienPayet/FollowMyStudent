@@ -23,7 +23,6 @@ function setview(field) {
     window.scrollTo(0, 0);
     var id = field.getAttribute("id");
     $(".quest_" + id).validate({
-        lang: 'fr',
         submitHandler: function (form) {
             todb(form)
             if (fieldlist[form.getAttribute("id")]) {
@@ -31,10 +30,14 @@ function setview(field) {
                 setview(fieldlist[form.getAttribute("id")]);
             } else {
                 field.style.display = "none";
-                window.location.href = "/"
+                document.getElementById("titre").innerText = " Redirection vers l'accueil dans 3 Secondes ..... ";
+                setTimeout(redirection, 3000);
             }
         }
     });
+}
+function redirection(){
+    window.location.href = "/"
 }
 
 function todb(form) {

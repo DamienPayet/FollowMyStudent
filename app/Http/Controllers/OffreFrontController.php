@@ -19,7 +19,7 @@ class OffreFrontController extends Controller
   {
     $this->middleware('email');
   }
-  
+
   public function index()
   {
     \LogActivity::addToLog('Utilisateur - Affichage offre');
@@ -67,7 +67,7 @@ class OffreFrontController extends Controller
       'type' => 'required',
       'lieu' => 'required',
       'entreprise' => 'required|max:30',
-      'fileUpload' => 'nullable|file|mimes:pdf|max:size:5000',
+      'fileUpload' => 'nullable|mimetypes:application/pdf|max:10000',
       'captcha' => 'required|captcha',
     ]);
     // Si la validation échoue
@@ -85,7 +85,7 @@ class OffreFrontController extends Controller
         $offre->pdf = $pdf_get;
       }
     }
-    
+
     $bad_words_sujet = $request->get('titre');
     $bad_words_message = $request->get('description');
 

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{url('/front/questionnaire/lib/fontawesome-free/css/all.min.css')}}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{url('/front/questionnaire/css/adminlte.min.css')}}">
+    <link rel="stylesheet" href="{{url('/front/questionnaire/css/adminlte.css')}}">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -32,7 +33,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-7">
-                            <h1>Questionnaire de suivi des anciens éléves ASI</h1>
+                            <h1 id="titre">Questionnaire de suivi des anciens éléves ASI</h1>
                         </div>
                     </div>
                 </div>
@@ -70,25 +71,6 @@
                                 </div>
                             </fieldset>
                             @endforeach
-                            <!-- <fieldset class="field" id="12">
-                            <div class="card card-success">
-                                <div class="card-header">
-                                    <h3 class="card-title">fin</h3>
-                                </div>
-                                <div class="card-body">
-                                    <a href="{{url('/')}}">fin </a>
-DSQQDSDQS
-                                    DQS
-                                    DQS
-                                    DSQS
-                                    QDS
-                                    QDS
-                                    QDS
-                                    <a href="{{url('/')}}">fin</a>
-
-                                </div>
-                            </div>
-                        </fieldset>-->
                         </div>
                     </div>
                 </div>

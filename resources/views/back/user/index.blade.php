@@ -107,15 +107,15 @@
                         <form action="{{ route('user.archiver', $u) }}" method="post">
                           @csrf
                           @method('POST')
-                          <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" onclick="return confirm('Est tu sur de vouloir archiver cet utilisateur? Il ne pourra plus se connecter au site.')">
-                            <i class="fas fa-check"></i>
+                          <button type="submit" title="Archiver le compte utilisateur" rel="tooltip" class="btn  btn-linght btn-round" onclick="return confirm('Est tu sur de vouloir archiver cet utilisateur? Il ne pourra plus se connecter au site.')">
+                              <i class="text-yellow fas fa-file-archive"></i>
                           </button>
                         </form>
                         <form action="{{route('users.destroy', $u->id)}}" method="post">
                           @csrf
                           @method('DELETE')
-                          <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" onclick="return confirm('Es-tu sur de vouloir supprimer cet utilisateur ?')">
-                            <i class="fas fa-times"></i>
+                          <button type="submit" rel="tooltip" title="Supprimer le compte" class="btn  btn-linght btn-round" onclick="return confirm('Es-tu sur de vouloir supprimer cet utilisateur ?')">
+                            <i class=" text-danger fas fa-times"></i>
                           </button>
                         </form>
                         @endif
