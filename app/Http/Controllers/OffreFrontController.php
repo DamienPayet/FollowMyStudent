@@ -24,7 +24,7 @@ class OffreFrontController extends Controller
   {
     \LogActivity::addToLog('Utilisateur - Affichage offre');
 
-    $offres = Offre::paginate(6);
+    $offres = Offre::orderBy('created_at','DESC')->paginate(6);
     $pop_offres = Offre::orderBy('nb_vue', 'desc')->take(3)->get();
     $nonval_offres = DB::table('offres')->where('valide', '=', 0)->count();
     //dd( $nonval_offres);
