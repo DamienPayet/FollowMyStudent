@@ -8,33 +8,35 @@
         <div class="row">
 
             <div class="col-12 col-sm-6 col-md-3">
-              <a href="{{route('offre.index')}}" class="nav-link">
-                <div class="info-box">
-                    <span class="info-box-icon bg-info elevation-1"><i class="fas fa-globe-europe"></i></span>
+                <a href="{{route('offre.index')}}" class="nav-link">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-globe-europe"></i></span>
 
-                    <div class="info-box-content">
-                        <span class="info-box-text">Offres en ligne</span>
-                        <span class="info-box-number">
+                        <div class="info-box-content">
+                            <span class="info-box-text">Offres en ligne</span>
+                            <span class="info-box-number">
                   {{$offres->count()}}
                 </span>
-                    </div>
+                        </div>
 
-                    <!-- /.info-box-content -->
-                </div></a>
+                        <!-- /.info-box-content -->
+                    </div>
+                </a>
                 <!-- /.info-box -->
             </div>
             <!-- /.col -->
             <div class="col-12 col-sm-6 col-md-3">
-              <a href="{{route('reponse.index')}}" class="nav-link">
-                <div class="info-box mb-3">
-                    <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
+                <a href="{{route('reponse.index')}}" class="nav-link">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
 
-                    <div class="info-box-content">
-                        <span class="info-box-text">Questionnaire complété</span>
-                        <span class="info-box-number">{{$nbruse}}</span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Questionnaire complété</span>
+                            <span class="info-box-number">{{$nbruse}}</span>
+                        </div>
+                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box-content -->
-                </div></a>
+                </a>
                 <!-- /.info-box -->
             </div>
             <!-- /.col -->
@@ -43,30 +45,32 @@
             <div class="clearfix hidden-md-up"></div>
 
             <div class="col-12 col-sm-6 col-md-3">
-              <a href="{{route('contact.index')}}" class="nav-link">
-                <div class="info-box mb-3">
-                    <span class="info-box-icon bg-success elevation-1"><i class="fas fa-question-circle"></i></span>
+                <a href="{{route('contact.index')}}" class="nav-link">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-question-circle"></i></span>
 
-                    <div class="info-box-content">
-                        <span class="info-box-text">Demande de contact</span>
-                        <span class="info-box-number">{{$contact->count()}}</span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Demande de contact</span>
+                            <span class="info-box-number">{{$contact->count()}}</span>
+                        </div>
+                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box-content -->
-                </div></a>
+                </a>
                 <!-- /.info-box -->
             </div>
             <!-- /.col -->
             <div class="col-12 col-sm-6 col-md-3">
-              <a href="{{route('users.index')}}" class="nav-link">
-                <div class="info-box mb-3">
-                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user"></i></span>
+                <a href="{{route('users.index')}}" class="nav-link">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user"></i></span>
 
-                    <div class="info-box-content">
-                        <span class="info-box-text">Nombre d'utilisateurs</span>
-                        <span class="info-box-number"> {{$utilisateurs->count()}}</span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Nombre d'utilisateurs</span>
+                            <span class="info-box-number"> {{$utilisateurs->count()}}</span>
+                        </div>
+                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box-content -->
-                </div></a>
+                </a>
                 <!-- /.info-box -->
             </div>
             <!-- /.col -->
@@ -105,19 +109,23 @@
                             @php($counter++)
                             @if($counter <= 10)
                                 <tr>
-                                    <td>
-                                      @if ($loged->user->statut == "eleve")
-                                        {{ $loged->user->eleve->prenom }}
-                                      @elseif ($loged->user->statut == "admin")
-                                        {{ $loged->user->admin->prenom }}
-                                      @endif
+                                    @if($loged->user_id != null)
+                                        <td>
+                                            @if ($loged->user->statut == "eleve")
+                                                {{ $loged->user->eleve->prenom }}
+                                            @elseif ($loged->user->statut == "admin")
+                                                {{ $loged->user->admin->prenom }}
+                                            @endif
 
-                                      @if ($loged->user->statut == "eleve")
-                                        {{ $loged->user->eleve->nom }}
-                                      @elseif ($loged->user->statut == "admin")
-                                        {{ $loged->user->admin->nom }}
-                                      @endif
-                                    </td>
+                                            @if ($loged->user->statut == "eleve")
+                                                {{ $loged->user->eleve->nom }}
+                                            @elseif ($loged->user->statut == "admin")
+                                                {{ $loged->user->admin->nom }}
+                                            @endif
+                                        </td>
+                                    @else
+                                        <td class="text-danger font-weight-bold">Utilisateur Supprimé</td>
+                                    @endif
                                     <td><span class="badge badge-success">{{$loged->url}}</span></td>
                                     <td class="text-warning">
                                         <div class="sparkbar" data-color="#00a65a" data-height="20">

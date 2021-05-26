@@ -2,8 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\AuditAction;
+use App\Conversation;
+use App\LogActivity;
+use App\Offre;
 use App\QuestionnairePart;
 use App\QuestionnaireQuestion;
+use App\QuestionnaireReponse;
+use App\Sujet;
+use App\SujetReponse;
 use Illuminate\Http\Request;
 use App\User;
 use App\Eleve;
@@ -247,20 +254,54 @@ class UserController extends Controller
    */
   public function destroy($id)
   {
-    //
-    $user = User::find($id);
 
-    if ($user->statut == "eleve") {
-      $user->eleve->delete();
-    } elseif ($user->statut == "admin") {
-      $user->admin->delete();
-    }
 
-    $user->delete();
-    \LogActivity::addToLog('Admin - Suppresion utilisateur');
+
+      $question_reps = QuestionnaireReponse::all()->where('user_id',$id);
+      $sujets = Sujet::all()->where('user_id',$id);
+      $sujet_reps = SujetReponse::all()->where('user_id',$id);
+      $audits = LogActivity::all()->where('user_id',$id);
+      $offres = Offre::all()->where('user_id',$id);
+      $convs = Conversation::all();
+      foreach ($question_reps as $quest){
+          $quest->user_id = null;
+          $quest->save();
+      }
+      foreach ($sujets as $sujet){
+          $sujet->user_id = null;
+          $sujet->save();
+      }
+      foreach ($sujet_reps as $element){
+          $element->user_id = null;
+          $element->save();
+      }
+      foreach ($audits as $element){
+          $element->user_id = null;
+          $element->save();
+      }
+      foreach ($offres as $element){
+          $element->user_id = null;
+          $element->save();
+      }
+      $user = User::find($id);
+
+      if ($user->statut == "eleve") {
+          $user->eleve->delete();
+      } elseif ($user->statut == "admin") {
+          $user->admin->delete();
+      }
+
+      $user->delete();
+      foreach ($convs as $c){
+          if($c->users->count() != 2){
+              $c->delete();
+          }
+      }
+      \LogActivity::addToLog('Admin - Suppresion utilisateur');
 
     return redirect()->route("users.index")->with('error', 'Suppression réussie !');
   }
+
   public function deleteAll(Request $request)
   {
     $ids = $request->ids;
@@ -269,6 +310,8 @@ class UserController extends Controller
 
     \LogActivity::addToLog('Admin - Suppresion utilisateurs');
   }
+
+
   public function avatar_index()
   {
     //
