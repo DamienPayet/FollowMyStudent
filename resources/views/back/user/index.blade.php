@@ -45,7 +45,7 @@
             <div>
               <a href="{{route('users.create')}}">
                 <button style='margin-left:10px;' type="submit" class="btn btn-primary">
-                  Ajouter un Utilisateur
+                  Ajouter un/des Utilisateur(s)
                 </button>
               </a>
               <button style='margin-right:10px; float : right ;' type="submit" class="btn btn-danger delete_all" data-url="{{ url('users-deleteselection') }}">

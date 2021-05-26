@@ -16,7 +16,7 @@ class CreateUsersTable extends Migration
     Schema::create('users', function (Blueprint $table) {
       $table->id();
       $table->string('email')->unique();
-      $table->string('image_profil')->default('default.png');
+      $table->string('image_profil')->default('images/default.png');
       $table->enum('statut', array ('eleve', 'admin'))->default('eleve');
       $table->bigInteger('eleve_id')->unsigned()->nullable();
       $table->bigInteger('administrateur_id')->unsigned()->nullable();
