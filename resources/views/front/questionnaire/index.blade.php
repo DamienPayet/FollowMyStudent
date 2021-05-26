@@ -41,8 +41,8 @@
                                 Le <b>Questionnaire</b>
                             </h1>
                             <center>
-                                <p><b>Répondre aux questions ci après est essentiel pour nous.</br>Tes réponses vont nous permettre de receuillir certaines informations afin de faire évoluer la formation ASI.
-                                        </br>Tout cela dans le but de répondre aux besoins d'un métier qui évolue chaque jours.
+                                <p><b>Répondre aux questions ci-après est essentiel pour nous.</br>Tes réponses vont nous permettre de receuillir certaines informations afin de faire évoluer la formation ASI.
+                                        </br>Tout cela dans le but de répondre aux besoins d'un métier qui évolue chaque jour.
                                     </b></p>
                             </center>
                             <div id="acceuil">
