@@ -69,7 +69,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/download', 'QuestionnaireBackController@export')->name('export');
 
     //Route Gestion User
-    Route::post("/back/import/users","userController@import")->name('user.import');
+    Route::post("/back/import/users","UserController@import")->name('user.import');
     Route::resource('back/users', UserController::class);
     Route::get('/back/archives', 'UserController@index_archive')->name('archive.index');
     Route::post('/back/archives/{id}', 'UserController@archiver')->name('user.archiver');

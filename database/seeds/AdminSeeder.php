@@ -12,16 +12,16 @@ class AdminSeeder extends Seeder
     public function run()
     {
       DB::table('admins')->insert([
-        'nom'=> 'Administateur',
-        'prenom'=> 'FMS',
-      ]);
-      DB::table('admins')->insert([
-        'nom'=> 'Administateur',
-        'prenom'=> 'WEB',
-      ]);
-      DB::table('admins')->insert([
         'nom'=> 'Courbez',
         'prenom'=> 'Julian',
+      ]);
+      DB::table('admins')->insert([
+        'nom'=> 'Pernelle',
+        'prenom'=> 'Sébastien',
+      ]);
+      DB::table('admins')->insert([
+        'nom'=> 'FMS',
+        'prenom'=> 'Admin',
       ]);
      
     }

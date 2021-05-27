@@ -12,20 +12,8 @@ class EleveSeeder extends Seeder
     public function run()
     {
       DB::table('eleves')->insert([
-        'nom'=> 'Pelletier',
-        'prenom'=> 'Florent',
-      ]);
-      DB::table('eleves')->insert([
-        'nom'=> 'Buffard',
-        'prenom'=> 'Hugo',
-      ]);
-      DB::table('eleves')->insert([
-        'nom'=> 'Payet',
-        'prenom'=> 'Damien',
-      ]);
-      DB::table('eleves')->insert([
-        'nom'=> 'eleve',
-        'prenom'=> 'eleve',
+        'nom'=> 'Démonstration',
+        'prenom'=> 'Eleve',
       ]);
     }
 }

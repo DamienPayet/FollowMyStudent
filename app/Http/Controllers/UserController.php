@@ -471,7 +471,7 @@ class UserController extends Controller
             $reader->close(); // On ferme le $reader
             unlink($fichier);
         } catch (\Exception $e) {
-            return redirect()->route("users.create")->withErrors("Le Fichier ne respect pas le format imposé ! ");
+            return redirect()->route("users.create")->withErrors("Le Fichier ne respecte pas le format imposé ! ");
         }
         return redirect()->route("users.index")->withStatus(__("Importation réussie !"));
     }

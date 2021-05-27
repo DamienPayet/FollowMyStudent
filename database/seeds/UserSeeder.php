@@ -12,8 +12,8 @@ class UserSeeder extends Seeder
   public function run()
   {
     DB::table('users')->insert([
-      'email' => 'admin@fms.fr',
-      'password' => bcrypt('yLkx2J%mA8LeKX'),
+      'email' => 'julian.courbez@gmail.com',
+      'password' => bcrypt('suFRqHT2E-6'),
       'statut' => 'admin',
       'image_profil' => 'images/default-admin.png',
       'email_verified_at' => now(),
@@ -21,8 +21,8 @@ class UserSeeder extends Seeder
       'administrateur_id' => 1
     ]);
     DB::table('users')->insert([
-      'email' => 'admin@gmail.com',
-      'password' => bcrypt('admin'),
+      'email' => 'spernelle@gmail.com',
+      'password' => bcrypt('y&jU8Ww&Cg6'),
       'statut' => 'admin',
       'image_profil' => 'images/default-admin.png',
       'email_verified_at' => now(),
@@ -30,29 +30,8 @@ class UserSeeder extends Seeder
       'administrateur_id' => 2
     ]);
     DB::table('users')->insert([
-      'email' => 'florent@gmail.com',
-      'password' => bcrypt('florent'),
-      'statut' => 'eleve',
-      'image_profil' => 'images/default.png',
-      'eleve_id' => 1
-    ]);
-    DB::table('users')->insert([
-      'email' => 'hugo@gmail.com',
-      'password' => bcrypt('hugo'),
-      'statut' => 'eleve',
-      'image_profil' => 'images/default.png',
-      'eleve_id' => 2
-    ]);
-    DB::table('users')->insert([
-      'email' => 'damien@gmail.com',
-      'password' => bcrypt('damien'),
-      'statut' => 'eleve',
-      'image_profil' => 'images/default.png',
-      'eleve_id' => 3
-    ]);
-    DB::table('users')->insert([
-      'email' => 'julian.courbez@gmail.com',
-      'password' => bcrypt('suFRqHT2E-6'),
+      'email' => 'admin@gmail.com',
+      'password' => bcrypt('admin'),
       'statut' => 'admin',
       'image_profil' => 'images/default-admin.png',
       'email_verified_at' => now(),
@@ -64,7 +43,7 @@ class UserSeeder extends Seeder
       'password' => bcrypt('eleve'),
       'statut' => 'eleve',
       'image_profil' => 'images/default.png',
-      'eleve_id' => 4
+      'eleve_id' => 1
     ]);
     
   }

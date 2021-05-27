@@ -93,7 +93,7 @@
                         <form action="{{ route('users.destroy', $user->id) }}" method="post">
                           @csrf
                           @method('DELETE')
-                          <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" title="Supprimer l'utilisateur archiver" onclick="return confirm('Est tu sur de vouloir supprimer cette demande ?')">
+                          <button type="submit" rel="tooltip" class="btn  btn-linght btn-round" title="Supprimer l'utilisateur archiver" onclick="return confirm('Est tu sur de vouloir supprimer cet utilisateur?')">
                             <i class="fas fa-times"></i>
                           </button>
                         </form>
