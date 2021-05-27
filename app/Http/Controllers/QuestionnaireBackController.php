@@ -226,7 +226,7 @@ class QuestionnaireBackController extends Controller
 
         //insert all the records
         $csv->insertAll($records);
-        //echo $csv->getContent();
+        $csv->getContent();
 
         $fp = fopen('export_reponses.csv', 'w');
         foreach ($csv as $fields) {
