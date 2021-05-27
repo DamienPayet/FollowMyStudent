@@ -13,7 +13,7 @@ class ForumSeeder extends Seeder
     {
         DB::table('sections')->insert([
             'titre' => 'Général',
-            'description' => 'Posez vos questions d\'ordre générale, sur un métier, la poursuitre d\'étude..',
+            'description' => 'Posez vos questions d\'ordre générale, sur un métier, la poursuite d\'étude..',
             'nb_vue' => 0,
             'created_at' => now()
         ]);
