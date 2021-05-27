@@ -49,7 +49,7 @@
                             <fieldset class="field" id="{{$par->position}}">
                                 <div class="card card-green">
                                     <div class="card-header">
-                                        <h3 class="card-title">Patie {{$par->position}} / {{$part->count()}}</h3>
+                                        <h3 class="card-title">Patie {{$par->position}} / {{$part->count()}}   &thinsp;  &thinsp;&thinsp; &thinsp; {{$par->titre}}</h3>
                                     </div>
                                     <div class="card-body">
                                         <form class="quest_{{$par->position}}" id="{{$par->position}}">
