@@ -211,7 +211,6 @@
         var div = '';
         for (var i = 0; i < messages.length; i++) {
             //Mise en forme de la date et heure :
-
             var datetimes = messages[i].created_at.split("T");
             var date = datetimes[0];
             var heure = datetimes[1].split('.')[0];

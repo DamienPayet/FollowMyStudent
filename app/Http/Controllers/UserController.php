@@ -449,7 +449,7 @@ class UserController extends Controller
             $reader = SimpleExcelReader::create($fichier);
             $rows = $reader->getRows();
             $rows->each(function (array $rowProperties) {
-                //  sleep(4);
+                sleep(2);
                 $user = new User();
                 $user->statut = $rowProperties["Statut"];
                 $gen_pwd = Str::random(8);

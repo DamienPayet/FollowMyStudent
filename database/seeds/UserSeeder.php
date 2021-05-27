@@ -12,7 +12,7 @@ class UserSeeder extends Seeder
   public function run()
   {
     DB::table('users')->insert([
-      'email' => 'julian.courbez@gmail.com',
+      'email' => 'jcourbez@groupemontroland.fr',
       'password' => bcrypt('suFRqHT2E-6'),
       'statut' => 'admin',
       'image_profil' => 'images/default-admin.png',
@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
       'administrateur_id' => 1
     ]);
     DB::table('users')->insert([
-      'email' => 'spernelle@gmail.com',
+      'email' => 'spernelle@groupemontroland.fr',
       'password' => bcrypt('y&jU8Ww&Cg6'),
       'statut' => 'admin',
       'image_profil' => 'images/default-admin.png',

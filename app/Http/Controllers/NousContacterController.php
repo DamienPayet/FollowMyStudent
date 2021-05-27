@@ -84,7 +84,7 @@ class NousContacterController extends Controller
             'user_query' => $clean_words_message,
         ), function ($message) use ($request) {
             $message->from($request->email);
-            $message->to('admin@gmail.com', 'Admintrateur FMS')->subject('[FMS] - Nouvelle demande de contact');
+            $message->to('jcourbez@groupemontroland.fr', 'Julian COURBEZ')->subject('[FMS] - Nouvelle demande de contact');
         });
         // 
         
