@@ -91,11 +91,11 @@
               <div class="team-player"><br>
                 <i class="now-ui-icons education_paper" style="width: 30px"></i>
                 <p class="description">{{ __('Accéder à l\'offre') }}</p><br>
-                @if($offre->pdf != null)
+                @if($offre->lien != null)
                 <p class="description">
-                  <a href="{{ asset($offre->pdf) }}" class="btn badge badge-default" target="_blank">Ouvrir</a>
+                  <a href="{{ asset($offre->lien) }}" class="btn badge badge-default" target="_blank">Ouvrir</a>
                 </p>
-                @elseif($offre->pdf == null)
+                @elseif($offre->lien == null)
                 <p class="description btn badge badge-default" style="background-color:#d0d2cd">Pas de lien</p>
                 @endif
                 <pre style="white-space: pre-wrap;">
