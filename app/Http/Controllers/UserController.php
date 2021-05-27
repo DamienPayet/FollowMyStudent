@@ -449,9 +449,12 @@ class UserController extends Controller
             $reader = SimpleExcelReader::create($fichier);
             $rows = $reader->getRows();
             $rows->each(function (array $rowProperties) {
+                //  sleep(4);
                 $user = new User();
                 $user->statut = $rowProperties["Statut"];
-                $user->password = bcrypt("fmspassword");
+                $gen_pwd = Str::random(8);
+                $user->password = bcrypt($gen_pwd);
+                //dd( $user->password );
                 if ($rowProperties["Statut"] == "admin") {
                     $admin = new Admin();
                     $admin->nom = $rowProperties["Nom"];
@@ -465,8 +468,17 @@ class UserController extends Controller
                     $eleve->save();
                     $user->eleve_id = $eleve->id;
                 }
+
+
                 $user->email = $rowProperties["Email"];
                 $user->save();
+                $data = ([
+                    "nom" =>  $rowProperties["Nom"],
+                    "prenom" => $rowProperties["Prenom"],
+                    "email" => $rowProperties["Email"],
+                    "password" => $gen_pwd,
+                ]);
+                \Mail::to($rowProperties["Email"])->send(new WelcomeMail($data));
             });
             $reader->close(); // On ferme le $reader
             unlink($fichier);
@@ -475,6 +487,4 @@ class UserController extends Controller
         }
         return redirect()->route("users.index")->withStatus(__("Importation réussie !"));
     }
-
-
 }

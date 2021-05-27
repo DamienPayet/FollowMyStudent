@@ -31,7 +31,7 @@ class ForumSeeder extends Seeder
         ]);
         DB::table('sujet_categories')->insert([
             'nom' => 'Forum',
-            'image'=>'front/images/categories/FORUM.jpg',
+            'image'=>'front/images/categories/forum.jpg',
             'section_id' => 1,
             'nb_vue' => 0,
             'created_at' => now()

@@ -143,9 +143,9 @@
                                 <div class="form-group">
                                     <img src="{{url('images/xlx_ex.png')}}" class="img-fluid">
                                 </div>
-                                <text style='margin-left:10px;color:grey;'>* Le mot de passe par défaut de chaque
-                                    utilisateur est "fmspassword" il devra être modifié l'ors de la
-                                    première connexion.
+                                <text style='margin-left:10px;color:grey;'>* Attention ! S'il y a un espace a la fin
+                                    de l'adresse email, l'import va échouer. Veuillez vérifier cela.
+                                   <br> Aussi, le mot de passé est généré aléatoirement et communiqué par email à l'utilisateur.
                                 </text>
 
                                 <!-- Fin  Avatar -->
