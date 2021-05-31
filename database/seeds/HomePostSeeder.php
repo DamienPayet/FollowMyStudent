@@ -26,7 +26,7 @@ Ensuite, vous aurez accès à l\'ensemble des fonctionnalités du site...à vous
             'description' => '
 Le forum est un lieu de partage et d\'échange. Veuillez d\'abord lire les règles !
 Elles sont disponibles en cliquant sur ce card.',
-            'lien' => 'http://followmystudent.test/front/forum/sujet/1',
+            'lien' => '/front/forum/sujet/1',
             'position' => 2,
             'created_at' => now()
         ]);
