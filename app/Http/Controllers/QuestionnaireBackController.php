@@ -226,14 +226,10 @@ class QuestionnaireBackController extends Controller
 
         //insert all the records
         $csv->insertAll($records);
-        $csv->getContent();
 
-        $fp = fopen('export_reponses.csv', 'w');
-        foreach ($csv as $fields) {
-            fputcsv($fp, $fields->attributesToArray());
-        }
-        fclose($fp);
-        $file = "export_reponses.csv";
+        $file = storage_path("export_responses.csv");
+        file_put_contents($file, $csv->getContent());
+
         return Response::download($file);
     }
 }
