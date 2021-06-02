@@ -99,8 +99,8 @@
       @endif
       <div class="col-md-4 ml-auto mr-auto">
         <div class="card card-login card-plain">
-          <div class="card-header text-center">
-            <img src="../front/images/favicon.ico" alt>
+          <div class="card-header text-center" >
+            <img  style="height: 135px" src="../front/images/favicon.ico" alt>
           </div>
 
           @if(session()->has('errors'))
